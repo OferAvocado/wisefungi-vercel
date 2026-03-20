@@ -1,0 +1,415 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  // If you are using Vercel Postgres, you might need a directUrl for migrations
+  // directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+// =========================
+// ENUMS
+// =========================
+
+enum AdminRole {
+  super_admin
+  editor
+  translator
+}
+
+enum AdminStatus {
+  active
+  disabled
+}
+
+enum FungiStatus {
+  draft
+  published
+  archived
+}
+
+enum LanguageCode {
+  en
+  he
+  es
+  ru
+}
+
+enum VisibilityStatus {
+  active
+  hidden
+}
+
+enum SeverityLevel {
+  low
+  medium
+  high
+}
+
+enum InteractionType {
+  high_risk
+  moderate_interaction
+  helpful_combination
+  unknown_insufficient_research
+}
+
+enum TargetType {
+  medication
+  supplement
+  herb
+  condition
+  food
+  substance
+  general
+}
+
+enum EvidenceLevel {
+  clinical_evidence
+  limited_research
+  traditional_use
+  unknown
+}
+
+// =========================
+// ADMINS
+// =========================
+
+model Admin {
+  id            String      @id @default(cuid())
+  full_name     String
+  email         String      @unique
+  role          AdminRole
+  status        AdminStatus
+  password_hash String
+  totp_enabled  Boolean     @default(false)
+  totp_secret   String?
+  last_login_at DateTime?
+  
+  created_at    DateTime    @default(now())
+  updated_at    DateTime    @updatedAt
+
+  @@map("admins")
+}
+
+// =========================
+// FUNGI (CORE)
+// =========================
+
+model Fungi {
+  id              String      @id @default(cuid())
+  slug            String      @unique
+  scientific_name String
+  featured_image  String? // Media URL
+  status          FungiStatus @default(draft)
+  sort_order      Int         @default(0)
+  is_featured     Boolean     @default(false)
+
+  created_at      DateTime    @default(now())
+  updated_at      DateTime    @updatedAt
+
+  // Relations
+  translations          FungiTranslation[]
+  benefits              FungiBenefit[]
+  conditions            FungiCondition[]
+  contraindications     FungiContraindication[]
+  doctor_consult_flags  FungiDoctorConsultFlag[]
+  interactions          FungiInteraction[]
+
+  @@map("fungi")
+}
+
+model FungiTranslation {
+  id                   String       @id @default(cuid())
+  fungi_id             String
+  language_code        LanguageCode
+  name                 String
+  about_this_mushroom  String? // rich_text
+  how_to_use           String? // rich_text
+  recommended_dosage   String? // rich_text
+  seo_title            String?
+  seo_meta_description String? // textarea
+  search_keywords      String[] // tags array
+  search_aliases       String[] // tags array
+
+  created_at           DateTime     @default(now())
+  updated_at           DateTime     @updatedAt
+
+  fungi                Fungi        @relation(fields: [fungi_id], references: [id], onDelete: Cascade)
+
+  @@unique([fungi_id, language_code])
+  @@map("fungi_translations")
+}
+
+// =========================
+// BENEFITS
+// =========================
+
+model Benefit {
+  id         String           @id @default(cuid())
+  slug       String           @unique
+  status     VisibilityStatus @default(active)
+  sort_order Int              @default(0)
+  icon       String? // Media URL
+
+  created_at DateTime         @default(now())
+  updated_at DateTime         @updatedAt
+
+  // Relations
+  translations  BenefitTranslation[]
+  fungi_links   FungiBenefit[]
+
+  @@map("benefits")
+}
+
+model BenefitTranslation {
+  id                   String       @id @default(cuid())
+  benefit_id           String
+  language_code        LanguageCode
+  label                String
+  short_description    String?
+  search_aliases       String[] // tags
+  seo_title            String?
+  seo_meta_description String? // textarea
+
+  benefit              Benefit      @relation(fields: [benefit_id], references: [id], onDelete: Cascade)
+
+  @@unique([benefit_id, language_code])
+  @@map("benefit_translations")
+}
+
+model FungiBenefit {
+  id         String   @id @default(cuid())
+  fungi_id   String
+  benefit_id String
+  sort_order Int      @default(0)
+  is_primary Boolean  @default(false)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  fungi   Fungi   @relation(fields: [fungi_id], references: [id], onDelete: Cascade)
+  benefit Benefit @relation(fields: [benefit_id], references: [id], onDelete: Cascade)
+
+  @@unique([fungi_id, benefit_id])
+  @@map("fungi_benefits")
+}
+
+// =========================
+// CONDITIONS
+// =========================
+
+model Condition {
+  id         String           @id @default(cuid())
+  slug       String           @unique
+  status     VisibilityStatus @default(active)
+  sort_order Int              @default(0)
+
+  created_at DateTime         @default(now())
+  updated_at DateTime         @updatedAt
+
+  // Relations
+  translations ConditionTranslation[]
+  fungi_links  FungiCondition[]
+
+  @@map("conditions")
+}
+
+model ConditionTranslation {
+  id                   String       @id @default(cuid())
+  condition_id         String
+  language_code        LanguageCode
+  label                String
+  short_description    String?
+  search_aliases       String[] // tags
+  seo_title            String?
+  seo_meta_description String? // textarea
+
+  condition            Condition    @relation(fields: [condition_id], references: [id], onDelete: Cascade)
+
+  @@unique([condition_id, language_code])
+  @@map("condition_translations")
+}
+
+model FungiCondition {
+  id           String   @id @default(cuid())
+  fungi_id     String
+  condition_id String
+  sort_order   Int      @default(0)
+  is_primary   Boolean  @default(false)
+
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+
+  fungi     Fungi     @relation(fields: [fungi_id], references: [id], onDelete: Cascade)
+  condition Condition @relation(fields: [condition_id], references: [id], onDelete: Cascade)
+
+  @@unique([fungi_id, condition_id])
+  @@map("fungi_conditions")
+}
+
+// =========================
+// CONTRAINDICATIONS
+// =========================
+
+model Contraindication {
+  id         String           @id @default(cuid())
+  slug       String           @unique
+  status     VisibilityStatus @default(active)
+  sort_order Int              @default(0)
+  severity   SeverityLevel
+  icon       String? // Media URL
+
+  created_at DateTime         @default(now())
+  updated_at DateTime         @updatedAt
+
+  // Relations
+  translations ContraindicationTranslation[]
+  fungi_links  FungiContraindication[]
+
+  @@map("contraindications")
+}
+
+model ContraindicationTranslation {
+  id                  String           @id @default(cuid())
+  contraindication_id String
+  language_code       LanguageCode
+  label               String
+  short_description   String?
+  search_aliases      String[] // tags
+
+  contraindication    Contraindication @relation(fields: [contraindication_id], references: [id], onDelete: Cascade)
+
+  @@unique([contraindication_id, language_code])
+  @@map("contraindication_translations")
+}
+
+model FungiContraindication {
+  id                  String   @id @default(cuid())
+  fungi_id            String
+  contraindication_id String
+  sort_order          Int      @default(0)
+  is_primary          Boolean  @default(false)
+
+  created_at          DateTime @default(now())
+  updated_at          DateTime @updatedAt
+
+  fungi            Fungi            @relation(fields: [fungi_id], references: [id], onDelete: Cascade)
+  contraindication Contraindication @relation(fields: [contraindication_id], references: [id], onDelete: Cascade)
+
+  @@unique([fungi_id, contraindication_id])
+  @@map("fungi_contraindications")
+}
+
+// =========================
+// WHEN TO CONSULT A DOCTOR
+// =========================
+
+model DoctorConsultFlag {
+  id         String           @id @default(cuid())
+  slug       String           @unique
+  status     VisibilityStatus @default(active)
+  sort_order Int              @default(0)
+  severity   SeverityLevel
+  icon       String? // Media URL
+
+  created_at DateTime         @default(now())
+  updated_at DateTime         @updatedAt
+
+  // Relations
+  translations DoctorConsultFlagTranslation[]
+  fungi_links  FungiDoctorConsultFlag[]
+
+  @@map("doctor_consult_flags")
+}
+
+model DoctorConsultFlagTranslation {
+  id                     String            @id @default(cuid())
+  doctor_consult_flag_id String
+  language_code          LanguageCode
+  label                  String
+  short_description      String?
+  search_aliases         String[] // tags
+
+  doctor_consult_flag    DoctorConsultFlag @relation(fields: [doctor_consult_flag_id], references: [id], onDelete: Cascade)
+
+  @@unique([doctor_consult_flag_id, language_code])
+  @@map("doctor_consult_flag_translations")
+}
+
+model FungiDoctorConsultFlag {
+  id                     String   @id @default(cuid())
+  fungi_id               String
+  doctor_consult_flag_id String
+  sort_order             Int      @default(0)
+  is_primary             Boolean  @default(false)
+
+  created_at             DateTime @default(now())
+  updated_at             DateTime @updatedAt
+
+  fungi               Fungi             @relation(fields: [fungi_id], references: [id], onDelete: Cascade)
+  doctor_consult_flag DoctorConsultFlag @relation(fields: [doctor_consult_flag_id], references: [id], onDelete: Cascade)
+
+  @@unique([fungi_id, doctor_consult_flag_id])
+  @@map("fungi_doctor_consult_flags")
+}
+
+// =========================
+// INTERACTIONS
+// =========================
+
+model InteractionItem {
+  id               String           @id @default(cuid())
+  slug             String           @unique
+  interaction_type InteractionType
+  target_type      TargetType
+  evidence_level   EvidenceLevel
+  status           VisibilityStatus @default(active)
+  sort_order       Int              @default(0)
+
+  created_at       DateTime         @default(now())
+  updated_at       DateTime         @updatedAt
+
+  // Relations
+  translations     InteractionItemTranslation[]
+  fungi_links      FungiInteraction[]
+
+  @@map("interaction_items")
+}
+
+model InteractionItemTranslation {
+  id                  String          @id @default(cuid())
+  interaction_item_id String
+  language_code       LanguageCode
+  label               String
+  short_description   String?
+  details             String? // rich_text
+  search_aliases      String[] // tags
+
+  interaction_item    InteractionItem @relation(fields: [interaction_item_id], references: [id], onDelete: Cascade)
+
+  @@unique([interaction_item_id, language_code])
+  @@map("interaction_item_translations")
+}
+
+model FungiInteraction {
+  id                  String   @id @default(cuid())
+  fungi_id            String
+  interaction_item_id String
+  sort_order          Int      @default(0)
+  is_primary          Boolean  @default(false)
+  custom_note         String?
+
+  created_at          DateTime @default(now())
+  updated_at          DateTime @updatedAt
+
+  fungi            Fungi           @relation(fields: [fungi_id], references: [id], onDelete: Cascade)
+  interaction_item InteractionItem @relation(fields: [interaction_item_id], references: [id], onDelete: Cascade)
+
+  @@unique([fungi_id, interaction_item_id])
+  @@map("fungi_interactions")
+}
