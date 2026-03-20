@@ -32,6 +32,21 @@ export default async function ProtectedAdminLayout({
           <Link href="/admin/translations" className="block px-4 py-3 rounded-xl text-nature-700 hover:bg-nature-100 hover:text-nature-900 transition-colors font-medium">
             Translations
           </Link>
+          <div className="pt-4 mt-4 border-t border-nature-100">
+            <h3 className="px-4 text-xs font-semibold text-nature-400 uppercase tracking-wider mb-2">Dictionaries</h3>
+            <Link href="/admin/taxonomy" className="block px-4 py-3 rounded-xl text-nature-700 hover:bg-nature-100 hover:text-nature-900 transition-colors font-medium">
+              Taxonomies
+            </Link>
+            <Link href="/admin/interactions" className="block px-4 py-3 rounded-xl text-nature-700 hover:bg-nature-100 hover:text-nature-900 transition-colors font-medium">
+              Interactions
+            </Link>
+          </div>
+          <div className="pt-4 mt-4 border-t border-nature-100">
+            <h3 className="px-4 text-xs font-semibold text-nature-400 uppercase tracking-wider mb-2">System</h3>
+            <Link href="/admin/users" className="block px-4 py-3 rounded-xl text-nature-700 hover:bg-nature-100 hover:text-nature-900 transition-colors font-medium">
+              Administrators
+            </Link>
+          </div>
         </nav>
         
         <div className="p-4 border-t border-nature-100 bg-nature-50/50">
