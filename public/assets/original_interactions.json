@@ -1,0 +1,1986 @@
+{
+  "Reishi": {
+    "do_not_combine": [
+      {
+        "name": {
+          "he": "נוגדי קרישה (וורפרין / הפרין וכד')",
+          "en": "Anticoagulants (warfarin / heparin etc.)",
+          "ru": "Антикоагулянты (варфарин / гепарин и др.)",
+          "es": "Anticoagulantes (warfarina / heparina, etc.)"
+        },
+        "why": {
+          "he": "ריישי עלול להגביר את הסיכון לדימום בשילוב עם נוגדי קרישה.",
+          "en": "Reishi can increase bleeding risk with anticoagulant therapy.",
+          "ru": "Рейши может повышать риск кровотечений при антикоагулянтной терапии.",
+          "es": "El Reishi puede aumentar el riesgo de hemorragia con terapia anticoagulante."
+        },
+        "mechanism": {
+          "he": "אפקט נוגד קרישה מצטבר",
+          "en": "Additive anticoagulant effect",
+          "ru": "Аддитивный антикоагулянтный эффект",
+          "es": "Efecto anticoagulante aditivo"
+        },
+        "evidence": "clinical"
+      },
+      {
+        "name": {
+          "he": "תרופות נוגדות טסיות (אספירין / קלופידוגרל)",
+          "en": "Antiplatelets (aspirin / clopidogrel)",
+          "ru": "Антиагреганты (аспирин / клопидогрел)",
+          "es": "Antiplaquetarios (aspirina / clopidogrel)"
+        },
+        "why": {
+          "he": "ריישי עלול להגביר את הסיכון לדימום בשילוב עם תרופות נוגדות טסיות.",
+          "en": "Reishi may increase bleeding risk when combined with antiplatelet drugs.",
+          "ru": "Рейши может повышать риск кровотечений в сочетании с антиагрегантами.",
+          "es": "El Reishi puede aumentar el riesgo de hemorragia combinado con antiagregantes."
+        },
+        "mechanism": {
+          "he": "סיכון דימום מצטבר",
+          "en": "Additive bleeding risk",
+          "ru": "Аддитивный риск кровотечений",
+          "es": "Riesgo de hemorragia aditivo"
+        },
+        "evidence": "clinical"
+      }
+    ],
+    "use_caution": [
+      {
+        "name": {
+          "he": "תרופות להורדת לחץ דם",
+          "en": "Antihypertensives (blood pressure medications)",
+          "ru": "Антигипертензивные препараты",
+          "es": "Antihipertensivos (medicamentos para la presión arterial)"
+        },
+        "why": {
+          "he": "ריישי עשוי לתרום להורדת לחץ דם בשילוב עם תרופות להורדת לחץ דם.",
+          "en": "Reishi may contribute to low blood pressure when combined with antihypertensive drugs.",
+          "ru": "Рейши может способствовать снижению давления в сочетании с антигипертензивными препаратами.",
+          "es": "El Reishi puede contribuir a bajar la presión arterial combinado con medicamentos antihipertensivos."
+        },
+        "evidence": "clinical"
+      },
+      {
+        "name": {
+          "he": "תרופות לסוכרת (אינסולין / מטפורמין)",
+          "en": "Antidiabetic drugs (insulin / metformin)",
+          "ru": "Противодиабетические препараты (инсулин / метформин)",
+          "es": "Antidiabéticos (insulina / metformina)"
+        },
+        "why": {
+          "he": "ריישי עלול לגרום להיפוגליקמיה מצטברת עם תרופות להורדת גלוקוז.",
+          "en": "Reishi may contribute to additive hypoglycemia with glucose-lowering drugs.",
+          "ru": "Рейши может вызывать аддитивную гипогликемию с сахароснижающими препаратами.",
+          "es": "El Reishi puede contribuir a hipoglucemia aditiva con medicamentos hipoglucemiantes."
+        },
+        "evidence": "clinical"
+      },
+      {
+        "name": {
+          "he": "מדכאי חיסון (טקרולימוס / ציקלוספורין)",
+          "en": "Immunosuppressants (tacrolimus / cyclosporine)",
+          "ru": "Иммунодепрессанты (такролимус / циклоспорин)",
+          "es": "Inmunosupresores (tacrolimus / ciclosporina)"
+        },
+        "why": {
+          "he": "ריישי עשוי לחזק את תגובת החיסון, מה שעלול לנגד תרופות מדכאות חיסון.",
+          "en": "Reishi may enhance immune response, which could theoretically oppose immunosuppressive therapy.",
+          "ru": "Рейши может усиливать иммунный ответ, теоретически противодействуя иммуносупрессивной терапии.",
+          "es": "El Reishi puede potenciar la respuesta inmune, lo que podría oponerse a la terapia inmunosupresora."
+        },
+        "evidence": "clinical"
+      },
+      {
+        "name": {
+          "he": "תרופות כימותרפיה",
+          "en": "Chemotherapy / cytotoxic agents",
+          "ru": "Химиотерапевтические препараты",
+          "es": "Agentes de quimioterapia / citotóxicos"
+        },
+        "why": {
+          "he": "ריישי יכול להגביר את קיבולת נוגדי החמצון בפלסמה; חלק מסוכני כימו מסתמכים על מנגנוני רדיקלים חופשיים.",
+          "en": "Reishi can increase plasma antioxidant capacity; some chemotherapy agents rely on free-radical mechanisms.",
+          "ru": "Рейши может повышать антиоксидантную ёмкость плазмы; некоторые препараты зависят от механизмов свободных радикалов.",
+          "es": "El Reishi puede aumentar la capacidad antioxidante del plasma; algunos agentes dependen de mecanismos de radicales libres."
+        },
+        "evidence": "limited"
+      },
+      {
+        "name": {
+          "he": "גינקו בילובה",
+          "en": "Ginkgo biloba",
+          "ru": "Гинкго билоба",
+          "es": "Ginkgo biloba"
+        },
+        "why": {
+          "he": "גם לריישי וגם לגינקו יש דאגות קשורות לדימום — שילובם מחייב זהירות.",
+          "en": "Both reishi and ginkgo carry bleeding-related concerns — combining them warrants caution.",
+          "ru": "И рейши, и гинкго имеют риски кровотечений — их совместное применение требует осторожности.",
+          "es": "Tanto el Reishi como el Ginkgo tienen preocupaciones relacionadas con hemorragias."
+        },
+        "evidence": "limited"
+      },
+      {
+        "name": {
+          "he": "ג'ינסנג אסייתי (פנאקס ג'ינסנג)",
+          "en": "Asian ginseng (Panax ginseng)",
+          "ru": "Женьшень азиатский (Panax ginseng)",
+          "es": "Ginseng asiático (Panax ginseng)"
+        },
+        "why": {
+          "he": "ג'ינסנג משפיע על סוכר בדם וקרישה; השילוב עם ריישי עלול להסבך את פרשנות הסיכון.",
+          "en": "Ginseng affects blood sugar and clotting; combining with reishi may complicate risk interpretation.",
+          "ru": "Женьшень влияет на уровень сахара и свёртываемость; сочетание с рейши может усложнить оценку рисков.",
+          "es": "El ginseng afecta el azúcar en sangre y la coagulación; combinarlo con Reishi puede complicar la interpretación del riesgo."
+        },
+        "evidence": "limited"
+      },
+      {
+        "name": {
+          "he": "אשוואגנדה",
+          "en": "Ashwagandha",
+          "ru": "Ашваганда",
+          "es": "Ashwagandha"
+        },
+        "why": {
+          "he": "שילוב נפוץ בסטאקים לשינה/לחץ, אך לאשוואגנדה יש שיקולים עצמאיים (בלוטת התריס, כבד, לחץ דם).",
+          "en": "Common in stress/sleep stacks, but ashwagandha has its own thyroid, liver, and blood-pressure considerations.",
+          "ru": "Распространённый стек для стресса/сна, но ашваганда имеет собственные риски (щитовидная железа, печень, давление).",
+          "es": "Común en stacks de estrés/sueño, pero la ashwagandha tiene sus propias consideraciones de tiroides, hígado y presión arterial."
+        },
+        "evidence": "clinical"
+      },
+      {
+        "name": {
+          "he": "היפריקום / פרח יוחנן (St. John's Wort)",
+          "en": "St. John's Wort (Hypericum)",
+          "ru": "Зверобой (St. John's Wort)",
+          "es": "Hierba de San Juan (St. John's Wort)"
+        },
+        "why": {
+          "he": "היפריקום מפעיל אנזים CYP3A4 ועלול להחליש תרופות רבות כולל תרופות לחץ דם, קונטרצפטיבים ותרופות אחרות — בנוסף מעלה סיכון לתסמונת סרוטונין.",
+          "en": "St. John's Wort induces CYP3A4 and can weaken many medications, and also raises serotonin-syndrome risk with antidepressants.",
+          "ru": "Зверобой индуцирует CYP3A4 и может ослаблять многие препараты, а также повышает риск серотонинового синдрома.",
+          "es": "La Hierba de San Juan induce CYP3A4 y puede debilitar muchos medicamentos, además de elevar el riesgo de síndrome serotoninérgico."
+        },
+        "evidence": "clinical"
+      },
+      {
+        "name": {
+          "he": "שום (גרלי'ק)",
+          "en": "Garlic (high dose)",
+          "ru": "Чеснок (высокие дозы)",
+          "es": "Ajo (dosis altas)"
+        },
+        "why": {
+          "he": "לשום יש תכונות מדללות דם — רלוונטי במיוחד בשילוב עם ריישי שגם לו דאגות לדימום.",
+          "en": "Garlic has blood-thinning properties — especially relevant combined with Reishi which also carries bleeding concerns.",
+          "ru": "Чеснок обладает кроворазжижающими свойствами — особенно важно в сочетании с рейши, имеющим риски кровотечений.",
+          "es": "El ajo tiene propiedades anticoagulantes — especialmente relevante combinado con Reishi que también tiene riesgos de hemorragia."
+        },
+        "evidence": "limited"
+      },
+      {
+        "name": {
+          "he": "ג'ינג'ר (כמות גבוהה)",
+          "en": "Ginger (high dose)",
+          "ru": "Имбирь (высокие дозы)",
+          "es": "Jengibre (dosis altas)"
+        },
+        "why": {
+          "he": "ג'ינג'ר בכמות גבוהה עלול לתרום לסיכון דימום בשילוב עם ריישי — רבים משלבים אותו בתה או תוספים מבלי לדעת.",
+          "en": "High-dose ginger may contribute to bleeding risk when combined with Reishi — many use it casually in teas or supplements.",
+          "ru": "Имбирь в высоких дозах может усиливать риск кровотечений в сочетании с рейши — многие используют его незаметно в чаях.",
+          "es": "El jengibre en dosis altas puede contribuir al riesgo de hemorragia combinado con Reishi — muchos lo usan casualmente en tés."
+        },
+        "evidence": "limited"
+      },
+      {
+        "name": {
+          "he": "גלוקוזמין + כונדרואיטין",
+          "en": "Glucosamine + Chondroitin",
+          "ru": "Глюкозамин + Хондроитин",
+          "es": "Glucosamina + Condroitina"
+        },
+        "why": {
+          "he": "שיוכו עם עלייה בסיכון לדימום אצל אנשים הנוטלים וורפרין — רלוונטי כאשר לריישי יש כבר דאגות דימום.",
+          "en": "Associated with increased bleeding risk in people taking warfarin — relevant where Reishi already carries bleeding concerns.",
+          "ru": "Ассоциированы с повышенным риском кровотечений у людей, принимающих варфарин — актуально при наличии рисков кровотечений у рейши.",
+          "es": "Asociados con mayor riesgo de hemorragia en personas que toman warfarina — relevante donde el Reishi ya tiene preocupaciones hemorrágicas."
+        },
+        "evidence": "clinical"
+      },
+      {
+        "name": {
+          "he": "אומגה-3 במינון גבוה",
+          "en": "Omega-3 (high dose)",
+          "ru": "Омега-3 (высокие дозы)",
+          "es": "Omega-3 (dosis altas)"
+        },
+        "why": {
+          "he": "אומגה-3 במינון גבוה עלול לקיים אינטראקציה עם תרופות לקרישת דם — חפיפה עם הדאגות של ריישי.",
+          "en": "High-dose Omega-3 may interact with blood-clotting medications — overlapping with Reishi's bleeding-related concerns.",
+          "ru": "Омега-3 в высоких дозах может взаимодействовать с антикоагулянтами — пересечение с рисками кровотечений рейши.",
+          "es": "El Omega-3 en dosis altas puede interactuar con medicamentos anticoagulantes — solapándose con las preocupaciones hemorrágicas del Reishi."
+        },
+        "evidence": "clinical"
+      },
+      {
+        "name": {
+          "he": "קאווה",
+          "en": "Kava",
+          "ru": "Кава",
+          "es": "Kava"
+        },
+        "why": {
+          "he": "קאווה עלולה לגרום לנזק לכבד ואסור לשלבה עם אלכוהול — אין לשלב בסטאקים של שינה/הרגעה ללא ייעוץ רפואי.",
+          "en": "Kava carries liver-toxicity risk and must not be combined with alcohol — avoid in sleep/calm stacks without medical guidance.",
+          "ru": "Кава несёт риск токсического поражения печени и не должна сочетаться с алкоголем — избегать в стеках для сна/успокоения.",
+          "es": "La Kava conlleva riesgo de toxicidad hepática y no debe combinarse con alcohol — evitar en stacks de sueño/calma sin orientación médica."
+        },
+        "evidence": "clinical"
+      },
+      {
+        "name": {
+          "he": "לבותירוקסין (תרופה לבלוטת התריס)",
+          "en": "Levothyroxine (thyroid medication)",
+          "ru": "Левотироксин (препарат для щитовидной железы)",
+          "es": "Levotiroxina (medicamento para la tiroides)"
+        },
+        "why": {
+          "he": "תוספים כמו סידן, ברזל ואשוואגנדה (שמשולבים לעיתים עם ריישי) עלולים להפחית ספיגת לבותירוקסין — יש לרווח בין נטילתם.",
+          "en": "Supplements like calcium, iron and ashwagandha (often stacked with Reishi) can reduce levothyroxine absorption — take with adequate spacing.",
+          "ru": "Добавки кальций, железо и ашваганда (часто сочетаемые с рейши) могут снижать всасывание левотироксина — принимать с промежутком.",
+          "es": "Suplementos como calcio, hierro y ashwagandha (a menudo en stacks con Reishi) pueden reducir la absorción de levotiroxina — tomar con espaciado adecuado."
+        },
+        "evidence": "clinical"
+      },
+      {
+        "name": {
+          "he": "ציקלוספורין (תרופה מדכאת חיסון)",
+          "en": "Cyclosporine (immunosuppressant)",
+          "ru": "Циклоспорин (иммунодепрессант)",
+          "es": "Ciclosporina (inmunosupresor)"
+        },
+        "why": {
+          "he": "היפריקום (St. John's Wort) עלול להחליש ציקלוספורין — רלוונטי בדפי פטריות ממדכאות חיסון.",
+          "en": "St. John's Wort can weaken cyclosporine — relevant on immune-modulating mushroom pages.",
+          "ru": "Зверобой может ослаблять циклоспорин — актуально на страницах грибов, влияющих на иммунитет.",
+          "es": "La Hierba de San Juan puede debilitar la ciclosporina — relevante en páginas de hongos que modulan la inmunidad."
+        },
+        "evidence": "clinical"
+      },
+      {
+        "name": {
+          "he": "L-טריפטופן",
+          "en": "L-Tryptophan",
+          "ru": "L-Триптофан",
+          "es": "L-Triptófano"
+        },
+        "why": {
+          "he": "L-טריפטופן פועל בנתיבי סרוטונין ושינה — בשילוב עם ריישי בסטאקים לשינה יש לבחון זהירות כשנוטלים תרופות אחרות.",
+          "en": "L-Tryptophan acts on serotonin and sleep pathways — when combined with Reishi in sleep stacks, exercise caution with other medications.",
+          "ru": "L-Триптофан действует на серотониновые и снотворные пути — при сочетании с рейши в стеках для сна соблюдать осторожность.",
+          "es": "El L-Triptófano actúa en las vías de serotonina y sueño — cuando se combina con Reishi en stacks de sueño, precaución con otros medicamentos."
+        },
+        "evidence": "limited"
+      },
+      {
+        "name": {
+          "he": "5-HTP",
+          "en": "5-HTP",
+          "ru": "5-HTP",
+          "es": "5-HTP"
+        },
+        "why": {
+          "he": "5-HTP פועל על נתיבי סרוטונין — יש לנקוט זהירות מיוחדת אם משלבים עם נוגדי דיכאון או חומרים אחרים הפועלים על סרוטונין.",
+          "en": "5-HTP acts on serotonin pathways — extra caution is needed if combining with antidepressants or other serotonin-active substances.",
+          "ru": "5-HTP действует на серотониновые пути — особая осторожность при сочетании с антидепрессантами или другими серотонинергическими веществами.",
+          "es": "El 5-HTP actúa en las vías de serotonina — precaución adicional al combinar con antidepresivos u otras sustancias serotoninérgicas."
+        },
+        "evidence": "limited"
+      }
+    ],
+    "potential_synergy": [
+      {
+        "name": {
+          "he": "מגנזיום",
+          "en": "Magnesium",
+          "ru": "Магний",
+          "es": "Magnesio"
+        },
+        "why": {
+          "he": "משולב לעיתים קרובות בסטאקים לשינה/רוגע לתמיכה משלימה במערכת העצבים.",
+          "en": "Often paired in sleep/calm stacks for complementary nervous system support.",
+          "ru": "Часто используется в стеках для сна/спокойствия для взаимодополняющей поддержки нервной системы.",
+          "es": "A menudo combinado en stacks de sueño/calma para apoyo complementario del sistema nervioso."
+        },
+        "evidence": "theoretical"
+      },
+      {
+        "name": {
+          "he": "L-תיאנין",
+          "en": "L-theanine",
+          "ru": "L-теанин",
+          "es": "L-teanina"
+        },
+        "why": {
+          "he": "סטאק מרגיע נפוץ — שניהם עשויים לקדם רגיעה.",
+          "en": "Common calming stack — both may promote relaxation.",
+          "ru": "Распространённый успокаивающий стек — оба могут способствовать расслаблению.",
+          "es": "Stack calmante común — ambos pueden promover la relajación."
+        },
+        "evidence": "theoretical"
+      },
+      {
+        "name": {
+          "he": "CBD",
+          "en": "CBD",
+          "ru": "CBD",
+          "es": "CBD"
+        },
+        "why": {
+          "he": "משולב לעיתים קרובות לתמיכה בלחץ או שינה.",
+          "en": "Commonly paired for stress or sleep support.",
+          "ru": "Часто сочетается для поддержки при стрессе или для сна.",
+          "es": "Comúnmente combinado para apoyo en estrés o sueño."
+        },
+        "evidence": "theoretical"
+      },
+      {
+        "name": {
+          "he": "מלטונין",
+          "en": "Melatonin",
+          "ru": "Мелатонин",
+          "es": "Melatonina"
+        },
+        "why": {
+          "he": "שילוב מעשי לסטאק שינה — לא הוכח כסינרגיה עדיפה בניסויים קליניים.",
+          "en": "Practical sleep-stack idea — not proven as a superior combination in clinical trials.",
+          "ru": "Практическая идея для стека сна — не доказана как превосходная комбинация.",
+          "es": "Idea práctica de stack de sueño — no probada como combinación superior en ensayos clínicos."
+        },
+        "evidence": "theoretical"
+      },
+      {
+        "name": {
+          "he": "גליצין",
+          "en": "Glycine",
+          "ru": "Глицин",
+          "es": "Glicina"
+        },
+        "why": {
+          "he": "תוסף שינה פופולרי — עשוי להשתלב עם ריישי בסטאקים לשינה (לא הוכח כסינרגיה קלינית).",
+          "en": "Popular sleep supplement — may complement Reishi in sleep stacks (not clinically proven synergy).",
+          "ru": "Популярная добавка для сна — может дополнять рейши в стеках для сна (клинически не доказана).",
+          "es": "Suplemento de sueño popular — puede complementar al Reishi en stacks de sueño (no sinergia clínica probada)."
+        },
+        "evidence": "theoretical"
+      },
+      {
+        "name": {
+          "he": "טאורין",
+          "en": "Taurine",
+          "ru": "Таурин",
+          "es": "Taurina"
+        },
+        "why": {
+          "he": "רלוונטי בסטאקים להרגעה — לא הוכח כסינרגיה קלינית עם ריישי.",
+          "en": "Relevant in calming stacks — not proven as clinical synergy with Reishi.",
+          "ru": "Актуален в успокаивающих стеках — клиническая синергия с рейши не доказана.",
+          "es": "Relevante en stacks calmantes — no probado como sinergia clínica con Reishi."
+        },
+        "evidence": "theoretical"
+      },
+      {
+        "name": {
+          "he": "בזיליקום קדוש (טולסי)",
+          "en": "Holy Basil (Tulsi)",
+          "ru": "Священный базилик (Тулси)",
+          "es": "Albahaca sagrada (Tulsi)"
+        },
+        "why": {
+          "he": "אדפטוגן רלוונטי לסטאקים ללחץ — עשוי להשתלב עם ריישי (לא הוכח כסינרגיה קלינית).",
+          "en": "Relevant adaptogen for stress stacks — may complement Reishi (not clinically proven synergy).",
+          "ru": "Актуальный адаптоген для стеков стресса — может дополнять рейши (клинически не доказана).",
+          "es": "Adaptógeno relevante para stacks de estrés — puede complementar al Reishi (no sinergia clínica probada)."
+        },
+        "evidence": "theoretical"
+      }
+    ],
+    "insufficient": [
+      {
+        "name": {
+          "he": "ויטמינים A, B1-B12, C, D, E, K",
+          "en": "Vitamins A, B1-B12, C, D, E, K",
+          "ru": "Витамины A, B1-B12, C, D, E, K",
+          "es": "Vitaminas A, B1-B12, C, D, E, K"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים לריישי.",
+          "en": "No reishi-specific interaction data confirmed.",
+          "ru": "Данных о взаимодействии, специфичных для рейши, не подтверждено.",
+          "es": "No se confirmaron datos de interacción específicos para el Reishi."
+        }
+      },
+      {
+        "name": {
+          "he": "מינרלים (סידן, מגנזיום, ברזל, אבץ, נחושת, סלניום וכד')",
+          "en": "Minerals (Calcium, Magnesium, Iron, Zinc, Copper, Selenium, etc.)",
+          "ru": "Минералы (кальций, магний, железо, цинк, медь, селен и др.)",
+          "es": "Minerales (calcio, magnesio, hierro, zinc, cobre, selenio, etc.)"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים לריישי.",
+          "en": "No reishi-specific interaction data confirmed.",
+          "ru": "Данных не подтверждено.",
+          "es": "No se confirmaron datos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "אלכוהול / קנאביס THC / ניקוטין / קפאין",
+          "en": "Alcohol / Cannabis THC / Nicotine / Caffeine",
+          "ru": "Алкоголь / каннабис THC / никотин / кофеин",
+          "es": "Alcohol / Cannabis THC / Nicotina / Cafeína"
+        },
+        "why": {
+          "he": "לא אושרו עדויות ישירות חזקות לאינטראקציה עם ריישי.",
+          "en": "No strong direct reishi-specific interaction evidence confirmed.",
+          "ru": "Убедительных прямых данных не подтверждено.",
+          "es": "No se confirmó evidencia directa sólida."
+        }
+      },
+      {
+        "name": {
+          "he": "פסילוציבין / LSD / MDMA / קטמין",
+          "en": "Psilocybin / LSD / MDMA / Ketamine",
+          "ru": "Псилоцибин / ЛСД / МДМА / Кетамин",
+          "es": "Psilocibina / LSD / MDMA / Ketamina"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים לריישי.",
+          "en": "No reishi-specific interaction data confirmed.",
+          "ru": "Данных не подтверждено.",
+          "es": "No se confirmaron datos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "פרצטמול / איבופרופן / נפרוקסן / קודאין / טרמדול / אוקסיקודון / מורפין",
+          "en": "Paracetamol / Ibuprofen / Naproxen / Codeine / Tramadol / Oxycodone / Morphine",
+          "ru": "Парацетамол / ибупрофен / напроксен / кодеин / трамадол / оксикодон / морфин",
+          "es": "Paracetamol / Ibuprofeno / Naproxeno / Codeína / Tramadol / Oxicodona / Morfina"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים חזקים לריישי.",
+          "en": "No strong reishi-specific interaction data confirmed.",
+          "ru": "Убедительных данных не подтверждено.",
+          "es": "No se confirmaron datos sólidos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "SSRIs / SNRIs / TCAs / MAOIs / בנזודיאזפינים / אנטיהיסטמינים מרדימים / תרופות אנטיפסיכוטיות / תרופות לADHD",
+          "en": "SSRIs / SNRIs / TCAs / MAOIs / Benzodiazepines / Sedating antihistamines / Antipsychotics / ADHD stimulants",
+          "ru": "СИОЗС / СИОЗСН / ТЦА / ИМАО / бензодиазепины / седативные антигистаминные / антипсихотики / стимуляторы СДВГ",
+          "es": "ISRS / IRSN / ATC / IMAO / Benzodiacepinas / Antihistamínicos sedantes / Antipsicóticos / Estimulantes TDAH"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים חזקים לריישי.",
+          "en": "No strong reishi-specific interaction data confirmed.",
+          "ru": "Убедительных данных не подтверждено.",
+          "es": "No se confirmaron datos sólidos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "תרופות לבלוטת התריס",
+          "en": "Thyroid medications",
+          "ru": "Препараты для щитовидной железы",
+          "es": "Medicamentos para la tiroides"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים לריישי.",
+          "en": "No reishi-specific interaction data confirmed.",
+          "ru": "Данных не подтверждено.",
+          "es": "No se confirmaron datos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "אומגה-3, CoQ10, NAC, פרוביוטיקה, בקופה, רודיולה, כורכומין, ולריאן, ברברין, קוורצטין",
+          "en": "Omega-3, CoQ10, NAC, Probiotics, Bacopa, Rhodiola, Curcumin, Valerian, Berberine, Quercetin",
+          "ru": "Омега-3, CoQ10, NAC, пробиотики, бакопа, родиола, куркумин, валериана, берберин, кверцетин",
+          "es": "Omega-3, CoQ10, NAC, Probióticos, Bacopa, Rhodiola, Curcumina, Valeriana, Berberina, Quercetina"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים חזקים לריישי.",
+          "en": "No strong reishi-specific interaction data confirmed.",
+          "ru": "Убедительных данных не подтверждено.",
+          "es": "No se confirmaron datos sólidos específicos."
+        }
+      }
+    ]
+  },
+  "Lion's Mane": {
+    "do_not_combine": [
+      {
+        "name": {
+          "he": "נוגדי קרישה / תרופות נוגדות טסיות",
+          "en": "Anticoagulants / Antiplatelet drugs",
+          "ru": "Антикоагулянты / антиагреганты",
+          "es": "Anticoagulantes / antiagregantes plaquetarios"
+        },
+        "why": {
+          "he": "רעמת האריה עשויה להאט את קרישת הדם — מומלצת אזהרה שמרנית.",
+          "en": "Lion's Mane might slow blood clotting — conservative warning recommended.",
+          "ru": "Ежовик может замедлять свёртывание крови — рекомендуется консервативное предупреждение.",
+          "es": "La Melena de León puede ralentizar la coagulación — se recomienda advertencia conservadora."
+        },
+        "mechanism": {
+          "he": "פעילות אפשרית נוגדת טסיות",
+          "en": "Possible antiplatelet activity",
+          "ru": "Возможная антиагрегантная активность",
+          "es": "Posible actividad antiplaquetaria"
+        },
+        "evidence": "limited"
+      }
+    ],
+    "use_caution": [
+      {
+        "name": {
+          "he": "תרופות לסוכרת",
+          "en": "Antidiabetic drugs",
+          "ru": "Противодиабетические препараты",
+          "es": "Antidiabéticos"
+        },
+        "why": {
+          "he": "רעמת האריה עשויה להוריד את רמת הסוכר, ולכן זהירות סבירה עם טיפול להורדת גלוקוז.",
+          "en": "Lion's Mane might lower blood sugar, so caution is reasonable with glucose-lowering therapy.",
+          "ru": "Ежовик может снижать уровень сахара, поэтому осторожность при гипогликемической терапии обоснована.",
+          "es": "La Melena de León puede bajar el azúcar en sangre, por lo que la precaución con terapia hipoglucemiante es razonable."
+        },
+        "evidence": "limited"
+      },
+      {
+        "name": {
+          "he": "לפני ניתוח",
+          "en": "Before surgery",
+          "ru": "Перед операцией",
+          "es": "Antes de cirugía"
+        },
+        "why": {
+          "he": "עלול להשפיע על קרישת הדם ושליטה ברמת הסוכר סביב ניתוחים.",
+          "en": "May affect clotting and blood sugar control around surgical procedures.",
+          "ru": "Может влиять на свёртываемость крови и контроль сахара при хирургических вмешательствах.",
+          "es": "Puede afectar la coagulación y el control del azúcar en sangre en torno a procedimientos quirúrgicos."
+        },
+        "evidence": "limited"
+      },
+      {
+        "name": {
+          "he": "ג'ינסנג אסייתי (פנאקס ג'ינסנג)",
+          "en": "Asian ginseng (Panax ginseng)",
+          "ru": "Женьшень азиатский (Panax ginseng)",
+          "es": "Ginseng asiático (Panax ginseng)"
+        },
+        "why": {
+          "he": "שילוב קוגניטיבי פופולרי, אך ג'ינסנג מוסיף דאגות לסוכר בדם ולקרישה.",
+          "en": "Popular cognitive stack pairing, but ginseng adds blood sugar and clotting concerns.",
+          "ru": "Популярное когнитивное сочетание, но женьшень добавляет риски по сахару и свёртываемости.",
+          "es": "Combinación cognitiva popular, pero el ginseng añade preocupaciones de azúcar en sangre y coagulación."
+        },
+        "evidence": "clinical"
+      },
+      {
+        "name": {
+          "he": "גינקו בילובה",
+          "en": "Ginkgo biloba",
+          "ru": "Гинкго билоба",
+          "es": "Ginkgo biloba"
+        },
+        "why": {
+          "he": "שילוב קוגניטיבי נפוץ, אך גינקו מוסיף דאגות קשורות לדימום.",
+          "en": "Common cognitive stack pairing, but ginkgo adds bleeding-related concerns.",
+          "ru": "Распространённое когнитивное сочетание, но гинкго добавляет риски кровотечений.",
+          "es": "Combinación cognitiva común, pero el Ginkgo añade preocupaciones relacionadas con hemorragias."
+        },
+        "evidence": "clinical"
+      },
+      {
+        "name": {
+          "he": "היפריקום / פרח יוחנן (St. John's Wort)",
+          "en": "St. John's Wort (Hypericum)",
+          "ru": "Зверобой (St. John's Wort)",
+          "es": "Hierba de San Juan (St. John's Wort)"
+        },
+        "why": {
+          "he": "היפריקום עלול להעלות סיכון לתסמונת סרוטונין בשילוב עם נוגדי דיכאון — רלוונטי כשרעמת האריה נמצאת בסטאק מצב רוח/פוקוס.",
+          "en": "St. John's Wort may raise serotonin syndrome risk when combined with antidepressants — relevant when Lion's Mane is in a mood/focus stack.",
+          "ru": "Зверобой может повышать риск серотонинового синдрома при сочетании с антидепрессантами — актуально в стеках настроения/фокуса.",
+          "es": "La Hierba de San Juan puede elevar el riesgo de síndrome serotoninérgico con antidepresivos — relevante en stacks de estado de ánimo/enfoque."
+        },
+        "evidence": "clinical"
+      },
+      {
+        "name": {
+          "he": "5-HTP",
+          "en": "5-HTP",
+          "ru": "5-HTP",
+          "es": "5-HTP"
+        },
+        "why": {
+          "he": "5-HTP פועל על נתיבי סרוטונין — בשילוב עם רעמת האריה בסטאקים למצב רוח יש לנקוט זהירות עם נוגדי דיכאון.",
+          "en": "5-HTP acts on serotonin pathways — when combined with Lion's Mane in mood stacks, be cautious with antidepressants.",
+          "ru": "5-HTP действует на серотониновые пути — при сочетании с ежовиком в стеках настроения, осторожность с антидепрессантами.",
+          "es": "El 5-HTP actúa en vías de serotonina — al combinar con Melena de León en stacks de humor, precaución con antidepresivos."
+        },
+        "evidence": "limited"
+      },
+      {
+        "name": {
+          "he": "SAMe",
+          "en": "SAMe",
+          "ru": "SAMe",
+          "es": "SAMe"
+        },
+        "why": {
+          "he": "SAMe עלול לקיים אינטראקציה עם נוגדי דיכאון ועלול לעורר מאניה בהקשרים מסוימים — אין להוסיף לסטאק מצב רוח ללא ייעוץ.",
+          "en": "SAMe may interact with some antidepressants and can provoke mania in some contexts — do not add to mood stacks without consultation.",
+          "ru": "SAMe может взаимодействовать с антидепрессантами и провоцировать манию — не добавлять в стеки настроения без консультации.",
+          "es": "El SAMe puede interactuar con algunos antidepresivos y provocar manía en ciertos contextos — no añadir a stacks de humor sin consulta."
+        },
+        "evidence": "limited"
+      },
+      {
+        "name": {
+          "he": "L-טריפטופן",
+          "en": "L-Tryptophan",
+          "ru": "L-Триптофан",
+          "es": "L-Triptófano"
+        },
+        "why": {
+          "he": "רלוונטי בסטאקים לשינה/מצב רוח — יש לבחון זהירות בשילוב עם חומרים אחרים הפועלים על סרוטונין.",
+          "en": "Relevant in sleep/mood stacks — caution warranted when combining with other serotonin-active substances.",
+          "ru": "Актуален в стеках для сна/настроения — осторожность при сочетании с другими серотонинергическими веществами.",
+          "es": "Relevante en stacks de sueño/humor — precaución al combinar con otras sustancias serotoninérgicas."
+        },
+        "evidence": "limited"
+      }
+    ],
+    "potential_synergy": [
+      {
+        "name": {
+          "he": "אומגה-3 (DHA/EPA)",
+          "en": "Omega-3 (DHA/EPA)",
+          "ru": "Омега-3 (DHA/EPA)",
+          "es": "Omega-3 (DHA/EPA)"
+        },
+        "why": {
+          "he": "רעיון סטאק נוטרופי נפוץ לתמיכה במוח — שניהם עשויים לתמוך בבריאות הנוירונים.",
+          "en": "Common nootropic stack idea for brain support — both may support neuronal health.",
+          "ru": "Популярная идея ноотропного стека — оба могут поддерживать здоровье нейронов.",
+          "es": "Idea común de stack nootrópico — ambos pueden apoyar la salud neuronal."
+        },
+        "evidence": "theoretical"
+      },
+      {
+        "name": {
+          "he": "בקופה מוניירי",
+          "en": "Bacopa monnieri",
+          "ru": "Бакопа Моньери",
+          "es": "Bacopa monnieri"
+        },
+        "why": {
+          "he": "שילוב קוגניטיבי פופולרי לנתיבי זיכרון ולמידה.",
+          "en": "Popular cognitive stack pairing for memory and learning pathways.",
+          "ru": "Популярное когнитивное сочетание для путей памяти и обучения.",
+          "es": "Combinación cognitiva popular para las vías de memoria y aprendizaje."
+        },
+        "evidence": "theoretical"
+      },
+      {
+        "name": {
+          "he": "ויטמין B-קומפלקס",
+          "en": "Vitamin B-complex",
+          "ru": "Витамин B-комплекс",
+          "es": "Complejo vitamínico B"
+        },
+        "why": {
+          "he": "לוגיקה פרקטית של סטאק לבריאות המוח.",
+          "en": "Practical brain-health stack logic.",
+          "ru": "Практическая логика стека для здоровья мозга.",
+          "es": "Lógica práctica de stack para la salud cerebral."
+        },
+        "evidence": "theoretical"
+      },
+      {
+        "name": {
+          "he": "קפאין",
+          "en": "Caffeine",
+          "ru": "Кофеин",
+          "es": "Cafeína"
+        },
+        "why": {
+          "he": "נפוץ במוצרי קפה פטריות, אך נתוני אינטראקציה ישירים מוגבלים.",
+          "en": "Common in mushroom coffee products, but direct interaction data are limited.",
+          "ru": "Распространён в продуктах с грибным кофе, но прямые данные ограничены.",
+          "es": "Común en productos de café con hongos, pero los datos de interacción directa son limitados."
+        },
+        "evidence": "theoretical"
+      },
+      {
+        "name": {
+          "he": "Alpha-GPC",
+          "en": "Alpha-GPC",
+          "ru": "Альфа-ГФХ (Alpha-GPC)",
+          "es": "Alpha-GPC"
+        },
+        "why": {
+          "he": "תוסף נוטרופי פופולרי לשיפור קוגניציה — לעיתים קרובות משולב עם רעמת האריה בסטאקים לפוקוס וזיכרון (לא הוכח כסינרגיה קלינית).",
+          "en": "Popular nootropic supplement for cognitive enhancement — often combined with Lion's Mane in focus/memory stacks (not clinically proven synergy).",
+          "ru": "Популярная ноотропная добавка для улучшения когниции — часто сочетается с ежовиком в стеках фокуса/памяти (клинически не доказана).",
+          "es": "Suplemento nootrópico popular para mejora cognitiva — a menudo combinado con Melena de León en stacks de enfoque/memoria (no sinergia clínica probada)."
+        },
+        "evidence": "theoretical"
+      },
+      {
+        "name": {
+          "he": "ציטיקולין (CDP-Choline)",
+          "en": "Citicoline (CDP-Choline)",
+          "ru": "Цитиколин (CDP-холин)",
+          "es": "Citicolina (CDP-Colina)"
+        },
+        "why": {
+          "he": "תוסף קוגניטיבי נפוץ — משולב לעיתים עם רעמת האריה בסטאקים למוח (לא הוכח כסינרגיה קלינית).",
+          "en": "Popular cognitive supplement — sometimes combined with Lion's Mane in brain stacks (not clinically proven synergy).",
+          "ru": "Популярная когнитивная добавка — иногда сочетается с ежовиком в мозговых стеках (клинически не доказана).",
+          "es": "Suplemento cognitivo popular — a veces combinado con Melena de León en stacks cerebrales (no sinergia clínica probada)."
+        },
+        "evidence": "theoretical"
+      },
+      {
+        "name": {
+          "he": "פוספטידילסרין",
+          "en": "Phosphatidylserine",
+          "ru": "Фосфатидилсерин",
+          "es": "Fosfatidilserina"
+        },
+        "why": {
+          "he": "נפוץ בסטאקים לזיכרון וריכוז — לעיתים משולב עם רעמת האריה (לא הוכח כסינרגיה קלינית).",
+          "en": "Common in memory/focus stacks — sometimes combined with Lion's Mane (not clinically proven synergy).",
+          "ru": "Распространён в стеках для памяти/фокуса — иногда сочетается с ежовиком (клинически не доказана).",
+          "es": "Común en stacks de memoria/enfoque — a veces combinado con Melena de León (no sinergia clínica probada)."
+        },
+        "evidence": "theoretical"
+      }
+    ],
+    "insufficient": [
+      {
+        "name": {
+          "he": "ויטמינים A, B1-B12, C, D, E, K",
+          "en": "Vitamins A, B1-B12, C, D, E, K",
+          "ru": "Витамины A, B1-B12, C, D, E, K",
+          "es": "Vitaminas A, B1-B12, C, D, E, K"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים לרעמת האריה.",
+          "en": "No lion's mane-specific interaction data confirmed.",
+          "ru": "Данных не подтверждено.",
+          "es": "No se confirmaron datos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "מינרלים (סידן, מגנזיום, ברזל, אבץ, נחושת, סלניום וכד')",
+          "en": "Minerals (Calcium, Magnesium, Iron, Zinc, Copper, Selenium, etc.)",
+          "ru": "Минералы (кальций, магний, железо, цинк, медь, селен и др.)",
+          "es": "Minerales (calcio, magnesio, hierro, zinc, cobre, selenio, etc.)"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים.",
+          "en": "No mushroom-specific interaction data confirmed.",
+          "ru": "Данных не подтверждено.",
+          "es": "No se confirmaron datos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "אלכוהול / Cannabis THC / CBD / ניקוטין",
+          "en": "Alcohol / Cannabis THC / CBD / Nicotine",
+          "ru": "Алкоголь / каннабис THC / CBD / никотин",
+          "es": "Alcohol / Cannabis THC / CBD / Nicotina"
+        },
+        "why": {
+          "he": "לא אושרו עדויות ישירות חזקות.",
+          "en": "No strong direct interaction evidence confirmed.",
+          "ru": "Убедительных прямых данных не подтверждено.",
+          "es": "No se confirmó evidencia directa sólida."
+        }
+      },
+      {
+        "name": {
+          "he": "פסילוציבין / LSD / MDMA / קטמין",
+          "en": "Psilocybin / LSD / MDMA / Ketamine",
+          "ru": "Псилоцибин / ЛСД / МДМА / Кетамин",
+          "es": "Psilocibina / LSD / MDMA / Ketamina"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים.",
+          "en": "No specific interaction data confirmed.",
+          "ru": "Данных не подтверждено.",
+          "es": "No se confirmaron datos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "פרצטמול / איבופרופן / נפרוקסן / אספירין / קודאין / טרמדול / אוקסיקודון / מורפין",
+          "en": "Paracetamol / Ibuprofen / Naproxen / Aspirin / Codeine / Tramadol / Oxycodone / Morphine",
+          "ru": "Парацетамол / ибупрофен / напроксен / аспирин / кодеин / трамадол / оксикодон / морфин",
+          "es": "Paracetamol / Ibuprofeno / Naproxeno / Aspirina / Codeína / Tramadol / Oxicodona / Morfina"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים חזקים.",
+          "en": "No strong specific interaction data confirmed.",
+          "ru": "Убедительных данных не подтверждено.",
+          "es": "No se confirmaron datos sólidos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "SSRIs / SNRIs / TCAs / MAOIs / בנזודיאזפינים / תרופות אנטיפסיכוטיות / תרופות לADHD",
+          "en": "SSRIs / SNRIs / TCAs / MAOIs / Benzodiazepines / Antipsychotics / ADHD stimulants",
+          "ru": "СИОЗС / СИОЗСН / ТЦА / ИМАО / бензодиазепины / антипсихотики / стимуляторы СДВГ",
+          "es": "ISRS / IRSN / ATC / IMAO / Benzodiacepinas / Antipsicóticos / Estimulantes TDAH"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים חזקים.",
+          "en": "No strong specific interaction data confirmed.",
+          "ru": "Убедительных данных не подтверждено.",
+          "es": "No se confirmaron datos sólidos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "תרופות לבלוטת התריס / תרופות להורדת לחץ דם / מדכאי חיסון / כימותרפיה",
+          "en": "Thyroid medications / Antihypertensives / Immunosuppressants / Chemotherapy",
+          "ru": "Препараты щитовидной железы / антигипертензивные / иммунодепрессанты / химиотерапия",
+          "es": "Medicamentos para la tiroides / antihipertensivos / inmunosupresores / quimioterapia"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים חזקים.",
+          "en": "No strong specific interaction data confirmed.",
+          "ru": "Убедительных данных не подтверждено.",
+          "es": "No se confirmaron datos sólidos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "CoQ10, NAC, פרוביוטיקה, חומצה היאלורונית, פפטידי קולגן, L-תיאנין, כורכומין, ולריאן, מלטונין, אשוואגנדה, ברברין, קוורצטין",
+          "en": "CoQ10, NAC, Probiotics, Hyaluronic acid, Collagen peptides, L-theanine, Curcumin, Valerian, Melatonin, Ashwagandha, Berberine, Quercetin",
+          "ru": "CoQ10, NAC, пробиотики, гиалуроновая кислота, пептиды коллагена, L-теанин, куркумин, валериана, мелатонин, ашваганда, берберин, кверцетин",
+          "es": "CoQ10, NAC, Probióticos, Ácido hialurónico, Péptidos de colágeno, L-teanina, Curcumina, Valeriana, Melatonina, Ashwagandha, Berberina, Quercetina"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים חזקים.",
+          "en": "No strong specific interaction data confirmed.",
+          "ru": "Убедительных данных не подтверждено.",
+          "es": "No se confirmaron datos sólidos específicos."
+        }
+      }
+    ]
+  },
+  "Cordyceps": {
+    "do_not_combine": [
+      {
+        "name": {
+          "he": "נוגדי קרישה / תרופות נוגדות טסיות",
+          "en": "Anticoagulants / Antiplatelet drugs",
+          "ru": "Антикоагулянты / антиагреганты",
+          "es": "Anticoagulantes / antiagregantes plaquetarios"
+        },
+        "why": {
+          "he": "לקורדיספס יש דאגה מתועדת הקשורה לדימום עם תרופות להורדת קרישה.",
+          "en": "Cordyceps has a documented bleeding-related concern with clotting-lowering drugs.",
+          "ru": "У кордицепса задокументирована проблема, связанная с кровотечением, при приёме антикоагулянтов.",
+          "es": "El Cordyceps tiene una preocupación documentada relacionada con hemorragias con medicamentos anticoagulantes."
+        },
+        "mechanism": {
+          "he": "פעילות נוגדת טסיות",
+          "en": "Antiplatelet activity",
+          "ru": "Антиагрегантная активность",
+          "es": "Actividad antiplaquetaria"
+        },
+        "evidence": "clinical"
+      },
+      {
+        "name": {
+          "he": "סרטן מיאלוגני",
+          "en": "Myelogenous cancers",
+          "ru": "Миелогенный рак",
+          "es": "Cánceres mielógenos"
+        },
+        "why": {
+          "he": "מחקרי בעלי חיים הראו פרוליפרציה של תאי דם אדומים אב — הימנע משימוש עם סרטנים מיאלוגניים.",
+          "en": "Animal studies showed proliferation of progenitor red blood cells — avoid use with myelogenous type cancers.",
+          "ru": "Исследования на животных показали пролиферацию клеток-предшественников эритроцитов — избегать при миелогенных видах рака.",
+          "es": "Estudios en animales mostraron proliferación de células precursoras de glóbulos rojos — evitar con cánceres de tipo mielógeno."
+        },
+        "mechanism": {
+          "he": "גירוי מבשרי תאי דם",
+          "en": "Stimulation of blood cell precursors",
+          "ru": "Стимуляция предшественников клеток крови",
+          "es": "Estimulación de precursores de células sanguíneas"
+        },
+        "evidence": "clinical"
+      }
+    ],
+    "use_caution": [
+      {
+        "name": {
+          "he": "תרופות לסוכרת",
+          "en": "Antidiabetic drugs",
+          "ru": "Противодиабетические препараты",
+          "es": "Antidiabéticos"
+        },
+        "why": {
+          "he": "קורדיספס עלול להגביר תופעות לוואי דרך אפקט מצטבר להורדת גלוקוז.",
+          "en": "Cordyceps may increase adverse effects via additive glucose-lowering effects.",
+          "ru": "Кордицепс может усиливать побочные эффекты за счёт аддитивного сахароснижающего действия.",
+          "es": "El Cordyceps puede aumentar los efectos adversos mediante efectos hipoglucemiantes aditivos."
+        },
+        "evidence": "clinical"
+      },
+      {
+        "name": {
+          "he": "מדכאי חיסון",
+          "en": "Immunosuppressants",
+          "ru": "Иммунодепрессанты",
+          "es": "Inmunosupresores"
+        },
+        "why": {
+          "he": "אינטראקציה פוטנציאלית עם תרופות המדכאות את מערכת החיסון.",
+          "en": "Potential interaction with drugs that suppress the immune system.",
+          "ru": "Потенциальное взаимодействие с препаратами, подавляющими иммунную систему.",
+          "es": "Posible interacción con medicamentos que suprimen el sistema inmunológico."
+        },
+        "evidence": "limited"
+      },
+      {
+        "name": {
+          "he": "ג'ינסנג אסייתי (פנאקס ג'ינסנג)",
+          "en": "Asian ginseng (Panax ginseng)",
+          "ru": "Женьшень азиатский (Panax ginseng)",
+          "es": "Ginseng asiático (Panax ginseng)"
+        },
+        "why": {
+          "he": "שילוב סטאק אנרגיה/אדפטוגן נפוץ, אך ג'ינסנג מוסיף מורכבות לסוכר בדם ולקרישה.",
+          "en": "Common energy/adaptogen stack, but ginseng adds blood sugar and clotting complexity.",
+          "ru": "Распространённый стек энергии/адаптации, но женьшень добавляет сложность по сахару и свёртываемости.",
+          "es": "Stack de energía/adaptógeno común, pero el ginseng añade complejidad al azúcar en sangre y la coagulación."
+        },
+        "evidence": "clinical"
+      },
+      {
+        "name": {
+          "he": "קפאין",
+          "en": "Caffeine",
+          "ru": "Кофеин",
+          "es": "Cafeína"
+        },
+        "why": {
+          "he": "שילוב נפוץ במוצרי אנרגיה, אך עלול לגרום לגירוי יתר אצל חלק מהמשתמשים.",
+          "en": "Common in energy products, but may be overstimulating for some users.",
+          "ru": "Распространён в энергетических продуктах, но может быть чрезмерно стимулирующим.",
+          "es": "Común en productos energéticos, pero puede ser estimulante excesivo para algunos usuarios."
+        },
+        "evidence": "limited"
+      },
+      {
+        "name": {
+          "he": "שום (מינון גבוה)",
+          "en": "Garlic (high dose)",
+          "ru": "Чеснок (высокие дозы)",
+          "es": "Ajo (dosis altas)"
+        },
+        "why": {
+          "he": "לשום יש תכונות מדללות דם — בשילוב עם קורדיספס שיש לו כבר דאגות לדימום, הסיכון מצטבר.",
+          "en": "Garlic has blood-thinning properties — combined with Cordyceps which already carries bleeding concerns, the risk compounds.",
+          "ru": "Чеснок обладает кроворазжижающими свойствами — в сочетании с кордицепсом, имеющим риски кровотечений, риск суммируется.",
+          "es": "El ajo tiene propiedades anticoagulantes — combinado con Cordyceps que ya tiene preocupaciones hemorrágicas, el riesgo se acumula."
+        },
+        "evidence": "limited"
+      },
+      {
+        "name": {
+          "he": "ג'ינג'ר (מינון גבוה)",
+          "en": "Ginger (high dose)",
+          "ru": "Имбирь (высокие дозы)",
+          "es": "Jengibre (dosis altas)"
+        },
+        "why": {
+          "he": "ג'ינג'ר בכמות גבוהה עלול לתרום לסיכון דימום — רלוונטי בשילוב עם קורדיספס.",
+          "en": "High-dose ginger may contribute to bleeding risk — relevant when combined with Cordyceps.",
+          "ru": "Имбирь в высоких дозах может усиливать риск кровотечений — актуально в сочетании с кордицепсом.",
+          "es": "El jengibre en dosis altas puede contribuir al riesgo de hemorragia — relevante combinado con Cordyceps."
+        },
+        "evidence": "limited"
+      },
+      {
+        "name": {
+          "he": "אומגה-3 במינון גבוה",
+          "en": "Omega-3 (high dose)",
+          "ru": "Омега-3 (высокие дозы)",
+          "es": "Omega-3 (dosis altas)"
+        },
+        "why": {
+          "he": "אומגה-3 במינון גבוה עלול לקיים אינטראקציה עם תרופות לקרישת דם — חפיפה עם הדאגות של קורדיספס.",
+          "en": "High-dose Omega-3 may interact with blood-clotting medications — overlapping with Cordyceps' bleeding concerns.",
+          "ru": "Омега-3 в высоких дозах может взаимодействовать с антикоагулянтами — пересечение с рисками кровотечений кордицепса.",
+          "es": "El Omega-3 en dosis altas puede interactuar con anticoagulantes — solapándose con las preocupaciones hemorrágicas del Cordyceps."
+        },
+        "evidence": "clinical"
+      }
+    ],
+    "potential_synergy": [
+      {
+        "name": {
+          "he": "קריאטין",
+          "en": "Creatine",
+          "ru": "Креатин",
+          "es": "Creatina"
+        },
+        "why": {
+          "he": "סטאק ביצועים פופולרי: קריאטין תומך בחציצת אנרגיה בעוד קורדיספס משווק לסיבולת.",
+          "en": "Popular performance-stack: creatine supports energy buffering while Cordyceps is marketed for stamina.",
+          "ru": "Популярный стек производительности: креатин поддерживает энергетический буфер, кордицепс — для выносливости.",
+          "es": "Stack de rendimiento popular: la creatina apoya el tampón energético mientras que el Cordyceps se comercializa para la resistencia."
+        },
+        "evidence": "theoretical"
+      },
+      {
+        "name": {
+          "he": "רודיולה רוזאה",
+          "en": "Rhodiola rosea",
+          "ru": "Родиола розовая",
+          "es": "Rhodiola rosea"
+        },
+        "why": {
+          "he": "סטאק נפוץ לסיבולת ואדפטוגניה.",
+          "en": "Common endurance/adaptogen stack.",
+          "ru": "Распространённый стек для выносливости и адаптации.",
+          "es": "Stack común de resistencia/adaptógeno."
+        },
+        "evidence": "theoretical"
+      },
+      {
+        "name": {
+          "he": "CoQ10",
+          "en": "CoQ10",
+          "ru": "CoQ10",
+          "es": "CoQ10"
+        },
+        "why": {
+          "he": "תפיסת סטאק לתמיכת אנרגיה — שניהם קשורים לפונקציה המיטוכונדריאלית.",
+          "en": "Energy-support stack concept — both relate to mitochondrial function.",
+          "ru": "Концепция стека поддержки энергии — оба связаны с митохондриальной функцией.",
+          "es": "Concepto de stack de apoyo energético — ambos están relacionados con la función mitocondrial."
+        },
+        "evidence": "theoretical"
+      },
+      {
+        "name": {
+          "he": "שיסנדרה",
+          "en": "Schisandra",
+          "ru": "Лимонник (Schisandra)",
+          "es": "Schisandra"
+        },
+        "why": {
+          "he": "אדפטוגן רלוונטי לסטאקים של אנרגיה/סיבולת — עשוי להשתלב עם קורדיספס (לא הוכח כסינרגיה קלינית).",
+          "en": "Relevant adaptogen for energy/endurance stacks — may complement Cordyceps (not clinically proven synergy).",
+          "ru": "Актуальный адаптоген для стеков энергии/выносливости — может дополнять кордицепс (клинически не доказана).",
+          "es": "Adaptógeno relevante para stacks de energía/resistencia — puede complementar al Cordyceps (no sinergia clínica probada)."
+        },
+        "evidence": "theoretical"
+      },
+      {
+        "name": {
+          "he": "טאורין",
+          "en": "Taurine",
+          "ru": "Таурин",
+          "es": "Taurina"
+        },
+        "why": {
+          "he": "משתלב לעיתים עם קורדיספס במוצרי אנרגיה — לא הוכח כסינרגיה, אבל נפוץ בתוצרי pre-workout.",
+          "en": "Sometimes combined with Cordyceps in energy products — not proven synergy, but common in pre-workout formulas.",
+          "ru": "Иногда сочетается с кордицепсом в энергетических продуктах — синергия не доказана, но распространена.",
+          "es": "A veces combinado con Cordyceps en productos energéticos — no sinergia probada, pero común en fórmulas pre-entreno."
+        },
+        "evidence": "theoretical"
+      }
+    ],
+    "insufficient": [
+      {
+        "name": {
+          "he": "ויטמינים A, B1-B12, C, D, E, K",
+          "en": "Vitamins A, B1-B12, C, D, E, K",
+          "ru": "Витамины A, B1-B12, C, D, E, K",
+          "es": "Vitaminas A, B1-B12, C, D, E, K"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים.",
+          "en": "No specific interaction data confirmed.",
+          "ru": "Данных не подтверждено.",
+          "es": "No se confirmaron datos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "מינרלים (סידן, מגנזיום, ברזל, אבץ וכד')",
+          "en": "Minerals (Calcium, Magnesium, Iron, Zinc, etc.)",
+          "ru": "Минералы (кальций, магний, железо, цинк и др.)",
+          "es": "Minerales (calcio, magnesio, hierro, zinc, etc.)"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים.",
+          "en": "No specific interaction data confirmed.",
+          "ru": "Данных не подтверждено.",
+          "es": "No se confirmaron datos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "אלכוהול / Cannabis THC / CBD / ניקוטין",
+          "en": "Alcohol / Cannabis THC / CBD / Nicotine",
+          "ru": "Алкоголь / каннабис THC / CBD / никотин",
+          "es": "Alcohol / Cannabis THC / CBD / Nicotina"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים חזקים.",
+          "en": "No strong specific interaction data confirmed.",
+          "ru": "Убедительных данных не подтверждено.",
+          "es": "No se confirmaron datos sólidos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "פסילוציבין / LSD / MDMA / קטמין",
+          "en": "Psilocybin / LSD / MDMA / Ketamine",
+          "ru": "Псилоцибин / ЛСД / МДМА / Кетамин",
+          "es": "Psilocibina / LSD / MDMA / Ketamina"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים.",
+          "en": "No specific interaction data confirmed.",
+          "ru": "Данных не подтверждено.",
+          "es": "No se confirmaron datos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "פרצטמול / איבופרופן / נפרוקסן / אספירין / קודאין / טרמדול / אוקסיקודון / מורפין",
+          "en": "Paracetamol / Ibuprofen / Naproxen / Aspirin / Codeine / Tramadol / Oxycodone / Morphine",
+          "ru": "Парацетамол / ибупрофен / напроксен / аспирин / кодеин / трамадол / оксикодон / морфин",
+          "es": "Paracetamol / Ibuprofeno / Naproxeno / Aspirina / Codeína / Tramadol / Oxicodona / Morfina"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים חזקים.",
+          "en": "No strong specific interaction data confirmed.",
+          "ru": "Убедительных данных не подтверждено.",
+          "es": "No se confirmaron datos sólidos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "SSRIs / SNRIs / TCAs / MAOIs / בנזודיאזפינים / תרופות אנטיפסיכוטיות / תרופות לADHD / אנטיהיסטמינים מרדימים",
+          "en": "SSRIs / SNRIs / TCAs / MAOIs / Benzodiazepines / Antipsychotics / ADHD stimulants / Sedating antihistamines",
+          "ru": "СИОЗС / СИОЗСН / ТЦА / ИМАО / бензодиазепины / антипсихотики / стимуляторы СДВГ / седативные антигистаминные",
+          "es": "ISRS / IRSN / ATC / IMAO / Benzodiacepinas / Antipsicóticos / Estimulantes TDAH / Antihistamínicos sedantes"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים חזקים.",
+          "en": "No strong specific interaction data confirmed.",
+          "ru": "Убедительных данных не подтверждено.",
+          "es": "No se confirmaron datos sólidos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "תרופות להורדת לחץ דם / תרופות לבלוטת התריס / כימותרפיה",
+          "en": "Antihypertensives / Thyroid medications / Chemotherapy",
+          "ru": "Антигипертензивные / препараты щитовидной железы / химиотерапия",
+          "es": "Antihipertensivos / medicamentos para la tiroides / quimioterapia"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים חזקים.",
+          "en": "No strong specific interaction data confirmed.",
+          "ru": "Убедительных данных не подтверждено.",
+          "es": "No se confirmaron datos sólidos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "אומגה-3, NAC, פרוביוטיקה, בקופה, L-תיאנין, כורכומין, ולריאן, מלטונין, אשוואגנדה, גינקו בילובה, ברברין, קוורצטין",
+          "en": "Omega-3, NAC, Probiotics, Bacopa, L-theanine, Curcumin, Valerian, Melatonin, Ashwagandha, Ginkgo biloba, Berberine, Quercetin",
+          "ru": "Омега-3, NAC, пробиотики, бакопа, L-теанин, куркумин, валериана, мелатонин, ашваганда, гинкго билоба, берберин, кверцетин",
+          "es": "Omega-3, NAC, Probióticos, Bacopa, L-teanina, Curcumina, Valeriana, Melatonina, Ashwagandha, Ginkgo biloba, Berberina, Quercetina"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים חזקים.",
+          "en": "No strong specific interaction data confirmed.",
+          "ru": "Убедительных данных не подтверждено.",
+          "es": "No se confirmaron datos sólidos específicos."
+        }
+      }
+    ]
+  },
+  "Chaga": {
+    "do_not_combine": [
+      {
+        "name": {
+          "he": "תרופות לסוכרת (אינסולין / מטפורמין / סולפונילאוריאות)",
+          "en": "Antidiabetic drugs (insulin / metformin / sulfonylureas)",
+          "ru": "Противодиабетические препараты (инсулин / метформин / сульфонилмочевина)",
+          "es": "Antidiabéticos (insulina / metformina / sulfonilureas)"
+        },
+        "why": {
+          "he": "צ'אגה יכול להוריד סוכר בדם ועלול להיות מסוכן עם אינסולין או תרופות אחרות להורדת גלוקוז.",
+          "en": "Chaga can lower blood sugar and may be dangerous with insulin or other glucose-lowering drugs.",
+          "ru": "Чага может снижать уровень сахара в крови и может быть опасна с инсулином или другими сахароснижающими препаратами.",
+          "es": "El Chaga puede bajar el azúcar en sangre y puede ser peligroso con insulina u otros medicamentos hipoglucemiantes."
+        },
+        "mechanism": {
+          "he": "הורדת גלוקוז בדם מצטברת",
+          "en": "Additive blood glucose lowering",
+          "ru": "Аддитивное снижение глюкозы крови",
+          "es": "Reducción aditiva de glucosa en sangre"
+        },
+        "evidence": "clinical"
+      },
+      {
+        "name": {
+          "he": "אבנים בכליות / סיכון גבוה לאוקסלט (מחלת כליות)",
+          "en": "Kidney stone / high-oxalate risk (renal disease)",
+          "ru": "Камни в почках / высокий риск оксалатов (почечная болезнь)",
+          "es": "Cálculos renales / alto riesgo de oxalato (enfermedad renal)"
+        },
+        "why": {
+          "he": "צ'אגה עשיר באוקסלטים; צריכה מופרזת עלולה להיות רעילה באנשים עם מחלת כליות.",
+          "en": "Chaga is high in oxalates; excessive intake may be toxic in people with renal disease.",
+          "ru": "Чага богата оксалатами; чрезмерное употребление может быть токсичным при почечной болезни.",
+          "es": "El Chaga es rico en oxalatos; la ingesta excesiva puede ser tóxica en personas con enfermedad renal."
+        },
+        "mechanism": {
+          "he": "תכולת אוקסלט גבוהה",
+          "en": "High oxalate content",
+          "ru": "Высокое содержание оксалатов",
+          "es": "Alto contenido de oxalato"
+        },
+        "evidence": "clinical"
+      }
+    ],
+    "use_caution": [
+      {
+        "name": {
+          "he": "נוגדי קרישה / תרופות נוגדות טסיות",
+          "en": "Anticoagulants / Antiplatelet drugs",
+          "ru": "Антикоагулянты / антиагреганты",
+          "es": "Anticoagulantes / antiagregantes plaquetarios"
+        },
+        "why": {
+          "he": "תמצית צ'אגה עיכבה צבירת טסיות במודלים של בעלי חיים — סיכון דימום מצטבר סביר.",
+          "en": "Chaga extract inhibited platelet aggregation in animal models — additive bleeding risk is plausible.",
+          "ru": "Экстракт чаги угнетал агрегацию тромбоцитов в животных моделях — аддитивный риск кровотечений вероятен.",
+          "es": "El extracto de Chaga inhibió la agregación plaquetaria en modelos animales — el riesgo hemorrágico aditivo es plausible."
+        },
+        "evidence": "limited"
+      },
+      {
+        "name": {
+          "he": "מדכאי חיסון",
+          "en": "Immunosuppressants",
+          "ru": "Иммунодепрессанты",
+          "es": "Inmunosupresores"
+        },
+        "why": {
+          "he": "דאגת אינטראקציה עם תרופות המפחיתות פעילות מערכת החיסון.",
+          "en": "Interaction concern with drugs that decrease immune-system activity.",
+          "ru": "Опасение взаимодействия с препаратами, снижающими активность иммунной системы.",
+          "es": "Preocupación de interacción con medicamentos que reducen la actividad del sistema inmunológico."
+        },
+        "evidence": "limited"
+      },
+      {
+        "name": {
+          "he": "פרצטמול / אצטמינופן",
+          "en": "Paracetamol / Acetaminophen",
+          "ru": "Парацетамол / ацетаминофен",
+          "es": "Paracetamol / Acetaminofén"
+        },
+        "why": {
+          "he": "לצ'אגה יש דאגות לכליות/אוקסלט ולפרצטמול יש דאגות כבד — שילוב מחייב זהירות.",
+          "en": "Chaga has kidney/oxalate concerns and acetaminophen has liver-risk rules — caution is warranted.",
+          "ru": "Чага имеет риски для почек/оксалатов, а ацетаминофен — риски для печени; осторожность оправдана.",
+          "es": "El Chaga tiene preocupaciones renales/oxalatos y el paracetamol tiene reglas de riesgo hepático — se recomienda precaución."
+        },
+        "evidence": "limited"
+      },
+      {
+        "name": {
+          "he": "NSAIDs (איבופרופן / נפרוקסן / אספירין)",
+          "en": "NSAIDs (e.g., ibuprofen / naproxen / aspirin)",
+          "ru": "НПВП (ибупрофен / напроксен / аспирин)",
+          "es": "AINE (ibuprofeno / naproxeno / aspirina)"
+        },
+        "why": {
+          "he": "לצ'אגה יש אפקט טסיות אפשרי ו-NSAIDs מוסיפים סיכון לדימום גסטרואינטסטינלי.",
+          "en": "Chaga has a possible platelet effect and NSAIDs add GI-bleeding risk.",
+          "ru": "Чага имеет возможный тромбоцитарный эффект, а НПВП добавляют риск желудочно-кишечных кровотечений.",
+          "es": "El Chaga tiene un posible efecto plaquetario y los AINE añaden riesgo de hemorragia gastrointestinal."
+        },
+        "evidence": "limited"
+      },
+      {
+        "name": {
+          "he": "שום (מינון גבוה)",
+          "en": "Garlic (high dose)",
+          "ru": "Чеснок (высокие дозы)",
+          "es": "Ajo (dosis altas)"
+        },
+        "why": {
+          "he": "לשום יש תכונות מדללות דם — בשילוב עם צ'אגה שיש לו כבר דאגות לדימום, הסיכון מצטבר.",
+          "en": "Garlic has blood-thinning properties — combined with Chaga which already carries bleeding concerns, the risk compounds.",
+          "ru": "Чеснок обладает кроворазжижающими свойствами — в сочетании с чагой, имеющей риски кровотечений, риск суммируется.",
+          "es": "El ajo tiene propiedades anticoagulantes — combinado con Chaga que ya tiene preocupaciones hemorrágicas, el riesgo se acumula."
+        },
+        "evidence": "limited"
+      },
+      {
+        "name": {
+          "he": "ג'ינג'ר (מינון גבוה)",
+          "en": "Ginger (high dose)",
+          "ru": "Имбирь (высокие дозы)",
+          "es": "Jengibre (dosis altas)"
+        },
+        "why": {
+          "he": "ג'ינג'ר בכמות גבוהה עלול לתרום לסיכון דימום — רלוונטי בשילוב עם צ'אגה.",
+          "en": "High-dose ginger may contribute to bleeding risk — relevant when combined with Chaga.",
+          "ru": "Имбирь в высоких дозах может усиливать риск кровотечений — актуально в сочетании с чагой.",
+          "es": "El jengibre en dosis altas puede contribuir al riesgo de hemorragia — relevante combinado con Chaga."
+        },
+        "evidence": "limited"
+      },
+      {
+        "name": {
+          "he": "גלוקוזמין + כונדרואיטין",
+          "en": "Glucosamine + Chondroitin",
+          "ru": "Глюкозамин + Хондроитин",
+          "es": "Glucosamina + Condroitina"
+        },
+        "why": {
+          "he": "שיוכו עם עלייה בסיכון לדימום אצל אנשים הנוטלים וורפרין — חפיפה עם הדאגות של צ'אגה.",
+          "en": "Associated with increased bleeding risk in warfarin users — overlapping with Chaga's bleeding concerns.",
+          "ru": "Ассоциированы с повышенным риском кровотечений у принимающих варфарин — пересечение с рисками чаги.",
+          "es": "Asociados con mayor riesgo hemorrágico en usuarios de warfarina — solapándose con las preocupaciones del Chaga."
+        },
+        "evidence": "clinical"
+      },
+      {
+        "name": {
+          "he": "אומגה-3 במינון גבוה",
+          "en": "Omega-3 (high dose)",
+          "ru": "Омега-3 (высокие дозы)",
+          "es": "Omega-3 (dosis altas)"
+        },
+        "why": {
+          "he": "אומגה-3 במינון גבוה עלול לקיים אינטראקציה עם תרופות לקרישת דם — חפיפה עם הדאגות של צ'אגה.",
+          "en": "High-dose Omega-3 may interact with blood-clotting medications — overlapping with Chaga's bleeding concerns.",
+          "ru": "Омега-3 в высоких дозах может взаимодействовать с антикоагулянтами — пересечение с рисками чаги.",
+          "es": "El Omega-3 en dosis altas puede interactuar con anticoagulantes — solapándose con las preocupaciones del Chaga."
+        },
+        "evidence": "clinical"
+      }
+    ],
+    "potential_synergy": [
+      {
+        "name": {
+          "he": "ויטמין C",
+          "en": "Vitamin C",
+          "ru": "Витамин C",
+          "es": "Vitamina C"
+        },
+        "why": {
+          "he": "רעיון סטאק נוגד חמצון ותמיכה חיסונית — לשניהם יש תכונות נוגדות חמצון.",
+          "en": "Antioxidant/immune-support stack idea — both have antioxidant properties.",
+          "ru": "Идея антиоксидантного/иммуноподдерживающего стека — оба обладают антиоксидантными свойствами.",
+          "es": "Idea de stack antioxidante/de apoyo inmunológico — ambos tienen propiedades antioxidantes."
+        },
+        "evidence": "theoretical"
+      },
+      {
+        "name": {
+          "he": "קוורצטין",
+          "en": "Quercetin",
+          "ru": "Кверцетин",
+          "es": "Quercetina"
+        },
+        "why": {
+          "he": "שכבוד נוגד חמצון תיאורטי.",
+          "en": "Theoretical antioxidant stacking.",
+          "ru": "Теоретическое антиоксидантное наслоение.",
+          "es": "Apilamiento antioxidante teórico."
+        },
+        "evidence": "theoretical"
+      }
+    ],
+    "insufficient": [
+      {
+        "name": {
+          "he": "ויטמינים A, B1-B12, D, E, K",
+          "en": "Vitamins A, B1-B12, D, E, K",
+          "ru": "Витамины A, B1-B12, D, E, K",
+          "es": "Vitaminas A, B1-B12, D, E, K"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים.",
+          "en": "No specific interaction data confirmed.",
+          "ru": "Данных не подтверждено.",
+          "es": "No se confirmaron datos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "מינרלים (סידן, מגנזיום, ברזל, אבץ וכד')",
+          "en": "Minerals (Calcium, Magnesium, Iron, Zinc, etc.)",
+          "ru": "Минералы (кальций, магний, железо, цинк и др.)",
+          "es": "Minerales (calcio, magnesio, hierro, zinc, etc.)"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים.",
+          "en": "No specific interaction data confirmed.",
+          "ru": "Данных не подтверждено.",
+          "es": "No se confirmaron datos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "CBD / Cannabis THC / אלכוהול / ניקוטין",
+          "en": "CBD / Cannabis THC / Alcohol / Nicotine",
+          "ru": "CBD / каннабис THC / алкоголь / никотин",
+          "es": "CBD / Cannabis THC / Alcohol / Nicotina"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים חזקים.",
+          "en": "No strong specific interaction data confirmed.",
+          "ru": "Убедительных данных не подтверждено.",
+          "es": "No se confirmaron datos sólidos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "פסילוציבין / LSD / MDMA / קטמין",
+          "en": "Psilocybin / LSD / MDMA / Ketamine",
+          "ru": "Псилоцибин / ЛСД / МДМА / Кетамин",
+          "es": "Psilocibina / LSD / MDMA / Ketamina"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים.",
+          "en": "No specific interaction data confirmed.",
+          "ru": "Данных не подтверждено.",
+          "es": "No se confirmaron datos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "קודאין / טרמדול / אוקסיקודון / מורפין",
+          "en": "Codeine / Tramadol / Oxycodone / Morphine",
+          "ru": "Кодеин / трамадол / оксикодон / морфин",
+          "es": "Codeína / Tramadol / Oxicodona / Morfina"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים חזקים.",
+          "en": "No strong specific interaction data confirmed.",
+          "ru": "Убедительных данных не подтверждено.",
+          "es": "No se confirmaron datos sólidos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "SSRIs / SNRIs / TCAs / MAOIs / בנזודיאזפינים / תרופות אנטיפסיכוטיות / תרופות לADHD",
+          "en": "SSRIs / SNRIs / TCAs / MAOIs / Benzodiazepines / Antipsychotics / ADHD stimulants",
+          "ru": "СИОЗС / СИОЗСН / ТЦА / ИМАО / бензодиазепины / антипсихотики / стимуляторы СДВГ",
+          "es": "ISRS / IRSN / ATC / IMAO / Benzodiacepinas / Antipsicóticos / Estimulantes TDAH"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים חזקים.",
+          "en": "No strong specific interaction data confirmed.",
+          "ru": "Убедительных данных не подтверждено.",
+          "es": "No se confirmaron datos sólidos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "תרופות להורדת לחץ דם / תרופות לבלוטת התריס / כימותרפיה",
+          "en": "Antihypertensives / Thyroid medications / Chemotherapy",
+          "ru": "Антигипертензивные / препараты щитовидной железы / химиотерапия",
+          "es": "Antihipertensivos / medicamentos para la tiroides / quimioterapia"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים חזקים.",
+          "en": "No strong specific interaction data confirmed.",
+          "ru": "Убедительных данных не подтверждено.",
+          "es": "No se confirmaron datos sólidos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "אומגה-3, CoQ10, NAC, פרוביוטיקה, בקופה, רודיולה, L-תיאנין, כורכומין, מלטונין, אשוואגנדה, גינקו בילובה, ברברין",
+          "en": "Omega-3, CoQ10, NAC, Probiotics, Bacopa, Rhodiola, L-theanine, Curcumin, Melatonin, Ashwagandha, Ginkgo biloba, Berberine",
+          "ru": "Омега-3, CoQ10, NAC, пробиотики, бакопа, родиола, L-теанин, куркумин, мелатонин, ашваганда, гинкго билоба, берберин",
+          "es": "Omega-3, CoQ10, NAC, Probióticos, Bacopa, Rhodiola, L-teanina, Curcumina, Melatonina, Ashwagandha, Ginkgo biloba, Berberina"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים חזקים.",
+          "en": "No strong specific interaction data confirmed.",
+          "ru": "Убедительных данных не подтверждено.",
+          "es": "No se confirmaron datos sólidos específicos."
+        }
+      }
+    ]
+  },
+  "Turkey Tail": {
+    "do_not_combine": [],
+    "use_caution": [
+      {
+        "name": {
+          "he": "מדכאי חיסון",
+          "en": "Immunosuppressants",
+          "ru": "Иммунодепрессанты",
+          "es": "Inmunosupresores"
+        },
+        "why": {
+          "he": "מוצרי זנב התרנגול משמשים לוויסות חיסוני — זהירות סבירה עם טיפול מדכא חיסון.",
+          "en": "Turkey Tail products are used for immune modulation — caution is reasonable with immunosuppressive therapy.",
+          "ru": "Продукты с траметой используются для иммунной модуляции — осторожность при иммуносупрессивной терапии обоснована.",
+          "es": "Los productos de Cola de Pavo se usan para modulación inmune — la precaución con terapia inmunosupresora es razonable."
+        },
+        "evidence": "limited"
+      },
+      {
+        "name": {
+          "he": "תרופות לסוכרת",
+          "en": "Antidiabetic drugs",
+          "ru": "Противодиабетические препараты",
+          "es": "Antidiabéticos"
+        },
+        "why": {
+          "he": "זנב התרנגול עשוי להוריד סוכר בדם; יש לנטר בשילוב עם תרופות להורדת גלוקוז.",
+          "en": "Turkey Tail might lower blood sugar; monitor if combined with glucose-lowering medication.",
+          "ru": "Трамета может снижать уровень сахара; контролировать при сочетании с сахароснижающими препаратами.",
+          "es": "La Cola de Pavo puede bajar el azúcar en sangre; monitorear si se combina con medicación hipoglucemiante."
+        },
+        "evidence": "limited"
+      },
+      {
+        "name": {
+          "he": "טיפול בסרטן (ללא פיקוח אונקולוגי)",
+          "en": "Cancer therapy (without oncology supervision)",
+          "ru": "Противоопухолевая терапия (без онкологического наблюдения)",
+          "es": "Terapia contra el cáncer (sin supervisión oncológica)"
+        },
+        "why": {
+          "he": "אין להשתמש בתוספים אלה בקלות ראש במהלך טיפול בסרטן ללא הנחיית קלינאי.",
+          "en": "These supplements should not be used casually during cancer treatment without clinician guidance.",
+          "ru": "Эти добавки не следует использовать бездумно во время лечения рака без рекомендации клинициста.",
+          "es": "Estos suplementos no deben usarse casualmente durante el tratamiento del cáncer sin orientación clínica."
+        },
+        "evidence": "limited"
+      },
+      {
+        "name": {
+          "he": "אשוואגנדה",
+          "en": "Ashwagandha",
+          "ru": "Ашваганда",
+          "es": "Ashwagandha"
+        },
+        "why": {
+          "he": "שניהם משמשים בסטאקים לחיסון/לחץ, אך לאשוואגנדה יש שיקולים עצמאיים (בלוטת התריס, כבד, לחץ דם).",
+          "en": "Both are used in immune/stress stacks, but ashwagandha has thyroid, liver, and blood-pressure considerations of its own.",
+          "ru": "Оба используются в иммунных/стрессовых стеках, но ашваганда имеет собственные риски (щитовидная железа, печень, давление).",
+          "es": "Ambos se usan en stacks inmunes/de estrés, pero la ashwagandha tiene sus propias consideraciones de tiroides, hígado y presión arterial."
+        },
+        "evidence": "clinical"
+      },
+      {
+        "name": {
+          "he": "אסטרגלוס",
+          "en": "Astragalus",
+          "ru": "Астрагал",
+          "es": "Astrágalo"
+        },
+        "why": {
+          "he": "צמח ממריץ חיסון — חפיפה אפשרית עם זנב התרנגול בהקשרים מדכאי חיסון, מחייבת זהירות.",
+          "en": "Immune-stimulating herb — possible overlap with Turkey Tail in immunosuppressive contexts, warrants caution.",
+          "ru": "Иммуностимулирующая трава — возможное пересечение с траметесой в иммуносупрессивных контекстах, требует осторожности.",
+          "es": "Hierba estimulante inmune — posible solapamiento con Cola de Pavo en contextos inmunosupresores, requiere precaución."
+        },
+        "evidence": "limited"
+      },
+      {
+        "name": {
+          "he": "אכינצאה",
+          "en": "Echinacea",
+          "ru": "Эхинацея",
+          "es": "Equinácea"
+        },
+        "why": {
+          "he": "צמח ממריץ חיסון — בשילוב עם זנב התרנגול יש לנקוט זהירות בהקשרי מדכאי חיסון.",
+          "en": "Immune-stimulating herb — combined with Turkey Tail, caution in immunosuppressive contexts.",
+          "ru": "Иммуностимулирующая трава — в сочетании с траметесой, осторожность в иммуносупрессивных контекстах.",
+          "es": "Hierba estimulante inmune — combinada con Cola de Pavo, precaución en contextos inmunosupresores."
+        },
+        "evidence": "limited"
+      }
+    ],
+    "potential_synergy": [
+      {
+        "name": {
+          "he": "ויטמין D",
+          "en": "Vitamin D",
+          "ru": "Витамин D",
+          "es": "Vitamina D"
+        },
+        "why": {
+          "he": "סטאק אפשרי לתמיכה חיסונית — שניהם מווסתים את פונקציית החיסון דרך נתיבים משלימים.",
+          "en": "Possible immune-support stack — both modulate immune function through complementary pathways.",
+          "ru": "Возможный иммуноподдерживающий стек — оба модулируют иммунную функцию через взаимодополняющие пути.",
+          "es": "Posible stack de apoyo inmune — ambos modulan la función inmune a través de vías complementarias."
+        },
+        "evidence": "theoretical"
+      },
+      {
+        "name": {
+          "he": "פרוביוטיקה",
+          "en": "Probiotics",
+          "ru": "Пробиотики",
+          "es": "Probióticos"
+        },
+        "why": {
+          "he": "תפיסת סטאק מעי/חיסון — PSK/PSP של זנב התרנגול עשויים לפעול כפרה-ביוטיקה לצד זנים פרוביוטיים.",
+          "en": "Gut/immune stack concept — Turkey Tail PSK/PSP may act as a prebiotic alongside probiotic strains.",
+          "ru": "Концепция кишечно-иммунного стека — PSK/PSP траметы могут действовать как пребиотик рядом с пробиотическими штаммами.",
+          "es": "Concepto de stack intestinal/inmune — PSK/PSP de Cola de Pavo puede actuar como prebiótico junto a cepas probióticas."
+        },
+        "evidence": "theoretical"
+      }
+    ],
+    "insufficient": [
+      {
+        "name": {
+          "he": "נוגדי קרישה / נוגדי טסיות",
+          "en": "Anticoagulants / Antiplatelets",
+          "ru": "Антикоагулянты / антиагреганты",
+          "es": "Anticoagulantes / antiplaquetarios"
+        },
+        "why": {
+          "he": "אין מספיק עדויות ישירות חזקות ספציפיות לזנב התרנגול.",
+          "en": "Not enough strong direct Turkey Tail-specific bleeding evidence confirmed.",
+          "ru": "Недостаточно убедительных прямых данных.",
+          "es": "No se confirmó evidencia directa sólida específica."
+        }
+      },
+      {
+        "name": {
+          "he": "ויטמינים A, B1-B12, C, E, K",
+          "en": "Vitamins A, B1-B12, C, E, K",
+          "ru": "Витамины A, B1-B12, C, E, K",
+          "es": "Vitaminas A, B1-B12, C, E, K"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים.",
+          "en": "No specific interaction data confirmed.",
+          "ru": "Данных не подтверждено.",
+          "es": "No se confirmaron datos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "מינרלים (סידן, מגנזיום, ברזל, אבץ וכד')",
+          "en": "Minerals (Calcium, Magnesium, Iron, Zinc, etc.)",
+          "ru": "Минералы (кальций, магний, железо, цинк и др.)",
+          "es": "Minerales (calcio, magnesio, hierro, zinc, etc.)"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים.",
+          "en": "No specific interaction data confirmed.",
+          "ru": "Данных не подтверждено.",
+          "es": "No se confirmaron datos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "אלכוהול / Cannabis THC / CBD / ניקוטין / קפאין",
+          "en": "Alcohol / Cannabis THC / CBD / Nicotine / Caffeine",
+          "ru": "Алкоголь / каннабис THC / CBD / никотин / кофеин",
+          "es": "Alcohol / Cannabis THC / CBD / Nicotina / Cafeína"
+        },
+        "why": {
+          "he": "לא אושרו עדויות ישירות חזקות.",
+          "en": "No strong direct Turkey Tail interaction evidence confirmed.",
+          "ru": "Убедительных прямых данных не подтверждено.",
+          "es": "No se confirmó evidencia directa sólida."
+        }
+      },
+      {
+        "name": {
+          "he": "פסילוציבין / LSD / MDMA / קטמין",
+          "en": "Psilocybin / LSD / MDMA / Ketamine",
+          "ru": "Псилоцибин / ЛСД / МДМА / Кетамин",
+          "es": "Psilocibina / LSD / MDMA / Ketamina"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים.",
+          "en": "No specific interaction data confirmed.",
+          "ru": "Данных не подтверждено.",
+          "es": "No se confirmaron datos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "פרצטמול / איבופרופן / נפרוקסן / אספירין / קודאין / טרמדול / אוקסיקודון / מורפין",
+          "en": "Paracetamol / Ibuprofen / Naproxen / Aspirin / Codeine / Tramadol / Oxycodone / Morphine",
+          "ru": "Парацетамол / ибупрофен / напроксен / аспирין / кодеин / трамадол / оксикодон / морфин",
+          "es": "Paracetamol / Ibuprofeno / Naproxeno / Aspirina / Codeína / Tramadol / Oxicodona / Morfina"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים חזקים.",
+          "en": "No strong specific interaction data confirmed.",
+          "ru": "Убедительных данных не подтверждено.",
+          "es": "No se confirmaron datos sólidos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "SSRIs / SNRIs / TCAs / MAOIs / בנזודיאזפינים / תרופות אנטיפסיכוטיות / תרופות לADHD",
+          "en": "SSRIs / SNRIs / TCAs / MAOIs / Benzodiazepines / Antipsychotics / ADHD stimulants",
+          "ru": "СИОЗС / СИОЗСН / ТЦА / ИМАО / бензодиазепины / антипсихотики / стимуляторы СДВГ",
+          "es": "ISRS / IRSN / ATC / IMAO / Benzodiacepinas / Antipsicóticos / Estimulantes TDAH"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים חזקים.",
+          "en": "No strong specific interaction data confirmed.",
+          "ru": "Убедительных данных не подтверждено.",
+          "es": "No se confirmaron datos sólidos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "תרופות להורדת לחץ דם / תרופות לבלוטת התריס / כימותרפיה",
+          "en": "Antihypertensives / Thyroid medications / Chemotherapy",
+          "ru": "Антигипертензивные / препараты щитовидной железы / химиотерапия",
+          "es": "Antihipertensivos / medicamentos para la tiroides / quimioterapia"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים חזקים.",
+          "en": "No strong specific interaction data confirmed.",
+          "ru": "Убедительных данных не подтверждено.",
+          "es": "No se confirmaron datos sólidos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "אומגה-3, CoQ10, NAC, בקופה, רודיולה, L-תיאנין, מלטונין, גינקו בילובה, ברברין, קוורצטין",
+          "en": "Omega-3, CoQ10, NAC, Bacopa, Rhodiola, L-theanine, Melatonin, Ginkgo biloba, Berberine, Quercetin",
+          "ru": "Омега-3, CoQ10, NAC, бакопа, родиола, L-теанин, мелатонин, гинкго билоба, берберин, кверцетин",
+          "es": "Omega-3, CoQ10, NAC, Bacopa, Rhodiola, L-teanina, Melatonina, Ginkgo biloba, Berberina, Quercetina"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים חזקים.",
+          "en": "No strong specific interaction data confirmed.",
+          "ru": "Убедительных данных не подтверждено.",
+          "es": "No se confirmaron datos sólidos específicos."
+        }
+      }
+    ]
+  },
+  "Tremella": {
+    "do_not_combine": [],
+    "use_caution": [],
+    "potential_synergy": [
+      {
+        "name": {
+          "he": "חומצה היאלורונית",
+          "en": "Hyaluronic acid",
+          "ru": "Гиалуроновая кислота",
+          "es": "Ácido hialurónico"
+        },
+        "why": {
+          "he": "תפיסת סטאק עור/לחות — שניהם תומכים בשמירת לחות העור.",
+          "en": "A skin/hydration stack concept — both support skin moisture retention.",
+          "ru": "Концепция стека для кожи/увлажнения — оба поддерживают удержание влаги в коже.",
+          "es": "Concepto de stack piel/hidratación — ambos apoyan la retención de humedad en la piel."
+        },
+        "evidence": "theoretical"
+      },
+      {
+        "name": {
+          "he": "פפטידי קולגן",
+          "en": "Collagen peptides",
+          "ru": "Пептиды коллагена",
+          "es": "Péptidos de colágeno"
+        },
+        "why": {
+          "he": "סטאק יופי-עור נפוץ — תמיכה משלימה בעור.",
+          "en": "Common skin-beauty stack — complementary skin support.",
+          "ru": "Распространённый стек красоты кожи — взаимодополняющая поддержка кожи.",
+          "es": "Stack común de belleza de la piel — apoyo complementario para la piel."
+        },
+        "evidence": "theoretical"
+      },
+      {
+        "name": {
+          "he": "ויטמין C",
+          "en": "Vitamin C",
+          "ru": "Витамин C",
+          "es": "Vitamina C"
+        },
+        "why": {
+          "he": "כלול לעיתים קרובות בסטאקים לתמיכה בעור כיוון שויטמין C תומך בביולוגיה של קולגן.",
+          "en": "Often included in skin-support stacks because Vitamin C supports collagen biology.",
+          "ru": "Часто включается в стеки для поддержки кожи, поскольку витамин C поддерживает биологию коллагена.",
+          "es": "A menudo incluido en stacks de apoyo para la piel porque la vitamina C apoya la biología del colágeno."
+        },
+        "evidence": "theoretical"
+      }
+    ],
+    "insufficient": [
+      {
+        "name": {
+          "he": "רוב סוגי התרופות",
+          "en": "Most medication classes",
+          "ru": "Большинство классов препаратов",
+          "es": "La mayoría de las clases de medicamentos"
+        },
+        "why": {
+          "he": "לטרמלה יש מיפוי ישיר של אינטראקציות הדליל ביותר — ניסוי קטן בבני אדם מציע בטיחות, אך המחקר עדיין מוגבל.",
+          "en": "Tremella has the sparsest direct interaction map — a small human trial suggests safety, but research is still limited.",
+          "ru": "У тремеллы наиболее скудная карта взаимодействий — небольшое испытание на людях указывает на безопасность, но данных мало.",
+          "es": "La Tremella tiene el mapa de interacciones más escaso — un pequeño ensayo humano sugiere seguridad, pero la investigación sigue siendo limitada."
+        }
+      },
+      {
+        "name": {
+          "he": "ויטמינים A, B1-B12, D, E, K",
+          "en": "Vitamins A, B1-B12, D, E, K",
+          "ru": "Витамины A, B1-B12, D, E, K",
+          "es": "Vitaminas A, B1-B12, D, E, K"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים.",
+          "en": "No specific interaction data confirmed.",
+          "ru": "Данных не подтверждено.",
+          "es": "No se confirmaron datos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "מינרלים (סידן, מגנזיום, ברזל, אבץ וכד')",
+          "en": "Minerals (Calcium, Magnesium, Iron, Zinc, etc.)",
+          "ru": "Минералы (кальций, магний, железо, цинк и др.)",
+          "es": "Minerales (calcio, magnesio, hierro, zinc, etc.)"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים.",
+          "en": "No specific interaction data confirmed.",
+          "ru": "Данных не подтверждено.",
+          "es": "No se confirmaron datos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "CBD / Cannabis / אלכוהול / קפאין / ניקוטין",
+          "en": "CBD / Cannabis / Alcohol / Caffeine / Nicotine",
+          "ru": "CBD / каннабис / алкоголь / кофеин / никотин",
+          "es": "CBD / Cannabis / Alcohol / Cafeína / Nicotina"
+        },
+        "why": {
+          "he": "נתוני האינטראקציה הישירה נותרים דלילים.",
+          "en": "Direct interaction data remain sparse.",
+          "ru": "Прямые данные о взаимодействии остаются скудными.",
+          "es": "Los datos de interacción directa siguen siendo escasos."
+        }
+      },
+      {
+        "name": {
+          "he": "פסילוציבין / LSD / MDMA / קטמין",
+          "en": "Psilocybin / LSD / MDMA / Ketamine",
+          "ru": "Псилоцибин / ЛСД / МДМА / Кетамин",
+          "es": "Psilocibina / LSD / MDMA / Ketamina"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים.",
+          "en": "No specific interaction data confirmed.",
+          "ru": "Данных не подтверждено.",
+          "es": "No se confirmaron datos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "פרצטמול / איבופרופן / נפרוקסן / אספירין / קודאין / טרמדול / אוקסיקודון / מורפין",
+          "en": "Paracetamol / Ibuprofen / Naproxen / Aspirin / Codeine / Tramadol / Oxycodone / Morphine",
+          "ru": "Парацетамол / ибупрофен / напроксен / аспирин / кодеин / трамадол / оксикодон / морфин",
+          "es": "Paracetamol / Ibuprofeno / Naproxeno / Aspirina / Codeína / Tramadol / Oxicodona / Morfina"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים חזקים.",
+          "en": "No strong specific interaction data confirmed.",
+          "ru": "Убедительных данных не подтверждено.",
+          "es": "No se confirmaron datos sólidos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "SSRIs / SNRIs / TCAs / MAOIs / בנזודיאזפינים / תרופות אנטיפסיכוטיות / תרופות לADHD",
+          "en": "SSRIs / SNRIs / TCAs / MAOIs / Benzodiazepines / Antipsychotics / ADHD stimulants",
+          "ru": "СИОЗС / СИОЗСН / ТЦА / ИМАО / бензодиазепины / антипсихотики / стимуляторы СДВГ",
+          "es": "ISRS / IRSN / ATC / IMAO / Benzodiacepinas / Antipsicóticos / Estimulantes TDAH"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים חזקים.",
+          "en": "No strong specific interaction data confirmed.",
+          "ru": "Убедительных данных не подтверждено.",
+          "es": "No se confirmaron datos sólidos específicos."
+        }
+      },
+      {
+        "name": {
+          "he": "נוגדי קרישה / מדכאי חיסון / תרופות לסוכרת / תרופות להורדת לחץ דם / תרופות לבלוטת התריס / כימותרפיה",
+          "en": "Anticoagulants / Immunosuppressants / Antidiabetics / Antihypertensives / Thyroid medications / Chemotherapy",
+          "ru": "Антикоагулянты / иммунодепрессанты / противодиабетические / антигипертензивные / препараты щитовидной железы / химиотерапия",
+          "es": "Anticoagulantes / Inmunosupresores / Antidiabéticos / Antihipertensivos / Tiroides / Quimioterapia"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים לטרמלה.",
+          "en": "No Tremella-specific interaction data confirmed.",
+          "ru": "Специфических данных о взаимодействии тремеллы не подтверждено.",
+          "es": "No se confirmaron datos de interacción específicos para Tremella."
+        }
+      },
+      {
+        "name": {
+          "he": "אומגה-3, CoQ10, NAC, בקופה, רודיולה, L-תיאנין, מלטונין, אשוואגנדה, גינקו בילובה, ברברין, קוורצטין",
+          "en": "Omega-3, CoQ10, NAC, Bacopa, Rhodiola, L-theanine, Melatonin, Ashwagandha, Ginkgo biloba, Berberine, Quercetin",
+          "ru": "Омега-3, CoQ10, NAC, бакопа, родиола, L-теанин, мелатонин, ашваганда, гинкго билоба, берберин, кверцетин",
+          "es": "Omega-3, CoQ10, NAC, Bacopa, Rhodiola, L-teanina, Melatonina, Ashwagandha, Ginkgo biloba, Berberina, Quercetina"
+        },
+        "why": {
+          "he": "לא אושרו נתוני אינטראקציה ספציפיים חזקים.",
+          "en": "No strong specific interaction data confirmed.",
+          "ru": "Убедительных данных не подтверждено.",
+          "es": "No se confirmaron datos sólidos específicos."
+        }
+      }
+    ]
+  }
+}
