@@ -82,11 +82,12 @@ export default async function handler(req, res) {
     for (const m of mushrooms) {
         // Upsert Fungi
         const fRes = await sql`
-          INSERT INTO fungi (id, slug, scientific_name, featured_image, status)
-          VALUES (gen_random_uuid(), ${m.slug}, ${m.scientific_name}, ${m.image}, 'published')
+          INSERT INTO fungi (id, slug, scientific_name, featured_image, status, created_at, updated_at)
+          VALUES (gen_random_uuid(), ${m.slug}, ${m.scientific_name}, ${m.image}, 'published', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
           ON CONFLICT (slug) DO UPDATE SET 
             scientific_name = EXCLUDED.scientific_name,
-            featured_image = EXCLUDED.featured_image
+            featured_image = EXCLUDED.featured_image,
+            updated_at = CURRENT_TIMESTAMP
           RETURNING id;
         `;
         const fId = fRes.rows[0].id;
