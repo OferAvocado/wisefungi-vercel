@@ -172,6 +172,7 @@ function App() {
       dbMatch ||
       m.name.toLowerCase().includes(query) ||
       m.subtitle.toLowerCase().includes(query) ||
+      (m.keywords && m.keywords.some(k => k.toLowerCase().includes(query))) ||
       (m.scientific_name && m.scientific_name.toLowerCase().includes(query)) ||
       (m.detailed_data?.conditions && m.detailed_data.conditions.some(c => c.toLowerCase().includes(query)))
     );

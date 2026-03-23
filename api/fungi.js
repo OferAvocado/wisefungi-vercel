@@ -25,6 +25,8 @@ export default async function handler(req, res) {
         ft.about_this_mushroom AS about,
         ft.how_to_use AS usage,
         ft.recommended_dosage AS dosage,
+        ft.search_keywords,
+        ft.search_aliases,
         
         (
           SELECT json_agg(ct.label) 
@@ -71,6 +73,7 @@ export default async function handler(req, res) {
         name: row.name,
         subtitle: row.scientific_name,
         image: row.featured_image,
+        keywords: row.search_keywords || [],
         detailed_data: {
           about: row.about,
           benefits: row.benefits || [],
