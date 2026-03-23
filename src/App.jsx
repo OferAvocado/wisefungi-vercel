@@ -118,7 +118,7 @@ function App() {
   const handleLogin = (e) => {
     e.preventDefault();
     // Simple verification (in production this would call /api/admin/login)
-    if (loginPassword === 'admin123') { // Replace with something more secure later
+    if (loginPassword === '-Ofer1q2w3e4r') { 
       setIsAdmin(true);
       setIsLoginModalOpen(false);
       localStorage.setItem('adminToken', 'wise-fungi-secret');
