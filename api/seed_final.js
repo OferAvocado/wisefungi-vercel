@@ -77,11 +77,13 @@ export default async function handler(req, res) {
   ];
 
   try {
+    await sql`CREATE EXTENSION IF NOT EXISTS "pgcrypto";`;
+    
     for (const m of mushrooms) {
         // Upsert Fungi
         const fRes = await sql`
-          INSERT INTO fungi (slug, scientific_name, featured_image, status)
-          VALUES (${m.slug}, ${m.scientific_name}, ${m.image}, 'published')
+          INSERT INTO fungi (id, slug, scientific_name, featured_image, status)
+          VALUES (gen_random_uuid(), ${m.slug}, ${m.scientific_name}, ${m.image}, 'published')
           ON CONFLICT (slug) DO UPDATE SET 
             scientific_name = EXCLUDED.scientific_name,
             featured_image = EXCLUDED.featured_image
