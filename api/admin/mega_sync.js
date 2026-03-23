@@ -148,36 +148,52 @@ export default async function handler(req, res) {
         // 4. Benefits
         for (const bL of m.benefits) {
             const bS = slugify(bL);
-            const bRes = await sql`INSERT INTO benefits (slug) VALUES (${bS}) ON CONFLICT (slug) DO UPDATE SET updated_at = CURRENT_TIMESTAMP RETURNING id;`;
+            const bRes = await sql`
+              INSERT INTO benefits (slug, created_at, updated_at) 
+              VALUES (${bS}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP) 
+              ON CONFLICT (slug) DO UPDATE SET updated_at = CURRENT_TIMESTAMP RETURNING id;
+            `;
             const bId = bRes.rows[0].id;
-            await sql`INSERT INTO benefit_translations (benefit_id, language_code, label) VALUES (${bId}, 'he', ${bL}) ON CONFLICT DO NOTHING;`;
+            await sql`INSERT INTO benefit_translations (benefit_id, language_code, label, created_at, updated_at) VALUES (${bId}, 'he', ${bL}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP) ON CONFLICT DO NOTHING;`;
             await sql`INSERT INTO fungi_benefits (fungi_id, benefit_id) VALUES (${fId}, ${bId}) ON CONFLICT DO NOTHING;`;
         }
 
         // 5. Conditions
         for (const cL of m.conditions) {
             const cS = slugify(cL);
-            const cRes = await sql`INSERT INTO conditions (slug) VALUES (${cS}) ON CONFLICT (slug) DO UPDATE SET updated_at = CURRENT_TIMESTAMP RETURNING id;`;
+            const cRes = await sql`
+              INSERT INTO conditions (slug, created_at, updated_at) 
+              VALUES (${cS}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP) 
+              ON CONFLICT (slug) DO UPDATE SET updated_at = CURRENT_TIMESTAMP RETURNING id;
+            `;
             const cId = cRes.rows[0].id;
-            await sql`INSERT INTO condition_translations (condition_id, language_code, label) VALUES (${cId}, 'he', ${cL}) ON CONFLICT DO NOTHING;`;
+            await sql`INSERT INTO condition_translations (condition_id, language_code, label, created_at, updated_at) VALUES (${cId}, 'he', ${cL}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP) ON CONFLICT DO NOTHING;`;
             await sql`INSERT INTO fungi_conditions (fungi_id, condition_id) VALUES (${fId}, ${cId}) ON CONFLICT DO NOTHING;`;
         }
 
         // 6. Contra
         for (const ctL of m.contraindications) {
             const ctS = slugify(ctL);
-            const ctRes = await sql`INSERT INTO contraindications (slug) VALUES (${ctS}) ON CONFLICT (slug) DO UPDATE SET updated_at = CURRENT_TIMESTAMP RETURNING id;`;
+            const ctRes = await sql`
+              INSERT INTO contraindications (slug, created_at, updated_at) 
+              VALUES (${ctS}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP) 
+              ON CONFLICT (slug) DO UPDATE SET updated_at = CURRENT_TIMESTAMP RETURNING id;
+            `;
             const ctId = ctRes.rows[0].id;
-            await sql`INSERT INTO contraindication_translations (contraindication_id, language_code, label) VALUES (${ctId}, 'he', ${ctL}) ON CONFLICT DO NOTHING;`;
+            await sql`INSERT INTO contraindication_translations (contraindication_id, language_code, label, created_at, updated_at) VALUES (${ctId}, 'he', ${ctL}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP) ON CONFLICT DO NOTHING;`;
             await sql`INSERT INTO fungi_contraindications (fungi_id, contraindication_id) VALUES (${fId}, ${ctId}) ON CONFLICT DO NOTHING;`;
         }
 
         // 7. Doctor
         for (const dL of m.doctor_consult) {
             const dS = slugify(dL);
-            const dRes = await sql`INSERT INTO doctor_consult_flags (slug) VALUES (${dS}) ON CONFLICT (slug) DO UPDATE SET updated_at = CURRENT_TIMESTAMP RETURNING id;`;
+            const dRes = await sql`
+              INSERT INTO doctor_consult_flags (slug, created_at, updated_at) 
+              VALUES (${dS}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP) 
+              ON CONFLICT (slug) DO UPDATE SET updated_at = CURRENT_TIMESTAMP RETURNING id;
+            `;
             const dId = dRes.rows[0].id;
-            await sql`INSERT INTO doctor_consult_flag_translations (doctor_consult_flag_id, language_code, label) VALUES (${dId}, 'he', ${dL}) ON CONFLICT DO NOTHING;`;
+            await sql`INSERT INTO doctor_consult_flag_translations (doctor_consult_flag_id, language_code, label, created_at, updated_at) VALUES (${dId}, 'he', ${dL}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP) ON CONFLICT DO NOTHING;`;
             await sql`INSERT INTO fungi_doctor_consult_flags (fungi_id, doctor_consult_flag_id) VALUES (${fId}, ${dId}) ON CONFLICT DO NOTHING;`;
         }
     }
