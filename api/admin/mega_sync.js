@@ -183,9 +183,9 @@ export default async function handler(req, res) {
         for (const dL of m.doctor_consult) {
             const dS = slugify(dL);
             await sql`
-              INSERT INTO doctor_consult_flags (id, slug, created_at, updated_at)
-              VALUES (gen_random_uuid(), ${dS}, ${now}, ${now})
-              ON CONFLICT (slug) DO UPDATE SET updated_at = EXCLUDED.updated_at;
+              INSERT INTO doctor_consult_flags (id, slug, severity, created_at, updated_at)
+              VALUES (gen_random_uuid(), ${dS}, 'medium', ${now}, ${now})
+              ON CONFLICT (slug) DO UPDATE SET severity = EXCLUDED.severity, updated_at = EXCLUDED.updated_at;
             `;
             const dId = (await sql`SELECT id FROM doctor_consult_flags WHERE slug = ${dS}`).rows[0].id;
             await sql`INSERT INTO doctor_consult_flag_translations (id, doctor_consult_flag_id, language_code, label) VALUES (gen_random_uuid(), ${dId}, 'he', ${dL}) ON CONFLICT DO NOTHING;`;
