@@ -92,7 +92,15 @@ function App() {
         body: JSON.stringify({ slug: selectedMushroom.id, lang: currentLang, data: editData })
       });
       if (resp.ok) {
-        setMushroomsData(prev => ({ ...prev, [selectedMushroom.id]: { ...prev[selectedMushroom.id], detailed_data: editData } }));
+        setMushroomsData(prev => ({ 
+          ...prev, 
+          [selectedMushroom.id]: { 
+            ...prev[selectedMushroom.id], 
+            name: selectedMushroom.name,
+            subtitle: selectedMushroom.subtitle,
+            detailed_data: editData 
+          } 
+        }));
         setIsEditing(false);
         alert(currentLang === 'he' ? 'השינויים נשמרו בהצלחה!' : 'Changes saved successfully!');
       } else {
@@ -253,8 +261,27 @@ function App() {
                   <img src={selectedMushroom.image} alt={selectedMushroom.name} style={{ width: '80%', height: '80%', objectFit: 'contain', filter: 'drop-shadow(0 10px 10px rgba(0,0,0,0.3))' }} />
                 </div>
                 <div>
-                  <h2 className="title-glow modal-title">{selectedMushroom.name}</h2>
-                  <p className="modal-scientific">{selectedMushroom.subtitle}</p>
+                  {isEditing ? (
+                    <>
+                      <input 
+                        className="admin-edit-input" 
+                        style={{ fontSize: '1.8rem', fontWeight: '900', marginBottom: '0.5rem' }}
+                        value={selectedMushroom.name || ''} 
+                        onChange={e => setSelectedMushroom({...selectedMushroom, name: e.target.value})} 
+                      />
+                      <input 
+                        className="admin-edit-input" 
+                        style={{ fontSize: '1rem', fontStyle: 'italic' }}
+                        value={selectedMushroom.subtitle || ''} 
+                        onChange={e => setSelectedMushroom({...selectedMushroom, subtitle: e.target.value})} 
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <h2 className="title-glow modal-title">{selectedMushroom.name}</h2>
+                      <p className="modal-scientific">{selectedMushroom.subtitle}</p>
+                    </>
+                  )}
                 </div>
                 {isAdmin && (
                   <div className="admin-edit-badge" onClick={() => isEditing ? handleSave() : setIsEditing(true)}>
@@ -301,24 +328,74 @@ function App() {
                   {/* Benefits Section */}
                   <div className="detail-section" style={{ background: 'rgba(255,255,255,0.05)', padding: '1.5rem', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.1)' }}>
                     <span className="detail-label" style={{ color: 'var(--mush-text)' }}>{t('labels.benefits')}</span>
-                    <ul className="benefit-list" style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: '0.8rem' }}>
-                      {mData.benefits.map((b, i) => (
-                        <li key={i} style={{ display: 'flex', gap: '0.8rem', alignItems: 'center' }}>
-                          <CheckCircle size={20} color="#22c55e" style={{ flexShrink: 0 }} />
-                          <span style={{ fontSize: '1.1rem', color: 'var(--mush-subtext)' }}>{b}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    {isEditing ? (
+                      <div style={{ display: 'grid', gap: '0.8rem' }}>
+                        {(editData?.benefits || []).map((b, i) => (
+                          <div key={i} style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                            <input 
+                              className="admin-edit-input" 
+                              value={b} 
+                              onChange={e => {
+                                const newList = [...editData.benefits];
+                                newList[i] = e.target.value;
+                                setEditData({...editData, benefits: newList});
+                              }} 
+                            />
+                            <button className="admin-list-btn remove" onClick={() => {
+                              const newList = editData.benefits.filter((_, idx) => idx !== i);
+                              setEditData({...editData, benefits: newList});
+                            }}><Trash2 size={16}/></button>
+                          </div>
+                        ))}
+                        <button className="admin-list-btn add" onClick={() => setEditData({...editData, benefits: [...(editData.benefits || []), '']})}>
+                          <Plus size={16}/> {currentLang === 'he' ? 'הוסף יתרון' : 'Add Benefit'}
+                        </button>
+                      </div>
+                    ) : (
+                      <ul className="benefit-list" style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: '0.8rem' }}>
+                        {(editData?.benefits || mData.benefits).map((b, i) => (
+                          <li key={i} style={{ display: 'flex', gap: '0.8rem', alignItems: 'center' }}>
+                            <CheckCircle size={20} color="#22c55e" style={{ flexShrink: 0 }} />
+                            <span style={{ fontSize: '1.1rem', color: 'var(--mush-subtext)' }}>{b}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
 
                   {/* Conditions Section */}
                   <div className="detail-section">
                     <span className="detail-label">{t('labels.conditions')}</span>
-                    <div className="tag-container">
-                      {mData.conditions.map((c, i) => (
-                        <span key={i} className="condition-tag">{c}</span>
-                      ))}
-                    </div>
+                    {isEditing ? (
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                        {(editData?.conditions || []).map((c, i) => (
+                          <div key={i} style={{ display: 'flex', alignItems: 'center', background: 'rgba(255,255,255,0.1)', borderRadius: '8px', padding: '0.2rem 0.5rem' }}>
+                             <input 
+                              style={{ background: 'transparent', border: 'none', color: 'white', outline: 'none', width: '80px' }}
+                              value={c} 
+                              onChange={e => {
+                                const newList = [...editData.conditions];
+                                newList[i] = e.target.value;
+                                setEditData({...editData, conditions: newList});
+                              }} 
+                            />
+                            <button style={{ background: 'transparent', border: 'none', color: '#ef4444', cursor: 'pointer', padding: '0 0.2rem' }} onClick={() => {
+                              const newList = editData.conditions.filter((_, idx) => idx !== i);
+                              setEditData({...editData, conditions: newList});
+                            }}>×</button>
+                          </div>
+                        ))}
+                        <button className="admin-list-btn add small" onClick={() => setEditData({...editData, conditions: [...(editData.conditions || []), '']})}>
+                          <Plus size={14}/>
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="tag-container">
+                        {(editData?.conditions || mData.conditions).map((c, i) => (
+                          <span key={i} className="condition-tag">{c}</span>
+                        ))}
+                      </div>
+                    )}
                   </div>
 
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>

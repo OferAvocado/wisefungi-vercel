@@ -17,6 +17,7 @@ export default async function handler(req, res) {
     await sql`
       UPDATE fungi_translations 
       SET 
+        name = ${req.body.data.name},
         about_this_mushroom = ${data.about},
         how_to_use = ${data.usage},
         recommended_dosage = ${data.dosage},
