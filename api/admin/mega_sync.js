@@ -154,7 +154,7 @@ export default async function handler(req, res) {
               ON CONFLICT (slug) DO UPDATE SET updated_at = CURRENT_TIMESTAMP RETURNING id;
             `;
             const bId = bRes.rows[0].id;
-            await sql`INSERT INTO benefit_translations (benefit_id, language_code, label, created_at, updated_at) VALUES (${bId}, 'he', ${bL}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP) ON CONFLICT DO NOTHING;`;
+            await sql`INSERT INTO benefit_translations (benefit_id, language_code, label) VALUES (${bId}, 'he', ${bL}) ON CONFLICT DO NOTHING;`;
             await sql`INSERT INTO fungi_benefits (fungi_id, benefit_id) VALUES (${fId}, ${bId}) ON CONFLICT DO NOTHING;`;
         }
 
@@ -167,7 +167,7 @@ export default async function handler(req, res) {
               ON CONFLICT (slug) DO UPDATE SET updated_at = CURRENT_TIMESTAMP RETURNING id;
             `;
             const cId = cRes.rows[0].id;
-            await sql`INSERT INTO condition_translations (condition_id, language_code, label, created_at, updated_at) VALUES (${cId}, 'he', ${cL}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP) ON CONFLICT DO NOTHING;`;
+            await sql`INSERT INTO condition_translations (condition_id, language_code, label) VALUES (${cId}, 'he', ${cL}) ON CONFLICT DO NOTHING;`;
             await sql`INSERT INTO fungi_conditions (fungi_id, condition_id) VALUES (${fId}, ${cId}) ON CONFLICT DO NOTHING;`;
         }
 
@@ -180,7 +180,7 @@ export default async function handler(req, res) {
               ON CONFLICT (slug) DO UPDATE SET updated_at = CURRENT_TIMESTAMP RETURNING id;
             `;
             const ctId = ctRes.rows[0].id;
-            await sql`INSERT INTO contraindication_translations (contraindication_id, language_code, label, created_at, updated_at) VALUES (${ctId}, 'he', ${ctL}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP) ON CONFLICT DO NOTHING;`;
+            await sql`INSERT INTO contraindication_translations (contraindication_id, language_code, label) VALUES (${ctId}, 'he', ${ctL}) ON CONFLICT DO NOTHING;`;
             await sql`INSERT INTO fungi_contraindications (fungi_id, contraindication_id) VALUES (${fId}, ${ctId}) ON CONFLICT DO NOTHING;`;
         }
 
@@ -193,7 +193,7 @@ export default async function handler(req, res) {
               ON CONFLICT (slug) DO UPDATE SET updated_at = CURRENT_TIMESTAMP RETURNING id;
             `;
             const dId = dRes.rows[0].id;
-            await sql`INSERT INTO doctor_consult_flag_translations (doctor_consult_flag_id, language_code, label, created_at, updated_at) VALUES (${dId}, 'he', ${dL}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP) ON CONFLICT DO NOTHING;`;
+            await sql`INSERT INTO doctor_consult_flag_translations (doctor_consult_flag_id, language_code, label) VALUES (${dId}, 'he', ${dL}) ON CONFLICT DO NOTHING;`;
             await sql`INSERT INTO fungi_doctor_consult_flags (fungi_id, doctor_consult_flag_id) VALUES (${fId}, ${dId}) ON CONFLICT DO NOTHING;`;
         }
     }
