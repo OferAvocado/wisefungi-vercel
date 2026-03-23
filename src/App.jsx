@@ -95,7 +95,7 @@ function App() {
       try { initialInteractions = JSON.parse(uiContent[`int_${m.id}`]); } catch(e){}
     }
 
-    setEditData({ ...m.detailed_data, interactions: initialInteractions });
+    setEditData({ ...m.detailed_data, interactions: initialInteractions, keywords: m.keywords || [] });
     setIsEditing(false);
     setActiveTab('info');
   };
@@ -114,6 +114,7 @@ function App() {
             ...prev[selectedMushroom.id], 
             name: selectedMushroom.name,
             subtitle: selectedMushroom.subtitle,
+            keywords: editData.keywords,
             detailed_data: editData 
           } 
         }));
@@ -141,7 +142,7 @@ function App() {
         fetch('/api/admin/update_fungi', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('adminToken') },
-          body: JSON.stringify({ slug: m.id, lang: currentLang, data: { ...m.detailed_data, name: m.name, subtitle: m.subtitle } })
+          body: JSON.stringify({ slug: m.id, lang: currentLang, data: { ...m.detailed_data, name: m.name, subtitle: m.subtitle, keywords: m.keywords } })
         })
       );
 
@@ -467,6 +468,46 @@ function App() {
                       </div>
                     )}
                   </div>
+
+                  {/* Search Keywords Section (Admin Only - Hidden from public) */}
+                  {isAdmin && (
+                    <div className="detail-section" style={{ background: 'rgba(59, 130, 246, 0.15)', padding: '1.5rem', borderRadius: '16px', border: '1px solid rgba(59, 130, 246, 0.3)' }}>
+                      <span className="detail-label" style={{ color: '#60A5FA' }}>מילות חיפוש נסתרות (Search Keywords)</span>
+                      {isEditing ? (
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                          {(editData?.keywords || []).map((k, i) => (
+                            <div key={i} style={{ display: 'flex', alignItems: 'center', background: 'rgba(255,255,255,0.1)', borderRadius: '8px', padding: '0.2rem 0.5rem' }}>
+                               <input 
+                                style={{ background: 'transparent', border: 'none', color: 'white', outline: 'none', width: '80px' }}
+                                value={k} 
+                                onChange={e => {
+                                  const newList = [...editData.keywords];
+                                  newList[i] = e.target.value;
+                                  setEditData({...editData, keywords: newList});
+                                }} 
+                              />
+                              <button style={{ background: 'transparent', border: 'none', color: '#ef4444', cursor: 'pointer', padding: '0 0.2rem' }} onClick={() => {
+                                const newList = editData.keywords.filter((_, idx) => idx !== i);
+                                setEditData({...editData, keywords: newList});
+                              }}>×</button>
+                            </div>
+                          ))}
+                          <button className="admin-list-btn add small" onClick={() => setEditData({...editData, keywords: [...(editData.keywords || []), '']})}>
+                            <Plus size={14}/>
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="tag-container">
+                          {(editData?.keywords || mData.keywords || selectedMushroom.keywords).map((k, i) => (
+                            <span key={i} className="condition-tag" style={{ background: "rgba(59,130,246,0.2)", borderColor: "rgba(59,130,246,0.4)", color: "white" }}>{k}</span>
+                          ))}
+                          {(!editData?.keywords || editData.keywords.length === 0) && (
+                            <span style={{color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem'}}>אין מילות חיפוש מקושרות לפטריה זו.</span>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  )}
 
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
                     {/* Usage & Dosage */}

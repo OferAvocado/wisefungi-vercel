@@ -22,6 +22,7 @@ export default async function handler(req, res) {
         about_this_mushroom = ${data.about},
         how_to_use = ${data.usage},
         recommended_dosage = ${data.dosage},
+        search_keywords = ${data.keywords ? JSON.stringify(data.keywords) : null},
         updated_at = CURRENT_TIMESTAMP
       WHERE fungi_id = (SELECT id FROM fungi WHERE slug = ${slug}) 
       AND language_code = ${lang}::language_enum;
