@@ -172,7 +172,7 @@ export default async function handler(req, res) {
             await sql`
               INSERT INTO contraindications (id, slug, severity, created_at, updated_at)
               VALUES (gen_random_uuid(), ${ctS}, 'caution', ${now}, ${now})
-              ON CONFLICT (slug) DO UPDATE SET updated_at = EXCLUDED.updated_at;
+              ON CONFLICT (slug) DO UPDATE SET severity = EXCLUDED.severity, updated_at = EXCLUDED.updated_at;
             `;
             const ctId = (await sql`SELECT id FROM contraindications WHERE slug = ${ctS}`).rows[0].id;
             await sql`INSERT INTO contraindication_translations (id, contraindication_id, language_code, label) VALUES (gen_random_uuid(), ${ctId}, 'he', ${ctL}) ON CONFLICT DO NOTHING;`;
