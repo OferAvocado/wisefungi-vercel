@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Globe, Search, ChevronDown, Share2, Link as LinkIcon, QrCode, X } from 'lucide-react';
 import { useState } from 'react';
 
-export default function Header({ isSticky, searchQuery, setSearchQuery }) {
+export default function Header({ isSticky, searchQuery, setSearchQuery, onLogoClick }) {
   const { t, i18n } = useTranslation();
   const [isLangOpen, setIsLangOpen] = useState(false);
 
@@ -31,7 +31,7 @@ export default function Header({ isSticky, searchQuery, setSearchQuery }) {
     <header className={`header glass-panel ${isSticky ? 'sticky-header' : ''}`}>
       <div className="header-content">
         <div className="header-left">
-          <h1 className="logo title-glow" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          <h1 className="logo title-glow" onClick={() => { onLogoClick?.(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
             {t('title')}
           </h1>
         </div>

@@ -2,8 +2,8 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import BentoGrid from './components/BentoGrid';
 import { useTranslation } from 'react-i18next';
-import { CheckCircle, XCircle, AlertTriangle, HelpCircle, Search, ChevronDown, ChevronRight } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { CheckCircle, XCircle, AlertTriangle, HelpCircle, Search, ChevronDown, ChevronRight, Lock, Save, Edit3, Plus, Trash2 } from 'lucide-react';
+import { useEffect, useState, useRef } from 'react';
 import searchDataJson from './assets/searchData.json';
 import originalInteractions from './assets/original_interactions.json';
 import './App.css';
@@ -11,12 +11,56 @@ import './App.css';
 function App() {
   const { i18n, t } = useTranslation();
   const currentLang = i18n.language || 'he';
+  const [mushroomsData, setMushroomsData] = useState(null);
+  const [interactionsData, setInteractionsData] = useState(null);
   const [selectedMushroom, setSelectedMushroom] = useState(null);
   const [activeTab, setActiveTab] = useState('info');
   const [searchQuery, setSearchQuery] = useState('');
   const [interactionQuery, setInteractionQuery] = useState('');
   const [expandedCats, setExpandedCats] = useState({ do_not_combine: true, use_caution: true, potential_synergy: true, insufficient: true });
   const [isSticky, setIsSticky] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editData, setEditData] = useState(null);
+  const [loginPassword, setLoginPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Logo click counter for secret admin access
+  const [logoClicks, setLogoClicks] = useState(0);
+
+  useEffect(() => {
+    // Check if already an admin in this session
+    const adminToken = localStorage.getItem('adminToken');
+    if (adminToken === 'wise-fungi-secret') setIsAdmin(true);
+
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        const [funcRes, intRes] = await Promise.all([
+          fetch(`/api/fungi?lang=${currentLang}`),
+          fetch(`/api/interactions?lang=${currentLang}`)
+        ]);
+        
+        if (funcRes.ok && intRes.ok) {
+          const mData = await funcRes.json();
+          const iData = await intRes.json();
+          setMushroomsData(mData);
+          setInteractionsData(iData);
+        } else {
+          // Fallback to static if API fails (e.g. not on Vercel yet)
+          setMushroomsData(t('mushrooms', { returnObjects: true }));
+        }
+      } catch (err) {
+        console.error("Fetch error:", err);
+        setMushroomsData(t('mushrooms', { returnObjects: true }));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [currentLang, t]);
 
   useEffect(() => {
     document.documentElement.dir = i18n.language === 'he' ? 'rtl' : 'ltr';
@@ -35,10 +79,56 @@ function App() {
 
   const handleSelect = (m) => {
     setSelectedMushroom(m);
+    setEditData(m.detailed_data);
+    setIsEditing(false);
     setActiveTab('info');
   };
 
-  const mushroomsObj = t('mushrooms', { returnObjects: true });
+  const handleSave = async () => {
+    try {
+      const resp = await fetch('/api/admin/update_fungi', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('adminToken') },
+        body: JSON.stringify({ slug: selectedMushroom.id, lang: currentLang, data: editData })
+      });
+      if (resp.ok) {
+        setMushroomsData(prev => ({ ...prev, [selectedMushroom.id]: { ...prev[selectedMushroom.id], detailed_data: editData } }));
+        setIsEditing(false);
+        alert(currentLang === 'he' ? 'השינויים נשמרו בהצלחה!' : 'Changes saved successfully!');
+      } else {
+        alert('Error saving data');
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleLogoClick = () => {
+    setLogoClicks(prev => {
+      if (prev + 1 >= 5) {
+        setIsLoginModalOpen(true);
+        return 0;
+      }
+      return prev + 1;
+    });
+    // Reset clicks after 3 seconds of inactivity
+    setTimeout(() => setLogoClicks(0), 3000);
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    // Simple verification (in production this would call /api/admin/login)
+    if (loginPassword === 'admin123') { // Replace with something more secure later
+      setIsAdmin(true);
+      setIsLoginModalOpen(false);
+      localStorage.setItem('adminToken', 'wise-fungi-secret');
+      alert(currentLang === 'he' ? 'ברוך הבא מנהל!' : 'Welcome Admin!');
+    } else {
+      alert(currentLang === 'he' ? 'סיסמה שגויה' : 'Wrong password');
+    }
+  };
+
+  const mushroomsObj = mushroomsData || {};
   const allMushrooms = Object.entries(mushroomsObj).map(([id, m]) => ({ id, ...m }));
   
   // Use the imported SearchIndex_export data
@@ -112,10 +202,20 @@ function App() {
 
   return (
     <div className="app-container">
+      {isAdmin && (
+        <div className="admin-status-bar">
+          <Lock size={14} /> {currentLang === 'he' ? 'מצב מנהל פעיל' : 'Admin Mode Active'}
+          <button onClick={() => { setIsAdmin(false); localStorage.removeItem('adminToken'); }} className="admin-logout-btn">
+            {currentLang === 'he' ? 'התנתק' : 'Logout'}
+          </button>
+        </div>
+      )}
+
       <Header 
         isSticky={isSticky} 
         searchQuery={searchQuery} 
         setSearchQuery={setSearchQuery} 
+        onLogoClick={handleLogoClick}
       />
       
       <main className="main-content">
@@ -156,6 +256,12 @@ function App() {
                   <h2 className="title-glow modal-title">{selectedMushroom.name}</h2>
                   <p className="modal-scientific">{selectedMushroom.subtitle}</p>
                 </div>
+                {isAdmin && (
+                  <div className="admin-edit-badge" onClick={() => isEditing ? handleSave() : setIsEditing(true)}>
+                    {isEditing ? <Save size={16} /> : <Edit3 size={16} />}
+                    <span>{isEditing ? (currentLang === 'he' ? 'שמור' : 'Save') : (currentLang === 'he' ? 'ערוך' : 'Edit')}</span>
+                  </div>
+                )}
               </div>
               
               <div className="modal-tabs">
@@ -181,7 +287,15 @@ function App() {
                   {/* About Section */}
                   <div className="detail-section">
                     <span className="detail-label">{t('labels.about')}</span>
-                    <p className="modal-description">{mData.about}</p>
+                    {isEditing ? (
+                      <textarea 
+                        className="admin-edit-textarea" 
+                        value={editData?.about || ''} 
+                        onChange={e => setEditData({...editData, about: e.target.value})} 
+                      />
+                    ) : (
+                      <p className="modal-description">{editData?.about || mData.about}</p>
+                    )}
                   </div>
 
                   {/* Benefits Section */}
@@ -211,10 +325,28 @@ function App() {
                     {/* Usage & Dosage */}
                     <div className="detail-section" style={{ background: 'rgba(255,255,255,0.03)', padding: '1.5rem', borderRadius: '16px' }}>
                       <span className="detail-label">{t('labels.how_to_use')}</span>
-                      <p style={{ color: 'var(--mush-subtext)', fontSize: '1.05rem', marginBottom: '1.5rem' }}>{mData.usage}</p>
+                      {isEditing ? (
+                        <textarea 
+                          className="admin-edit-textarea" 
+                          style={{ minHeight: '80px', marginBottom: '1rem' }}
+                          value={editData?.usage || ''} 
+                          onChange={e => setEditData({...editData, usage: e.target.value})} 
+                        />
+                      ) : (
+                        <p style={{ color: 'var(--mush-subtext)', fontSize: '1.05rem', marginBottom: '1.5rem' }}>{editData?.usage || mData.usage}</p>
+                      )}
                       
                       <span className="detail-label">{t('labels.dosage')}</span>
-                      <p style={{ color: 'var(--mush-subtext)', fontSize: '1.05rem' }}>{mData.dosage}</p>
+                      {isEditing ? (
+                        <textarea 
+                          className="admin-edit-textarea" 
+                          style={{ minHeight: '80px' }}
+                          value={editData?.dosage || ''} 
+                          onChange={e => setEditData({...editData, dosage: e.target.value})} 
+                        />
+                      ) : (
+                        <p style={{ color: 'var(--mush-subtext)', fontSize: '1.05rem' }}>{editData?.dosage || mData.dosage}</p>
+                      )}
                     </div>
 
                     {/* Doctor Consultation */}
@@ -391,6 +523,26 @@ function App() {
                 </div>
               )}
             </div>
+          </div>
+        </div>
+      )}
+      {/* Login Modal */}
+      {isLoginModalOpen && (
+        <div className="modal-overlay login-overlay" onClick={() => setIsLoginModalOpen(false)}>
+          <div className="modal-content glass-panel login-card" onClick={e => e.stopPropagation()}>
+            <h2>{currentLang === 'he' ? 'כניסת אדמין' : 'Admin Login'}</h2>
+            <form onSubmit={handleLogin}>
+              <input 
+                type="password" 
+                placeholder={currentLang === 'he' ? 'סיסמת ניהול' : 'Admin Password'} 
+                value={loginPassword}
+                onChange={e => setLoginPassword(e.target.value)}
+                autoFocus
+              />
+              <button type="submit" className="login-submit">
+                {currentLang === 'he' ? 'התחברות' : 'Login'}
+              </button>
+            </form>
           </div>
         </div>
       )}

@@ -721,3 +721,130 @@
   content: '←';
 }
 
+/* Admin & Login UI */
+.admin-status-bar {
+  background: #16a34a;
+  color: white;
+  padding: 0.5rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.85rem;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.admin-logout-btn {
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.4);
+  color: white;
+  padding: 0.2rem 0.8rem;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.75rem;
+}
+
+.admin-logout-btn:hover {
+  background: white;
+  color: #16a34a;
+}
+
+.login-overlay {
+  z-index: 99999;
+}
+
+.login-card {
+  max-width: 400px;
+  padding: 3rem;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.login-card h2 {
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  color: white;
+}
+
+.login-card input {
+  width: 100%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 1rem;
+  border-radius: 12px;
+  color: white;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.login-card input:focus {
+  outline: none;
+  border-color: #16a34a;
+  background: rgba(22, 163, 74, 0.05);
+}
+
+.login-submit {
+  width: 100%;
+  background: #16a34a;
+  border: none;
+  padding: 1rem;
+  border-radius: 12px;
+  color: white;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.login-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(22, 163, 74, 0.4);
+}
+
+.admin-edit-badge {
+  position: absolute;
+  top: 1rem;
+  right: 4rem;
+  background: #16a34a;
+  color: white;
+  padding: 0.4rem 1rem;
+  border-radius: 99px;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+[dir="rtl"] .admin-edit-badge {
+  right: auto;
+  left: 4rem;
+}
+
+.admin-edit-textarea {
+  width: 100%;
+  min-height: 150px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  padding: 1rem;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.admin-edit-textarea:focus {
+  outline: none;
+  border-color: #16a34a;
+  background: rgba(22,163,74,0.05);
+}
+
