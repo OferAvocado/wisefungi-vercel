@@ -100,29 +100,23 @@ export default async function handler(req, res) {
 
         // Hebrew Translation
         await sql`
-          INSERT INTO fungi_translations (fungi_id, language_code, name, about_this_mushroom, how_to_use, recommended_dosage)
-          VALUES (${fId}, 'he', ${m.name}, ${m.description}, ${m.how_to_use}, ${m.dosage})
+          INSERT INTO fungi_translations (fungi_id, language_code, name, about_this_mushroom, how_to_use, recommended_dosage, search_keywords)
+          VALUES (${fId}, 'he', ${m.name}, ${m.description}, ${m.how_to_use}, ${m.dosage}, ${m.keywords})
           ON CONFLICT (fungi_id, language_code) DO UPDATE SET 
             name = EXCLUDED.name,
             about_this_mushroom = EXCLUDED.about_this_mushroom,
             how_to_use = EXCLUDED.how_to_use,
             recommended_dosage = EXCLUDED.recommended_dosage,
+            search_keywords = EXCLUDED.search_keywords,
             updated_at = CURRENT_TIMESTAMP;
         `;
 
         // English Placeholder
         await sql`
-          INSERT INTO fungi_translations (fungi_id, language_code, name, about_this_mushroom, how_to_use, recommended_dosage)
-          VALUES (${fId}, 'en', ${m.slug.replace('_', ' ').toUpperCase()}, 'Auto-generated En description', 'Usage instructions', 'Dosage info')
+          INSERT INTO fungi_translations (fungi_id, language_code, name, about_this_mushroom, how_to_use, recommended_dosage, search_keywords)
+          VALUES (${fId}, 'en', ${m.slug.replace('_', ' ').toUpperCase()}, 'Auto-generated En description', 'Usage instructions', 'Dosage info', ${m.keywords})
           ON CONFLICT (fungi_id, language_code) DO NOTHING;
         `;
-
-        for (const kw of m.keywords) {
-            await sql`
-              INSERT INTO search_index (fungi_id, keyword, language_code, category)
-              VALUES (${fId}, ${kw}, 'he', 'topic') ON CONFLICT DO NOTHING;
-            `;
-        }
     }
 
     res.status(200).json({ success: true, message: 'Fungi content updated' });
