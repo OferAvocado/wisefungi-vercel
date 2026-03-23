@@ -1,5 +1,4 @@
 import { sql } from '@vercel/postgres';
-import { randomUUID } from 'crypto';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method Not Allowed' });
@@ -95,34 +94,37 @@ export default async function handler(req, res) {
   ];
 
   const slugify = (t) => {
-    if (!t) return randomUUID().substring(0,8);
+    if (!t) return 'slug_' + Math.random().toString(36).substring(7);
     return t.trim().toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]+/g, '');
   };
 
   try {
-    const now = new Date();
+    // 0. Ensure pgcrypto
+    await sql`CREATE EXTENSION IF NOT EXISTS "pgcrypto";`;
     
-    // Cleanup if needed? No, let's keep and update.
+    // Explicit Date
+    const now = new Date();
 
     for (const m of mushrooms) {
-        const fId = randomUUID();
         const fSlug = slugify(m.scientific_name);
 
+        // 1. Fungi
         await sql`
           INSERT INTO fungi (id, slug, scientific_name, featured_image, status, created_at, updated_at)
-          VALUES (${fId}, ${fSlug}, ${m.scientific_name}, ${m.mushroom_image_url}, 'published', ${now}, ${now})
+          VALUES (gen_random_uuid(), ${fSlug}, ${m.scientific_name}, ${m.mushroom_image_url}, 'published', ${now}, ${now})
           ON CONFLICT (slug) DO UPDATE SET 
             scientific_name = EXCLUDED.scientific_name,
             featured_image = EXCLUDED.featured_image,
-            updated_at = EXCLUDED.updated_at
-          RETURNING id;
+            updated_at = EXCLUDED.updated_at;
         `;
         
-        const finalFId = (await sql`SELECT id FROM fungi WHERE slug = ${fSlug}`).rows[0].id;
+        const fRow = (await sql`SELECT id FROM fungi WHERE slug = ${fSlug}`).rows[0];
+        const fId = fRow.id;
 
+        // 2. Trans HE
         await sql`
           INSERT INTO fungi_translations (id, fungi_id, language_code, name, about_this_mushroom, how_to_use, recommended_dosage, search_keywords, created_at, updated_at)
-          VALUES (${randomUUID()}, ${finalFId}, 'he', ${m.name}, ${m.description}, ${m.how_to_use}, ${m.dosage}, ${m.keywords}, ${now}, ${now})
+          VALUES (gen_random_uuid(), ${fId}, 'he', ${m.name}, ${m.description}, ${m.how_to_use}, ${m.dosage}, ${m.keywords}, ${now}, ${now})
           ON CONFLICT (fungi_id, language_code) DO UPDATE SET 
             name = EXCLUDED.name,
             about_this_mushroom = EXCLUDED.about_this_mushroom,
@@ -132,68 +134,68 @@ export default async function handler(req, res) {
             updated_at = EXCLUDED.updated_at;
         `;
 
-        // Clear existing many-to-many to ensure clean slate for this mushroom
-        await sql`DELETE FROM fungi_benefits WHERE fungi_id = ${finalFId};`;
-        await sql`DELETE FROM fungi_conditions WHERE fungi_id = ${finalFId};`;
-        await sql`DELETE FROM fungi_contraindications WHERE fungi_id = ${finalFId};`;
-        await sql`DELETE FROM fungi_doctor_consult_flags WHERE fungi_id = ${finalFId};`;
+        // 3. Clear Relations
+        await sql`DELETE FROM fungi_benefits WHERE fungi_id = ${fId};`;
+        await sql`DELETE FROM fungi_conditions WHERE fungi_id = ${fId};`;
+        await sql`DELETE FROM fungi_contraindications WHERE fungi_id = ${fId};`;
+        await sql`DELETE FROM fungi_doctor_consult_flags WHERE fungi_id = ${fId};`;
 
-        // Benefits
-        for (const bLabel of m.benefits) {
-            const bSlug = slugify(bLabel) || 'b_' + randomUUID().substring(0,8);
+        // 4. Benefits
+        for (const bL of m.benefits) {
+            const bS = slugify(bL);
             await sql`
               INSERT INTO benefits (id, slug, created_at, updated_at)
-              VALUES (${randomUUID()}, ${bSlug}, ${now}, ${now})
+              VALUES (gen_random_uuid(), ${bS}, ${now}, ${now})
               ON CONFLICT (slug) DO UPDATE SET updated_at = EXCLUDED.updated_at;
             `;
-            const bId = (await sql`SELECT id FROM benefits WHERE slug = ${bSlug}`).rows[0].id;
-            await sql`INSERT INTO benefit_translations (id, benefit_id, language_code, label) VALUES (${randomUUID()}, ${bId}, 'he', ${bLabel}) ON CONFLICT DO NOTHING;`;
-            await sql`INSERT INTO fungi_benefits (id, fungi_id, benefit_id, created_at, updated_at) VALUES (${randomUUID()}, ${finalFId}, ${bId}, ${now}, ${now}) ON CONFLICT DO NOTHING;`;
+            const bId = (await sql`SELECT id FROM benefits WHERE slug = ${bS}`).rows[0].id;
+            await sql`INSERT INTO benefit_translations (id, benefit_id, language_code, label) VALUES (gen_random_uuid(), ${bId}, 'he', ${bL}) ON CONFLICT DO NOTHING;`;
+            await sql`INSERT INTO fungi_benefits (id, fungi_id, benefit_id, created_at, updated_at) VALUES (gen_random_uuid(), ${fId}, ${bId}, ${now}, ${now}) ON CONFLICT DO NOTHING;`;
         }
 
-        // Conditions
-        for (const cLabel of m.conditions) {
-            const cSlug = slugify(cLabel) || 'c_' + randomUUID().substring(0,8);
+        // 5. Conditions
+        for (const cL of m.conditions) {
+            const cS = slugify(cL);
             await sql`
               INSERT INTO conditions (id, slug, created_at, updated_at)
-              VALUES (${randomUUID()}, ${cSlug}, ${now}, ${now})
+              VALUES (gen_random_uuid(), ${cS}, ${now}, ${now})
               ON CONFLICT (slug) DO UPDATE SET updated_at = EXCLUDED.updated_at;
             `;
-            const cId = (await sql`SELECT id FROM conditions WHERE slug = ${cSlug}`).rows[0].id;
-            await sql`INSERT INTO condition_translations (id, condition_id, language_code, label) VALUES (${randomUUID()}, ${cId}, 'he', ${cLabel}) ON CONFLICT DO NOTHING;`;
-            await sql`INSERT INTO fungi_conditions (id, fungi_id, condition_id, created_at, updated_at) VALUES (${randomUUID()}, ${finalFId}, ${cId}, ${now}, ${now}) ON CONFLICT DO NOTHING;`;
+            const cId = (await sql`SELECT id FROM conditions WHERE slug = ${cS}`).rows[0].id;
+            await sql`INSERT INTO condition_translations (id, condition_id, language_code, label) VALUES (gen_random_uuid(), ${cId}, 'he', ${cL}) ON CONFLICT DO NOTHING;`;
+            await sql`INSERT INTO fungi_conditions (id, fungi_id, condition_id, created_at, updated_at) VALUES (gen_random_uuid(), ${fId}, ${cId}, ${now}, ${now}) ON CONFLICT DO NOTHING;`;
         }
 
-        // Contra
-        for (const ctLabel of m.contraindications) {
-            const ctSlug = slugify(ctLabel) || 'ct_' + randomUUID().substring(0,8);
+        // 6. Contra
+        for (const ctL of m.contraindications) {
+            const ctS = slugify(ctL);
             await sql`
               INSERT INTO contraindications (id, slug, created_at, updated_at)
-              VALUES (${randomUUID()}, ${ctSlug}, ${now}, ${now})
+              VALUES (gen_random_uuid(), ${ctS}, ${now}, ${now})
               ON CONFLICT (slug) DO UPDATE SET updated_at = EXCLUDED.updated_at;
             `;
-            const ctId = (await sql`SELECT id FROM contraindications WHERE slug = ${ctSlug}`).rows[0].id;
-            await sql`INSERT INTO contraindication_translations (id, contraindication_id, language_code, label) VALUES (${randomUUID()}, ${ctId}, 'he', ${ctLabel}) ON CONFLICT DO NOTHING;`;
-            await sql`INSERT INTO fungi_contraindications (id, fungi_id, contraindication_id, created_at, updated_at) VALUES (${randomUUID()}, ${finalFId}, ${ctId}, ${now}, ${now}) ON CONFLICT DO NOTHING;`;
+            const ctId = (await sql`SELECT id FROM contraindications WHERE slug = ${ctS}`).rows[0].id;
+            await sql`INSERT INTO contraindication_translations (id, contraindication_id, language_code, label) VALUES (gen_random_uuid(), ${ctId}, 'he', ${ctL}) ON CONFLICT DO NOTHING;`;
+            await sql`INSERT INTO fungi_contraindications (id, fungi_id, contraindication_id, created_at, updated_at) VALUES (gen_random_uuid(), ${fId}, ${ctId}, ${now}, ${now}) ON CONFLICT DO NOTHING;`;
         }
 
-        // Doctor
-        for (const dLabel of m.doctor_consult) {
-            const dSlug = slugify(dLabel) || 'd_' + randomUUID().substring(0,8);
+        // 7. Doctor
+        for (const dL of m.doctor_consult) {
+            const dS = slugify(dL);
             await sql`
               INSERT INTO doctor_consult_flags (id, slug, created_at, updated_at)
-              VALUES (${randomUUID()}, ${dSlug}, ${now}, ${now})
+              VALUES (gen_random_uuid(), ${dS}, ${now}, ${now})
               ON CONFLICT (slug) DO UPDATE SET updated_at = EXCLUDED.updated_at;
             `;
-            const dId = (await sql`SELECT id FROM doctor_consult_flags WHERE slug = ${dSlug}`).rows[0].id;
-            await sql`INSERT INTO doctor_consult_flag_translations (id, doctor_consult_flag_id, language_code, label) VALUES (${randomUUID()}, ${dId}, 'he', ${dLabel}) ON CONFLICT DO NOTHING;`;
-            await sql`INSERT INTO fungi_doctor_consult_flags (id, fungi_id, doctor_consult_flag_id, created_at, updated_at) VALUES (${randomUUID()}, ${finalFId}, ${dId}, ${now}, ${now}) ON CONFLICT DO NOTHING;`;
+            const dId = (await sql`SELECT id FROM doctor_consult_flags WHERE slug = ${dS}`).rows[0].id;
+            await sql`INSERT INTO doctor_consult_flag_translations (id, doctor_consult_flag_id, language_code, label) VALUES (gen_random_uuid(), ${dId}, 'he', ${dL}) ON CONFLICT DO NOTHING;`;
+            await sql`INSERT INTO fungi_doctor_consult_flags (id, fungi_id, doctor_consult_flag_id, created_at, updated_at) VALUES (gen_random_uuid(), ${fId}, ${dId}, ${now}, ${now}) ON CONFLICT DO NOTHING;`;
         }
     }
 
-    res.status(200).json({ success: true, message: 'MEGA UPDATE V3 COMPLETED' });
+    res.status(200).json({ success: true, message: 'MEGA UPDATE V4 (SQL GENERATED IDS) COMPLETED' });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: err.message, stack: err.stack });
+    res.status(500).json({ error: err.message });
   }
 }
