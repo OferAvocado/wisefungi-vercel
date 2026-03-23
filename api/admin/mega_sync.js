@@ -97,13 +97,24 @@ export default async function handler(req, res) {
   const slugify = (t) => t.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/(^_|_$)/g, '');
 
   try {
+    // 0. Force repair defaults for every table where we hit issues
+    const tablesToRepair = [
+      'fungi', 'fungi_translations', 'benefits', 'benefit_translations', 
+      'fungi_benefits', 'conditions', 'condition_translations', 'fungi_conditions',
+      'contraindications', 'contraindication_translations', 'fungi_contraindications',
+      'doctor_consult_flags', 'doctor_consult_flag_translations', 'fungi_doctor_consult_flags'
+    ];
+    for(const t of tablesToRepair) {
+        await sql.query(`ALTER TABLE ${t} ALTER COLUMN id SET DEFAULT gen_random_uuid();`);
+    }
+
     for (const m of mushrooms) {
         const slug = m.scientific_name.toLowerCase().replace(/ /g, '_');
 
         // 1. Fungi
         const fRes = await sql`
-          INSERT INTO fungi (id, slug, scientific_name, featured_image, status, created_at, updated_at)
-          VALUES (${randomUUID()}, ${slug}, ${m.scientific_name}, ${m.mushroom_image_url}, 'published', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+          INSERT INTO fungi (slug, scientific_name, featured_image, status)
+          VALUES (${slug}, ${m.scientific_name}, ${m.mushroom_image_url}, 'published')
           ON CONFLICT (slug) DO UPDATE SET 
             scientific_name = EXCLUDED.scientific_name,
             featured_image = EXCLUDED.featured_image,
@@ -114,8 +125,8 @@ export default async function handler(req, res) {
 
         // 2. Trans HE
         await sql`
-          INSERT INTO fungi_translations (id, fungi_id, language_code, name, about_this_mushroom, how_to_use, recommended_dosage, search_keywords, created_at, updated_at)
-          VALUES (${randomUUID()}, ${fId}, 'he', ${m.name}, ${m.description}, ${m.how_to_use}, ${m.dosage}, ${m.keywords}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+          INSERT INTO fungi_translations (fungi_id, language_code, name, about_this_mushroom, how_to_use, recommended_dosage, search_keywords)
+          VALUES (${fId}, 'he', ${m.name}, ${m.description}, ${m.how_to_use}, ${m.dosage}, ${m.keywords})
           ON CONFLICT (fungi_id, language_code) DO UPDATE SET 
             name = EXCLUDED.name,
             about_this_mushroom = EXCLUDED.about_this_mushroom,
@@ -127,8 +138,8 @@ export default async function handler(req, res) {
 
         // English Placeholder
         await sql`
-          INSERT INTO fungi_translations (id, fungi_id, language_code, name, about_this_mushroom, how_to_use, recommended_dosage, search_keywords, created_at, updated_at)
-          VALUES (${randomUUID()}, ${fId}, 'en', ${slug.toUpperCase()}, 'Auto-generated desc', 'Usage instructions', 'Dosage', ${m.keywords}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+          INSERT INTO fungi_translations (fungi_id, language_code, name, about_this_mushroom, how_to_use, recommended_dosage, search_keywords)
+          VALUES (${fId}, 'en', ${slug.toUpperCase()}, 'Auto-generated desc', 'Usage instructions', 'Dosage', ${m.keywords})
           ON CONFLICT (fungi_id, language_code) DO NOTHING;
         `;
 
@@ -142,52 +153,52 @@ export default async function handler(req, res) {
         for (const bL of m.benefits) {
             const bS = slugify(bL) || 'b_' + randomUUID().substring(0,8);
             const bRes = await sql`
-              INSERT INTO benefits (id, slug, created_at, updated_at) 
-              VALUES (${randomUUID()}, ${bS}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP) 
+              INSERT INTO benefits (slug) 
+              VALUES (${bS}) 
               ON CONFLICT (slug) DO UPDATE SET updated_at = CURRENT_TIMESTAMP RETURNING id;
             `;
             const bId = bRes.rows[0].id;
-            await sql`INSERT INTO benefit_translations (id, benefit_id, language_code, label) VALUES (${randomUUID()}, ${bId}, 'he', ${bL}) ON CONFLICT DO NOTHING;`;
-            await sql`INSERT INTO fungi_benefits (id, fungi_id, benefit_id) VALUES (${randomUUID()}, ${fId}, ${bId}) ON CONFLICT DO NOTHING;`;
+            await sql`INSERT INTO benefit_translations (benefit_id, language_code, label) VALUES (${bId}, 'he', ${bL}) ON CONFLICT DO NOTHING;`;
+            await sql`INSERT INTO fungi_benefits (fungi_id, benefit_id) VALUES (${fId}, ${bId}) ON CONFLICT DO NOTHING;`;
         }
 
         // 5. Conditions
         for (const cL of m.conditions) {
             const cS = slugify(cL) || 'c_' + randomUUID().substring(0,8);
             const cRes = await sql`
-              INSERT INTO conditions (id, slug, created_at, updated_at) 
-              VALUES (${randomUUID()}, ${cS}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP) 
+              INSERT INTO conditions (slug) 
+              VALUES (${cS}) 
               ON CONFLICT (slug) DO UPDATE SET updated_at = CURRENT_TIMESTAMP RETURNING id;
             `;
             const cId = cRes.rows[0].id;
-            await sql`INSERT INTO condition_translations (id, condition_id, language_code, label) VALUES (${randomUUID()}, ${cId}, 'he', ${cL}) ON CONFLICT DO NOTHING;`;
-            await sql`INSERT INTO fungi_conditions (id, fungi_id, condition_id) VALUES (${randomUUID()}, ${fId}, ${cId}) ON CONFLICT DO NOTHING;`;
+            await sql`INSERT INTO condition_translations (condition_id, language_code, label) VALUES (${cId}, 'he', ${cL}) ON CONFLICT DO NOTHING;`;
+            await sql`INSERT INTO fungi_conditions (fungi_id, condition_id) VALUES (${fId}, ${cId}) ON CONFLICT DO NOTHING;`;
         }
 
         // 6. Contra
         for (const ctL of m.contraindications) {
             const ctS = slugify(ctL) || 'ct_' + randomUUID().substring(0,8);
             const ctRes = await sql`
-              INSERT INTO contraindications (id, slug, created_at, updated_at) 
-              VALUES (${randomUUID()}, ${ctS}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP) 
+              INSERT INTO contraindications (slug) 
+              VALUES (${ctS}) 
               ON CONFLICT (slug) DO UPDATE SET updated_at = CURRENT_TIMESTAMP RETURNING id;
             `;
             const ctId = ctRes.rows[0].id;
-            await sql`INSERT INTO contraindication_translations (id, contraindication_id, language_code, label) VALUES (${randomUUID()}, ${ctId}, 'he', ${ctL}) ON CONFLICT DO NOTHING;`;
-            await sql`INSERT INTO fungi_contraindications (id, fungi_id, contraindication_id) VALUES (${randomUUID()}, ${fId}, ${ctId}) ON CONFLICT DO NOTHING;`;
+            await sql`INSERT INTO contraindication_translations (contraindication_id, language_code, label) VALUES (${ctId}, 'he', ${ctL}) ON CONFLICT DO NOTHING;`;
+            await sql`INSERT INTO fungi_contraindications (fungi_id, contraindication_id) VALUES (${fId}, ${ctId}) ON CONFLICT DO NOTHING;`;
         }
 
         // 7. Doctor
         for (const dL of m.doctor_consult) {
             const dS = slugify(dL) || 'd_' + randomUUID().substring(0,8);
             const dRes = await sql`
-              INSERT INTO doctor_consult_flags (id, slug, created_at, updated_at) 
-              VALUES (${randomUUID()}, ${dS}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP) 
+              INSERT INTO doctor_consult_flags (slug) 
+              VALUES (${dS}) 
               ON CONFLICT (slug) DO UPDATE SET updated_at = CURRENT_TIMESTAMP RETURNING id;
             `;
             const dId = dRes.rows[0].id;
-            await sql`INSERT INTO doctor_consult_flag_translations (id, doctor_consult_flag_id, language_code, label) VALUES (${randomUUID()}, ${dId}, 'he', ${dL}) ON CONFLICT DO NOTHING;`;
-            await sql`INSERT INTO fungi_doctor_consult_flags (id, fungi_id, doctor_consult_flag_id) VALUES (${randomUUID()}, ${fId}, ${dId}) ON CONFLICT DO NOTHING;`;
+            await sql`INSERT INTO doctor_consult_flag_translations (doctor_consult_flag_id, language_code, label) VALUES (${dId}, 'he', ${dL}) ON CONFLICT DO NOTHING;`;
+            await sql`INSERT INTO fungi_doctor_consult_flags (fungi_id, doctor_consult_flag_id) VALUES (${fId}, ${dId}) ON CONFLICT DO NOTHING;`;
         }
     }
 
