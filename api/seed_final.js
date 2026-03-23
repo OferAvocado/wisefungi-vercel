@@ -77,13 +77,19 @@ export default async function handler(req, res) {
   ];
 
   try {
-    await sql`CREATE EXTENSION IF NOT EXISTS "pgcrypto";`;
-    
+    // Force set defaults just in case they are missing on Vercel
+    await sql`ALTER TABLE fungi ALTER COLUMN id SET DEFAULT gen_random_uuid();`;
+    await sql`ALTER TABLE fungi ALTER COLUMN created_at SET DEFAULT CURRENT_TIMESTAMP;`;
+    await sql`ALTER TABLE fungi ALTER COLUMN updated_at SET DEFAULT CURRENT_TIMESTAMP;`;
+    await sql`ALTER TABLE fungi_translations ALTER COLUMN id SET DEFAULT gen_random_uuid();`;
+    await sql`ALTER TABLE fungi_translations ALTER COLUMN created_at SET DEFAULT CURRENT_TIMESTAMP;`;
+    await sql`ALTER TABLE fungi_translations ALTER COLUMN updated_at SET DEFAULT CURRENT_TIMESTAMP;`;
+
     for (const m of mushrooms) {
         // Upsert Fungi
         const fRes = await sql`
-          INSERT INTO fungi (id, slug, scientific_name, featured_image, status, created_at, updated_at)
-          VALUES (gen_random_uuid(), ${m.slug}, ${m.scientific_name}, ${m.image}, 'published', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+          INSERT INTO fungi (slug, scientific_name, featured_image, status)
+          VALUES (${m.slug}, ${m.scientific_name}, ${m.image}, 'published')
           ON CONFLICT (slug) DO UPDATE SET 
             scientific_name = EXCLUDED.scientific_name,
             featured_image = EXCLUDED.featured_image,
@@ -100,18 +106,17 @@ export default async function handler(req, res) {
             name = EXCLUDED.name,
             about_this_mushroom = EXCLUDED.about_this_mushroom,
             how_to_use = EXCLUDED.how_to_use,
-            recommended_dosage = EXCLUDED.recommended_dosage;
+            recommended_dosage = EXCLUDED.recommended_dosage,
+            updated_at = CURRENT_TIMESTAMP;
         `;
 
-        // English Placeholder (Normally we'd translate fully)
+        // English Placeholder
         await sql`
           INSERT INTO fungi_translations (fungi_id, language_code, name, about_this_mushroom, how_to_use, recommended_dosage)
           VALUES (${fId}, 'en', ${m.slug.replace('_', ' ').toUpperCase()}, 'Auto-generated En description', 'Usage instructions', 'Dosage info')
           ON CONFLICT (fungi_id, language_code) DO NOTHING;
         `;
 
-        // Seeding many-to-many would go here (omitted for brevity in this API script, 
-        // but we'll focus on the search keywords requested)
         for (const kw of m.keywords) {
             await sql`
               INSERT INTO search_index (fungi_id, keyword, language_code, category)
