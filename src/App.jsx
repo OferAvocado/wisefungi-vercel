@@ -22,7 +22,9 @@ function App() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const [isGlobalEditing, setIsGlobalEditing] = useState(false);
   const [editData, setEditData] = useState(null);
+  const [uiContent, setUiContent] = useState({});
   const [loginPassword, setLoginPassword] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
@@ -37,16 +39,19 @@ function App() {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const [funcRes, intRes] = await Promise.all([
+        const [funcRes, intRes, uiRes] = await Promise.all([
           fetch(`/api/fungi?lang=${currentLang}`),
-          fetch(`/api/interactions?lang=${currentLang}`)
+          fetch(`/api/interactions?lang=${currentLang}`),
+          fetch(`/api/ui?lang=${currentLang}`)
         ]);
         
         if (funcRes.ok && intRes.ok) {
           const mData = await funcRes.json();
           const iData = await intRes.json();
+          const uData = await uiRes.json().catch(() => ({}));
           setMushroomsData(mData);
           setInteractionsData(iData);
+          setUiContent(uData || {});
         } else {
           // Fallback to static if API fails (e.g. not on Vercel yet)
           setMushroomsData(t('mushrooms', { returnObjects: true }));
@@ -79,7 +84,18 @@ function App() {
 
   const handleSelect = (m) => {
     setSelectedMushroom(m);
-    setEditData(m.detailed_data);
+    
+    const mapIdToSubstance = {
+      reishi: 'Reishi', cordyceps: 'Cordyceps', lions_mane: "Lion's Mane",
+      chaga: 'Chaga', turkey_tail: 'Turkey Tail', tremella: 'Tremella'
+    };
+    const engName = mapIdToSubstance[m.id] || m.id;
+    let initialInteractions = originalInteractions[engName] || { do_not_combine: [], use_caution: [], potential_synergy: [], insufficient: [] };
+    if (uiContent && uiContent[`int_${m.id}`]) {
+      try { initialInteractions = JSON.parse(uiContent[`int_${m.id}`]); } catch(e){}
+    }
+
+    setEditData({ ...m.detailed_data, interactions: initialInteractions });
     setIsEditing(false);
     setActiveTab('info');
   };
@@ -89,7 +105,7 @@ function App() {
       const resp = await fetch('/api/admin/update_fungi', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('adminToken') },
-        body: JSON.stringify({ slug: selectedMushroom.id, lang: currentLang, data: editData })
+        body: JSON.stringify({ slug: selectedMushroom.id, lang: currentLang, data: { ...editData, name: selectedMushroom.name, subtitle: selectedMushroom.subtitle } })
       });
       if (resp.ok) {
         setMushroomsData(prev => ({ 
@@ -105,6 +121,39 @@ function App() {
         alert(currentLang === 'he' ? 'השינויים נשמרו בהצלחה!' : 'Changes saved successfully!');
       } else {
         alert('Error saving data');
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleGlobalSave = async () => {
+    try {
+      // 1. Save UI Content
+      const uiResp = await fetch('/api/admin/update_ui', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('adminToken') },
+        body: JSON.stringify({ lang: currentLang, data: uiContent })
+      });
+
+      // 2. Save Fungi tags/titles that were modified on the grid
+      const promises = allMushrooms.map(m => 
+        fetch('/api/admin/update_fungi', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('adminToken') },
+          body: JSON.stringify({ slug: m.id, lang: currentLang, data: { ...m.detailed_data, name: m.name, subtitle: m.subtitle } })
+        })
+      );
+
+      await Promise.all(promises);
+
+      if (uiResp.ok) {
+        setIsGlobalEditing(false);
+        alert(currentLang === 'he' ? 'השינויים הכלליים נשמרו בהצלחה!' : 'Global changes saved!');
+      } else {
+        const errorData = await uiResp.text();
+        console.error("Save error:", errorData);
+        alert('Error saving global data');
       }
     } catch (err) {
       console.error(err);
@@ -210,11 +259,23 @@ function App() {
   const mData = selectedMushroom?.detailed_data;
 
   return (
-    <div className="app-container">
+    <div className={`app-container ${isAdmin ? 'is-admin' : ''}`}>
       {isAdmin && (
         <div className="admin-status-bar">
           <Lock size={14} /> {currentLang === 'he' ? 'מצב מנהל פעיל' : 'Admin Mode Active'}
-          <button onClick={() => { setIsAdmin(false); localStorage.removeItem('adminToken'); }} className="admin-logout-btn">
+          
+          <button 
+            onClick={() => isGlobalEditing ? handleGlobalSave() : setIsGlobalEditing(true)} 
+            className="admin-logout-btn" 
+            style={{ marginLeft: '1rem', background: isGlobalEditing ? 'white' : 'rgba(255,255,255,0.2)', color: isGlobalEditing ? '#16a34a' : 'white', fontWeight: 'bold' }}
+          >
+            {isGlobalEditing ? 
+              (currentLang === 'he' ? 'שמור דף הבית' : 'Save Homepage') : 
+              (currentLang === 'he' ? 'ערוך דף הבית' : 'Edit Homepage')
+            }
+          </button>
+
+          <button onClick={() => { setIsAdmin(false); setIsGlobalEditing(false); localStorage.removeItem('adminToken'); }} className="admin-logout-btn">
             {currentLang === 'he' ? 'התנתק' : 'Logout'}
           </button>
         </div>
@@ -233,13 +294,21 @@ function App() {
           setSearchQuery={setSearchQuery} 
           isSticky={isSticky} 
           suggestions={suggestions}
+          uiContent={uiContent}
+          setUiContent={setUiContent}
+          isGlobalEditing={isGlobalEditing}
         />
         {filteredMushrooms.length > 0 ? (
-          <BentoGrid mushrooms={filteredMushrooms} onSelect={handleSelect} />
+          <BentoGrid 
+            mushrooms={filteredMushrooms} 
+            onSelect={handleSelect} 
+            isGlobalEditing={isGlobalEditing}
+            setMushroomsData={setMushroomsData}
+          />
         ) : (
           <div className="no-results-container">
-            <h2 className="no-results-title">No results for "{searchQuery}"</h2>
-            <p className="no-results-subtitle">Try searching for other properties like "immune" or "energy".</p>
+            <h2 className="no-results-title">{t('no_results') || `No results for "${searchQuery}"`}</h2>
+            <p className="no-results-subtitle">{t('try_searching') || 'Try searching for other properties.'}</p>
           </div>
         )}
       </main>
@@ -480,7 +549,29 @@ function App() {
                       tremella: 'Tremella'
                     };
                     const engName = mapIdToSubstance[selectedMushroom.id] || selectedMushroom.id;
-                    const mushInts = originalInteractions[engName] || { do_not_combine: [], use_caution: [], potential_synergy: [], insufficient: [] };
+                    const defaultInts = originalInteractions[engName] || { do_not_combine: [], use_caution: [], potential_synergy: [], insufficient: [] };
+                    const mushInts = editData && editData.interactions ? editData.interactions : defaultInts;
+
+                    if (isEditing) {
+                        return (
+                          <div style={{ padding: '1rem', background: 'rgba(0,0,0,0.5)', borderRadius: '16px', display: 'flex', flexDirection: 'column' }} dir="ltr">
+                            <span style={{ fontSize: '1rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#16a34a' }}>Edit Interactions JSON Data</span>
+                            <textarea
+                              style={{ width: '100%', minHeight: '500px', background: 'rgba(255,255,255,0.05)', color: 'white', border: '1px solid rgba(255,255,255,0.2)', padding: '1rem', borderRadius: '8px', fontFamily: 'monospace', fontSize: '12px' }}
+                              defaultValue={JSON.stringify(mushInts, null, 2)}
+                              onChange={(e) => {
+                                try {
+                                  const parsed = JSON.parse(e.target.value);
+                                  setEditData({ ...editData, interactions: parsed });
+                                } catch (err) {
+                                  // keep editing, allow intermediate invalid states via uncontrolled component
+                                }
+                              }}
+                            />
+                            <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.85rem', marginTop: '1rem' }}>Enter valid JSON to commit changes locally. Press "Save" at the top to commit to the server.</p>
+                          </div>
+                        );
+                    }
 
                     const tf = (obj) => {
                       if (!obj) return '';

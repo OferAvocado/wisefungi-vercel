@@ -17,7 +17,8 @@ export default async function handler(req, res) {
     await sql`
       UPDATE fungi_translations 
       SET 
-        name = ${req.body.data.name},
+        name = ${data.name},
+        tagline = ${data.subtitle},
         about_this_mushroom = ${data.about},
         how_to_use = ${data.usage},
         recommended_dosage = ${data.dosage},
@@ -25,6 +26,16 @@ export default async function handler(req, res) {
       WHERE fungi_id = (SELECT id FROM fungi WHERE slug = ${slug}) 
       AND language_code = ${lang}::language_enum;
     `;
+
+    if (data.interactions) {
+      const intStr = JSON.stringify(data.interactions);
+      await sql`
+        INSERT INTO ui_translations (key, lang, value)
+        VALUES (${'int_' + slug}, 'all', ${intStr})
+        ON CONFLICT (key, lang)
+        DO UPDATE SET value = EXCLUDED.value;
+      `;
+    }
 
     // Note: To edit benefits/conditions linked rows specifically, 
     // we would need more complex logic to sync relations. 

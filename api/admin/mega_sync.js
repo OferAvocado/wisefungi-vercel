@@ -123,10 +123,11 @@ export default async function handler(req, res) {
 
         // 2. Trans HE
         await sql`
-          INSERT INTO fungi_translations (id, fungi_id, language_code, name, about_this_mushroom, how_to_use, recommended_dosage, search_keywords, created_at, updated_at)
-          VALUES (gen_random_uuid(), ${fId}, 'he', ${m.name}, ${m.description}, ${m.how_to_use}, ${m.dosage}, ${m.keywords}, ${now}, ${now})
+          INSERT INTO fungi_translations (id, fungi_id, language_code, name, tagline, about_this_mushroom, how_to_use, recommended_dosage, search_keywords, created_at, updated_at)
+          VALUES (gen_random_uuid(), ${fId}, 'he', ${m.name}, ${m.tagline}, ${m.description}, ${m.how_to_use}, ${m.dosage}, ${m.keywords}, ${now}, ${now})
           ON CONFLICT (fungi_id, language_code) DO UPDATE SET 
             name = EXCLUDED.name,
+            tagline = EXCLUDED.tagline,
             about_this_mushroom = EXCLUDED.about_this_mushroom,
             how_to_use = EXCLUDED.how_to_use,
             recommended_dosage = EXCLUDED.recommended_dosage,

@@ -721,7 +721,6 @@
   content: '←';
 }
 
-/* Admin & Login UI */
 .admin-status-bar {
   background: #16a34a;
   color: white;
@@ -732,10 +731,13 @@
   gap: 1rem;
   font-size: 0.85rem;
   font-weight: bold;
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 10000;
   box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.is-admin .header {
+  top: 36px;
 }
 
 .admin-logout-btn {

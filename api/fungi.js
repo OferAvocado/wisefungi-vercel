@@ -22,6 +22,7 @@ export default async function handler(req, res) {
         f.scientific_name,
         f.featured_image,
         ft.name,
+        ft.tagline,
         ft.about_this_mushroom AS about,
         ft.how_to_use AS usage,
         ft.recommended_dosage AS dosage,
@@ -71,7 +72,7 @@ export default async function handler(req, res) {
     rows.forEach(row => {
       mushroomsObj[row.slug] = {
         name: row.name,
-        subtitle: row.scientific_name,
+        subtitle: row.tagline || row.scientific_name,
         image: row.featured_image,
         keywords: row.search_keywords || [],
         detailed_data: {
