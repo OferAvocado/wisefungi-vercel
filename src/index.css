@@ -1,0 +1,81 @@
+:root {
+  /* Wise Fungi Original Palette - Refined for 2026 */
+  --bg-primary: #060f0a;
+  --bg-secondary: #0d1a12;
+  --bg-glass: rgba(13, 26, 18, 0.85);
+  --border-glass: rgba(22, 163, 74, 0.25);
+
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1aa;
+  
+  --accent-primary: #16a34a;
+  --accent-glow: rgba(22, 163, 74, 0.35);
+
+  /* Font settings - Premium Typography */
+  font-family: 'Assistant', 'Inter', system-ui, -apple-system, sans-serif;
+  color-scheme: dark;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  background-color: var(--bg-primary);
+  /* Immersive 2026 Mushroom Background - Multi-layered Stack */
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(22, 163, 74, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(22, 163, 74, 0.08) 0%, transparent 40%),
+    linear-gradient(rgba(6, 15, 10, 0.9), rgba(6, 15, 10, 0.9)), /* Clean Minimalism Toggle */
+    url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 25c-15 0-25 15-25 25 0 5 10 8 25 8s25-3 25-8c0-10-10-25-25-25zM36 58h8v12c0 3-8 3-8 0V58z' fill='%23ffffff' fill-opacity='0.12'/%3E%3C/svg%3E");
+  background-size: auto, auto, auto, 120px;
+  background-attachment: fixed;
+  background-repeat: repeat;
+  font-smooth: always;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Base Utility Classes for Layout */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.glass-panel {
+  background: var(--bg-glass);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border-glass);
+  border-radius: 32px;
+  box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.5);
+}
+
+.title-glow {
+  text-shadow: 0 0 30px var(--accent-glow);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* RTL Support - Logical Properties */
+[dir="rtl"] {
+  text-align: right;
+}
+

@@ -1,0 +1,168 @@
+{
+  "title": "Wise Fungi",
+  "subtitle": "Discover the power of medicinal mushrooms — science-backed guided, proper usage, and safety advice.",
+  "hero_title": "Evidence-Based Medicinal Fungi",
+  "labels": {
+    "scientific_name": "Scientific Name",
+    "about": "About the Mushroom",
+    "benefits": "Key Benefits",
+    "conditions": "Conditions Supported",
+    "how_to_use": "How to Use",
+    "dosage": "Recommended Dosage",
+    "contraindications": "Contraindications & Warnings",
+    "doctor_consultation": "When to Consult a Physician",
+    "interactions": "Interactions",
+    "high_risk": "High Risk - Do Not Combine",
+    "caution": "Caution / Supervision Needed",
+    "search_placeholder": "Search mushroom, condition, symptom...",
+    "search_label": "Discover Fungi",
+    "popular_conditions": "Trending Conditions"
+  },
+  "mushrooms": {
+    "reishi": {
+      "name": "Reishi",
+      "subtitle": "Ganoderma lucidum - Mushroom of Immortality",
+      "image": "/assets/reishi.png",
+      "detailed_data": {
+        "about": "Reishi, often called the 'Queen of Mushrooms,' has been used in Traditional Chinese Medicine for over 2,000 years. It is renowned for its calming properties, immune-boosting effects, and support for high-quality sleep.",
+        "benefits": [
+          "Improves sleep quality and depth",
+          "Reduces stress, anxiety, and chronic tension",
+          "Modulates and strengthens the immune system",
+          "Balanced blood pressure and cholesterol support",
+          "Liver detoxification and functional support"
+        ],
+        "conditions": ["Insomnia", "Anxiety", "Hypertension", "Allergies", "Fatty Liver", "Autoimmune", "Fibromyalgia"],
+        "usage": "Best consumed about an hour before sleep. Can be mixed with water, juice, or lukewarm tea.",
+        "dosage": "500-1000 mg (capsules) or 1-2 ml (liquid extract) daily. Start gradually.",
+        "contraindications": [
+          "Blood Clotting: Use caution with blood-thinning medications (Warfarin, Aspirin).",
+          "Diabetes: May enhance the effects of blood-sugar-lowering drugs.",
+          "Surgery: Discontinue use two weeks prior to any surgical procedure.",
+          "Pregnancy & Breastfeeding: Consult a doctor before use."
+        ],
+        "doctor_consultation": "Physician consultation is mandatory if taking prescription meds (especially anticoagulants or antidiabetics), chronic liver conditions, or for children under 18."
+      }
+    },
+    "lions_mane": {
+      "name": "Lion's Mane",
+      "subtitle": "Hericium erinaceus - The Smart Mushroom",
+      "image": "/assets/lions_mane.png",
+      "detailed_data": {
+        "about": "Lion's Mane is a unique fungus known as the 'Nutrient for the Brain.' It stimulates Nerve Growth Factor (NGF) production, supporting brain function, memory, and concentration.",
+        "benefits": [
+          "Enhances memory, focus, and cognitive abilities",
+          "Reduces 'Brain Fog'",
+          "Promotes nerve regeneration and nervous system health",
+          "Supports digestive health (IBS, Crohn's)",
+          "Assists with mild anxiety and structured mood support"
+        ],
+        "conditions": ["Alzheimer's", "Dementia", "Brain Fog", "IBS", "Crohn's", "Colitis", "ADHD", "Parkinson's"],
+        "usage": "Recommended to take in the morning on an empty stomach for maximum absorption.",
+        "dosage": "500-1000 mg per day. Extract: 1-2 ml daily.",
+        "contraindications": [
+          "Allergies: Known sensitivity to mushrooms or mold.",
+          "Surgery: Discontinue 2 weeks prior due to potential blood sugar and clotting impact.",
+          "Pregnancy: Should only be used with explicit medical approval."
+        ],
+        "doctor_consultation": "Consult a doctor if using psychiatric medications, during pregnancy, or with a history of complex mental health conditions."
+      }
+    },
+    "cordyceps": {
+      "name": "Cordyceps",
+      "subtitle": "Cordyceps militaris - The Energy Mushroom",
+      "image": "/assets/cordyceps.png",
+      "detailed_data": {
+        "about": "Cordyceps is celebrated as the 'Energy Stimulant' of the mushroom world. It is highly valued by athletes for improving performance, increasing endurance, and optimizing oxygen utilization.",
+        "benefits": [
+          "Boosts energy and vitality levels (ATP)",
+          "Improves endurance and athletic performance",
+          "Supports kidney and respiratory health",
+          "Enhances libido and sexual function",
+          "Strengthens overall immune response"
+        ],
+        "conditions": ["Chronic Fatigue", "Asthma", "Kidney Disease", "Low Libido", "Respiratory Issues", "Athletic Training"],
+        "usage": "Best consumed before a workout or in the morning. Avoid taking close to bedtime.",
+        "dosage": "500-1000 mg per day. Extract: 1-2 ml.",
+        "contraindications": [
+          "Autoimmune: May over-stimulate the immune system.",
+          "Blood Thinning: Possible antiplatelet effects.",
+          "Myelogenous Cancer: Avoid due to blood cell precursor stimulation."
+        ],
+        "doctor_consultation": "Mandatory for those with chronic kidney disease, blood disorders, or patients on immunosuppressants."
+      }
+    },
+    "chaga": {
+      "name": "Chaga",
+      "subtitle": "Inonotus obliquus - Black Gold",
+      "image": "/assets/chaga.png",
+      "detailed_data": {
+        "about": "Chaga grows primarily on Birch trees and is one of nature's richest sources of antioxidants. Known as the 'Diamond of the Forest,' it offers deep systemic support.",
+        "benefits": [
+          "Powerful antioxidant protection",
+          "Anti-aging support for skin and hair",
+          "Supports healthy blood sugar balance",
+          "Reduces chronic inflammation within the body",
+          "Strong immune system fortification"
+        ],
+        "conditions": ["Anti-Aging", "Diabetes", "Arthritis", "Psoriasis", "High Cholesterol", "Immunity"],
+        "usage": "Can be consumed as a concentrated extract or powder in hot beverages like tea or coffee.",
+        "dosage": "500-800 mg per day. Extract: 1 ml daily.",
+        "contraindications": [
+          "Diabetes: May cause extreme blood sugar drops when combined with insulin.",
+          "Kidney: High oxalate content - not recommended for those with kidney stones.",
+          "Blood Thinning: Avoid before surgical procedures."
+        ],
+        "doctor_consultation": "Physician advice is required for those with renal disease, clotting disorders, or medically-managed diabetes."
+      }
+    },
+    "turkey_tail": {
+      "name": "Turkey Tail",
+      "subtitle": "Trametes versicolor - The System Guardian",
+      "image": "/assets/turkey_tail.png",
+      "detailed_data": {
+        "about": "Turkey Tail is one of the most scientifically researched mushrooms, particularly in the context of oncological support and immune strengthening through the gut microbiome.",
+        "benefits": [
+          "Potent immune modulation and viral defense",
+          "Natural prebiotic for healthy gut flora",
+          "Complementary support during chemotherapy",
+          "Body detoxification and harmful substance removal",
+          "Supports the health of the intestinal lining"
+        ],
+        "conditions": ["Cancer Support", "Chemotherapy", "IBS", "Recurrent Infections", "Candida", "Gut Microbiome"],
+        "usage": "Can be taken throughout the day, preferably with a small amount of food.",
+        "dosage": "1000-2000 mg daily (for enhanced support situations).",
+        "contraindications": [
+          "Organ Transplants: May interfere with immunosuppressive therapy.",
+          "Mold Sensitivity: Should be checked with caution.",
+          "Pregnancy: Medical consultation required."
+        ],
+        "doctor_consultation": "Consultation with an oncologist is mandatory if combined with specific cancer treatments."
+      }
+    },
+    "tremella": {
+      "name": "Tremella",
+      "subtitle": "Tremella fuciformis - The Beauty Mushroom",
+      "image": "/assets/tremella.png",
+      "detailed_data": {
+        "about": "Tremella, also known as the 'Snow Mushroom,' has been used for centuries in Asian medicine as a natural beauty agent due to its incredible ability to hold moisture.",
+        "benefits": [
+          "Deep skin nourishment and hydration (natural Hyaluronic Acid)",
+          "Stimulates natural collagen production",
+          "Reduces wrinkles and improves skin elasticity",
+          "Supports joints and connective tissue",
+          "Improves blood circulation to the skin"
+        ],
+        "conditions": ["Dry Skin", "Wrinkles", "Beauty Routine", "Joint Issues", "Anti-Aging"],
+        "usage": "Can be consumed in the morning or evening. Blends perfectly into smoothies and breakfast drinks.",
+        "dosage": "500-1000 mg per day.",
+        "contraindications": [
+          "Blood Disorders: Slight impact on platelets.",
+          "Allergies: Known mushroom sensitivity.",
+          "Research Gap: Limited studies on use during pregnancy."
+        ],
+        "doctor_consultation": "Physician advice is recommended if using hormonal medications or undergoing invasive skin treatments."
+      }
+    }
+  }
+}

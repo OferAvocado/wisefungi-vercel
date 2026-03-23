@@ -1,0 +1,779 @@
+
+================================================================================
+                    WISE FUNGI — COMPLETE APP DOCUMENTATION
+                         Generated: 2026-03-18
+================================================================================
+
+================================================================================
+SECTION 1: APP OVERVIEW
+================================================================================
+
+App Name: Wise Fungi
+URL: https://wise-fungi.com
+Purpose: Science-based guide to medicinal and functional mushrooms
+Languages: Hebrew (he), English (en), Russian (ru), Spanish (es)
+Direction: RTL for Hebrew, LTR for all others
+Tech Stack: React + Vite + Tailwind CSS + Framer Motion
+Backend: Base44 Platform (entities, integrations, auth)
+
+================================================================================
+SECTION 2: PAGES & ROUTING
+================================================================================
+
+Page 1: Home (/)
+  - Main landing page
+  - Hero section with tagline and description
+  - Search bar (full-text across all mushroom fields)
+  - Autocomplete suggestions
+  - Mushroom cards grid (1 col mobile / 2 col tablet / 3 col desktop)
+  - ReviewsSection component at the bottom
+  - Pull-to-refresh on mobile
+
+Page 2: MushroomDetail (/MushroomDetail?id=<id>)
+  - Detailed mushroom page
+  - Two tabs: Info | Interactions
+  - Info tab: About, Benefits, Conditions, How To Use, Dosage, Contraindications, Doctor Consultation
+  - Interactions tab: InteractionSearch + MushroomInteractions component
+  - Structured data (JSON-LD: Drug schema) injected per mushroom
+
+================================================================================
+SECTION 3: LAYOUT
+================================================================================
+
+TOP NAV:
+  - Sticky, z-50
+  - Background: #0f1a0f/90 + backdrop-blur
+  - Border: border-white/5
+  - Right side: Back button (child pages) OR Share button (home)
+  - Left side: Language dropdown (Globe icon + ChevronDown)
+  - Share button: border border-white, min-h-[48px], Share2 icon
+  - Back button: border border-white, min-h-[44px], ChevronRight icon, text "חזרה/Back/Назад/Atrás"
+
+BOTTOM TABS (fixed):
+  - z-9999, bg-[#0f1a0f], height: 90px + safe-area-inset-bottom
+  - Border-top: border-white/10
+  - 2 tabs: Home (🏠) + Search (🔍)
+  - Active tab: text-green-400
+  - Inactive: text-white
+  - Icon size: w-5 h-5
+  - Label font: text-xs
+
+FOOTER (on Home and non-MushroomDetail pages):
+  - bg-[#080f08], border-top border-white/5, py-8 mt-8
+  - Disclaimer text: text-gray-500 text-sm font-bold
+
+BACKGROUND:
+  - Global bg: #0f1a0f (dark forest green)
+  - Full-page honeycomb SVG pattern (fixed, pointer-events-none, z-0)
+  - Honeycomb: stroke #4ade80, strokeWidth 1.2
+  - Gradient fade from top (opacity 0.10) to bottom (opacity 0)
+
+================================================================================
+SECTION 4: COLOR SYSTEM (index.css + tailwind.config.js)
+================================================================================
+
+CSS Variables (Light mode):
+  --background: 0 0% 100%
+  --foreground: 0 0% 3.9%
+  --card: 0 0% 100%
+  --primary: 0 0% 9%
+  --primary-foreground: 0 0% 98%
+  --secondary: 0 0% 96.1%
+  --muted: 0 0% 96.1%
+  --accent: 0 0% 96.1%
+  --destructive: 0 84.2% 60.2%
+  --border: 0 0% 89.8%
+  --radius: 0.5rem
+
+App Custom Colors (hardcoded in components):
+  - Page background:         #0f1a0f
+  - Dark footer bg:          #080f08
+  - Primary green:           #16a34a / green-600
+  - Active/accent green:     #4ade80 / green-400
+  - Hover green:             #15803d / green-700
+  - Honeycomb stroke:        #4ade80
+  - Text primary:            white
+  - Text secondary:          white/80, white/70, white/60
+  - Border standard:         white/10, white/20
+  - Border highlight:        white/30, white/50
+  - Success:                 green-900/40 bg, green-500/50 border
+  - Warning card:            #E56767 (red)
+  - Caution card:            #E0C23B (yellow)
+
+Per-Mushroom Colors:
+  - רעמת האריה (Lion's Mane): gradient_from #e8dcc8, gradient_to #c9b89a, text: dark, bottomBg: default
+  - ריישי (Reishi):           gradient_from #5c3d6e → #5a2d82, gradient_to #3a2050 → #6b3a96, text: light, bottomBg: #a855f7
+  - קורדיספס (Cordyceps):     gradient_from #d4682a, gradient_to #a04510, text: light, bottomBg: #fe7700
+  - זנב התרנגול (Turkey Tail): gradient_from #7d5e3d, gradient_to #a67c52, text: light, bottomBg: #36C9AE
+  - טרמלה (Tremella):         gradient_from #e0d6cb, gradient_to #f0e6d8, text: light, bottomBg: #E0B9DA
+  - צ'אגה (Chaga):            (orange shades), text: light, bottomBg: #DB9A00
+
+================================================================================
+SECTION 5: TYPOGRAPHY
+================================================================================
+
+Font: System sans-serif (font-sans)
+Special font: Playfair Display (700, 800) — class: trust-the-fungi-font
+  - Used for logo/brand heading in nav
+  - letter-spacing: 0.06em
+
+Sizes used:
+  - Hero heading:    text-3xl / text-4xl / text-5xl font-bold
+  - Section heading: text-2xl font-bold
+  - Card title:      text-xl font-bold
+  - Body text:       text-base / text-sm
+  - Labels/tags:     text-xs
+  - Badges:          text-xs / text-sm
+  - Button text:     text-sm font-bold
+
+================================================================================
+SECTION 6: UI COMPONENTS & SIZES
+================================================================================
+
+--- SEARCH BAR (Home) ---
+  Container: max-w-2xl mx-auto
+  Input: rounded-full px-6 py-4 text-base
+         bg-white/10 border border-green-700/50
+         text-white placeholder-green-400/60
+         focus: border-green-400 bg-white/15
+  Search button: absolute left-2, rounded-full p-2.5
+                 bg-green-600 hover:bg-green-500
+  Icon: Search w-5 h-5
+
+--- AUTOCOMPLETE SUGGESTIONS ---
+  Container: flex flex-wrap gap-2 justify-center
+  Chip: bg-green-800/70 hover:bg-green-700
+        border border-green-600/60
+        rounded-full px-4 py-1.5 text-green-200 text-sm
+  Icon: Search w-3 h-3 opacity-60
+
+--- MUSHROOM CARDS (Home) ---
+  Layout: grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5
+  Card: rounded-2xl overflow-hidden border border-white/10
+        hover:border-white/20 hover:-translate-y-1 hover:shadow-2xl
+        transition-all
+  Image area: h-44 flex items-center justify-center bg-white/80
+  Image: w-32 h-32 object-contain
+         group-hover:scale-110 transition-transform duration-500
+  Gradient overlay: linear-gradient(135deg, from 0%, to 100%)
+  Content padding: p-5
+  Name: text-xl font-bold
+  Scientific name: text-sm italic
+  Tagline: text-sm font-medium
+  Benefit tags: rounded px-2.5 py-0.5 text-xs bg-black/20 text-white/90 (light)
+                or bg-black/10 text-gray-800 (dark)
+  Max 3 benefits shown
+  "More Details" row: text-xs text-muted + ChevronRight w-4 h-4
+
+--- MUSHROOM DETAIL PAGE ---
+  Header: linear-gradient top-to-bottom + bg-black/30 overlay
+  Mushroom image: w-36 h-36 flex-shrink-0 rounded-xl overflow-hidden
+  Title: text-4xl md:text-5xl font-bold
+  Scientific name: text-white text-lg md:text-xl font-black
+  Divider: 2px gradient line (rgba(255,255,255,0.6))
+
+  TABS:
+    Container: sticky top-[60px] z-20 backdrop-blur-md bg rgba(0,0,0,0.35)
+               border-b-2 border-white px-4 max-w-4xl mx-auto
+    Tab button: px-5 py-2.5 text-sm font-bold rounded-t-xl
+                border-t-2 border-l-2 border-r-2
+    Active:     bg-white/25 border-white text-white
+    Inactive:   border-white/30 text-white/70 hover:text-white hover:bg-white/10
+
+  SECTION CARDS (info tab):
+    Container: rounded-2xl p-6 border-2 border-white
+    Title: text-xl md:text-2xl font-bold text-white (flex items-center gap-2)
+    Normal bg: gradient matching mushroom color
+    Warning (contraindications): bg #E56767
+    Caution (doctor): bg #E0C23B
+
+  BENEFIT LIST ITEMS:
+    Icon: CheckCircle w-5 h-5 color #22c55e
+  CONTRAINDICATION ITEMS:
+    Icon: XCircle w-5 h-5 color #C80F0F
+  DOCTOR CONSULTATION ITEMS:
+    Icon: AlertTriangle w-5 h-5 color #FFEC6A
+
+  CONDITION TAGS:
+    rounded px-3 py-1.5 text-sm font-semibold
+    border border-white, text-white
+
+  DOSAGE NOTE:
+    text-yellow-200 text-xs mt-2 font-semibold
+
+--- INTERACTIONS TAB ---
+  InteractionSearch:
+    Container: bg-white/20 border-2 border-white/70 rounded-xl px-4 py-2.5
+    Input: bg-transparent text-white text-sm font-medium
+    Placeholder: white, opacity 100%
+    Clear button: X w-4 h-4 text-white
+    Suggestion dropdown: bg-[#111] border border-white/20 rounded-xl shadow-xl
+    Suggestion item: px-4 py-2.5 text-sm text-white/90 hover:bg-white/10
+
+  Interaction Section Blocks (SectionBlock):
+    🚫 Do NOT combine: bg rgba(127,29,29,0.7), border #ef4444
+    ⚠️  Use Caution:   bg rgba(78,63,0,0.8), border #eab308
+    ✅  Potential Synergy: bg rgba(5,46,22,0.8), border #22c55e
+    🔍  Insufficient:  bg rgba(30,30,30,0.7), border #6b7280
+    All: rounded-2xl border-2, collapsible via chevron
+
+  Interaction Cards (InteractionCard):
+    🚫 border-red-300/60 bg-red-950/40   icon: XCircle text-red-300
+    ⚠️  border-yellow-300/60 bg-yellow-950/30 icon: AlertTriangle text-yellow-300
+    ✅  border-green-300/60 bg-green-950/30  icon: CheckCircle text-green-300
+    🔍  border-white/30 bg-white/5        icon: HelpCircle text-white/60
+    Expanded content: border-t border-white/10 px-4 pb-3
+
+  Evidence Badges:
+    clinical:    bg-white/20 text-white border border-white/30 rounded-full text-xs
+    limited:     bg-white/10 text-white/80 border border-white/30 rounded-full text-xs
+    theoretical: bg-white/10 text-white/60 border border-white/30 rounded-full text-xs
+
+--- REVIEWS SECTION ---
+  Container: max-w-5xl mx-auto px-4 pb-8
+  Add Review Button: bg-green-700 hover:bg-green-600 text-white font-bold
+                     px-8 py-3 rounded-xl border-2 border-green-400
+                     flex items-center gap-2 text-sm shadow-lg shadow-green-900/40
+                     Star icon (filled yellow w-5 h-5)
+  Form: bg-white/5 border border-white/15 rounded-2xl p-5 space-y-4
+  Inputs: bg-white/10 border border-white/20 rounded-xl px-4 py-2.5
+          text-white text-sm placeholder-white/30
+          focus: border-green-400
+  Submit: rounded-full bg-green-600 hover:bg-green-500 px-6 py-2 text-sm font-bold
+  Cancel: rounded-full border border-white/20 text-white/60 px-5 py-2 text-sm
+  Star Rating: w-7 h-7 stars, fill #facc15 when active
+  Reviews grid: grid-cols-1 sm:grid-cols-2 gap-4
+  Review card: bg-white/5 border border-white/10 rounded-2xl p-4
+  Author: font-semibold text-white text-sm
+  Stars (display): w-3.5 h-3.5, fill #facc15
+  Review text: text-white/75 text-sm leading-relaxed
+  Load More: text-green-400 border border-green-700 text-xs px-5 py-2 rounded-full
+  Show Less: text-white/40 border border-white/10 text-xs px-5 py-2 rounded-full
+  Initial visible count: 2, increments of 4
+
+--- SHARE DIALOG ---
+  Background: linear-gradient(to bottom, #14532d, #166534cc, #0f1a0f)
+  Honeycomb overlay: opacity 0.18, stroke #4ade80
+  QR Code: 250x250, bg-white border-2 border-white p-2
+  URL display: bg-white/10 border border-white/30 rounded-xl text-green-200 text-sm
+  Copy button: border border-white text-white px-6 py-2 rounded-full
+  Share button: bg-green-600 hover:bg-green-500 text-white px-6 py-2 rounded-full
+
+--- LANGUAGE DROPDOWN ---
+  Trigger: border border-white text-white px-4 rounded-lg
+           min-h-[48px] min-w-[64px] flex items-center gap-1.5
+           Globe w-4 h-4 + flag code + ChevronDown w-3 h-3
+  Dropdown: bg-[#0f1a0f] border-white/20 text-white min-w-[140px]
+  Active item: text-green-400
+  Options: HE (עברית), EN (English), RU (Русский), ES (Español)
+
+================================================================================
+SECTION 7: MUSHROOM DATABASE (Hebrew)
+================================================================================
+
+--- 1. רעמת האריה (Lion's Mane) ---
+Scientific: Hericium erinaceus
+ID: 69988239f871a026762f8f6d
+Tagline: מזון למוח ולמערכת העצבים
+Text Color: dark
+Gradient: #e8dcc8 → #c9b89a
+Image URL: https://media.base44.com/images/public/69987acaab66604ab48d5f4d/fd00a63b9_1000183647-removebg-preview.png
+Home card image: https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69987acaab66604ab48d5f4d/7d11d098f_.png
+Source URL: https://www.trustthefungi.com/collections/רעמת-האריה
+
+Description (HE):
+  רעמת האריה היא פטרייה ייחודית בעלת מראה לבן ומשולבת בשיער, המכונה 'פטרייה החכמה'.
+  היא ידועה בתכונותיה לתמיכה בתפקוד קוגניטיבי, זיכרון, וריכוז.
+  מחקרים מראים שהיא מעודדת את ייצור NGF (גורם גדילה עצבי) בגוף.
+
+Benefits (HE):
+  1. שיפור זיכרון וריכוז
+  2. תמיכה בבריאות עצבית
+  3. הפחתת ערפל מחשבתי
+  4. עזרה במצבי חרדה קלים
+  5. תמיכה במחלות ניווניות
+  6. שיקום מערכת העצבים
+  7. הפחתת דלקת עצבית
+  8. עידוד ייצור NGF
+
+Conditions Treated (HE):
+  בעיות זיכרון ואלצהיימר, דמנציה, ירידה קוגניטיבית הקשורה לגיל, מוח ערפילי,
+  קשיי ריכוז, דיכאון, חרדה, התקפי חרדה, כאבי ראש כרוניים (מיגרנות),
+  מחלות אוטואימוניות, מעי רגיז (IBS), מעי דליף, פיברומיאלגיה, פסוריאזיס,
+  סקלרודרמה, פרקינסון, צליאק (רגישות לגלוטן), רגישות לגלוטן, קרוהן,
+  קוליטיס כיבית, טרשת נפוצה, PTSD, בריאות עצבית כללית, רעידות,
+  נימול ועקצוצים, אכילת יתר ובולמוס, בעיות ראייה
+
+How To Use (HE):
+  ניתן לצרוך כתמצית נוזלית, או קפסולות.
+  מומלץ לקחת בבוקר על בטן ריקה
+  ולא לאכול כשעה-שעתיים לאחר מכן.
+
+Dosage (HE):
+  בקפסולות: 500-1000 מ"ג ביום.
+  בתמצית: 1-2 מ"ל ביום.
+  עדיף להתחיל במינון נמוך ולהגדיל בהדרגה.
+
+Contraindications (HE):
+  1. רגישות ידועה לפטריות
+  2. הריון והנקה (ללא אישור רופא)
+  3. לפני ניתוח - להפסיק שבועיים מראש
+
+Doctor Consultation (HE):
+  1. בשימוש יחד עם תרופות פסיכיאטריות
+  2. בהיסטוריה של הפרעות נפשיות קשות
+  3. בהריון או הנקה
+  4. ילדים מתחת לגיל 18
+
+Search Keywords (HE):
+  ריכוז, זיכרון, קשב, מוח, ADHD, אלצהיימר, חרדה, ערפל מחשבתי, brain fog,
+  dementia, focus, memory, פיברומיאלגיה, PTSD, פרקינסון, נוירופתיה, כאב עצבי,
+  רגישות יתר, עקצוצים, ירידה בזיכרון, קושי בריכוז, עייפות מנטלית, שיקום עצבי,
+  NGF, nerve growth factor, דמנציה, ניוון עצבי, טרשת נפוצה, brain health,
+  ירידה קוגניטיבית, תפקוד מנטלי, בריאות המוח, מחלות נוירודגנרטיביות,
+  פגיעה בזיכרון, דיכאון, חרדה ומתח, אינסומניה, קושי להירדם, שינה לא איכותית,
+  IBS, מעי רגיז, מעי דליף, קרוהן, קוליטיס, צליאק, גלוטן, gluten, celiac,
+  דלקת כרונית, מחלות אוטואימוניות, פסוריאזיס, סקלרודרמה, סרטן, כימותרפיה,
+  כאבי ראש, מיגרנות, רעידות, tremor, בולמוס, binge eating, eating disorder,
+  הפרעות אכילה, בעיות ראייה, ראייה, עיניים, התקפי חרדה, panic attacks,
+  anxiety attacks, שילוב עם ריישי, שילוב עם קורדיספס
+
+--- 2. ריישי (Reishi) ---
+Scientific: Ganoderma lucidum
+ID: 69988239f871a026762f8f6e
+Tagline: פטריית האלמוות - הרגעה ואיזון
+Text Color: light
+Gradient: #5c3d6e → #3a2050 (header: #5a2d82 → #6b3a96)
+Detail page bottom color: #a855f7
+Image URL: https://images.unsplash.com/photo-1607013251379-e6eecfffe234?w=600&q=80
+Home card image: https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69987acaab66604ab48d5f4d/89b910805_.png
+Source URL: https://www.trustthefungi.com/collections/ריישי
+
+Description (HE):
+  ריישי, המכונה 'מלכת הפטריות', נמצאת בשימוש ברפואה הסינית המסורתית למעלה מ-2,000 שנה.
+  היא ידועה בתכונותיה המרגיעות, חיזוק מערכת החיסון, ותמיכה בשינה איכותית.
+
+Benefits (HE):
+  1. שיפור איכות שינה
+  2. הפחתת לחץ וחרדה
+  3. חיזוק מערכת החיסון
+  4. איזון לחץ דם
+  5. הפחתת כולסטרול
+  6. תמיכה בבריאות הכבד
+  7. ויסות מערכת החיסון
+  8. הרגעה עמוקה של מערכת העצבים
+
+Conditions Treated (HE):
+  אינסומניה (נדודי שינה), בעיות שינה, חרדה ומתח, דיכאון, אסתמה,
+  אלרגיות עונתיות, אלרגיות, נזלת אלרגית, גודש באף, אנדומטריוזיס, אנמיה,
+  דלקת מפרקים, דלקות כרוניות, דלקות בדרכי השתן, דלקת כבד (הפטיטיס),
+  גאוט (שיגדון), השמנת יתר, יתר לחץ דם, יתר שומנים בדם (כולסטרול),
+  כאבי ראש כרוניים (מיגרנות), כבד שומני, מחלות אוטואימוניות,
+  מחלות חורף וזיהומים ויראליים, מחלות לב וכלי דם, סוכרת סוג 1, סוכרת סוג 2,
+  סרטן (תמיכה משלימה), פיברומיאלגיה, פסוריאזיס, סקלרודרמה, צליאק,
+  רגישות לגלוטן, קרוהן, קוליטיס כיבית, PTSD, טראומה, וסקוליטיס,
+  תמיכה אונקולוגית משלימה, גיל המעבר, הזעת יתר, גלי חום, בעיות בבלוטת התריס
+
+How To Use (HE):
+  ניתן לצרוך כתמצית נוזלית, או קפסולות.
+  מומלץ לקחת שעה לפני השינה
+  ולא לאכול כשעה-שעתיים לאחר מכן.
+
+Dosage (HE): 500-1000 מ"ג / 1-2 מ"ל ביום
+
+Contraindications (HE):
+  1. קרישת דם - יש להיזהר עם מדלל דם
+  2. לפני ניתוח - להפסיק שבועיים מראש
+  3. הריון והנקה (ללא אישור)
+  4. תרופות לסוכרת (עלול להוריד סוכר)
+  5. רגישות ידועה לפטריות
+
+Doctor Consultation (HE):
+  1. נטילת תרופות לקרישת דם (קומדין, אספירין)
+  2. שימוש בתרופות לסוכרת
+  3. מחלות כבד קיימות
+  4. לפני ניתוח
+  5. ילדים מתחת לגיל 18
+
+--- 3. קורדיספס (Cordyceps) ---
+Scientific: Cordyceps militaris
+ID: 69988239f871a026762f8f6f
+Tagline: אנרגיה, חיוניות וביצועים
+Text Color: light
+Gradient: #d4682a → #a04510
+Detail page bottom color: #fe7700
+Image URL: https://images.unsplash.com/photo-1589881133595-a3c085cb731d?w=600&q=80
+Home card image: https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69987acaab66604ab48d5f4d/4c881d77f_.png
+Source URL: https://www.trustthefungi.com/collections/קורדיספס
+
+Description (HE):
+  קורדיספס היא פטרייה ייחודית שגדלה במקור בהרים הגבוהים של טיבט.
+  היא ידועה ביכולתה להגביר אנרגיה, לשפר ביצועים ספורטיביים, ולתמוך בתפקוד הנשימתי.
+  מועדפת על ספורטאים ואנשים פעילים.
+
+Benefits (HE):
+  1. הגברת אנרגיה וחיוניות
+  2. שיפור ביצועים ספורטיביים
+  3. תמיכה בתפקוד הריאות
+  4. העלאת חשק מיני
+  5. תמיכה בתפקוד הכליות
+  6. שיפור זרימת דם
+  7. שיפור ייצור אנרגיה ומיטוכונדריה
+
+Conditions Treated (HE):
+  עייפות כרונית, חוסר אנרגיה, ביצועים ספורטיביים נמוכים, אסתמה,
+  אלרגיות עונתיות, אנמיה, דיכאון, דלקות בדרכי השתן, דלקת כבד (הפטיטיס),
+  גאוט (שיגדון), השמנת יתר, יתר לחץ דם, יתר שומנים בדם (כולסטרול),
+  מחלות חורף וזיהומים ויראליים, מחלות לב וכלי דם, סוכרת סוג 2,
+  סרטן (תמיכה משלימה), פיברומיאלגיה, פסוריאזיס, בעיות נשימה,
+  קשיי התאוששות אחרי אימון, בעיות זקפה, בעיות שפיכה, תת משקל,
+  גלי קור, שינויים במתן שתן, שחלות פוליציסטיות (PCOS)
+
+Contraindications (HE):
+  1. תרופות מדכאות חיסון (לאחר השתלה)
+  2. מחלות אוטואימוניות פעילות
+  3. הריון והנקה
+  4. רגישות ידועה לפטריות
+
+Doctor Consultation (HE):
+  1. שימוש בתרופות מדכאות חיסון
+  2. מחלות לב חמורות
+  3. מחלות כליה מתקדמות
+  4. הריון
+  5. ילדים מתחת לגיל 18
+
+--- 4. זנב התרנגול (Turkey Tail) ---
+Scientific: Trametes versicolor
+Tagline: מגן מערכת החיסון - הגנה מקסימלית
+Text Color: light
+Gradient: #7d5e3d → #a67c52 (header)
+Detail page bottom color: #36C9AE
+Home card image: https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69987acaab66604ab48d5f4d/0a2fabccb_.png
+
+Description (HE): Contains PSK & PSP polysaccharides.
+Benefits (HE): חיזוק חיסוני, תמיכה אונקולוגית, איזון מיקרוביום מעי, נוגד חמצון, הגנה מדבקות.
+Conditions: בעיות זיכרון ואלצהיימר, דלקות בדרכי השתן, מחלות אוטואימוניות, מחלות חורף,
+           IBS, מעי דליף, סוכרת סוג 1, פרקינסון, צליאק, קרוהן, קוליטיס כיבית,
+           סרטן (תמיכה משלימה), קנדידה, וסקוליטיס
+
+--- 5. טרמלה (Tremella) ---
+Scientific: Tremella fuciformis
+Tagline: לחות ויופי מבפנים
+Text Color: light
+Gradient: #e0d6cb → #f0e6d8 (header), bottomBg: #E0B9DA
+Home card image: https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69987acaab66604ab48d5f4d/94f77b7a5_.png
+
+Description (HE): Known as 'beauty mushroom' / 'snow mushroom'. Retains moisture, rejuvenates skin.
+Benefits (HE): לחות עור, קולגן, נוגד חמצון, מחזור, אנטי-אייג'ינג, חיסון, ירידת דלקת.
+Conditions: עור יבש כרוני, הזדקנות עור, קמטים, רקמת חיבור, נוקשות מפרקים,
+           כאבי מפרקים קלים, עור קהה, דלקת פאשיה, אקזמה, פסוריאזיס, סקלרודרמה
+
+--- 6. צ'אגה (Chaga) ---
+Scientific: Inonotus obliquus
+Tagline: מלך נוגדי החמצון - אנטי-אייג'ינג
+Text Color: light
+Gradient: orange shades, bottomBg: #DB9A00
+Home card image: https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69987acaab66604ab48d5f4d/78f28e6fd_.png
+
+Description (HE): Grows on birch trees. Rich in antioxidants. Anti-aging, anti-inflammatory, blood sugar regulation.
+Benefits (HE): נוגד חמצון, הפחתת דלקת, ויסות סוכר בדם, אנטי-אייג'ינג, עור, חיסון, מניעת סרטן.
+Conditions: דלקת כרונית, מחלות אוטואימוניות, מחלות עור, זיהומים חוזרים,
+           עקה חמצונית, הזדקנות מואצת, החלמה אחרי מחלות, סרטן (תמיכה משלימה),
+           סוכרת ועמידות לאינסולין, כולסטרול, וסקוליטיס
+
+================================================================================
+SECTION 8: MULTILINGUAL TRANSLATIONS
+================================================================================
+
+--- MUSHROOM NAMES ---
+Hebrew         | English      | Russian                    | Spanish
+---------------|--------------|----------------------------|------------------
+רעמת האריה    | Lion's Mane  | Львиная грива              | Melena de León
+ריישי          | Reishi       | Рейши                      | Reishi
+קורדיספס       | Cordyceps    | Кордицепс                  | Cordyceps
+זנב התרנגול   | Turkey Tail  | Траметес разноцветный      | Cola de Pavo
+טרמלה          | Tremella     | Тремелла                   | Tremella
+צ'אגה          | Chaga        | Чага                       | Chaga
+
+--- TAGLINES ---
+Hebrew                           | English                              | Russian                                        | Spanish
+---------------------------------|--------------------------------------|------------------------------------------------|---------------------------
+מזון למוח ולמערכת העצבים         | Brain food and nervous system support | Питание для мозга и нервной системы           | Alimento para el cerebro
+פטריית האלמוות - הרגעה ואיזון   | The mushroom of immortality           | Гриб бессмертия – спокойствие и равновесие    | El hongo de la inmortalidad
+אנרגיה, חיוניות וביצועים        | Energy, vitality and physical performance | Энергия, жизненная сила...               | Energía, vitalidad y rendimiento
+מגן מערכת החיסון                 | The immune system shield              | Щит иммунной системы                          | El escudo del sistema inmunitario
+לחות ויופי מבפנים               | Hydration and beauty from within      | Увлажнение и красота изнутри                  | Hidratación y belleza desde dentro
+מלך נוגדי החמצון                 | The king of antioxidants              | Король антиоксидантов                         | El rey de los antioxidantes
+
+--- UI LABELS (all 4 languages) ---
+
+Reviews Section:
+  he: title="מה אומרים המשתמשים", addBtn="הוסף ביקורת / שתף מידע", nameLabel="שם (אנונימי אפשרי)",
+      textLabel="ביקורת או מידע שרוצים לשתף", ratingLabel="דירוג", submit="שלח", cancel="ביטול",
+      thanks="תודה! הביקורת שלך התקבלה 🙏", noReviews="היו הראשונים לשתף!"
+  en: title="What users say", addBtn="Add a review / share info", submit="Submit", cancel="Cancel",
+      thanks="Thank you! Your review was received 🙏", noReviews="Be the first to share!"
+  ru: title="Что говорят пользователи", addBtn="Добавить отзыв / поделиться", submit="Отправить",
+      cancel="Отмена", thanks="Спасибо! Ваш отзыв получен 🙏", noReviews="Будьте первым!"
+  es: title="Lo que dicen los usuarios", addBtn="Añadir reseña / compartir info", submit="Enviar",
+      cancel="Cancelar", thanks="¡Gracias! Tu reseña fue recibida 🙏", noReviews="¡Sé el primero en compartir!"
+
+Mushroom Detail Tabs:
+  he: tabInfo="מידע", tabInteractions="אינטראקציות"
+  en: tabInfo="Info", tabInteractions="Interactions"
+  ru: tabInfo="Информация", tabInteractions="Взаимодействия"
+  es: tabInfo="Info", tabInteractions="Interacciones"
+
+Section Labels (MushroomDetail):
+  he: about="על הפטרייה", benefits="יתרונות עיקריים",
+      conditions="מחלות ומצבים שעשויה לסייע בהם",
+      howToUse="איך להשתמש", dosage="מינון מומלץ",
+      contraindications="התוויות נגד — מתי לא לקחת",
+      doctorConsultation="מתי חובה להתייעץ עם רופא"
+  en: about="About this mushroom", benefits="Key benefits",
+      conditions="Conditions and issues it may help with",
+      howToUse="How to use", dosage="Recommended dosage",
+      contraindications="Contraindications — when not to take",
+      doctorConsultation="When to consult a doctor"
+  ru: about="О лечебном грибе", benefits="Целебные свойства",
+      conditions="Применение при заболеваниях",
+      howToUse="Способы применения", dosage="Как применять",
+      contraindications="Противопоказания",
+      doctorConsultation="Когда нужна консультация врача"
+  es: about="Sobre este hongo", benefits="Beneficios clave",
+      conditions="Condiciones que puede ayudar",
+      howToUse="Cómo usar", dosage="Dosis recomendada",
+      contraindications="Contraindicaciones",
+      doctorConsultation="Cuándo consultar a un médico"
+
+Interaction Sections:
+  he: doNotCombine="אין לשלב — סיכון גבוה",
+      useCaution="יש לנקוט זהירות — אינטראקציה בינונית",
+      potentialSynergy="סינרגיה פוטנציאלית — שילוב מועיל",
+      insufficient="מחקר לא מספיק"
+  en: doNotCombine="Do NOT combine — High Risk",
+      useCaution="Use Caution — Moderate Interaction",
+      potentialSynergy="Potential Synergy — Helpful Combination",
+      insufficient="Unknown / Insufficient Research"
+  ru: doNotCombine="НЕ комбинировать — Высокий риск",
+      useCaution="Соблюдать осторожность — Умеренное взаимодействие",
+      potentialSynergy="Потенциальная синергия — Полезная комбинация",
+      insufficient="Недостаточно исследований"
+  es: doNotCombine="NO combinar — Riesgo Alto",
+      useCaution="Usar con Precaución — Interacción Moderada",
+      potentialSynergy="Sinergia Potencial — Combinación Beneficiosa",
+      insufficient="Desconocido / Investigación Insuficiente"
+
+Evidence Badge Labels:
+  clinical:    he=ראיות קליניות  en=Clinical evidence  ru=Клинические данные  es=Evidencia clínica
+  limited:     he=מחקר מוגבל    en=Limited research    ru=Ограниченные данные es=Investigación limitada
+  theoretical: he=תיאורטי        en=Theoretical         ru=Теоретически        es=Teórico
+
+Home Page Translations (sample):
+  tagline: he=פיטריות המרפא - בתמיכת מחקר עמוק
+           en=Research-Based Medicinal Mushrooms
+           ru=Лечебные грибы на основе исследований
+           es=Hongos Medicinales Basados en Investigación
+  ourMushrooms: he=פטריות המרפא שלנו  en=Our Medicinal Mushrooms  ru=Наши лечебные грибы  es=Nuestros Hongos Medicinales
+  noMatch: he=לא מצאנו פטרייה מתאימה  en=We couldn't find a matching mushroom  etc.
+
+Navigation:
+  Back: he=חזרה  en=Back  ru=Назад  es=Atrás
+  Share: he=שתף  en=Share  ru=Поделиться  es=Compartir
+  Home tab: he=בית  en=Home  ru=Главная  es=Inicio
+  Search tab: he=חיפוש  en=Search  ru=Поиск  es=Buscar
+
+================================================================================
+SECTION 9: INTERACTIONS DATABASE
+================================================================================
+
+Database Entity: "Interaction"
+Fields: substance_a, substance_b, interaction_type, mechanism, confidence
+
+Interaction Types: synergy, absorption_enhancement, absorption_inhibition, antagonism, unknown, caution, contraindicated
+Confidence Levels: high, moderate, low, unverified
+
+Interactions stored in DB (summary):
+  Lion's Mane + Omega-3 (DHA/EPA):       synergy, moderate
+  Lion's Mane + Bacopa monnieri:          synergy, moderate
+  Reishi + CBD:                           synergy, low
+  Reishi + Magnesium:                     synergy, moderate
+  Cordyceps + Creatine:                   synergy, low
+  Cordyceps + Rhodiola:                   synergy, low
+  Chaga + Vitamin C:                      synergy, moderate
+  Turkey Tail + Probiotics:               synergy, moderate
+  Turkey Tail + Vitamin D:                synergy, moderate
+  Tremella + Hyaluronic Acid:             synergy, moderate
+  Kava + Schisandra:                      absorption_inhibition, unverified
+  Kava + Bacopa monnieri:                 absorption_inhibition, unverified
+  Kava + Cat's claw:                      absorption_enhancement, unverified
+  Kava + Dandelion:                       absorption_inhibition, unverified
+  Kava + Fenugreek:                       unknown, unverified
+  Kava + Maca:                            synergy, unverified
+  Gotu kola + Schisandra:                 unknown, unverified
+  (additional interactions in DB...)
+
+NOTE: The main interaction data used in the UI is HARDCODED in the
+MushroomInteractions component (INTERACTION_DATA object), not from the DB.
+The DB interactions are a secondary/supplementary store.
+
+HARDCODED INTERACTION DATA (MushroomInteractions.jsx) covers:
+  Reishi: do_not_combine (2), use_caution (17), potential_synergy (7), insufficient (9)
+  Lion's Mane: do_not_combine (1), use_caution (8), potential_synergy (7), insufficient (8)
+  Cordyceps: do_not_combine (2), use_caution (7), potential_synergy (5), insufficient (8)
+  Chaga: do_not_combine (2), use_caution (8), potential_synergy (2), insufficient (8)
+  Turkey Tail: do_not_combine (0), use_caution (6), potential_synergy (2), insufficient (9)
+  Tremella: do_not_combine (0), use_caution (0), potential_synergy (3), insufficient (9)
+
+================================================================================
+SECTION 10: ISRAELI BRAND NAME → GENERIC DRUG ALIASES
+================================================================================
+
+(Used in InteractionSearch component for smart drug lookup)
+
+אקמול / Acamol → Paracetamol / Acetaminophen
+אדוויל / Advil → Ibuprofen
+נורופן / Nurofen → Ibuprofen
+אספירין / Aspirin → Aspirin
+טרמדקס / Tramadex → Tramadol
+קוד אקמול / Code Acamol → Paracetamol / Acetaminophen
+אוקסיקונטין / OxyContin → Oxycodone
+מורפין / Morphine → Morphine
+ציפרלקס / Cipralex → SSRIs (Escitalopram)
+לוסטרל / Lustral → SSRIs (Sertraline)
+פרוזק / Prozac → SSRIs (Fluoxetine)
+אפקסור / Efexor → SNRIs (Venlafaxine)
+סימבלטה / Cymbalta → SNRIs (Duloxetine)
+קלונקס / Clonex → Benzodiazepines (Clonazepam)
+קסנקס / Xanax → Benzodiazepines (Alprazolam)
+ואבן / Vaben → Benzodiazepines (Lorazepam)
+ריטלין / Ritalin → ADHD stimulants (Methylphenidate)
+קונצרטה / Concerta → ADHD stimulants (Methylphenidate)
+אטנט / Attent → ADHD stimulants (Amphetamine)
+ויואנס / Vyvanse → ADHD stimulants (Lisdexamfetamine)
+גלוקופאג' / Glucophage → Antidiabetic drugs (Metformin)
+לנטוס / Lantus → Antidiabetic drugs (Insulin glargine)
+אלטרוקסין / Eltroxin → Thyroid medications (Levothyroxine)
+יוטירוקס / Euthyrox → Thyroid medications (Levothyroxine)
+קומדין / Coumadin → Anticoagulants (Warfarin)
+אליקוויס / Eliquis → Anticoagulants (Apixaban)
+קסרלטו / Xarelto → Anticoagulants (Rivaroxaban)
+פלאביקס / Plavix → Antiplatelets (Clopidogrel)
+נורבסק / Norvasc → Antihypertensives (Amlodipine)
+טריטייס / Tritace → Antihypertensives (Ramipril)
+נורמיטן / Normiten → Antihypertensives (Atenolol)
+ליפיטור / Lipitor → Statins (Atorvastatin)
+קרסטור / Crestor → Statins (Rosuvastatin)
+אומפרדקס / Omepradex → Proton pump inhibitors (Omeprazole)
+לוסק / Losec → Proton pump inhibitors (Omeprazole)
+
+================================================================================
+SECTION 11: SEO & METADATA
+================================================================================
+
+Page Title (HE): Wise Fungi | פטריות מרפא – מדריך יתרונות, אינטראקציות וחיפוש מתקדם
+Page Title (EN): Medicinal Mushrooms Guide – Benefits, Interactions & Advanced Search Tool | Wise Fungi
+Page Title (RU): Лечебные грибы: Руководство – Преимущества, взаимодействия и продвинутый поиск | Wise Fungi
+Page Title (ES): Guía de Hongos Medicinales – Beneficios, Interacciones y Herramienta de Búsqueda Avanzada | Wise Fungi
+
+OG Image: https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69987acaab66604ab48d5f4d/4c39bf211_TTF_Full_Logo-no-TM.png
+Canonical URL: https://wise-fungi.com
+Favicon: https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69987acaab66604ab48d5f4d/7ff4a0da8_AmanitaMuscariaIcon.png
+
+Structured Data: WebSite schema + MedicalWebPage schema + Drug schema (per mushroom)
+Robots: index, follow
+Languages declared: he, en, ru, es
+
+================================================================================
+SECTION 12: MUSHROOM DETAIL IMAGES (used in MushroomDetail page)
+================================================================================
+
+רעמת האריה: https://media.base44.com/images/public/69987acaab66604ab48d5f4d/e1a5da149_1000183687-removebg-preview.png
+ריישי:       https://media.base44.com/images/public/69987acaab66604ab48d5f4d/5feef06e9_1000183814-removebg-preview.png
+טרמלה:       https://media.base44.com/images/public/69987acaab66604ab48d5f4d/e06a438f3_1000183813-removebg-preview.png
+צ'אגה:       https://media.base44.com/images/public/69987acaab66604ab48d5f4d/3802dacc6_1000183816-removebg-preview.png
+זנב התרנגול: https://media.base44.com/images/public/69987acaab66604ab48d5f4d/21cf84411_1000183815-removebg-preview.png
+קורדיספס:    https://media.base44.com/images/public/69987acaab66604ab48d5f4d/a08eb9628_1000183812-removebg-preview.png
+
+================================================================================
+SECTION 13: MOBILE / PWA
+================================================================================
+
+Manifest: /manifest.json
+Safe area insets used for bottom tabs and top nav (iOS notch support)
+Pull-to-refresh: custom touch handler, threshold 50px, max pull 80px
+Scroll-to-top on page navigation
+All buttons min-h-[44px] (Apple HIG touch target)
+touch-manipulation on interactive elements
+
+================================================================================
+SECTION 14: ANIMATIONS
+================================================================================
+
+Library: Framer Motion
+Page transitions: opacity fade (duration 0.1s)
+Mushroom card hover: -translate-y-1 + shadow-2xl
+Mushroom image hover: scale-110 (duration 500ms)
+Search bar: focus transitions (border color, background)
+Pull-to-refresh indicator: RefreshCw with animate-spin
+
+================================================================================
+SECTION 15: ENTITY SCHEMAS
+================================================================================
+
+--- Mushroom Entity ---
+Fields:
+  name (string, required)
+  scientific_name (string)
+  tagline (string)
+  description (string)
+  gradient_from (string - hex color)
+  gradient_to (string - hex color)
+  text_color (string - "light" | "dark")
+  mushroom_image_url (string)
+  source_url (string)
+  benefits (array of strings)
+  conditions_treated (array of strings)
+  how_to_use (string)
+  dosage (string)
+  contraindications (array of strings)
+  doctor_consultation_cases (array of strings)
+  search_keywords (array of strings)
+Built-in: id, created_date, updated_date, created_by
+
+--- Review Entity ---
+Fields:
+  author_name (string, required)
+  rating (number - 1-5)
+  text (string, required)
+  language (string)
+  approved (boolean, default: false)
+Built-in: id, created_date, updated_date, created_by
+
+--- Interaction Entity ---
+Fields:
+  substance_a (string, required)
+  substance_b (string, required)
+  interaction_type (enum: synergy, absorption_enhancement, absorption_inhibition, antagonism, unknown, caution, contraindicated)
+  mechanism (string)
+  confidence (string)
+Built-in: id, created_date, updated_date, created_by
+
+================================================================================
+SECTION 16: BACKEND FUNCTIONS
+================================================================================
+
+functions/sitemap.js — Generates XML sitemap for SEO
+
+================================================================================
+SECTION 17: DISCLAIMER (all languages)
+================================================================================
+
+HE: מידע חינוכי בלבד על פטריות מרפא, ואינו מחליף או מתיימר להחליף ייעוץ רפואי.
+EN: Educational information only about medicinal mushrooms, and does not replace or claim to replace medical advice.
+RU: Только образовательная информация о лечебных грибах, не заменяет и не претендует на замену медицинской консультации.
+ES: Información educativa solamente sobre hongos medicinales, y no reemplaza ni pretende reemplazar consejo médico.
+
+================================================================================
+END OF DOCUMENTATION
+================================================================================

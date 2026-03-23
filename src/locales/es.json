@@ -1,0 +1,167 @@
+{
+  "title": "Wise Fungi",
+  "subtitle": "Descubre el poder de los hongos medicinales: guía científica, uso correcto y consejos de seguridad.",
+  "hero_title": "Hongos Medicinales Basados en Evidencia",
+  "labels": {
+    "scientific_name": "Nombre Científico",
+    "about": "Sobre el Hongo",
+    "benefits": "Beneficios Clave",
+    "conditions": "Condiciones Tratadas",
+    "how_to_use": "Cómo Utilizar",
+    "dosage": "Dosis Recomendada",
+    "contraindications": "Contraindicaciones y Advertencias",
+    "doctor_consultation": "Cuándo Consultar a un Médico",
+    "interactions": "Interacciones",
+    "high_risk": "Alto Riesgo - No Combinar",
+    "caution": "Precaución / Supervisión Necesaria",
+    "search_placeholder": "Buscar hongo, síntoma, condición...",
+    "search_label": "Descubrir Hongos"
+  },
+  "mushrooms": {
+    "reishi": {
+      "name": "Reishi",
+      "subtitle": "Ganoderma lucidum - El Hongo de la Inmortalidad",
+      "image": "/assets/reishi.png",
+      "detailed_data": {
+        "about": "El Reishi, a menudo llamado la 'Reina de los Hongos', se ha utilizado en la Medicina Tradicional China durante más de 2.000 años. Es famoso por sus propiedades calmantes y su apoyo al sistema inmunológico.",
+        "benefits": [
+          "Mejora la calidad y profundidad del sueño",
+          "Reduce el estrés, la ansiedad y la tensión crónica",
+          "Modula y fortalece el sistema inmunológico",
+          "Apoya el equilibrio de la presión arterial",
+          "Desintoxicación hepática y apoyo funcional"
+        ],
+        "conditions": ["Insomnio", "Ansiedad", "Hipertensión", "Alergias", "Hígado Graso", "Autoinmune", "Fibromialgia"],
+        "usage": "Se recomienda consumir una hora antes de dormir. Puede mezclarse con agua, zumo o té tibio.",
+        "dosage": "500-1000 mg (cápsulas) o 1-2 ml (extracto líquido) al día. Empezar gradualmente.",
+        "contraindications": [
+          "Coagulación: Cuidado con anticoagulantes (Warfarina, Aspirina).",
+          "Diabetes: Puede potenciar fármacos hipoglucemiantes.",
+          "Cirugía: Suspender 2 semanas antes de cualquier intervención.",
+          "Embarazo: Consultar con un médico antes de usar."
+        ],
+        "doctor_consultation": "Es obligatorio consultar al médico si toma medicación crónica, tiene enfermedades hepáticas o para menores de 18 años."
+      }
+    },
+    "lions_mane": {
+      "name": "Melena de León (Lion's Mane)",
+      "subtitle": "Hericium erinaceus - Alimento para el cerebro",
+      "image": "/assets/lions_mane.png",
+      "detailed_data": {
+        "about": "La Melena de León es un hongo único conocido como el 'Nutriente del Cerebro'. Estimula el Factor de Crecimiento Nervioso (NGF), apoyando la memoria y la concentración.",
+        "benefits": [
+          "Mejora la memoria y las capacidades cognitivas",
+          "Reduce la 'niebla mental' (Brain Fog)",
+          "Promueve la regeneración nerviosa",
+          "Apoya la salud digestiva (SII, Crohn)",
+          "Ayuda en estados leves de ansiedad y depresión"
+        ],
+        "conditions": ["Alzheimer", "Demencia", "Niebla Mental", "SII", "Crohn", "Colitis", "TDAH", "Parkinson"],
+        "usage": "Se recomienda tomar por la mañana en ayunas para máxima absorción.",
+        "dosage": "500-1000 mg al día. Extracto: 1-2 ml diario.",
+        "contraindications": [
+          "Alergias: Sensibilidad conocida a hongos o moho.",
+          "Cirugía: Suspender 2 semanas antes por riesgo de sangrado.",
+          "Embarazo: Usar solo bajo supervisión médica directa."
+        ],
+        "doctor_consultation": "Consultar con un médico si usa medicación psiquiátrica o tiene antecedentes de trastornos mentales graves."
+      }
+    },
+    "cordyceps": {
+      "name": "Cordyceps",
+      "subtitle": "Cordyceps militaris - El Hongo de la Energía",
+      "image": "/assets/cordyceps.png",
+      "detailed_data": {
+        "about": "El Cordyceps es celebrado como el 'estimulante energético' del mundo de los hongos. Es muy valorado por atletas para mejorar la resistencia y la utilización de oxígeno.",
+        "benefits": [
+          "Aumenta los niveles de energía y vitalidad (ATP)",
+          "Mejora la resistencia y el rendimiento deportivo",
+          "Apoya la salud renal y el sistema respiratorio",
+          "Mejora la libido y la función sexual",
+          "Fortalece la respuesta inmunitaria general"
+        ],
+        "conditions": ["Fatiga Crónica", "Asma", "Enfermedades Renales", "Baja Libido", "Problemas Respiratorios", "Deporte"],
+        "usage": "Mejor consumirlo antes de entrenar o por la mañana. Evitar cerca de la hora de dormir.",
+        "dosage": "500-1000 mg al día. Extracto: 1-2 ml.",
+        "contraindications": [
+          "Autoinmune: Puede sobreestimular el sistema.",
+          "Coagulación: Posibles efectos antiplaquetarios.",
+          "Cáncer Mieloide: Evitar por estimulación de precursores hemáticos."
+        ],
+        "doctor_consultation": "Obligatorio para personas con enfermedad renal crónica o pacientes en tratamiento inmunosupresor."
+      }
+    },
+    "chaga": {
+      "name": "Chaga",
+      "subtitle": "Inonotus obliquus - El Oro Negro",
+      "image": "/assets/chaga.png",
+      "detailed_data": {
+        "about": "El Chaga crece principalmente en abedules y es una de las fuentes más ricas de antioxidantes de la naturaleza. Conocido como el 'Diamante del Bosque'.",
+        "benefits": [
+          "Potente protección antioxidante",
+          "Apoyo anti-envejecimiento para piel y cabello",
+          "Ayuda a equilibrar el azúcar en sangre",
+          "Reduce la inflamación crónica en el cuerpo",
+          "Fortalecimiento profundo del sistema inmunitario"
+        ],
+        "conditions": ["Anti-Edad", "Diabetes", "Artritis", "Psoriasis", "Colesterol Alto", "Inmunidad"],
+        "usage": "Se puede consumir como extracto concentrado o polvo en bebidas calientes como té o café.",
+        "dosage": "500-800 mg al día. Extracto: 1 ml diario.",
+        "contraindications": [
+          "Diabetes: Puede causar bajadas extremas de azúcar con insulina.",
+          "Riñón: Alto contenido en oxalatos - evitar con cálculos renales.",
+          "Cirugía: Evitar antes de procedimientos quirúrgicos."
+        ],
+        "doctor_consultation": "Se requiere consejo médico para personas con enfermedad renal o diabetes controlada médicamente."
+      }
+    },
+    "turkey_tail": {
+      "name": "Cola de Pavo (Turkey Tail)",
+      "subtitle": "Trametes versicolor - El Guardián del Sistema",
+      "image": "/assets/turkey_tail.png",
+      "detailed_data": {
+        "about": "La Cola de Pavo es uno de los hongos más investigados científicamente, especialmente en el contexto del apoyo oncológico y el microbioma.",
+        "benefits": [
+          "Potente modulación inmunológica y defensa viral",
+          "Prebiótico natural para la flora intestinal saludable",
+          "Apoyo complementario durante la quimioterapia",
+          "Desintoxicación del cuerpo y eliminación de toxinas",
+          "Apoya la salud del revestimiento intestinal"
+        ],
+        "conditions": ["Cáncer", "Quimioterapia", "SII", "Infecciones Recurrentes", "Cándida", "Microbioma"],
+        "usage": "Se puede tomar a lo largo del día, preferiblemente con algo de comida.",
+        "dosage": "1000-2000 mg diarios (en situaciones de apoyo intensivo).",
+        "contraindications": [
+          "Trasplantes: Puede interferir con fármacos inmunosupresores.",
+          "Molde: Revisar con precaución en caso de sensibilidad severa.",
+          "Embarazo: Consulta médica obligatoria."
+        ],
+        "doctor_consultation": "La consulta con un oncólogo es obligatoria si se combina con tratamientos específicos contra el cáncer."
+      }
+    },
+    "tremella": {
+      "name": "Tremella",
+      "subtitle": "Tremella fuciformis - El Hongo de la Belleza",
+      "image": "/assets/tremella.png",
+      "detailed_data": {
+        "about": "La Tremella, también conocida como 'Hongo de Nieve', es un agente de belleza natural gracias a su increíble capacidad para retener la humedad.",
+        "benefits": [
+          "Nutrición profunda e hidratación de la piel (Ácido Hialurónico natural)",
+          "Estimula la producción de colágeno natural",
+          "Reduce arrugas y mejora la elasticidad de la piel",
+          "Apoya las articulaciones y el tejido conectivo",
+          "Mejora la circulación sanguínea cutánea"
+        ],
+        "conditions": ["Piel Seca", "Arrugas", "Rutina de Belleza", "Articulaciones", "Anti-Edad"],
+        "usage": "Se puede consumir mañana o noche. Mezcla perfectamente en batidos y bebidas de desayuno.",
+        "dosage": "500-1000 mg al día.",
+        "contraindications": [
+          "Trastornos Sanguíneos: Ligero impacto en plaquetas.",
+          "Alergias: Sensibilidad conocida a los hongos.",
+          "Falta de Investigación: Estudios limitados en el embarazo."
+        ],
+        "doctor_consultation": "Se recomienda consejo médico si usa medicación hormonal o se somete a tratamientos de piel invasivos."
+      }
+    }
+  }
+}
