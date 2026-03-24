@@ -2,10 +2,12 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import BentoGrid from './components/BentoGrid';
 import { useTranslation } from 'react-i18next';
-import { CheckCircle, XCircle, AlertTriangle, HelpCircle, Search, ChevronDown, ChevronRight, Lock, Save, Edit3, Plus, Trash2 } from 'lucide-react';
+import { CheckCircle, XCircle, AlertTriangle, HelpCircle, Search, ChevronDown, ChevronRight, Lock, Save, Edit3, Plus, Trash2, Palette } from 'lucide-react';
 import { useEffect, useState, useRef } from 'react';
 import searchDataJson from './assets/searchData.json';
 import originalInteractions from './assets/original_interactions.json';
+import RichTextEditor from './components/RichTextEditor';
+import ThemeEditor from './components/ThemeEditor';
 import './App.css';
 
 function App() {
@@ -23,6 +25,7 @@ function App() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [isGlobalEditing, setIsGlobalEditing] = useState(false);
+  const [isThemeOpen, setIsThemeOpen] = useState(false);
   const [editData, setEditData] = useState(null);
   const [uiContent, setUiContent] = useState({});
   const [loginPassword, setLoginPassword] = useState('');
@@ -259,8 +262,49 @@ function App() {
 
   const mData = selectedMushroom?.detailed_data;
 
+  const defaultTheme = {
+    bgPrimary: '#0a0a0a',
+    bgSecondary: '#121212',
+    textPrimary: '#ffffff',
+    textSecondary: 'rgba(255, 255, 255, 0.7)',
+    accentPrimary: '#16a34a',
+    bentoBg: 'rgba(255, 255, 255, 0.05)',
+    bentoBorder: 'transparent',
+    benefitIconShape: 'CheckCircle', benefitIconColor: '#22c55e',
+    doctorIconShape: 'AlertTriangle', doctorIconColor: '#E0C23B',
+    contraIconShape: 'XCircle', contraIconColor: '#E56767'
+  };
+  const theme = uiContent?.globalTheme || defaultTheme;
+
+  const renderDynamicIcon = (shape, props) => {
+    switch (shape) {
+      case 'Star': return <svg width={props.size} height={props.size} fill={props.color} viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>;
+      case 'Heart': return <svg width={props.size} height={props.size} fill={props.color} viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>;
+      case 'Zap': return <Zap {...props} />;
+      case 'Shield': return <Shield {...props} />;
+      case 'Droplet': return <Droplets {...props} />;
+      case 'AlertTriangle': return <AlertTriangle {...props} />;
+      case 'XCircle': return <XCircle {...props} />;
+      default: return <CheckCircle {...props} />;
+    }
+  };
+
   return (
     <div className={`app-container ${isAdmin ? 'is-admin' : ''}`}>
+      <style dangerouslySetInnerHTML={{__html: `
+        :root {
+          --bg-primary: ${theme.bgPrimary};
+          --bg-secondary: ${theme.bgSecondary};
+          --text-primary: ${theme.textPrimary};
+          --text-secondary: ${theme.textSecondary};
+          --accent-primary: ${theme.accentPrimary};
+          --bento-bg: ${theme.bentoBg};
+          --bento-border-col: ${theme.bentoBorder};
+        }
+        body { background: var(--bg-primary); }
+        .bento-card { background: var(--bento-bg); border: 2px solid var(--bento-border-col); }
+      `}} />
+
       {isAdmin && (
         <div className="admin-status-bar">
           <Lock size={14} /> {currentLang === 'he' ? 'מצב מנהל פעיל' : 'Admin Mode Active'}
@@ -276,10 +320,27 @@ function App() {
             }
           </button>
 
+          <button 
+            onClick={() => setIsThemeOpen(true)} 
+            className="admin-logout-btn" 
+            style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}
+          >
+            <Palette size={14} /> עיצוב מותאם אישית
+          </button>
+
           <button onClick={() => { setIsAdmin(false); setIsGlobalEditing(false); localStorage.removeItem('adminToken'); }} className="admin-logout-btn">
             {currentLang === 'he' ? 'התנתק' : 'Logout'}
           </button>
         </div>
+      )}
+
+      {isThemeOpen && (
+        <ThemeEditor 
+          theme={uiContent?.globalTheme || defaultTheme} 
+          setTheme={(t) => setUiContent({ ...uiContent, globalTheme: t(uiContent?.globalTheme || defaultTheme) })} 
+          onSave={() => handleGlobalSave()} 
+          onClose={() => setIsThemeOpen(false)} 
+        />
       )}
 
       <Header 
@@ -386,13 +447,12 @@ function App() {
                   <div className="detail-section">
                     <span className="detail-label">{t('labels.about')}</span>
                     {isEditing ? (
-                      <textarea 
-                        className="admin-edit-textarea" 
+                      <RichTextEditor 
                         value={editData?.about || ''} 
-                        onChange={e => setEditData({...editData, about: e.target.value})} 
+                        onChange={val => setEditData({...editData, about: val})}
                       />
                     ) : (
-                      <p className="modal-description">{editData?.about || mData.about}</p>
+                      <div className="modal-description" dangerouslySetInnerHTML={{ __html: editData?.about || mData.about }}></div>
                     )}
                   </div>
 
@@ -514,36 +574,32 @@ function App() {
                     <div className="detail-section" style={{ background: 'rgba(255,255,255,0.03)', padding: '1.5rem', borderRadius: '16px' }}>
                       <span className="detail-label">{t('labels.how_to_use')}</span>
                       {isEditing ? (
-                        <textarea 
-                          className="admin-edit-textarea" 
-                          style={{ minHeight: '80px', marginBottom: '1rem' }}
-                          value={editData?.usage || ''} 
-                          onChange={e => setEditData({...editData, usage: e.target.value})} 
+                        <RichTextEditor 
+                           value={editData?.usage || ''} 
+                           onChange={val => setEditData({...editData, usage: val})}
                         />
                       ) : (
-                        <p style={{ color: 'var(--mush-subtext)', fontSize: '1.05rem', marginBottom: '1.5rem' }}>{editData?.usage || mData.usage}</p>
+                        <div style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', marginBottom: '1.5rem', whiteSpace: 'pre-wrap' }} dangerouslySetInnerHTML={{ __html: editData?.usage || mData.usage }}></div>
                       )}
                       
                       <span className="detail-label">{t('labels.dosage')}</span>
                       {isEditing ? (
-                        <textarea 
-                          className="admin-edit-textarea" 
-                          style={{ minHeight: '80px' }}
-                          value={editData?.dosage || ''} 
-                          onChange={e => setEditData({...editData, dosage: e.target.value})} 
+                        <RichTextEditor 
+                           value={editData?.dosage || ''} 
+                           onChange={val => setEditData({...editData, dosage: val})}
                         />
                       ) : (
-                        <p style={{ color: 'var(--mush-subtext)', fontSize: '1.05rem' }}>{editData?.dosage || mData.dosage}</p>
+                        <div style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', whiteSpace: 'pre-wrap' }} dangerouslySetInnerHTML={{ __html: editData?.dosage || mData.dosage }}></div>
                       )}
                     </div>
 
                     {/* Doctor Consultation */}
                     <div className="detail-section" style={{ background: 'rgba(224, 194, 59, 0.15)', border: '1px solid rgba(224, 194, 59, 0.3)', padding: '1.5rem', borderRadius: '16px' }}>
                       <span className="detail-label" style={{ color: '#E0C23B' }}>{t('labels.doctor_consultation')}</span>
-                      <p style={{ color: 'rgba(255,255,255,0.9)', fontSize: '1.05rem', display: 'flex', gap: '0.8rem', alignItems: 'flex-start' }}>
-                        <AlertTriangle size={20} color="#E0C23B" style={{ flexShrink: 0, marginTop: '4px' }} />
+                      <div style={{ color: 'rgba(255,255,255,0.9)', fontSize: '1.05rem', display: 'flex', gap: '0.8rem', alignItems: 'flex-start' }}>
+                        {renderDynamicIcon(theme.doctorIconShape, { size: 20, color: theme.doctorIconColor, style: { flexShrink: 0, marginTop: '4px' } })}
                         <span>{Array.isArray(mData.doctor_consultation) ? mData.doctor_consultation.join(' ') : mData.doctor_consultation}</span>
-                      </p>
+                      </div>
                     </div>
                   </div>
 
@@ -553,7 +609,7 @@ function App() {
                     <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: '0.8rem' }}>
                       {mData.contraindications.map((ci, i) => (
                         <li key={i} style={{ display: 'flex', gap: '0.8rem', alignItems: 'flex-start' }}>
-                          <XCircle size={20} color="#E56767" style={{ flexShrink: 0, marginTop: '2px' }} />
+                          {renderDynamicIcon(theme.contraIconShape, { size: 20, color: theme.contraIconColor, style: { flexShrink: 0, marginTop: '2px' } })}
                           <span style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.9)' }}>{ci}</span>
                         </li>
                       ))}
