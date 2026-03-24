@@ -337,24 +337,11 @@ function App() {
   }, [isVisualEditorOpen]);
 
   return (
-    <div className={`app-container ${isAdmin ? 'is-admin' : ''}`} style={isVisualEditorOpen ? { marginLeft: '320px', marginTop: '48px', borderLeft: '1px solid #333' } : {}}>
-      <style dangerouslySetInnerHTML={{__html: `
-        :root {
-          --bg-primary: ${theme.bgPrimary};
-          --bg-secondary: ${theme.bgSecondary};
-          --text-primary: ${theme.textPrimary};
-          --text-secondary: ${theme.textSecondary};
-          --accent-primary: ${theme.accentPrimary};
-          --bento-bg: ${theme.bentoBg};
-          --bento-border-col: ${theme.bentoBorder};
-          --bento-radius: ${theme.bentoRadius || 24}px;
-        }
-        body { background: var(--bg-primary); color: var(--text-primary); }
-        .bento-card { background: var(--bento-bg); border: 2px solid var(--bento-border-col); border-radius: var(--bento-radius); }
-        
-        /* Apply dynamically curated CSS from Visual Editor */
-        ${generateCustomCSS()}
-      `}} />
+    <div className={`app-container ${isAdmin ? 'is-admin' : ''}`}>
+      {/* Visual Editor CSS Override Placeholder */}
+      {uiContent?.customStyles && (
+        <style dangerouslySetInnerHTML={{__html: generateCustomCSS()}} />
+      )}
 
       {isAdmin && !isVisualEditorOpen && (
         <div className="admin-status-bar">
