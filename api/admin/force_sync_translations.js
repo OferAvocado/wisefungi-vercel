@@ -31,7 +31,7 @@ export default async function handler(req, res) {
          await sql`
             UPDATE fungi_translations 
             SET name = ${tName}, tagline = ${tTagline}, updated_at = CURRENT_TIMESTAMP
-            WHERE fungi_id = ${row.fungi_id} AND language_code = ${tLang}::language_enum;
+            WHERE fungi_id = ${row.fungi_id} AND language_code = ${tLang};
          `;
       }
     }

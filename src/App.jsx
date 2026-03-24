@@ -300,9 +300,10 @@ function App() {
           --accent-primary: ${theme.accentPrimary};
           --bento-bg: ${theme.bentoBg};
           --bento-border-col: ${theme.bentoBorder};
+          --bento-radius: ${theme.bentoRadius || 24}px;
         }
-        body { background: var(--bg-primary); }
-        .bento-card { background: var(--bento-bg); border: 2px solid var(--bento-border-col); }
+        body { background: var(--bg-primary); color: var(--text-primary); }
+        .bento-card { background: var(--bento-bg); border: 2px solid var(--bento-border-col); border-radius: var(--bento-radius); }
       `}} />
 
       {isAdmin && (

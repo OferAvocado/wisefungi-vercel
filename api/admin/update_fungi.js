@@ -25,7 +25,7 @@ export default async function handler(req, res) {
         search_keywords = ${data.keywords ? JSON.stringify(data.keywords) : null},
         updated_at = CURRENT_TIMESTAMP
       WHERE fungi_id = (SELECT id FROM fungi WHERE slug = ${slug}) 
-      AND language_code = ${lang}::language_enum;
+      AND language_code = ${lang};
     `;
 
     // --- AUTO TRANSLATION ENGINE ---
@@ -60,7 +60,7 @@ export default async function handler(req, res) {
 
         await sql`
             INSERT INTO fungi_translations (id, fungi_id, language_code, name, tagline, about_this_mushroom, how_to_use, recommended_dosage, search_keywords, created_at, updated_at)
-            VALUES (gen_random_uuid(), ${fId}, ${tLang}::language_enum, ${tName}, ${tSub}, ${tAbout}, ${tUsage}, ${tDosage}, ${tKws}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+            VALUES (gen_random_uuid(), ${fId}, ${tLang}, ${tName}, ${tSub}, ${tAbout}, ${tUsage}, ${tDosage}, ${tKws}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
             ON CONFLICT (fungi_id, language_code) DO UPDATE SET
               name = EXCLUDED.name,
               tagline = EXCLUDED.tagline,
