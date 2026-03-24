@@ -8,6 +8,7 @@ import searchDataJson from './assets/searchData.json';
 import originalInteractions from './assets/original_interactions.json';
 import RichTextEditor from './components/RichTextEditor';
 import ThemeEditor from './components/ThemeEditor';
+import VisualEditor from './components/VisualEditor';
 import './App.css';
 
 function App() {
@@ -26,6 +27,8 @@ function App() {
   const [isEditing, setIsEditing] = useState(false);
   const [isGlobalEditing, setIsGlobalEditing] = useState(false);
   const [isThemeOpen, setIsThemeOpen] = useState(false);
+  const [isVisualEditorOpen, setIsVisualEditorOpen] = useState(false);
+  const [visualSelectedId, setVisualSelectedId] = useState(null);
   const [editData, setEditData] = useState(null);
   const [uiContent, setUiContent] = useState({});
   const [loginPassword, setLoginPassword] = useState('');
@@ -289,8 +292,52 @@ function App() {
     }
   };
 
+  const generateCustomCSS = () => {
+    if (!uiContent?.customStyles) return '';
+    let css = '';
+    Object.entries(uiContent.customStyles).forEach(([id, devices]) => {
+      if (devices.desktop) css += `[data-editable="${id}"] { ${Object.entries(devices.desktop).map(([k,v]) => `${k.replace(/[A-Z]/g, m => '-' + m.toLowerCase())}: ${v} !important;`).join(' ')} }\n`;
+      if (devices.tablet) css += `@media (max-width: 1024px) { [data-editable="${id}"] { ${Object.entries(devices.tablet).map(([k,v]) => `${k.replace(/[A-Z]/g, m => '-' + m.toLowerCase())}: ${v} !important;`).join(' ')} } }\n`;
+      if (devices.mobile) css += `@media (max-width: 768px) { [data-editable="${id}"] { ${Object.entries(devices.mobile).map(([k,v]) => `${k.replace(/[A-Z]/g, m => '-' + m.toLowerCase())}: ${v} !important;`).join(' ')} } }\n`;
+    });
+    return css;
+  };
+
+  useEffect(() => {
+    if (!isVisualEditorOpen) return;
+    const handleClick = (e) => {
+      if (e.target.closest('.ve-panel') || e.target.closest('.admin-status-bar')) return;
+      e.preventDefault();
+      e.stopPropagation();
+      const el = e.target.closest('[data-editable]');
+      if (el) setVisualSelectedId(el.getAttribute('data-editable'));
+      else setVisualSelectedId(null);
+    };
+    
+    const handleMouseOver = (e) => {
+      if (e.target.closest('.ve-panel') || e.target.closest('.admin-status-bar')) return;
+      const el = e.target.closest('[data-editable]');
+      if (el) el.style.outline = '2px solid #007acc';
+    };
+
+    const handleMouseOut = (e) => {
+      if (e.target.closest('.ve-panel') || e.target.closest('.admin-status-bar')) return;
+      const el = e.target.closest('[data-editable]');
+      if (el) el.style.outline = '';
+    };
+
+    document.addEventListener('click', handleClick, { capture: true });
+    document.addEventListener('mouseover', handleMouseOver);
+    document.addEventListener('mouseout', handleMouseOut);
+    return () => {
+      document.removeEventListener('click', handleClick, { capture: true });
+      document.removeEventListener('mouseover', handleMouseOver);
+      document.removeEventListener('mouseout', handleMouseOut);
+    };
+  }, [isVisualEditorOpen]);
+
   return (
-    <div className={`app-container ${isAdmin ? 'is-admin' : ''}`}>
+    <div className={`app-container ${isAdmin ? 'is-admin' : ''}`} style={isVisualEditorOpen ? { marginLeft: '320px', marginTop: '48px', borderLeft: '1px solid #333' } : {}}>
       <style dangerouslySetInnerHTML={{__html: `
         :root {
           --bg-primary: ${theme.bgPrimary};
@@ -304,9 +351,12 @@ function App() {
         }
         body { background: var(--bg-primary); color: var(--text-primary); }
         .bento-card { background: var(--bento-bg); border: 2px solid var(--bento-border-col); border-radius: var(--bento-radius); }
+        
+        /* Apply dynamically curated CSS from Visual Editor */
+        ${generateCustomCSS()}
       `}} />
 
-      {isAdmin && (
+      {isAdmin && !isVisualEditorOpen && (
         <div className="admin-status-bar">
           <Lock size={14} /> {currentLang === 'he' ? 'מצב מנהל פעיל' : 'Admin Mode Active'}
           
@@ -329,13 +379,32 @@ function App() {
             <Palette size={14} /> עיצוב מותאם אישית
           </button>
 
+          <button 
+            onClick={() => setIsVisualEditorOpen(true)} 
+            className="admin-logout-btn" 
+            style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', background: '#007acc', color: 'white', fontWeight: 'bold', border: '1px solid #005f9e' }}
+          >
+            <Layout size={14} /> Launch Visual Editor (Pro)
+          </button>
+
           <button onClick={() => { setIsAdmin(false); setIsGlobalEditing(false); localStorage.removeItem('adminToken'); }} className="admin-logout-btn">
             {currentLang === 'he' ? 'התנתק' : 'Logout'}
           </button>
         </div>
       )}
 
-      {isThemeOpen && (
+      {isVisualEditorOpen && (
+        <VisualEditor 
+          uiContent={uiContent} 
+          setUiContent={setUiContent} 
+          selectedId={visualSelectedId}
+          setSelectedId={setVisualSelectedId}
+          onSave={handleGlobalSave} 
+          onClose={() => setIsVisualEditorOpen(false)} 
+        />
+      )}
+
+      {isThemeOpen && !isVisualEditorOpen && (
         <ThemeEditor 
           theme={uiContent?.globalTheme || defaultTheme} 
           setTheme={(t) => setUiContent({ ...uiContent, globalTheme: t(uiContent?.globalTheme || defaultTheme) })} 

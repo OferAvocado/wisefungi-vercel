@@ -13,22 +13,23 @@ export default function BentoGrid({ mushrooms, onSelect, isGlobalEditing, setMus
   };
 
   return (
-    <section id="bento-grid" className="bento-container">
-      <div className="bento-grid">
+    <section id="bento-grid" className="bento-container" data-editable="bento-grid-section">
+      <div className="bento-grid" data-editable="bento-grid-wrapper">
         {mushrooms.map((m) => (
           <div 
             key={m.id} 
             className={`bento-card ${m.id}`}
+            data-editable={`card-${m.id}`}
             onClick={(e) => {
               if (isGlobalEditing) return;
               onSelect(m);
             }}
             style={{ cursor: isGlobalEditing ? 'default' : 'pointer' }}
           >
-            <div className="card-thumb-wrapper">
+            <div className="card-thumb-wrapper" data-editable={`card-img-${m.id}`}>
               <img src={m.image} alt={m.name} className="card-thumb" />
             </div>
-            <div className="card-content">
+            <div className="card-content" data-editable={`card-content-${m.id}`}>
               {isGlobalEditing ? (
                 <>
                   <input 
@@ -48,8 +49,8 @@ export default function BentoGrid({ mushrooms, onSelect, isGlobalEditing, setMus
                 </>
               ) : (
                 <>
-                  <h3 className="card-title">{m.name}</h3>
-                  <p className="card-subtitle">{m.subtitle}</p>
+                  <h3 className="card-title" data-editable={`card-title-${m.id}`}>{m.name}</h3>
+                  <p className="card-subtitle" data-editable={`card-subtitle-${m.id}`}>{m.subtitle}</p>
                 </>
               )}
             </div>

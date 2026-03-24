@@ -18,8 +18,8 @@ export default function Hero({ searchQuery, setSearchQuery, isSticky, suggestion
   const getT = (key) => uiContent && uiContent[key] ? uiContent[key] : t(key);
 
   return (
-    <section className="hero">
-      <div className="hero-content">
+    <section className="hero" data-editable="hero-section">
+      <div className="hero-content" data-editable="hero-content">
         {isGlobalEditing ? (
           <>
             <input 
@@ -37,8 +37,8 @@ export default function Hero({ searchQuery, setSearchQuery, isSticky, suggestion
           </>
         ) : (
           <>
-            <h2 className="hero-title title-glow">{getT('hero_title')}</h2>
-            <p className="hero-subtitle">{getT('hero_subtitle') === getT('hero_subtitle') /* wait wait, fallback is subtitle */ ? (uiContent?.hero_subtitle || t('subtitle')) : ''}</p>
+            <h2 className="hero-title title-glow" data-editable="hero-title">{getT('hero_title')}</h2>
+            <p className="hero-subtitle" data-editable="hero-subtitle">{getT('hero_subtitle') === getT('hero_subtitle') /* wait wait, fallback is subtitle */ ? (uiContent?.hero_subtitle || t('subtitle')) : ''}</p>
           </>
         )}
       </div>
