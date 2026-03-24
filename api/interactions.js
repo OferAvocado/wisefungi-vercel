@@ -31,7 +31,7 @@ export default async function handler(req, res) {
         FROM fungi_interactions fi
         JOIN fungi f ON fi.fungi_id = f.id
         JOIN interaction_items ii ON fi.interaction_item_id = ii.id
-        JOIN interaction_item_translations iit ON ii.id = iit.interaction_item_id AND iit.language_code = ${lang}::language_enum
+        JOIN interaction_item_translations iit ON ii.id = iit.interaction_item_id AND iit.language_code = ${lang}
         WHERE f.slug = ${fungiSlug} AND ii.status = 'active'
         ORDER BY fi.sort_order ASC;
       `;
@@ -47,7 +47,7 @@ export default async function handler(req, res) {
           iit.label,
           iit.short_description AS description
         FROM interaction_items ii
-        JOIN interaction_item_translations iit ON ii.id = iit.interaction_item_id AND iit.language_code = ${lang}::language_enum
+        JOIN interaction_item_translations iit ON ii.id = iit.interaction_item_id AND iit.language_code = ${lang}
         WHERE ii.status = 'active'
         ORDER BY ii.sort_order ASC;
       `;

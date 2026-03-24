@@ -33,7 +33,7 @@ export default async function handler(req, res) {
           SELECT json_agg(ct.label) 
           FROM fungi_conditions fc
           JOIN conditions c ON fc.condition_id = c.id
-          JOIN condition_translations ct ON c.id = ct.condition_id AND ct.language_code = ${lang}::language_enum
+          JOIN condition_translations ct ON c.id = ct.condition_id AND ct.language_code = ${lang}
           WHERE fc.fungi_id = f.id AND c.status = 'active'
         ) AS conditions,
         
@@ -41,7 +41,7 @@ export default async function handler(req, res) {
           SELECT json_agg(bt.label) 
           FROM fungi_benefits fb
           JOIN benefits b ON fb.benefit_id = b.id
-          JOIN benefit_translations bt ON b.id = bt.benefit_id AND bt.language_code = ${lang}::language_enum
+          JOIN benefit_translations bt ON b.id = bt.benefit_id AND bt.language_code = ${lang}
           WHERE fb.fungi_id = f.id AND b.status = 'active'
         ) AS benefits,
 
@@ -49,7 +49,7 @@ export default async function handler(req, res) {
           SELECT json_agg(cnt.label) 
           FROM fungi_contraindications fcon
           JOIN contraindications con ON fcon.contraindication_id = con.id
-          JOIN contraindication_translations cnt ON con.id = cnt.contraindication_id AND cnt.language_code = ${lang}::language_enum
+          JOIN contraindication_translations cnt ON con.id = cnt.contraindication_id AND cnt.language_code = ${lang}
           WHERE fcon.fungi_id = f.id AND con.status = 'active'
         ) AS contraindications,
 
@@ -57,13 +57,13 @@ export default async function handler(req, res) {
           SELECT json_agg(dct.label) 
           FROM fungi_doctor_consult_flags fdc
           JOIN doctor_consult_flags dc ON fdc.doctor_consult_flag_id = dc.id
-          JOIN doctor_consult_flag_translations dct ON dc.id = dct.doctor_consult_flag_id AND dct.language_code = ${lang}::language_enum
+          JOIN doctor_consult_flag_translations dct ON dc.id = dct.doctor_consult_flag_id AND dct.language_code = ${lang}
           WHERE fdc.fungi_id = f.id AND dc.status = 'active'
         ) AS doctor_consultations
 
       FROM fungi f
       JOIN fungi_translations ft ON f.id = ft.fungi_id
-      WHERE f.status != 'archived' AND ft.language_code = ${lang}::language_enum
+      WHERE f.status != 'archived' AND ft.language_code = ${lang}
       ORDER BY f.sort_order ASC;
     `;
 
