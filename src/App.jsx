@@ -2,7 +2,7 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import BentoGrid from './components/BentoGrid';
 import { useTranslation } from 'react-i18next';
-import { CheckCircle, XCircle, AlertTriangle, HelpCircle, Search, ChevronDown, ChevronRight, Lock, Save, Edit3, Plus, Trash2, Palette } from 'lucide-react';
+import { CheckCircle, XCircle, AlertTriangle, HelpCircle, Search, ChevronDown, ChevronRight, Lock, Save, Edit3, Plus, Trash2, Palette, Layout, Zap, Shield, Droplets } from 'lucide-react';
 import { useEffect, useState, useRef } from 'react';
 import searchDataJson from './assets/searchData.json';
 import originalInteractions from './assets/original_interactions.json';

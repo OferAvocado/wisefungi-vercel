@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Type, Image as ImageIcon, Layout, Square, Columns, Move, Copy, Trash2, Undo, Redo, Monitor, Tablet, Smartphone, Save, Eye, EyeOff } from 'lucide-react';
+import { Type, Image as ImageIcon, Layout, Square, Columns, Move, Copy, Trash2, Undo, Redo, Monitor, Tablet, Smartphone, Save, Eye, EyeOff, PlusCircle, Layers } from 'lucide-react';
 
 export default function VisualEditor({ 
   uiContent, 
@@ -186,8 +186,6 @@ export default function VisualEditor({
 }
 
 // Helpers
-import { PlusCircle, Layers } from 'lucide-react';
-
 const InspectorGroup = ({ title, children }) => {
   const [open, setOpen] = useState(true);
   return (
