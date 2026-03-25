@@ -12,6 +12,33 @@ export default async function handler(req, res) {
 
   // Expect standard ISO lang code or fallback to 'he'
   const lang = req.query.lang || 'he';
+  const restoreSecret = req.query.restoreSecret;
+
+  if (req.query.restore === 'true' && restoreSecret === 'wise-fungi-secret') {
+    try {
+      // 1. Reset Global UI (Design/Theme)
+      await sql`DELETE FROM ui_translations WHERE lang = 'all' OR key IN ('globalTheme', 'customStyles');`;
+      
+      // 2. Restore core fungi metadata (featured images)
+      const updates = [
+        { slug: 'reishi', img: '/assets/reishi.png', name: 'ריישי (Reishi)', tagline: 'Ganoderma lucidum - פטריית האלמוות' },
+        { slug: 'lions_mane', img: '/assets/lions_mane.png', name: "רעמת האריה (Lion's Mane)", tagline: 'Hericium erinaceus - מזון למוח' },
+        { slug: 'cordyceps', img: '/assets/cordyceps.png', name: 'קורדיספס (Cordyceps)', tagline: 'Cordyceps militaris - פטריית האנרגיה' },
+        { slug: 'chaga', img: '/assets/chaga.png', name: "צ'אגה (Chaga)", tagline: 'Inonotus obliquus - הזהב השחור' },
+        { slug: 'turkey_tail', img: '/assets/turkey_tail.png', name: 'זנב התרנגול (Turkey Tail)', tagline: 'Trametes versicolor - מגן המערכת' },
+        { slug: 'tremella', img: '/assets/tremella.png', name: 'טרמלה (Tremella)', tagline: 'Tremella fuciformis - פטריית היופי' }
+      ];
+
+      for (const update of updates) {
+        await sql`UPDATE fungi SET featured_image = ${update.img} WHERE slug = ${update.slug};`;
+        await sql`UPDATE fungi_translations SET name = ${update.name}, tagline = ${update.tagline} WHERE fungi_id = (SELECT id FROM fungi WHERE slug = ${update.slug}) AND language_code = 'he';`;
+      }
+
+      return res.status(200).json({ success: true, message: 'Emergency restoration triggered successfully.' });
+    } catch (e) {
+      return res.status(500).json({ error: 'Restoration failed', details: e.message });
+    }
+  }
 
   try {
     // Single powerful aggregated query hitting the normalized new Vercel DB Architecture
