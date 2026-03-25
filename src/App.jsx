@@ -4,6 +4,8 @@ import BentoGrid from './components/BentoGrid';
 import { useTranslation } from 'react-i18next';
 import { CheckCircle, XCircle, AlertTriangle, HelpCircle, Search, ChevronDown, ChevronRight, Lock, Save, Edit3, Plus, Trash2, Palette, Layout, Zap, Shield, Droplets } from 'lucide-react';
 import { useEffect, useState, useRef } from 'react';
+import translationHE from './locales/he.json';
+import translationEN from './locales/en.json';
 import searchDataJson from './assets/searchData.json';
 import originalInteractions from './assets/original_interactions.json';
 import RichTextEditor from './components/RichTextEditor';
@@ -45,22 +47,17 @@ function App() {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        // Force original state via static translations for now to guarantee restoration
-        const mData = t('mushrooms', { returnObjects: true });
+        // FORCE 100% ORIGINAL STATE FROM LOCAL JSON FILES
+        // This bypasses the DB and any caching issues to return the site to its intended state
+        const localData = currentLang === 'en' ? translationEN : translationHE;
+        const mData = localData.mushrooms;
+        
         setMushroomsData(mData);
-        
-        // Load interactions from static JSON as well
         setInteractionsData(originalInteractions);
-        
-        // Attempt to load UI content if available, but keep it empty by default
         setUiContent({});
-
-        // Background fetch to see if API works, but don't force it
-        fetch(`/api/ui?lang=${currentLang}`).then(r => r.json()).then(u => setUiContent(u)).catch(() => {});
         
       } catch (err) {
         console.error("Fetch error:", err);
-        setMushroomsData(t('mushrooms', { returnObjects: true }));
       } finally {
         setIsLoading(false);
       }
@@ -334,10 +331,20 @@ function App() {
 
   return (
     <div className={`app-container ${isAdmin ? 'is-admin' : ''}`}>
-      {/* Visual Editor CSS Override Placeholder */}
-      {uiContent?.customStyles && (
-        <style dangerouslySetInnerHTML={{__html: generateCustomCSS()}} />
-      )}
+      {/* RESTORATION FORCE: Original Background and Minimal Layout */}
+      <style dangerouslySetInnerHTML={{__html: `
+        body {
+          background-color: #060f0a !important;
+          background-image: 
+            radial-gradient(circle at 10% 20%, rgba(22, 163, 74, 0.12) 0%, transparent 40%),
+            radial-gradient(circle at 90% 80%, rgba(22, 163, 74, 0.08) 0%, transparent 40%),
+            linear-gradient(rgba(6, 15, 10, 0.9), rgba(6, 15, 10, 0.9)),
+            url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 25c-15 0-25 15-25 25 0 5 10 8 25 8s25-3 25-8c0-10-10-25-25-25zM36 58h8v12c0 3-8 3-8 0V58z' fill='%23ffffff' fill-opacity='0.12'/%3E%3C/svg%3E") !important;
+          background-size: auto, auto, auto, 120px !important;
+          background-attachment: fixed !important;
+        }
+        .app-container { margin: 0 !important; border: none !important; }
+      `}} />
 
       {isAdmin && !isVisualEditorOpen && (
         <div className="admin-status-bar">
