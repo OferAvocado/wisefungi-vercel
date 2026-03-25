@@ -1,6 +1,36 @@
 import { sql } from '@vercel/postgres';
 
 export default async function handler(req, res) {
+  if (req.query.restore === 'true' && req.query.secret === 'wise-fungi-secret') {
+    try {
+      console.log("Restoring original mushroom data and design...");
+      
+      // 1. Reset Global UI
+      await sql`DELETE FROM ui_translations WHERE lang = 'all' OR key IN ('globalTheme', 'customStyles');`;
+      
+      const originalMushrooms = [
+        { slug: 'reishi', img: '/assets/reishi.png', name: 'ריישי (Reishi)', tagline: 'Ganoderma lucidum - פטריית האלמוות' },
+        { slug: 'lions_mane', img: '/assets/lions_mane.png', name: "רעמת האריה (Lion's Mane)", tagline: 'Hericium erinaceus - מזון למוח' },
+        { slug: 'cordyceps', img: '/assets/cordyceps.png', name: 'קורדיספס (Cordyceps)', tagline: 'Cordyceps militaris - פטריית האנרגיה' },
+        { slug: 'chaga', img: '/assets/chaga.png', name: "צ'אגה (Chaga)", tagline: 'Inonotus obliquus - הזהב השחור' },
+        { slug: 'turkey_tail', img: '/assets/turkey_tail.png', name: 'זנב התרנגול (Turkey Tail)', tagline: 'Trametes versicolor - מגן המערכת' },
+        { slug: 'tremella', img: '/assets/tremella.png', name: 'טרמלה (Tremella)', tagline: 'Tremella fuciformis - פטריית היופי' }
+      ];
+
+      for (const mush of originalMushrooms) {
+        await sql`UPDATE fungi SET featured_image = ${mush.img} WHERE slug = ${mush.slug};`;
+        await sql`
+          UPDATE fungi_translations 
+          SET name = ${mush.name}, tagline = ${mush.tagline} 
+          WHERE fungi_id = (SELECT id FROM fungi WHERE slug = ${mush.slug}) AND language_code = 'he';
+        `;
+      }
+      return res.status(200).json({ success: true, message: 'Database content and images restored to original state.' });
+    } catch (e) {
+      return res.status(500).json({ error: 'Restoration failed', details: e.message });
+    }
+  }
+
   try {
     const enums = [
       `DO $$ BEGIN CREATE TYPE role_enum AS ENUM ('super_admin', 'editor', 'translator'); EXCEPTION WHEN duplicate_object THEN null; END $$;`,
