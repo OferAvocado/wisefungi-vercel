@@ -8,10 +8,9 @@ import path from 'path';
 // OR we'll embed the core restoration data here.
 
 export default async function handler(req, res) {
-  if (req.method !== 'POST') return res.status(405).end();
+  // Allow GET with secret for easier testing/restoration from browser
+  let secret = req.body?.secret || req.query?.secret;
   
-  // Basic security
-  const { secret } = req.body;
   if (secret !== 'wise-fungi-secret') return res.status(403).json({ error: 'Unauthorized' });
 
   try {
