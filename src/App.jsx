@@ -45,23 +45,19 @@ function App() {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const [funcRes, intRes, uiRes] = await Promise.all([
-          fetch(`/api/fungi?lang=${currentLang}`),
-          fetch(`/api/interactions?lang=${currentLang}`),
-          fetch(`/api/ui?lang=${currentLang}`)
-        ]);
+        // Force original state via static translations for now to guarantee restoration
+        const mData = t('mushrooms', { returnObjects: true });
+        setMushroomsData(mData);
         
-        if (funcRes.ok && intRes.ok) {
-          const mData = await funcRes.json();
-          const iData = await intRes.json();
-          const uData = await uiRes.json().catch(() => ({}));
-          setMushroomsData(mData);
-          setInteractionsData(iData);
-          setUiContent(uData || {});
-        } else {
-          // Fallback to static if API fails (e.g. not on Vercel yet)
-          setMushroomsData(t('mushrooms', { returnObjects: true }));
-        }
+        // Load interactions from static JSON as well
+        setInteractionsData(originalInteractions);
+        
+        // Attempt to load UI content if available, but keep it empty by default
+        setUiContent({});
+
+        // Background fetch to see if API works, but don't force it
+        fetch(`/api/ui?lang=${currentLang}`).then(r => r.json()).then(u => setUiContent(u)).catch(() => {});
+        
       } catch (err) {
         console.error("Fetch error:", err);
         setMushroomsData(t('mushrooms', { returnObjects: true }));
