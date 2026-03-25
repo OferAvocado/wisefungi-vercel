@@ -6,6 +6,8 @@ import { CheckCircle, XCircle, AlertTriangle, HelpCircle, Search, ChevronDown, C
 import { useEffect, useState, useRef } from 'react';
 import translationHE from './locales/he.json';
 import translationEN from './locales/en.json';
+import translationES from './locales/es.json';
+import translationRU from './locales/ru.json';
 import searchDataJson from './assets/searchData.json';
 import originalInteractions from './assets/original_interactions.json';
 import RichTextEditor from './components/RichTextEditor';
@@ -49,12 +51,14 @@ function App() {
         setIsLoading(true);
         // FORCE 100% ORIGINAL STATE FROM LOCAL JSON FILES
         // This bypasses the DB and any caching issues to return the site to its intended state
-        const localData = currentLang === 'en' ? translationEN : translationHE;
+        const dataMap = { 'he': translationHE, 'en': translationEN, 'es': translationES, 'ru': translationRU };
+        const localData = dataMap[currentLang] || translationHE;
         const mData = localData.mushrooms;
         
         setMushroomsData(mData);
         setInteractionsData(originalInteractions);
         setUiContent({});
+        setIsAdmin(false); // Force logout for everyone for safety during restoration
         
       } catch (err) {
         console.error("Fetch error:", err);
