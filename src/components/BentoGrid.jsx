@@ -17,13 +17,13 @@ export default function BentoGrid({ mushrooms, onSelect, isGlobalEditing, setMus
     if (!window.confirm('Are you sure you want to delete this mushroom card permanently from the site?')) return;
     
     try {
-      const response = await fetch('/api/admin/delete_fungi', {
+      const response = await fetch('/api/fungi', {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
           'Authorization': localStorage.getItem('adminToken')
         },
-        body: JSON.stringify({ slug: id })
+        body: JSON.stringify({ action: 'delete', slug: id })
       });
       
       const res = await response.json();
@@ -185,6 +185,27 @@ export default function BentoGrid({ mushrooms, onSelect, isGlobalEditing, setMus
               <Plus size={32} color="#16a34a" />
             </div>
             <span style={{ color: '#16a34a', fontWeight: 'bold' }}>Add New Mushroom</span>
+          </div>
+        )}
+        {isGlobalEditing && (
+          <div style={{ gridColumn: '1 / -1', display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
+            <button 
+              onClick={async () => {
+                if (!window.confirm('This will perform a database repair on foreign key constraints. Continue?')) return;
+                try {
+                  const resp = await fetch('/api/fungi', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('adminToken') },
+                    body: JSON.stringify({ action: 'repair_cascades' })
+                  });
+                  const res = await resp.json();
+                  alert(res.message || 'Repair finished');
+                } catch(e) { alert('Repair failed: ' + e.message); }
+              }}
+              style={{ padding: '0.8rem 1.5rem', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.6)', borderRadius: '12px', fontSize: '0.9rem', cursor: 'pointer' }}
+            >
+              ⚠️ Repair Database Constraints (Run if Delete fails)
+            </button>
           </div>
         )}
       </div>

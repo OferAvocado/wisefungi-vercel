@@ -10,6 +10,40 @@ export default async function handler(req, res) {
     return res.status(200).end();
   }
 
+  // --- SPECIAL ACTION HANDLER (Bypass routing issues) ---
+  if (req.method === 'POST') {
+    const auth = req.headers.authorization;
+    if (auth !== 'wise-fungi-secret') return res.status(401).json({ error: 'Unauthorized' });
+
+    const { action, slug } = req.body;
+
+    if (action === 'delete') {
+      try {
+        await sql`DELETE FROM fungi WHERE slug = ${slug};`;
+        return res.status(200).json({ success: true, message: 'Fungi deleted successfully' });
+      } catch (err) {
+        return res.status(500).json({ error: err.message });
+      }
+    }
+    
+    if (action === 'repair_cascades') {
+      try {
+        // Run the cascade repair logic here
+        const repairTable = async (tableName, fkColumn, targetTable) => {
+          const { rows } = await sql.query(`SELECT constraint_name FROM information_schema.key_column_usage WHERE table_name = '${tableName}' AND column_name = '${fkColumn}';`);
+          if (rows.length > 0) { await sql.query(`ALTER TABLE ${tableName} DROP CONSTRAINT IF EXISTS "${rows[0].constraint_name}";`); }
+          await sql.query(`ALTER TABLE ${tableName} ADD CONSTRAINT "${tableName}_${fkColumn}_fkey" FOREIGN KEY ("${fkColumn}") REFERENCES ${targetTable}(id) ON DELETE CASCADE;`);
+        };
+        await repairTable('fungi_translations', 'fungi_id', 'fungi');
+        await repairTable('fungi_benefits', 'fungi_id', 'fungi');
+        await repairTable('fungi_conditions', 'fungi_id', 'fungi');
+        await repairTable('fungi_contraindications', 'fungi_id', 'fungi');
+        await repairTable('fungi_doctor_consult_flags', 'fungi_id', 'fungi');
+        return res.status(200).json({ success: true, message: 'Cascades repaired successfully.' });
+      } catch (err) { return res.status(500).json({ error: err.message }); }
+    }
+  }
+
   // Expect standard ISO lang code or fallback to 'he'
   const lang = req.query.lang || 'he';
   const restoreSecret = req.query.restoreSecret;
