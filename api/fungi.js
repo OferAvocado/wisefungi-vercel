@@ -1,36 +1,19 @@
 import { sql } from '@vercel/postgres';
 
 export default async function handler(req, res) {
-  // Disable caching for ALL requests to ensure admin actions are reflected immediately
-  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-  res.setHeader('Pragma', 'no-cache');
-  res.setHeader('Expires', '0');
-  res.setHeader('X-Debug-Handler-Method', req.method);
+  // Use manual URL parsing for maximum compatibility across environments
+  const fullUrl = new URL(req.url, `http://${req.headers.host}`);
+  const action = fullUrl.searchParams.get('action') || (req.body ? req.body.action : null);
+  const slug = fullUrl.searchParams.get('slug') || (req.body ? req.body.slug : null);
+  const secret = fullUrl.searchParams.get('secret') || req.headers.authorization;
 
-  // Allow cross-origin requests for testing
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
-
-  // --- GET PARAM ACTIONS (Fallback for unreliable POST/Body) ---
-  const action = req.query.action || (req.body ? req.body.action : null);
-  const slug = req.query.slug || (req.body ? req.body.slug : null);
-  const auth = req.headers.authorization || req.query.secret;
-
-  if (action && auth === 'wise-fungi-secret') {
+  if (action && secret === 'wise-fungi-secret') {
     if (action === 'delete' && slug) {
       try {
         await sql`DELETE FROM fungi WHERE slug = ${slug};`;
         return res.status(200).json({ success: true, message: `Fungi ${slug} deleted successfully` });
-      } catch (err) {
-        return res.status(500).json({ error: err.message });
-      }
+      } catch (err) { return res.status(500).json({ error: err.message }); }
     }
-    
     if (action === 'repair_cascades') {
       try {
         const repairTable = async (tableName, fkColumn, targetTable) => {
@@ -43,9 +26,21 @@ export default async function handler(req, res) {
         await repairTable('fungi_conditions', 'fungi_id', 'fungi');
         await repairTable('fungi_contraindications', 'fungi_id', 'fungi');
         await repairTable('fungi_doctor_consult_flags', 'fungi_id', 'fungi');
-        return res.status(200).json({ success: true, message: 'Cascades repaired successfully.' });
+        return res.status(200).json({ success: true, message: 'Cascades repaired' });
       } catch (err) { return res.status(500).json({ error: err.message }); }
     }
+  }
+
+  // --- STANDARD SETUP (Only reach here if no action taken) ---
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
   }
 
   // Expect standard ISO lang code or fallback to 'he'
