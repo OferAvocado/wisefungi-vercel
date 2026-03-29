@@ -3,24 +3,27 @@ import { sql } from '@vercel/postgres';
 export default async function handler(req, res) {
   // Allow cross-origin requests for testing
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS'); // Added POST
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
 
-  // --- SPECIAL ACTION HANDLER (Bypass routing issues) ---
+  // --- CRITICAL ACTION HANDLER ---
   if (req.method === 'POST') {
+    res.setHeader('X-Debug-Action', 'hit');
     const auth = req.headers.authorization;
-    if (auth !== 'wise-fungi-secret') return res.status(401).json({ error: 'Unauthorized' });
+    if (auth !== 'wise-fungi-secret') {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
 
     const { action, slug } = req.body;
-
+    
     if (action === 'delete') {
       try {
         await sql`DELETE FROM fungi WHERE slug = ${slug};`;
-        return res.status(200).json({ success: true, message: 'Fungi deleted successfully' });
+        return res.status(200).json({ success: true, message: `Fungi ${slug} deleted successfully` });
       } catch (err) {
         return res.status(500).json({ error: err.message });
       }
@@ -28,7 +31,6 @@ export default async function handler(req, res) {
     
     if (action === 'repair_cascades') {
       try {
-        // Run the cascade repair logic here
         const repairTable = async (tableName, fkColumn, targetTable) => {
           const { rows } = await sql.query(`SELECT constraint_name FROM information_schema.key_column_usage WHERE table_name = '${tableName}' AND column_name = '${fkColumn}';`);
           if (rows.length > 0) { await sql.query(`ALTER TABLE ${tableName} DROP CONSTRAINT IF EXISTS "${rows[0].constraint_name}";`); }
@@ -42,6 +44,8 @@ export default async function handler(req, res) {
         return res.status(200).json({ success: true, message: 'Cascades repaired successfully.' });
       } catch (err) { return res.status(500).json({ error: err.message }); }
     }
+    
+    return res.status(400).json({ error: 'Invalid action' });
   }
 
   // Expect standard ISO lang code or fallback to 'he'
