@@ -16,28 +16,13 @@ export default async function handler(req, res) {
     return res.status(200).end();
   }
 
-  // --- MANUAL BODY PARSER ---
-  let body = req.body;
-  if (req.method === 'POST' && (!body || typeof body === 'string')) {
-    try {
-      const buffers = [];
-      for await (const chunk of req) { buffers.push(chunk); }
-      const data = Buffer.concat(buffers).toString();
-      if (data) body = JSON.parse(data);
-    } catch (e) { console.error('Body parse err:', e); }
-  }
+  // --- GET PARAM ACTIONS (Fallback for unreliable POST/Body) ---
+  const action = req.query.action || (req.body ? req.body.action : null);
+  const slug = req.query.slug || (req.body ? req.body.slug : null);
+  const auth = req.headers.authorization || req.query.secret;
 
-  // --- CRITICAL ACTION HANDLER ---
-  if (req.method === 'POST') {
-    const auth = req.headers.authorization;
-    if (auth !== 'wise-fungi-secret') {
-      return res.status(401).json({ error: 'Unauthorized', debug: 'Auth failed' });
-    }
-
-    const { action, slug } = body || {};
-    res.setHeader('X-Debug-Action-Body', action || 'none');
-    
-    if (action === 'delete') {
+  if (action && auth === 'wise-fungi-secret') {
+    if (action === 'delete' && slug) {
       try {
         await sql`DELETE FROM fungi WHERE slug = ${slug};`;
         return res.status(200).json({ success: true, message: `Fungi ${slug} deleted successfully` });
@@ -61,8 +46,6 @@ export default async function handler(req, res) {
         return res.status(200).json({ success: true, message: 'Cascades repaired successfully.' });
       } catch (err) { return res.status(500).json({ error: err.message }); }
     }
-    
-    return res.status(400).json({ error: 'Invalid action' });
   }
 
   // Expect standard ISO lang code or fallback to 'he'
