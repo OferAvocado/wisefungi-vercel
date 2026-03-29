@@ -16,15 +16,26 @@ export default async function handler(req, res) {
     return res.status(200).end();
   }
 
+  // --- MANUAL BODY PARSER ---
+  let body = req.body;
+  if (req.method === 'POST' && (!body || typeof body === 'string')) {
+    try {
+      const buffers = [];
+      for await (const chunk of req) { buffers.push(chunk); }
+      const data = Buffer.concat(buffers).toString();
+      if (data) body = JSON.parse(data);
+    } catch (e) { console.error('Body parse err:', e); }
+  }
+
   // --- CRITICAL ACTION HANDLER ---
   if (req.method === 'POST') {
-    res.setHeader('X-Debug-Action', 'hit');
     const auth = req.headers.authorization;
     if (auth !== 'wise-fungi-secret') {
-      return res.status(401).json({ error: 'Unauthorized' });
+      return res.status(401).json({ error: 'Unauthorized', debug: 'Auth failed' });
     }
 
-    const { action, slug } = req.body;
+    const { action, slug } = body || {};
+    res.setHeader('X-Debug-Action-Body', action || 'none');
     
     if (action === 'delete') {
       try {
