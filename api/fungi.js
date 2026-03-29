@@ -1,9 +1,15 @@
 import { sql } from '@vercel/postgres';
 
 export default async function handler(req, res) {
+  // Disable caching for ALL requests to ensure admin actions are reflected immediately
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
+  res.setHeader('X-Debug-Handler-Method', req.method);
+
   // Allow cross-origin requests for testing
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS'); // Added POST
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
   if (req.method === 'OPTIONS') {
