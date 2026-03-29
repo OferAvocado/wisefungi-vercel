@@ -894,3 +894,52 @@
   justify-content: center;
 }
 
+
+/* Admin In-Place Editing Styles */
+.admin-rich-editor {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 4px 8px;
+  position: relative;
+  border: 1px dashed rgba(22, 163, 74, 0.3);
+  cursor: text;
+}
+
+.admin-rich-editor:focus {
+  outline: 2px solid #16a34a !important;
+  background: rgba(22, 163, 74, 0.1) !important;
+  box-shadow: 0 0 15px rgba(22, 163, 74, 0.3);
+  border-style: solid;
+}
+
+.admin-rich-editor b, .admin-rich-editor strong {
+  font-weight: 900 !important;
+  color: #fff !important;
+}
+
+.admin-rich-editor u {
+  text-decoration: underline !important;
+  text-decoration-color: #16a34a !important;
+  text-underline-offset: 4px;
+}
+
+/* Ensure the grid displays the HTML correctly */
+.card-title b, .card-title strong,
+.card-subtitle b, .card-subtitle strong {
+  font-weight: 800;
+}
+
+.card-title u, .card-subtitle u {
+  text-decoration: underline;
+}
+
+.mini-edit-btn:hover {
+  background: #16a34a !important;
+  transform: scale(1.1);
+  border-color: #fff !important;
+}
+
+.add-new-card:hover {
+  background: rgba(22, 163, 74, 0.1) !important;
+  border-color: #16a34a !important;
+  transform: translateY(-10px) scale(1.02);
+}

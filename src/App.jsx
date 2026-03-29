@@ -49,19 +49,33 @@ function App() {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        // FORCE 100% ORIGINAL STATE FROM LOCAL JSON FILES
-        // This bypasses the DB and any caching issues to return the site to its intended state
-        const dataMap = { 'he': translationHE, 'en': translationEN, 'es': translationES, 'ru': translationRU };
-        const localData = dataMap[currentLang] || translationHE;
-        const mData = localData.mushrooms;
         
-        setMushroomsData(mData);
+        // Fetch from API
+        const response = await fetch('/api/fungi');
+        const dbData = await response.json();
+        
+        // Fetch UI content
+        const uiResp = await fetch(`/api/ui?lang=${currentLang}`);
+        const uiData = await uiResp.json();
+        
+        if (Object.keys(dbData).length > 0) {
+          setMushroomsData(dbData);
+        } else {
+          // Fallback to local if DB is empty
+          const dataMap = { 'he': translationHE, 'en': translationEN, 'es': translationES, 'ru': translationRU };
+          const localData = dataMap[currentLang] || translationHE;
+          setMushroomsData(localData.mushrooms);
+        }
+        
         setInteractionsData(originalInteractions);
-        setUiContent({});
-        setIsAdmin(false); // Force logout for everyone for safety during restoration
+        setUiContent(uiData || {});
         
       } catch (err) {
-        console.error("Fetch error:", err);
+        console.error("Fetch error, falling back to local JSON:", err);
+        const dataMap = { 'he': translationHE, 'en': translationEN, 'es': translationES, 'ru': translationRU };
+        const localData = dataMap[currentLang] || translationHE;
+        setMushroomsData(localData.mushrooms);
+        setInteractionsData(originalInteractions);
       } finally {
         setIsLoading(false);
       }
