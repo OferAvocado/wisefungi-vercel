@@ -6,7 +6,7 @@
       "destination": "/api/$1"
     },
     {
-      "source": "/((?!assets/|heartbeat.html).*)",
+      "source": "/((?!assets/|heartbeat.html|api/).*)",
       "destination": "/index.html"
     }
   ]
