@@ -119,7 +119,7 @@ function App() {
 
   const handleSave = async () => {
     try {
-      const resp = await fetch('/api/admin/update_fungi', {
+      const resp = await fetch('/api/update_fungi', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('adminToken') },
         body: JSON.stringify({ slug: selectedMushroom.id, lang: currentLang, data: { ...editData, name: selectedMushroom.name, subtitle: selectedMushroom.subtitle } })
@@ -148,7 +148,7 @@ function App() {
   const handleGlobalSave = async () => {
     try {
       // 1. Save UI Content
-      const uiResp = await fetch('/api/admin/update_ui', {
+      const uiResp = await fetch('/api/update_ui', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('adminToken') },
         body: JSON.stringify({ lang: currentLang, data: uiContent })
@@ -156,7 +156,7 @@ function App() {
 
       // 2. Save Fungi tags/titles that were modified on the grid
       const promises = allMushrooms.map(m => 
-        fetch('/api/admin/update_fungi', {
+        fetch('/api/update_fungi', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('adminToken') },
           body: JSON.stringify({ slug: m.id, lang: currentLang, data: { ...m.detailed_data, name: m.name, subtitle: m.subtitle, keywords: m.keywords } })
