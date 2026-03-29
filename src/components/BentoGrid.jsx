@@ -17,7 +17,7 @@ export default function BentoGrid({ mushrooms, onSelect, isGlobalEditing, setMus
     if (!window.confirm('Are you sure you want to delete this mushroom card permanently from the site?')) return;
     
     try {
-      const response = await fetch('/api/m-manager', {
+      const response = await fetch('/api/m_manager', {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
@@ -193,7 +193,7 @@ export default function BentoGrid({ mushrooms, onSelect, isGlobalEditing, setMus
               onClick={async () => {
                 if (!window.confirm('This will perform a database repair on foreign key constraints. Continue?')) return;
                 try {
-                  const resp = await fetch('/api/m-manager', {
+                  const resp = await fetch('/api/m_manager', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('adminToken') },
                     body: JSON.stringify({ action: 'repair' })
