@@ -119,10 +119,10 @@ function App() {
 
   const handleSave = async () => {
     try {
-      const resp = await fetch('/api/update_fungi', {
+      const resp = await fetch('/api/fungi', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('adminToken') },
-        body: JSON.stringify({ slug: selectedMushroom.id, lang: currentLang, data: { ...editData, name: selectedMushroom.name, subtitle: selectedMushroom.subtitle } })
+        body: JSON.stringify({ action: 'update', slug: selectedMushroom.id, lang: currentLang, data: { ...editData, name: selectedMushroom.name, subtitle: selectedMushroom.subtitle } })
       });
       if (resp.ok) {
         setMushroomsData(prev => ({ 
@@ -148,18 +148,18 @@ function App() {
   const handleGlobalSave = async () => {
     try {
       // 1. Save UI Content
-      const uiResp = await fetch('/api/update_ui', {
+      const uiResp = await fetch('/api/fungi', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('adminToken') },
-        body: JSON.stringify({ lang: currentLang, data: uiContent })
+        body: JSON.stringify({ action: 'update_ui', lang: currentLang, data: uiContent })
       });
 
       // 2. Save Fungi tags/titles that were modified on the grid
       const promises = allMushrooms.map(m => 
-        fetch('/api/update_fungi', {
+        fetch('/api/fungi', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('adminToken') },
-          body: JSON.stringify({ slug: m.id, lang: currentLang, data: { ...m.detailed_data, name: m.name, subtitle: m.subtitle, keywords: m.keywords } })
+          body: JSON.stringify({ action: 'update', slug: m.id, lang: currentLang, data: { ...m.detailed_data, name: m.name, subtitle: m.subtitle, keywords: m.keywords } })
         })
       );
 

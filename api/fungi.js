@@ -8,6 +8,40 @@ export default async function handler(req, res) {
   const secret = fullUrl.searchParams.get('secret') || req.headers.authorization;
 
   if (action && secret === 'wise-fungi-secret') {
+    if (action === 'update' && slug) {
+      try {
+        const { lang, data } = req.body;
+        await sql`
+          UPDATE fungi_translations 
+          SET 
+            name = ${data.name}, tagline = ${data.subtitle}, about_this_mushroom = ${data.about},
+            how_to_use = ${data.usage}, recommended_dosage = ${data.dosage},
+            search_keywords = ${data.keywords ? JSON.stringify(data.keywords) : null}, updated_at = CURRENT_TIMESTAMP
+          WHERE fungi_id = (SELECT id FROM fungi WHERE slug = ${slug}) AND language_code = ${lang};
+        `;
+        if (data.interactions) {
+          const intStr = JSON.stringify(data.interactions);
+          await sql`
+            INSERT INTO ui_translations (key, lang, value) VALUES (${'int_' + slug}, 'all', ${intStr})
+            ON CONFLICT (key, lang) DO UPDATE SET value = EXCLUDED.value;
+          `;
+        }
+        return res.status(200).json({ success: true, message: 'Updated successfully' });
+      } catch (err) { return res.status(500).json({ error: err.message }); }
+    }
+    if (action === 'update_ui') {
+      try {
+        const { lang, data } = req.body;
+        for (const [key, value] of Object.entries(data)) {
+          let strVal = typeof value === 'object' ? JSON.stringify(value) : String(value);
+          await sql`
+            INSERT INTO ui_translations (key, lang, value) VALUES (${key}, ${lang}, ${strVal})
+            ON CONFLICT (key, lang) DO UPDATE SET value = EXCLUDED.value;
+          `;
+        }
+        return res.status(200).json({ success: true });
+      } catch (err) { return res.status(500).json({ error: err.message }); }
+    }
     if (action === 'delete' && slug) {
       try {
         await sql`DELETE FROM fungi WHERE slug = ${slug};`;
