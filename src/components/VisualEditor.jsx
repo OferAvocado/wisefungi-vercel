@@ -214,7 +214,7 @@ const leftToolbarStyle = { position: 'fixed', top: '48px', left: 0, bottom: 0, w
 const rightPanelStyle = { position: 'fixed', top: '48px', right: 0, bottom: 0, width: '280px', background: '#1e1e1e', borderLeft: '1px solid #333', zIndex: 999999, overflowY: 'auto' };
 
 const toolBtn = { width: '44px', height: '44px', background: 'transparent', border: 'none', color: '#ccc', borderRadius: '6px', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' };
-const actionBtn = { background: '#007acc', color: '#white', border: 'none', padding: '0.4rem 0.8rem', borderRadius: '4px', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: '0.4rem', cursor: 'pointer', color: 'white', fontWeight: 'bold' };
+const actionBtn = { background: '#007acc', border: 'none', padding: '0.4rem 0.8rem', borderRadius: '4px', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: '0.4rem', cursor: 'pointer', color: 'white', fontWeight: 'bold' };
 const deviceBtn = { background: 'transparent', border: 'none', color: '#888', padding: '0.2rem', cursor: 'pointer', borderRadius: '2px' };
 const activeDeviceBtn = { ...deviceBtn, color: '#fff', background: '#444' };
 const toolbarBtn = { background: 'transparent', border: 'none', color: '#ccc', padding: '0.3rem', cursor: 'pointer', borderRadius: '4px' };
