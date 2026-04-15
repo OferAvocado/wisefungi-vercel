@@ -179,6 +179,7 @@ export default async function handler(req, res) {
     let mushroomsObj = {};
     rows.forEach(row => {
       mushroomsObj[row.slug] = {
+        id: row.slug,
         name: row.name,
         subtitle: row.tagline || row.scientific_name,
         image: row.featured_image,
