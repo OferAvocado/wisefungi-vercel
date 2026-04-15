@@ -134,7 +134,7 @@ export default async function handler(req, res) {
         COALESCE(
           ft.conditions_override,
           (
-            SELECT json_agg(ct.label) 
+            SELECT json_agg(ct.label)::jsonb 
             FROM fungi_conditions fc
             JOIN conditions c ON fc.condition_id = c.id
             JOIN condition_translations ct ON c.id = ct.condition_id AND ct.language_code = ${lang}
@@ -145,7 +145,7 @@ export default async function handler(req, res) {
         COALESCE(
           ft.benefits_override,
           (
-            SELECT json_agg(bt.label) 
+            SELECT json_agg(bt.label)::jsonb 
             FROM fungi_benefits fb
             JOIN benefits b ON fb.benefit_id = b.id
             JOIN benefit_translations bt ON b.id = bt.benefit_id AND bt.language_code = ${lang}
