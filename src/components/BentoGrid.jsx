@@ -87,7 +87,7 @@ export default function BentoGrid({ mushrooms, onSelect, isGlobalEditing, setMus
           >
             {isGlobalEditing && (
               <button 
-                onClick={(e) => handleDelete(e, m.id)}
+                onMouseDown={(e) => { e.preventDefault(); e.stopPropagation(); handleDelete(e, m.id); }}
                 style={{ position: 'absolute', top: '-10px', left: '-10px', background: '#ef4444', color: 'white', border: 'none', borderRadius: '50%', width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', zIndex: 10, boxShadow: '0 4px 12px rgba(0,0,0,0.5)' }}
                 title="Delete Mushroom Permanently"
               >
