@@ -16,7 +16,10 @@ export default async function handler(req, res) {
           SET 
             name = ${data.name}, tagline = ${data.subtitle}, about_this_mushroom = ${data.about},
             how_to_use = ${data.usage}, recommended_dosage = ${data.dosage},
-            search_keywords = ${data.keywords || null}, updated_at = CURRENT_TIMESTAMP
+            search_keywords = ${data.keywords || null}, 
+            benefits_override = ${data.benefits ? JSON.stringify(data.benefits) : null},
+            conditions_override = ${data.conditions ? JSON.stringify(data.conditions) : null},
+            updated_at = CURRENT_TIMESTAMP
           WHERE fungi_id = (SELECT id FROM fungi WHERE slug = ${slug}) AND language_code = ${lang};
         `;
         if (data.image) {
@@ -128,20 +131,26 @@ export default async function handler(req, res) {
         ft.search_keywords,
         ft.search_aliases,
         
-        (
-          SELECT json_agg(ct.label) 
-          FROM fungi_conditions fc
-          JOIN conditions c ON fc.condition_id = c.id
-          JOIN condition_translations ct ON c.id = ct.condition_id AND ct.language_code = ${lang}
-          WHERE fc.fungi_id = f.id AND c.status = 'active'
+        COALESCE(
+          ft.conditions_override,
+          (
+            SELECT json_agg(ct.label) 
+            FROM fungi_conditions fc
+            JOIN conditions c ON fc.condition_id = c.id
+            JOIN condition_translations ct ON c.id = ct.condition_id AND ct.language_code = ${lang}
+            WHERE fc.fungi_id = f.id AND c.status = 'active'
+          )
         ) AS conditions,
         
-        (
-          SELECT json_agg(bt.label) 
-          FROM fungi_benefits fb
-          JOIN benefits b ON fb.benefit_id = b.id
-          JOIN benefit_translations bt ON b.id = bt.benefit_id AND bt.language_code = ${lang}
-          WHERE fb.fungi_id = f.id AND b.status = 'active'
+        COALESCE(
+          ft.benefits_override,
+          (
+            SELECT json_agg(bt.label) 
+            FROM fungi_benefits fb
+            JOIN benefits b ON fb.benefit_id = b.id
+            JOIN benefit_translations bt ON b.id = bt.benefit_id AND bt.language_code = ${lang}
+            WHERE fb.fungi_id = f.id AND b.status = 'active'
+          )
         ) AS benefits,
 
         (
