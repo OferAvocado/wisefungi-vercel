@@ -26,19 +26,19 @@ export default function RichTextEditor({ value, onChange }) {
       {/* Toolbar */}
       <div style={{ display: 'flex', gap: '0.5rem', padding: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', background: 'rgba(0,0,0,0.5)', flexWrap: 'wrap' }}>
         
-        <button type="button" onClick={() => exec('bold')} style={toolbarBtn} title="Bold">
+        <button type="button" onMouseDown={(e) => { e.preventDefault(); exec('bold'); }} style={toolbarBtn} title="Bold">
           <Bold size={16} />
         </button>
-        <button type="button" onClick={() => exec('underline')} style={toolbarBtn} title="Underline">
+        <button type="button" onMouseDown={(e) => { e.preventDefault(); exec('underline'); }} style={toolbarBtn} title="Underline">
           <Underline size={16} />
         </button>
         
         <div style={{ width: '1px', background: 'rgba(255,255,255,0.2)', margin: '0 4px' }}></div>
         
-        <button type="button" onClick={() => exec('fontSize', '4')} style={toolbarBtn} title="Increase Font Size">
+        <button type="button" onMouseDown={(e) => { e.preventDefault(); exec('fontSize', '4'); }} style={toolbarBtn} title="Increase Font Size">
           A+
         </button>
-        <button type="button" onClick={() => exec('fontSize', '2')} style={toolbarBtn} title="Decrease Font Size">
+        <button type="button" onMouseDown={(e) => { e.preventDefault(); exec('fontSize', '2'); }} style={toolbarBtn} title="Decrease Font Size">
           A-
         </button>
 

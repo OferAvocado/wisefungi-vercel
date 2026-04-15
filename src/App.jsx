@@ -122,7 +122,7 @@ function App() {
       const resp = await fetch('/api/fungi', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('adminToken') },
-        body: JSON.stringify({ action: 'update', slug: selectedMushroom.id, lang: currentLang, data: { ...editData, name: selectedMushroom.name, subtitle: selectedMushroom.subtitle } })
+        body: JSON.stringify({ action: 'update', slug: selectedMushroom.id, lang: currentLang, data: { ...editData, name: selectedMushroom.name, subtitle: selectedMushroom.subtitle, image: selectedMushroom.image } })
       });
       if (resp.ok) {
         setMushroomsData(prev => ({ 
@@ -159,7 +159,7 @@ function App() {
         fetch('/api/fungi', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('adminToken') },
-          body: JSON.stringify({ action: 'update', slug: m.id, lang: currentLang, data: { ...m.detailed_data, name: m.name, subtitle: m.subtitle, keywords: m.keywords } })
+          body: JSON.stringify({ action: 'update', slug: m.id, lang: currentLang, data: { ...m.detailed_data, name: m.name, subtitle: m.subtitle, keywords: m.keywords, image: m.image } })
         })
       );
 

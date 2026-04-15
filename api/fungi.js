@@ -19,6 +19,10 @@ export default async function handler(req, res) {
             search_keywords = ${data.keywords || null}, updated_at = CURRENT_TIMESTAMP
           WHERE fungi_id = (SELECT id FROM fungi WHERE slug = ${slug}) AND language_code = ${lang};
         `;
+        if (data.image) {
+          await sql`UPDATE fungi SET featured_image = ${data.image} WHERE slug = ${slug}`;
+        }
+
         if (data.interactions) {
           const intStr = JSON.stringify(data.interactions);
           await sql`
@@ -60,6 +64,7 @@ export default async function handler(req, res) {
         await repairTable('fungi_conditions', 'fungi_id', 'fungi');
         await repairTable('fungi_contraindications', 'fungi_id', 'fungi');
         await repairTable('fungi_doctor_consult_flags', 'fungi_id', 'fungi');
+        await repairTable('fungi_interactions', 'fungi_id', 'fungi');
         return res.status(200).json({ success: true, message: 'Cascades repaired' });
       } catch (err) { return res.status(500).json({ error: err.message }); }
     }
