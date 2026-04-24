@@ -529,8 +529,8 @@ function App() {
                   </div>
 
                   {/* Benefits Section */}
-                  <div className="detail-section" style={{ background: 'rgba(255,255,255,0.05)', padding: '1.5rem', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.1)' }}>
-                    <span className="detail-label" style={{ color: 'var(--mush-text)' }}>{t('labels.benefits')}</span>
+                  <div className="detail-section">
+                    <span className="detail-label">{t('labels.benefits')}</span>
                     {isEditing ? (
                       <div style={{ display: 'grid', gap: '0.8rem' }}>
                         {(editData?.benefits || []).map((b, i) => (
@@ -603,8 +603,8 @@ function App() {
 
                   {/* Search Keywords Section (Admin Only - Hidden from public) */}
                   {isAdmin && (
-                    <div className="detail-section" style={{ background: 'rgba(59, 130, 246, 0.15)', padding: '1.5rem', borderRadius: '16px', border: '1px solid rgba(59, 130, 246, 0.3)' }}>
-                      <span className="detail-label" style={{ color: '#60A5FA' }}>מילות חיפוש נסתרות (Search Keywords)</span>
+                    <div className="detail-section">
+                      <span className="detail-label">מילות חיפוש נסתרות (Search Keywords)</span>
                       {isEditing ? (
                         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                           {(editData?.keywords || []).map((k, i) => (
@@ -631,7 +631,7 @@ function App() {
                       ) : (
                         <div className="tag-container">
                           {(editData?.keywords || mData.keywords || selectedMushroom.keywords).map((k, i) => (
-                            <span key={i} className="condition-tag" style={{ background: "rgba(59,130,246,0.2)", borderColor: "rgba(59,130,246,0.4)", color: "white" }}>{k}</span>
+                            <span key={i} className="condition-tag">{k}</span>
                           ))}
                           {(!editData?.keywords || editData.keywords.length === 0) && (
                             <span style={{color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem'}}>אין מילות חיפוש מקושרות לפטריה זו.</span>
@@ -643,7 +643,7 @@ function App() {
 
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
                     {/* Usage & Dosage */}
-                    <div className="detail-section" style={{ background: 'rgba(255,255,255,0.03)', padding: '1.5rem', borderRadius: '16px' }}>
+                    <div className="detail-section">
                       <span className="detail-label">{t('labels.how_to_use')}</span>
                       {isEditing ? (
                         <RichTextEditor 
@@ -666,8 +666,8 @@ function App() {
                     </div>
 
                     {/* Doctor Consultation */}
-                    <div className="detail-section" style={{ background: 'rgba(224, 194, 59, 0.15)', border: '1px solid rgba(224, 194, 59, 0.3)', padding: '1.5rem', borderRadius: '16px' }}>
-                      <span className="detail-label" style={{ color: '#E0C23B' }}>{t('labels.doctor_consultation')}</span>
+                    <div className="detail-section">
+                      <span className="detail-label">{t('labels.doctor_consultation')}</span>
                       <div style={{ color: 'rgba(255,255,255,0.9)', fontSize: '1.05rem', display: 'flex', gap: '0.8rem', alignItems: 'flex-start' }}>
                         {renderDynamicIcon(theme.doctorIconShape, { size: 20, color: theme.doctorIconColor, style: { flexShrink: 0, marginTop: '4px' } })}
                         <span>{Array.isArray(mData.doctor_consultation) ? mData.doctor_consultation.join(' ') : mData.doctor_consultation}</span>
@@ -676,8 +676,8 @@ function App() {
                   </div>
 
                   {/* Contraindications */}
-                  <div className="detail-section" style={{ background: 'rgba(229, 103, 103, 0.15)', border: '1px solid rgba(229, 103, 103, 0.3)', padding: '1.5rem', borderRadius: '16px' }}>
-                    <span className="detail-label" style={{ color: '#E56767' }}>{t('labels.contraindications')}</span>
+                  <div className="detail-section">
+                    <span className="detail-label">{t('labels.contraindications')}</span>
                     <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: '0.8rem' }}>
                       {mData.contraindications.map((ci, i) => (
                         <li key={i} style={{ display: 'flex', gap: '0.8rem', alignItems: 'flex-start' }}>

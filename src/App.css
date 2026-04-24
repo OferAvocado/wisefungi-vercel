@@ -560,6 +560,47 @@
   overflow-y: auto;
   flex: 1;
 }
+
+.detail-section {
+  background: #1a1a1a !important; /* Non-transparent dark background */
+  border: 3px solid #ffffff !important; /* Thick white border */
+  padding: 2rem;
+  border-radius: 20px;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  position: relative;
+}
+
+.detail-label {
+  display: block;
+  font-weight: 900;
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  color: #ffffff !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Force all text in detail sections to be white */
+.detail-section, 
+.detail-section *, 
+.modal-description, 
+.modal-description *,
+.benefit-list span,
+.tag-container span,
+.condition-tag {
+  color: #ffffff !important;
+}
+
+.condition-tag {
+  background: rgba(255,255,255,0.1) !important;
+  border: 1px solid rgba(255,255,255,0.5) !important;
+}
+
+.benefit-list li {
+  margin-bottom: 1rem;
+}
+
 .modal-tabs {
   display: flex;
   gap: 2rem;
