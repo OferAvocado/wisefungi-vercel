@@ -68,12 +68,6 @@ export default function VisualEditor({
         </button>
         <div style={{ height: '1px', background: '#333', margin: '0.5rem 0' }} />
         <button style={toolBtn} title="Move Mode"><Move size={20} /></button>
-        {selectedId && (
-          <>
-            <button style={toolBtn} title="Duplicate Selected"><Copy size={20} /></button>
-            <button style={{...toolBtn, color: '#ff4444'}} title="Delete Selected"><Trash2 size={20} /></button>
-          </>
-        )}
       </div>
 
       {/* Right Properties Panel */}

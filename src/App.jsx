@@ -392,7 +392,7 @@ function App() {
             className="admin-logout-btn" 
             style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', background: '#007acc', color: 'white', fontWeight: 'bold', border: '1px solid #005f9e' }}
           >
-            <Layout size={14} /> Launch Visual Editor (Pro)
+            <Layout size={14} /> עורך סגנונות וצבעים מתקדם
           </button>
 
           <button onClick={() => { setIsAdmin(false); setIsGlobalEditing(false); localStorage.removeItem('adminToken'); }} className="admin-logout-btn">
