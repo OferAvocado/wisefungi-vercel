@@ -18,9 +18,12 @@
   background-color: var(--bg-primary);
 }
 
-/* Override inline background colors inside rich text editor to prevent pink highlights from pasted text */
-[contenteditable], [contenteditable] * {
+/* Override inline background colors to prevent pink highlights from pasted text */
+[contenteditable], [contenteditable] *, 
+.modal-description, .modal-description *,
+.rich-text-container, .rich-text-container * {
   background-color: transparent !important;
+  background: transparent !important;
 }
 
 * {
