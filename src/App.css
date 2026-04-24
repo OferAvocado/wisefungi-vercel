@@ -569,6 +569,16 @@
   margin-bottom: 2rem;
   box-shadow: 0 10px 40px rgba(0,0,0,0.5);
   position: relative;
+  white-space: pre-wrap; /* Added to preserve line breaks */
+}
+
+.modal-description {
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+
+.card-title, .card-subtitle {
+  white-space: pre-wrap;
 }
 
 .detail-label {
@@ -579,6 +589,10 @@
   color: #ffffff !important;
   text-transform: uppercase;
   letter-spacing: 1px;
+}
+
+.admin-rich-editor {
+  white-space: pre-wrap !important;
 }
 
 /* Force all text in detail sections to be white */
