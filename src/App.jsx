@@ -24,7 +24,7 @@ function App() {
   const [activeTab, setActiveTab] = useState('info');
   const [searchQuery, setSearchQuery] = useState('');
   const [interactionQuery, setInteractionQuery] = useState('');
-  const [expandedCats, setExpandedCats] = useState({ do_not_combine: true, use_caution: true, potential_synergy: true, insufficient: true });
+  const [expandedCats, setExpandedCats] = useState({ do_not_combine: true, use_caution: false, potential_synergy: false, insufficient: false });
   const [isSticky, setIsSticky] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -380,7 +380,7 @@ function App() {
           </button>
 
           <button 
-            onClick={() => setIsThemeOpen(true)} 
+            onClick={() => { setIsThemeOpen(true); setIsVisualEditorOpen(false); }} 
             className="admin-logout-btn" 
             style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}
           >
@@ -388,7 +388,7 @@ function App() {
           </button>
 
           <button 
-            onClick={() => setIsVisualEditorOpen(true)} 
+            onClick={() => { setIsVisualEditorOpen(true); setIsThemeOpen(false); }} 
             className="admin-logout-btn" 
             style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', background: '#007acc', color: 'white', fontWeight: 'bold', border: '1px solid #005f9e' }}
           >
@@ -808,7 +808,7 @@ function App() {
                       return (
                         <div style={{ background: colors.bg, border: `2px solid ${colors.border}`, borderRadius: '16px', marginBottom: '1rem', overflow: 'hidden', textAlign: 'left' }} dir={currentLang==='he'?'rtl':'ltr'}>
                           <button 
-                            onClick={() => setExpandedCats(prev => ({...prev, [key]: !prev[key]}))}
+                            onClick={() => setExpandedCats(prev => ({ [key]: !prev[key] }))}
                             style={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'space-between', padding: '1.2rem', background: 'transparent', border: 'none', cursor: 'pointer', color: 'inherit' }}
                           >
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', fontSize: '1.1rem', fontWeight: '800', color: 'white' }}>

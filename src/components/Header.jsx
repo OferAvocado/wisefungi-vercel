@@ -53,7 +53,7 @@ export default function Header({ isSticky, searchQuery, setSearchQuery, onLogoCl
           
           <div className="share-selector" style={{ position: 'relative' }}>
             <button 
-              onClick={() => setIsShareOpen(!isShareOpen)} 
+              onClick={() => { setIsShareOpen(!isShareOpen); setIsLangOpen(false); }} 
               className="lang-btn" 
               aria-label="Share"
               style={{ width: '42px', height: '42px', padding: '0', justifyContent: 'center' }}
@@ -75,7 +75,7 @@ export default function Header({ isSticky, searchQuery, setSearchQuery, onLogoCl
 
           <div className="lang-selector">
             <button 
-              onClick={() => setIsLangOpen(!isLangOpen)} 
+              onClick={() => { setIsLangOpen(!isLangOpen); setIsShareOpen(false); }} 
               className="lang-btn" 
               aria-label="Change Language"
               style={{ height: '42px' }}
