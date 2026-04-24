@@ -18,6 +18,11 @@
   background-color: var(--bg-primary);
 }
 
+/* Override inline background colors inside rich text editor to prevent pink highlights from pasted text */
+[contenteditable], [contenteditable] * {
+  background-color: transparent !important;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;

@@ -429,41 +429,35 @@ function App() {
       />
       
       <main className="main-content">
-        <Hero 
-          searchQuery={searchQuery} 
-          setSearchQuery={setSearchQuery} 
-          isSticky={isSticky} 
-          suggestions={suggestions}
-          uiContent={uiContent}
-          setUiContent={setUiContent}
-          isGlobalEditing={isGlobalEditing}
-        />
-        {filteredMushrooms.length > 0 ? (
-          <BentoGrid 
-            mushrooms={filteredMushrooms} 
-            onSelect={handleSelect} 
-            isGlobalEditing={isGlobalEditing}
-            setMushroomsData={setMushroomsData}
-          />
+        {!selectedMushroom ? (
+          <>
+            <Hero 
+              searchQuery={searchQuery} 
+              setSearchQuery={setSearchQuery} 
+              isSticky={isSticky} 
+              suggestions={suggestions}
+              uiContent={uiContent}
+              setUiContent={setUiContent}
+              isGlobalEditing={isGlobalEditing}
+            />
+            {filteredMushrooms.length > 0 ? (
+              <BentoGrid 
+                mushrooms={filteredMushrooms} 
+                onSelect={handleSelect} 
+                isGlobalEditing={isGlobalEditing}
+                setMushroomsData={setMushroomsData}
+              />
+            ) : (
+              <div className="no-results-container">
+                <h2 className="no-results-title">{t('no_results') || `No results for "${searchQuery}"`}</h2>
+                <p className="no-results-subtitle">{t('try_searching') || 'Try searching for other properties.'}</p>
+              </div>
+            )}
+          </>
         ) : (
-          <div className="no-results-container">
-            <h2 className="no-results-title">{t('no_results') || `No results for "${searchQuery}"`}</h2>
-            <p className="no-results-subtitle">{t('try_searching') || 'Try searching for other properties.'}</p>
-          </div>
-        )}
-      </main>
-
-      {/* Footer */}
-      <footer className="footer shadow-xl">
-        <p>&copy; 2026 Wise Fungi. Premium UI for Science-Based Fungi Wisdom.</p>
-        <p className="footer-sub">Curated data from the latest mycological research.</p>
-      </footer>
-
-      {/* Detailed Modal */}
-      {selectedMushroom && (
-        <div className="modal-overlay" onClick={() => setSelectedMushroom(null)}>
-          <div className={`modal-content glass-panel animate-in ${selectedMushroom.id}`} onClick={e => e.stopPropagation()}>
-            <button className="close-btn" onClick={() => setSelectedMushroom(null)}>×</button>
+          <div className="modal-overlay">
+            <div className={`modal-content glass-panel animate-in ${selectedMushroom.id}`}>
+              <button className="close-btn" onClick={() => setSelectedMushroom(null)}>×</button>
             
             <div className="modal-header">
               <div className="modal-header-top" style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', marginBottom: '1.5rem' }}>
@@ -890,6 +884,13 @@ function App() {
           </div>
         </div>
       )}
+      </main>
+
+      {/* Footer */}
+      <footer className="footer shadow-xl">
+        <p>&copy; 2026 Wise Fungi. Premium UI for Science-Based Fungi Wisdom.</p>
+        <p className="footer-sub">Curated data from the latest mycological research.</p>
+      </footer>
     </div>
   );
 }
