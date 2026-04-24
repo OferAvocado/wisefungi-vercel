@@ -25,6 +25,7 @@ export default function Header({ isSticky, searchQuery, setSearchQuery, onLogoCl
   };
 
   return (
+    <>
     <header className={`header glass-panel ${isSticky ? 'sticky-header' : ''}`}>
       <div className="header-content">
         <div className="header-left">
@@ -88,9 +89,11 @@ export default function Header({ isSticky, searchQuery, setSearchQuery, onLogoCl
         </div>
       </div>
 
+    </header>
+
       {showShareModal && (
-        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={() => setShowShareModal(false)}>
-          <div className="glass-panel" style={{ padding: '2.5rem', borderRadius: '24px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem', position: 'relative', minWidth: '320px', maxWidth: '90vw', border: '1px solid rgba(255,255,255,0.15)' }} onClick={e => e.stopPropagation()}>
+        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(15px)', WebkitBackdropFilter: 'blur(15px)', zIndex: 99999, display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={() => setShowShareModal(false)}>
+          <div style={{ background: '#111827', padding: '2.5rem', borderRadius: '24px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem', position: 'relative', minWidth: '320px', maxWidth: '90vw', border: '1px solid rgba(255,255,255,0.15)', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)' }} onClick={e => e.stopPropagation()}>
             <button onClick={() => setShowShareModal(false)} style={{ position: 'absolute', top: '15px', right: '15px', background: 'rgba(255,255,255,0.1)', border: 'none', color: 'white', borderRadius: '50%', width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
               <X size={18} />
             </button>
@@ -106,6 +109,6 @@ export default function Header({ isSticky, searchQuery, setSearchQuery, onLogoCl
           </div>
         </div>
       )}
-    </header>
+    </>
   );
 }
