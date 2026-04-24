@@ -193,6 +193,12 @@ export default async function handler(req, res) {
     // Map the database rows to the exact structure the React UI expects (1-to-1 parity)
     let mushroomsObj = {};
     rows.forEach(row => {
+      let docCons = row.doctor_consultations || [];
+      // Handle cases where it might be a JSON string from the override
+      if (typeof docCons === 'string') {
+        try { docCons = JSON.parse(docCons); } catch(e) { docCons = [docCons]; }
+      }
+      
       mushroomsObj[row.slug] = {
         id: row.slug,
         name: row.name,
@@ -206,7 +212,7 @@ export default async function handler(req, res) {
           usage: row.usage,
           dosage: row.dosage,
           contraindications: row.contraindications || [],
-          doctor_consultation: row.doctor_consultations ? row.doctor_consultations.join('. ') : ''
+          doctor_consultation: Array.isArray(docCons) ? docCons.join('. ') : String(docCons)
         }
       };
     });
