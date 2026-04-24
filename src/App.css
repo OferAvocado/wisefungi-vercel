@@ -388,22 +388,22 @@
 }
 /* --- MUSHROOM THEME VARIABLES --- */
 .reishi { 
-  --mush-top: #F0E5F0; --mush-bottom: #24143D; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85);
+  --mush-top: #5c3d6e; --mush-bottom: #3a2050; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85);
 }
 .cordyceps { 
-  --mush-top: #FFE5D0; --mush-bottom: #8A2C0A; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85);
+  --mush-top: #d4682a; --mush-bottom: #a04510; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85);
 }
 .lions_mane { 
-  --mush-top: #FFFBF0; --mush-bottom: #8C7A4A; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85);
+  --mush-top: #e8dcc8; --mush-bottom: #c9b89a; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85);
 }
 .tremella { 
-  --mush-top: #FFEBF0; --mush-bottom: #802B47; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85);
+  --mush-top: #d4899e; --mush-bottom: #a86278; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85);
 }
 .chaga { 
-  --mush-top: #EBE5E0; --mush-bottom: #090605; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85);
+  --mush-top: #2a1f1a; --mush-bottom: #0f0a08; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85);
 }
 .turkey_tail { 
-  --mush-top: #EDF0E1; --mush-bottom: #394A23; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85);
+  --mush-top: #6b8c55; --mush-bottom: #4a6338; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85);
 }
 
 .bento-card {

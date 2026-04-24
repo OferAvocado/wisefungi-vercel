@@ -19,6 +19,8 @@ export default async function handler(req, res) {
             search_keywords = ${data.keywords || null}, 
             benefits_override = ${data.benefits ? JSON.stringify(data.benefits) : null},
             conditions_override = ${data.conditions ? JSON.stringify(data.conditions) : null},
+            contraindications_override = ${data.contraindications ? JSON.stringify(data.contraindications) : null},
+            doctor_consultations_override = ${data.doctor_consultation || null},
             updated_at = CURRENT_TIMESTAMP
           WHERE fungi_id = (SELECT id FROM fungi WHERE slug = ${slug}) AND language_code = ${lang};
         `;
@@ -69,6 +71,13 @@ export default async function handler(req, res) {
         await repairTable('fungi_doctor_consult_flags', 'fungi_id', 'fungi');
         await repairTable('fungi_interactions', 'fungi_id', 'fungi');
         return res.status(200).json({ success: true, message: 'Cascades repaired' });
+      } catch (err) { return res.status(500).json({ error: err.message }); }
+    }
+    if (action === 'migrate_v2') {
+      try {
+        await sql`ALTER TABLE fungi_translations ADD COLUMN IF NOT EXISTS contraindications_override JSONB;`;
+        await sql`ALTER TABLE fungi_translations ADD COLUMN IF NOT EXISTS doctor_consultations_override TEXT;`;
+        return res.status(200).json({ success: true, message: 'Schema migrated successfully' });
       } catch (err) { return res.status(500).json({ error: err.message }); }
     }
   }
@@ -153,20 +162,26 @@ export default async function handler(req, res) {
           )
         ) AS benefits,
 
-        (
-          SELECT json_agg(cnt.label) 
-          FROM fungi_contraindications fcon
-          JOIN contraindications con ON fcon.contraindication_id = con.id
-          JOIN contraindication_translations cnt ON con.id = cnt.contraindication_id AND cnt.language_code = ${lang}
-          WHERE fcon.fungi_id = f.id AND con.status = 'active'
+        COALESCE(
+          ft.contraindications_override,
+          (
+            SELECT json_agg(cnt.label) 
+            FROM fungi_contraindications fcon
+            JOIN contraindications con ON fcon.contraindication_id = con.id
+            JOIN contraindication_translations cnt ON con.id = cnt.contraindication_id AND cnt.language_code = ${lang}
+            WHERE fcon.fungi_id = f.id AND con.status = 'active'
+          )
         ) AS contraindications,
 
-        (
-          SELECT json_agg(dct.label) 
-          FROM fungi_doctor_consult_flags fdc
-          JOIN doctor_consult_flags dc ON fdc.doctor_consult_flag_id = dc.id
-          JOIN doctor_consult_flag_translations dct ON dc.id = dct.doctor_consult_flag_id AND dct.language_code = ${lang}
-          WHERE fdc.fungi_id = f.id AND dc.status = 'active'
+        COALESCE(
+          ft.doctor_consultations_override,
+          (
+            SELECT json_agg(dct.label) 
+            FROM fungi_doctor_consult_flags fdc
+            JOIN doctor_consult_flags dc ON fdc.doctor_consult_flag_id = dc.id
+            JOIN doctor_consult_flag_translations dct ON dc.id = dct.doctor_consult_flag_id AND dct.language_code = ${lang}
+            WHERE fdc.fungi_id = f.id AND dc.status = 'active'
+          )
         ) AS doctor_consultations
 
       FROM fungi f
