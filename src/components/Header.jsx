@@ -5,6 +5,7 @@ import { useState } from 'react';
 export default function Header({ isSticky, searchQuery, setSearchQuery, onLogoClick }) {
   const { t, i18n } = useTranslation();
   const [isLangOpen, setIsLangOpen] = useState(false);
+  const [showShareModal, setShowShareModal] = useState(false);
 
   const languages = [
     { code: 'en', label: 'English' },
@@ -18,13 +19,9 @@ export default function Header({ isSticky, searchQuery, setSearchQuery, onLogoCl
     setIsLangOpen(false);
   };
 
-  const [isShareOpen, setIsShareOpen] = useState(false);
-  const [showQR, setShowQR] = useState(false);
-
   const copyLink = () => {
     navigator.clipboard.writeText(window.location.href);
     alert(t('labels.link_copied') || 'Link copied!');
-    setIsShareOpen(false);
   };
 
   return (
@@ -53,24 +50,13 @@ export default function Header({ isSticky, searchQuery, setSearchQuery, onLogoCl
           
           <div className="share-selector" style={{ position: 'relative' }}>
             <button 
-              onClick={() => { setIsShareOpen(!isShareOpen); setIsLangOpen(false); }} 
+              onClick={() => { setShowShareModal(true); setIsLangOpen(false); }} 
               className="lang-btn" 
               aria-label="Share"
               style={{ width: '42px', height: '42px', padding: '0', justifyContent: 'center' }}
             >
               <Share2 size={18} />
             </button>
-
-            {isShareOpen && (
-              <div className="lang-dropdown animate-fade-in glass-panel" style={{ width: 'max-content', padding: '0.5rem', right: '0' }}>
-                <button className="lang-option" onClick={copyLink} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'flex-start' }}>
-                  <LinkIcon size={16} /> {t('labels.copy_link') || 'Copy Link'}
-                </button>
-                <button className="lang-option" onClick={() => { setShowQR(true); setIsShareOpen(false); }} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'flex-start' }}>
-                  <QrCode size={16} /> {t('labels.show_qr') || 'Show QR Code'}
-                </button>
-              </div>
-            )}
           </div>
 
           <div className="lang-selector">
@@ -102,12 +88,21 @@ export default function Header({ isSticky, searchQuery, setSearchQuery, onLogoCl
         </div>
       </div>
 
-      {showQR && (
-        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.8)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={() => setShowQR(false)}>
-          <div style={{ background: '#fff', padding: '2rem', borderRadius: '24px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }} onClick={e => e.stopPropagation()}>
-            <h3 style={{ color: '#000', margin: 0, fontSize: '1.2rem', fontWeight: 'bold' }}>Scan to Open</h3>
-            <img src={`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(window.location.href)}`} alt="QR Code" style={{ width: '200px', height: '200px' }} />
-            <button onClick={() => setShowQR(false)} style={{ background: '#16a34a', color: '#fff', border: 'none', padding: '0.5rem 1.5rem', borderRadius: '99px', cursor: 'pointer', fontWeight: 'bold', marginTop: '1rem' }}>Close</button>
+      {showShareModal && (
+        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={() => setShowShareModal(false)}>
+          <div className="glass-panel" style={{ padding: '2.5rem', borderRadius: '24px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem', position: 'relative', minWidth: '320px', maxWidth: '90vw', border: '1px solid rgba(255,255,255,0.15)' }} onClick={e => e.stopPropagation()}>
+            <button onClick={() => setShowShareModal(false)} style={{ position: 'absolute', top: '15px', right: '15px', background: 'rgba(255,255,255,0.1)', border: 'none', color: 'white', borderRadius: '50%', width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+              <X size={18} />
+            </button>
+            <h3 className="title-glow" style={{ margin: 0, fontSize: '1.4rem', fontWeight: 'bold' }}>{t('labels.share_title') || 'Share Website'}</h3>
+            
+            <div style={{ background: 'white', padding: '15px', borderRadius: '16px' }}>
+              <img src={`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(window.location.href)}&bgcolor=ffffff&color=000000`} alt="QR Code" style={{ width: '200px', height: '200px', display: 'block' }} />
+            </div>
+
+            <button onClick={copyLink} style={{ background: 'rgba(59, 130, 246, 0.2)', color: '#60A5FA', border: '1px solid rgba(59, 130, 246, 0.4)', padding: '0.8rem 1.5rem', borderRadius: '99px', cursor: 'pointer', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '0.5rem', width: '100%', justifyContent: 'center', transition: 'all 0.2s' }} onMouseOver={e => e.target.style.background = 'rgba(59, 130, 246, 0.3)'} onMouseOut={e => e.target.style.background = 'rgba(59, 130, 246, 0.2)'}>
+              <LinkIcon size={18} /> {t('labels.copy_link') || 'Copy Link'}
+            </button>
           </div>
         </div>
       )}
