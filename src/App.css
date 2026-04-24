@@ -96,27 +96,26 @@
 .hero {
   max-width: 1400px;
   margin: 0 auto;
-  height: 80vh;
+  height: auto;
   min-height: 600px;
+  padding-top: 120px;
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  text-align: center;
-  padding: 8rem 2rem 4rem;
-  position: relative;
-  overflow: hidden;
+  align-items: center;
 }
 .hero-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 1400px;
-  width: 100%;
-  z-index: 10;
-  flex: 1;
   justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  position: relative;
+  z-index: 2;
 }
+
 .hero-title {
   font-size: clamp(2.5rem, 8vw, 5.5rem);
   font-weight: 900;
@@ -523,13 +522,15 @@
 
 /* Modal */
 .modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--bg-primary);
+  z-index: 5000;
   display: flex;
-  align-items: stretch;
   justify-content: center;
-  padding: 0;
+  overflow-y: auto;
   animation: modalFadeIn 0.4s ease;
   width: 100%;
-  min-height: 100vh;
 }
 
 @keyframes modalFadeIn {

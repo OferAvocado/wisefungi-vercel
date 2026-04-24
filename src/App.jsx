@@ -421,12 +421,14 @@ function App() {
         />
       )}
 
-      <Header 
-        isSticky={isSticky} 
-        searchQuery={searchQuery} 
-        setSearchQuery={setSearchQuery} 
-        onLogoClick={handleLogoClick}
-      />
+      {!selectedMushroom && (
+        <Header 
+          isSticky={isSticky} 
+          searchQuery={searchQuery} 
+          setSearchQuery={setSearchQuery} 
+          onLogoClick={handleLogoClick}
+        />
+      )}
       
       <main className="main-content">
         {!selectedMushroom ? (
