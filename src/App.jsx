@@ -50,12 +50,12 @@ function App() {
       try {
         setIsLoading(true);
         
-        // Fetch from API
-        const response = await fetch('/api/fungi');
+        // Fetch from API with cache busting
+        const response = await fetch(`/api/fungi?t=${Date.now()}`, { cache: 'no-store' });
         const dbData = await response.json();
         
         // Fetch UI content
-        const uiResp = await fetch(`/api/ui?lang=${currentLang}`);
+        const uiResp = await fetch(`/api/ui?lang=${currentLang}&t=${Date.now()}`, { cache: 'no-store' });
         const uiData = await uiResp.json();
         
         if (Object.keys(dbData).length > 0) {
