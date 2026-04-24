@@ -20,7 +20,7 @@ export default async function handler(req, res) {
             benefits_override = ${data.benefits ? JSON.stringify(data.benefits) : null},
             conditions_override = ${data.conditions ? JSON.stringify(data.conditions) : null},
             contraindications_override = ${data.contraindications ? JSON.stringify(data.contraindications) : null},
-            doctor_consultations_override = ${data.doctor_consultation || null},
+            doctor_consultations_override = ${data.doctor_consultation ? JSON.stringify(data.doctor_consultation) : null},
             updated_at = CURRENT_TIMESTAMP
           WHERE fungi_id = (SELECT id FROM fungi WHERE slug = ${slug}) AND language_code = ${lang};
         `;
@@ -165,7 +165,7 @@ export default async function handler(req, res) {
         COALESCE(
           ft.contraindications_override,
           (
-            SELECT json_agg(cnt.label) 
+            SELECT json_agg(cnt.label)::jsonb 
             FROM fungi_contraindications fcon
             JOIN contraindications con ON fcon.contraindication_id = con.id
             JOIN contraindication_translations cnt ON con.id = cnt.contraindication_id AND cnt.language_code = ${lang}
@@ -176,7 +176,7 @@ export default async function handler(req, res) {
         COALESCE(
           ft.doctor_consultations_override,
           (
-            SELECT json_agg(dct.label) 
+            SELECT json_agg(dct.label)::jsonb 
             FROM fungi_doctor_consult_flags fdc
             JOIN doctor_consult_flags dc ON fdc.doctor_consult_flag_id = dc.id
             JOIN doctor_consult_flag_translations dct ON dc.id = dct.doctor_consult_flag_id AND dct.language_code = ${lang}
