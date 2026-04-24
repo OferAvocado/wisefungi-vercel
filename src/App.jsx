@@ -2,7 +2,7 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import BentoGrid from './components/BentoGrid';
 import { useTranslation } from 'react-i18next';
-import { CheckCircle, XCircle, AlertTriangle, HelpCircle, Search, ChevronDown, ChevronRight, Lock, Save, Edit3, Plus, Trash2, Palette, Layout, Zap, Shield, Droplets } from 'lucide-react';
+import { CheckCircle, XCircle, AlertTriangle, HelpCircle, Search, ChevronDown, ChevronRight, Lock, Save, Edit3, Plus, Trash2, Palette, Layout, Zap, Shield, Droplets, ArrowLeft, Home } from 'lucide-react';
 import { useEffect, useState, useRef } from 'react';
 import translationHE from './locales/he.json';
 import translationEN from './locales/en.json';
@@ -457,7 +457,15 @@ function App() {
         ) : (
           <div className="modal-overlay">
             <div className={`modal-content glass-panel animate-in ${selectedMushroom.id}`}>
-              <button className="close-btn" onClick={() => setSelectedMushroom(null)}>×</button>
+              <div className="modal-nav-header">
+                <button className="back-home-btn" onClick={() => setSelectedMushroom(null)}>
+                  <ArrowLeft size={20} />
+                  <span>{t('labels.back_to_home') || 'חזרה לעמוד הבית'}</span>
+                </button>
+                <button className="close-btn-new" onClick={() => setSelectedMushroom(null)}>
+                  <XCircle size={24} />
+                </button>
+              </div>
             
             <div className="modal-header">
               <div className="modal-header-top" style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', marginBottom: '1.5rem' }}>
