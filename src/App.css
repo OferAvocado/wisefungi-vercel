@@ -541,30 +541,35 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 2rem;
-  background: rgba(0,0,0,0.2);
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  backdrop-filter: blur(10px);
+  padding: 1rem 2rem;
+  background: rgba(0,0,0,0.4);
+  border-bottom: 2px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(20px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .back-home-btn {
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
-  color: white;
-  padding: 0.6rem 1.2rem;
-  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #ffffff;
+  color: #000000;
+  padding: 0.7rem 1.5rem;
+  border-radius: 14px;
   cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s ease;
+  font-weight: 800;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
 .back-home-btn:hover {
-  background: white;
-  color: black;
-  transform: translateX(-5px);
+  background: #f0f0f0;
+  transform: scale(1.05) translateX(5px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
 }
 
 .close-btn-new {
