@@ -517,13 +517,7 @@
 
 @media (min-width: 1024px) {
   .bento-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-  .span-col-2 {
-    grid-column: span 2;
-  }
-  .span-row-2 {
-    grid-row: span 2;
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
