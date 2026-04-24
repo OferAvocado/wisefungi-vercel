@@ -97,7 +97,6 @@ export default function Header({ isSticky, searchQuery, setSearchQuery, onLogoCl
             <button onClick={() => setShowShareModal(false)} style={{ position: 'absolute', top: '15px', right: '15px', background: 'rgba(255,255,255,0.1)', border: 'none', color: 'white', borderRadius: '50%', width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
               <X size={18} />
             </button>
-            <h3 className="title-glow" style={{ margin: 0, fontSize: '1.4rem', fontWeight: 'bold' }}>{t('labels.share_title') || 'Share Website'}</h3>
             
             <div style={{ background: 'white', padding: '15px', borderRadius: '16px' }}>
               <img src={`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(window.location.href)}&bgcolor=ffffff&color=000000`} alt="QR Code" style={{ width: '200px', height: '200px', display: 'block' }} />
