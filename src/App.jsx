@@ -470,9 +470,9 @@ function App() {
               </div>
             
             <div className="modal-header">
-              <div className="modal-header-top" style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', marginBottom: '1.5rem' }}>
-                <div style={{ width: '110px', height: '110px', flexShrink: 0, background: 'var(--mush-top, rgba(255,255,255,0.05))', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-                  <img src={selectedMushroom.detailed_data?.detail_image || selectedMushroom.image} alt={selectedMushroom.name} style={{ width: '80%', height: '80%', objectFit: 'contain', filter: 'drop-shadow(0 10px 10px rgba(0,0,0,0.3))' }} />
+              <div className="modal-header-top" style={{ display: 'flex', gap: '2.5rem', alignItems: 'center', marginBottom: '2.5rem', flexWrap: 'wrap' }}>
+                <div style={{ width: '330px', height: '330px', flexShrink: 0, background: 'var(--mush-top, rgba(255,255,255,0.05))', borderRadius: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', boxShadow: '0 20px 50px rgba(0,0,0,0.5)' }}>
+                  <img src={selectedMushroom.detailed_data?.detail_image || selectedMushroom.image} alt={selectedMushroom.name} style={{ width: '90%', height: '90%', objectFit: 'contain', filter: 'drop-shadow(0 15px 25px rgba(0,0,0,0.4))' }} />
                 </div>
                 <div>
                   {isEditing ? (
