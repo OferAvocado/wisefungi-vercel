@@ -471,8 +471,8 @@ function App() {
             
             <div className="modal-header">
               <div className="modal-header-top" style={{ display: 'flex', gap: '2.5rem', alignItems: 'center', marginBottom: '2.5rem', flexWrap: 'wrap' }}>
-                <div style={{ width: '330px', height: '330px', flexShrink: 0, background: 'var(--mush-top, rgba(255,255,255,0.05))', borderRadius: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', boxShadow: '0 20px 50px rgba(0,0,0,0.5)' }}>
-                  <img src={selectedMushroom.detailed_data?.detail_image || selectedMushroom.image} alt={selectedMushroom.name} style={{ width: '90%', height: '90%', objectFit: 'contain', filter: 'drop-shadow(0 15px 25px rgba(0,0,0,0.4))' }} />
+                <div style={{ width: '330px', height: '330px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <img src={selectedMushroom.detailed_data?.detail_image || selectedMushroom.image} alt={selectedMushroom.name} style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.5))' }} />
                 </div>
                 <div>
                   {isEditing ? (
