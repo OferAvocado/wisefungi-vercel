@@ -603,9 +603,9 @@
   flex-direction: column;
 }
 .modal-header {
-  background: var(--mush-top, transparent);
+  background: transparent;
   padding: 3rem 3rem 1.5rem;
-  color: var(--mush-bottom, #fff);
+  color: #ffffff;
 }
 .modal-body {
   padding: 2rem 3rem 3rem;
