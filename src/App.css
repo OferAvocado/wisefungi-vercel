@@ -387,22 +387,22 @@
 }
 /* --- MUSHROOM THEME VARIABLES --- */
 .reishi { 
-  --mush-top: #5c3d6e; --mush-bottom: #3a2050; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85);
+  --mush-top: #6b4382; --mush-bottom: #2b143d; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85); --tag-bg: rgba(255,255,255,0.1); --mush-border: rgba(150, 100, 190, 0.4);
 }
 .cordyceps { 
-  --mush-top: #d4682a; --mush-bottom: #a04510; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85);
+  --mush-top: #c75616; --mush-bottom: #662704; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85); --tag-bg: rgba(255,255,255,0.1); --mush-border: rgba(210, 100, 40, 0.4);
 }
 .lions_mane { 
-  --mush-top: #e8dcc8; --mush-bottom: #c9b89a; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85);
+  --mush-top: #f3e6d0; --mush-bottom: #d6c3a1; --mush-text: #1a1a1a; --mush-subtext: rgba(0,0,0,0.7); --tag-bg: rgba(0,0,0,0.1); --mush-border: rgba(180, 150, 110, 0.4);
 }
 .tremella { 
-  --mush-top: #d4899e; --mush-bottom: #a86278; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85);
+  --mush-top: #c46480; --mush-bottom: #612338; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85); --tag-bg: rgba(255,255,255,0.1); --mush-border: rgba(210, 110, 140, 0.4);
 }
 .chaga { 
-  --mush-top: #2a1f1a; --mush-bottom: #0f0a08; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85);
+  --mush-top: #3d2b24; --mush-bottom: #140d0a; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85); --tag-bg: rgba(255,255,255,0.1); --mush-border: rgba(80, 60, 50, 0.4);
 }
 .turkey_tail { 
-  --mush-top: #6b8c55; --mush-bottom: #4a6338; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85);
+  --mush-top: #577840; --mush-bottom: #263b18; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85); --tag-bg: rgba(255,255,255,0.1); --mush-border: rgba(100, 140, 80, 0.4);
 }
 
 .bento-card {
@@ -418,8 +418,8 @@
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   border-radius: 16px;
   background: var(--mush-bottom, var(--bg-glass));
-  border: none;
-  box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
+  border: 1px solid var(--mush-border, var(--border-glass));
+  box-shadow: 0 10px 40px -10px rgba(0,0,0,0.6);
 }
 .bento-card:hover {
   transform: translateY(-8px);
@@ -498,8 +498,8 @@
 }
 
 .condition-tag {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--border-glass);
+  background: var(--tag-bg, rgba(255, 255, 255, 0.05));
+  border: 1px solid var(--mush-border, var(--border-glass));
   padding: 0.4rem 0.9rem;
   border-radius: 99px;
   font-size: 0.9rem;

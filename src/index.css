@@ -1,15 +1,15 @@
 :root {
   /* Wise Fungi Original Palette - Refined for 2026 */
-  --bg-primary: #060f0a;
-  --bg-secondary: #0d1a12;
-  --bg-glass: rgba(13, 26, 18, 0.85);
-  --border-glass: rgba(22, 163, 74, 0.25);
+  --bg-primary: #040a06;
+  --bg-secondary: #0a140c;
+  --bg-glass: rgba(10, 20, 15, 0.7);
+  --border-glass: rgba(34, 197, 94, 0.4);
 
   --text-primary: #ffffff;
-  --text-secondary: #a1a1aa;
+  --text-secondary: #d1d5db;
   
-  --accent-primary: #16a34a;
-  --accent-glow: rgba(22, 163, 74, 0.35);
+  --accent-primary: #22c55e;
+  --accent-glow: rgba(34, 197, 94, 0.5);
 
   /* Font settings - Premium Typography */
   font-family: 'Assistant', 'Inter', system-ui, -apple-system, sans-serif;
