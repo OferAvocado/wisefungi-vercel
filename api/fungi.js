@@ -199,6 +199,15 @@ export default async function handler(req, res) {
         try { docCons = JSON.parse(docCons); } catch(e) { docCons = [docCons]; }
       }
       
+      const detailImageMap = {
+        'reishi': '/assets/reishi_detail.png',
+        'lions-mane': '/assets/lions_mane_detail.png',
+        'cordyceps': '/assets/cordyceps_detail.png',
+        'chaga': '/assets/chaga_detail.png',
+        'turkey-tail': '/assets/turkey_tail_detail.png',
+        'tremella': '/assets/tremella_detail.png'
+      };
+
       mushroomsObj[row.slug] = {
         id: row.slug,
         name: row.name,
@@ -212,7 +221,8 @@ export default async function handler(req, res) {
           usage: row.usage,
           dosage: row.dosage,
           contraindications: row.contraindications || [],
-          doctor_consultation: Array.isArray(docCons) ? docCons.join('. ') : String(docCons)
+          doctor_consultation: Array.isArray(docCons) ? docCons.join('. ') : String(docCons),
+          detail_image: detailImageMap[row.slug] || row.featured_image
         }
       };
     });
