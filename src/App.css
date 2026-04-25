@@ -609,8 +609,19 @@
 }
 .modal-body {
   padding: 2rem 3rem 3rem;
-  overflow-y: auto;
-  flex: 1;
+}
+
+/* Custom white scrollbar for the modal */
+.modal-overlay::-webkit-scrollbar {
+  width: 14px;
+}
+.modal-overlay::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.3);
+}
+.modal-overlay::-webkit-scrollbar-thumb {
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: 3px solid rgba(0,0,0,0.3);
 }
 
 .detail-section {
