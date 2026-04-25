@@ -314,6 +314,25 @@ function App() {
     return css;
   };
 
+  const generateThemeCSS = () => {
+    const t = uiContent?.globalTheme;
+    if (!t) return '';
+    return `
+      :root {
+        ${t.bgPrimary ? `--bg-primary: ${t.bgPrimary};` : ''}
+        ${t.bgSecondary ? `--bg-secondary: ${t.bgSecondary};` : ''}
+        ${t.accentPrimary ? `--accent-primary: ${t.accentPrimary};` : ''}
+        ${t.textPrimary ? `--text-primary: ${t.textPrimary};` : ''}
+        ${t.textSecondary ? `--text-secondary: ${t.textSecondary};` : ''}
+        ${t.bgGlass ? `--bg-glass: ${t.bgGlass};` : ''}
+        ${t.borderGlass ? `--border-glass: ${t.borderGlass};` : ''}
+      }
+      body {
+        ${t.bgPrimary ? `background-color: var(--bg-primary) !important;` : ''}
+      }
+    `;
+  };
+
   useEffect(() => {
     if (!isVisualEditorOpen) return;
     const handleClick = (e) => {
@@ -321,27 +340,26 @@ function App() {
       e.preventDefault();
       e.stopPropagation();
       const el = e.target.closest('[data-editable]');
-      if (el) setVisualSelectedId(el.getAttribute('data-editable'));
-      else setVisualSelectedId(null);
+      if (el) {
+        setVisualSelectedId(el.getAttribute('data-editable'));
+      }
     };
-    
     const handleMouseOver = (e) => {
       if (e.target.closest('.ve-panel') || e.target.closest('.admin-status-bar')) return;
       const el = e.target.closest('[data-editable]');
-      if (el) el.style.outline = '2px solid #007acc';
+      if (el) el.style.outline = '2px dashed #007acc';
     };
-
     const handleMouseOut = (e) => {
-      if (e.target.closest('.ve-panel') || e.target.closest('.admin-status-bar')) return;
       const el = e.target.closest('[data-editable]');
       if (el) el.style.outline = '';
     };
 
-    document.addEventListener('click', handleClick, { capture: true });
+    document.addEventListener('click', handleClick, true);
     document.addEventListener('mouseover', handleMouseOver);
     document.addEventListener('mouseout', handleMouseOut);
+    
     return () => {
-      document.removeEventListener('click', handleClick, { capture: true });
+      document.removeEventListener('click', handleClick, true);
       document.removeEventListener('mouseover', handleMouseOver);
       document.removeEventListener('mouseout', handleMouseOut);
     };
@@ -349,18 +367,9 @@ function App() {
 
   return (
     <div className={`app-container ${isAdmin ? 'is-admin' : ''}`}>
-      {/* RESTORATION FORCE: Original Background and Minimal Layout */}
       <style dangerouslySetInnerHTML={{__html: `
-        body {
-          background-color: #060f0a !important;
-          background-image: 
-            radial-gradient(circle at 10% 20%, rgba(22, 163, 74, 0.12) 0%, transparent 40%),
-            radial-gradient(circle at 90% 80%, rgba(22, 163, 74, 0.08) 0%, transparent 40%),
-            linear-gradient(rgba(6, 15, 10, 0.9), rgba(6, 15, 10, 0.9)),
-            url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 25c-15 0-25 15-25 25 0 5 10 8 25 8s25-3 25-8c0-10-10-25-25-25zM36 58h8v12c0 3-8 3-8 0V58z' fill='%23ffffff' fill-opacity='0.12'/%3E%3C/svg%3E") !important;
-          background-size: auto, auto, auto, 120px !important;
-          background-attachment: fixed !important;
-        }
+        ${generateCustomCSS()}
+        ${generateThemeCSS()}
         .app-container { margin: 0 !important; border: none !important; }
       `}} />
 
@@ -457,10 +466,10 @@ function App() {
             )}
           </>
         ) : (
-          <div className="modal-overlay">
-            <div className={`modal-content glass-panel animate-in ${selectedMushroom.id}`}>
-              <div className="modal-nav-header">
-                <button className="back-home-btn" onClick={() => setSelectedMushroom(null)}>
+          <div className="modal-overlay" data-editable="modal-overlay">
+            <div className={`modal-content glass-panel animate-in ${selectedMushroom.id}`} data-editable="modal-content">
+              <div className="modal-nav-header" data-editable="modal-nav-header">
+                <button className="back-home-btn" onClick={() => setSelectedMushroom(null)} data-editable="back-home-btn">
                   <ArrowLeft size={20} />
                   <span>{t('labels.back_to_home') || 'חזרה לעמוד הבית'}</span>
                 </button>
@@ -469,10 +478,10 @@ function App() {
                 </button>
               </div>
             
-            <div className="modal-header">
-              <div className="modal-header-top" style={{ display: 'flex', gap: '2.5rem', alignItems: 'center', marginBottom: '2.5rem', flexWrap: 'wrap' }}>
-                <div style={{ width: '330px', height: '330px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <img src={selectedMushroom.detailed_data?.detail_image || selectedMushroom.image} alt={selectedMushroom.name} style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.5))' }} />
+            <div className="modal-header" data-editable="modal-header">
+              <div className="modal-header-top" style={{ display: 'flex', gap: '2.5rem', alignItems: 'center', marginBottom: '2.5rem', flexWrap: 'wrap' }} data-editable="modal-header-top">
+                <div style={{ width: '330px', height: '330px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }} data-editable="modal-image-container">
+                  <img src={selectedMushroom.detailed_data?.detail_image || selectedMushroom.image} alt={selectedMushroom.name} style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.5))' }} data-editable="modal-image" />
                 </div>
                 <div>
                   {isEditing ? (
@@ -492,8 +501,8 @@ function App() {
                     </>
                   ) : (
                     <>
-                      <h2 className="title-glow modal-title">{selectedMushroom.name}</h2>
-                      <p className="modal-scientific">{selectedMushroom.subtitle}</p>
+                      <h2 className="title-glow modal-title" data-editable="modal-title">{selectedMushroom.name}</h2>
+                      <p className="modal-scientific" data-editable="modal-subtitle">{selectedMushroom.subtitle}</p>
                     </>
                   )}
                 </div>
@@ -505,42 +514,44 @@ function App() {
                 )}
               </div>
               
-              <div className="modal-tabs">
+              <div className="modal-tabs" data-editable="modal-tabs">
                 <button 
                   className={`tab-btn ${activeTab === 'info' ? 'active' : ''}`}
                   onClick={() => setActiveTab('info')}
+                  data-editable="tab-btn-info"
                 >
                   {t('labels.about')}
                 </button>
                 <button 
                   className={`tab-btn ${activeTab === 'interactions' ? 'active' : ''}`}
                   onClick={() => setActiveTab('interactions')}
+                  data-editable="tab-btn-interactions"
                 >
                   {t('labels.interactions')}
                 </button>
               </div>
             </div>
 
-            <div className="modal-body">
+            <div className="modal-body" data-editable="modal-body">
               {activeTab === 'info' ? (
                 <div className="tab-content" style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
                   
                   {/* About Section */}
-                  <div className="detail-section">
-                    <span className="detail-label">{t('labels.about')}</span>
+                  <div className="detail-section" data-editable="detail-section-about">
+                    <span className="detail-label" data-editable="detail-label-about">{t('labels.about')}</span>
                     {isEditing ? (
                       <RichTextEditor 
                         value={editData?.about || ''} 
                         onChange={val => setEditData({...editData, about: val})}
                       />
                     ) : (
-                      <div className="modal-description" dangerouslySetInnerHTML={{ __html: editData?.about || mData.about }}></div>
+                      <div className="modal-description" data-editable="modal-description-about" dangerouslySetInnerHTML={{ __html: editData?.about || mData.about }}></div>
                     )}
                   </div>
 
                   {/* Benefits Section */}
-                  <div className="detail-section">
-                    <span className="detail-label">{t('labels.benefits')}</span>
+                  <div className="detail-section" data-editable="detail-section-benefits">
+                    <span className="detail-label" data-editable="detail-label-benefits">{t('labels.benefits')}</span>
                     {isEditing ? (
                       <div style={{ display: 'grid', gap: '0.8rem' }}>
                         {(editData?.benefits || []).map((b, i) => (
