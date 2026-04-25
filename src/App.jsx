@@ -483,7 +483,7 @@ function App() {
                 <div style={{ width: '330px', height: '330px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }} data-editable="modal-image-container">
                   <img src={selectedMushroom.detailed_data?.detail_image || selectedMushroom.image} alt={selectedMushroom.name} style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.5))' }} data-editable="modal-image" />
                 </div>
-                <div>
+                <div style={{ flex: 1, minWidth: '250px' }}>
                   {isEditing ? (
                     <>
                       <input 
@@ -492,17 +492,19 @@ function App() {
                         value={selectedMushroom.name || ''} 
                         onChange={e => setSelectedMushroom({...selectedMushroom, name: e.target.value})} 
                       />
+                      <div className="fade-line" style={{ height: '2px', background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.8) 50%, transparent 100%)', margin: '1rem 0', width: '100%' }}></div>
                       <input 
                         className="admin-edit-input" 
-                        style={{ fontSize: '1rem', fontStyle: 'italic' }}
+                        style={{ fontSize: '1rem', fontStyle: 'italic', marginTop: '0.5rem' }}
                         value={selectedMushroom.subtitle || ''} 
                         onChange={e => setSelectedMushroom({...selectedMushroom, subtitle: e.target.value})} 
                       />
                     </>
                   ) : (
                     <>
-                      <h2 className="title-glow modal-title" data-editable="modal-title">{selectedMushroom.name}</h2>
-                      <p className="modal-scientific" data-editable="modal-subtitle">{selectedMushroom.subtitle}</p>
+                      <h2 className="title-glow modal-title" data-editable="modal-title" style={{ marginBottom: '0.5rem' }}>{selectedMushroom.name}</h2>
+                      <div className="fade-line" style={{ height: '2px', background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.8) 50%, transparent 100%)', margin: '1rem 0', width: '100%', maxWidth: '100%' }} data-editable="modal-divider"></div>
+                      <p className="modal-scientific" data-editable="modal-subtitle" style={{ marginTop: '0.5rem' }}>{selectedMushroom.subtitle}</p>
                     </>
                   )}
                 </div>
