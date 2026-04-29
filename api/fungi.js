@@ -231,7 +231,7 @@ export default async function handler(req, res) {
           usage: row.usage,
           dosage: row.dosage,
           contraindications: row.contraindications || [],
-          doctor_consultation: Array.isArray(docCons) ? docCons.join('. ') : String(docCons),
+          doctor_consultation: docCons,
           detail_image: detailImageMap[row.slug] || row.featured_image
         }
       };

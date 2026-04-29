@@ -650,23 +650,45 @@ function App() {
                     </div>
 
                     <div className="detail-section">
-                      <span className="detail-label">{t('labels.doctor_consultation')}</span>
+                      <span className="detail-label" style={{ color: '#ffdd00' }}>{t('labels.doctor_consultation')}</span>
                       {isEditing ? (
-                        <RichTextEditor 
-                          value={editData?.doctor_consultation || ''} 
-                          onChange={val => setEditData({...editData, doctor_consultation: val})}
-                        />
-                      ) : (
-                        <div style={{ color: 'rgba(255,255,255,0.9)', fontSize: '1.05rem', display: 'flex', gap: '0.8rem', alignItems: 'flex-start' }}>
-                          {renderDynamicIcon(theme.doctorIconShape, { size: 20, color: theme.doctorIconColor, style: { flexShrink: 0, marginTop: '4px' } })}
-                          <span>{Array.isArray(editData?.doctor_consultation || mData.doctor_consultation) ? (editData?.doctor_consultation || mData.doctor_consultation).join(' ') : (editData?.doctor_consultation || mData.doctor_consultation)}</span>
+                        <div style={{ display: 'grid', gap: '0.8rem' }}>
+                          {(Array.isArray(editData?.doctor_consultation) ? editData.doctor_consultation : []).map((item, i) => (
+                            <div key={i} style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                              <input 
+                                className="admin-edit-input" 
+                                value={item} 
+                                onChange={e => {
+                                  const newList = [...(editData.doctor_consultation || [])];
+                                  newList[i] = e.target.value;
+                                  setEditData({...editData, doctor_consultation: newList});
+                                }} 
+                              />
+                              <button className="admin-list-btn remove" onClick={() => {
+                                const newList = editData.doctor_consultation.filter((_, idx) => idx !== i);
+                                setEditData({...editData, doctor_consultation: newList});
+                              }}><Trash2 size={16}/></button>
+                            </div>
+                          ))}
+                          <button className="admin-list-btn add" onClick={() => setEditData({...editData, doctor_consultation: [...(editData.doctor_consultation || []), '']})}>
+                            <Plus size={16}/> {currentLang === 'he' ? 'הוסף התראה' : 'Add Warning'}
+                          </button>
                         </div>
+                      ) : (
+                        <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: '0.8rem' }}>
+                          {(Array.isArray(editData?.doctor_consultation || mData.doctor_consultation) ? (editData?.doctor_consultation || mData.doctor_consultation) : []).map((item, i) => (
+                            <li key={i} style={{ display: 'flex', gap: '0.8rem', alignItems: 'flex-start' }}>
+                              <AlertTriangle size={20} color="#ffdd00" style={{ flexShrink: 0, marginTop: '2px' }} />
+                              <span style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.9)' }}>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
                       )}
                     </div>
                   </div>
 
                   <div className="detail-section">
-                    <span className="detail-label">{t('labels.contraindications')}</span>
+                    <span className="detail-label" style={{ color: '#FF7676' }}>{t('labels.contraindications')}</span>
                     {isEditing ? (
                       <div style={{ display: 'grid', gap: '0.8rem' }}>
                         {(editData?.contraindications || []).map((ci, i) => (
@@ -694,7 +716,7 @@ function App() {
                       <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: '0.8rem' }}>
                         {(editData?.contraindications || mData.contraindications).map((ci, i) => (
                           <li key={i} style={{ display: 'flex', gap: '0.8rem', alignItems: 'flex-start' }}>
-                            {renderDynamicIcon(theme.contraIconShape, { size: 20, color: theme.contraIconColor, style: { flexShrink: 0, marginTop: '2px' } })}
+                            <XCircle size={20} color="#FF7676" style={{ flexShrink: 0, marginTop: '2px' }} />
                             <span style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.9)' }}>{ci}</span>
                           </li>
                         ))}
