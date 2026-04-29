@@ -199,12 +199,30 @@ export default async function handler(req, res) {
         try { docCons = JSON.parse(docCons); } catch(e) { docCons = [docCons]; }
       }
       
+      const illustrationMap = {
+        'reishi': '/assets/reishi.png',
+        'lions-mane': '/assets/lions_mane.png',
+        'cordyceps': '/assets/cordyceps.png',
+        'chaga': '/assets/chaga.png',
+        'turkey-tail': '/assets/turkey_tail.png',
+        'tremella': '/assets/tremella.png'
+      };
+
+      const detailImageMap = {
+        'reishi': '/assets/reishi_detail.png',
+        'lions-mane': '/assets/lions_mane_detail.png',
+        'cordyceps': '/assets/cordyceps_detail.png',
+        'chaga': '/assets/chaga_detail.png',
+        'turkey-tail': '/assets/turkey_tail_detail.png',
+        'tremella': '/assets/tremella_detail.png'
+      };
+
       mushroomsObj[row.slug] = {
         id: row.slug,
         name: row.name,
         subtitle: row.scientific_name,
         scientific_name: row.scientific_name,
-        image: row.featured_image,
+        image: illustrationMap[row.slug] || row.featured_image,
         keywords: row.search_keywords || [],
         detailed_data: {
           about: row.about,
@@ -214,7 +232,7 @@ export default async function handler(req, res) {
           dosage: row.dosage,
           contraindications: row.contraindications || [],
           doctor_consultation: Array.isArray(docCons) ? docCons.join('. ') : String(docCons),
-          detail_image: row.featured_image
+          detail_image: detailImageMap[row.slug] || row.featured_image
         }
       };
     });
