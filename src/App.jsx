@@ -649,27 +649,57 @@ function App() {
                       )}
                     </div>
 
-                    {/* Doctor Consultation */}
                     <div className="detail-section">
                       <span className="detail-label">{t('labels.doctor_consultation')}</span>
-                      <div style={{ color: 'rgba(255,255,255,0.9)', fontSize: '1.05rem', display: 'flex', gap: '0.8rem', alignItems: 'flex-start' }}>
-                        {renderDynamicIcon(theme.doctorIconShape, { size: 20, color: theme.doctorIconColor, style: { flexShrink: 0, marginTop: '4px' } })}
-                        <span>{Array.isArray(mData.doctor_consultation) ? mData.doctor_consultation.join(' ') : mData.doctor_consultation}</span>
-                      </div>
+                      {isEditing ? (
+                        <RichTextEditor 
+                          value={editData?.doctor_consultation || ''} 
+                          onChange={val => setEditData({...editData, doctor_consultation: val})}
+                        />
+                      ) : (
+                        <div style={{ color: 'rgba(255,255,255,0.9)', fontSize: '1.05rem', display: 'flex', gap: '0.8rem', alignItems: 'flex-start' }}>
+                          {renderDynamicIcon(theme.doctorIconShape, { size: 20, color: theme.doctorIconColor, style: { flexShrink: 0, marginTop: '4px' } })}
+                          <span>{Array.isArray(editData?.doctor_consultation || mData.doctor_consultation) ? (editData?.doctor_consultation || mData.doctor_consultation).join(' ') : (editData?.doctor_consultation || mData.doctor_consultation)}</span>
+                        </div>
+                      )}
                     </div>
                   </div>
 
-                  {/* Contraindications */}
                   <div className="detail-section">
                     <span className="detail-label">{t('labels.contraindications')}</span>
-                    <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: '0.8rem' }}>
-                      {mData.contraindications.map((ci, i) => (
-                        <li key={i} style={{ display: 'flex', gap: '0.8rem', alignItems: 'flex-start' }}>
-                          {renderDynamicIcon(theme.contraIconShape, { size: 20, color: theme.contraIconColor, style: { flexShrink: 0, marginTop: '2px' } })}
-                          <span style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.9)' }}>{ci}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    {isEditing ? (
+                      <div style={{ display: 'grid', gap: '0.8rem' }}>
+                        {(editData?.contraindications || []).map((ci, i) => (
+                          <div key={i} style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                            <input 
+                              className="admin-edit-input" 
+                              value={ci} 
+                              onChange={e => {
+                                const newList = [...editData.contraindications];
+                                newList[i] = e.target.value;
+                                setEditData({...editData, contraindications: newList});
+                              }} 
+                            />
+                            <button className="admin-list-btn remove" onClick={() => {
+                              const newList = editData.contraindications.filter((_, idx) => idx !== i);
+                              setEditData({...editData, contraindications: newList});
+                            }}><Trash2 size={16}/></button>
+                          </div>
+                        ))}
+                        <button className="admin-list-btn add" onClick={() => setEditData({...editData, contraindications: [...(editData.contraindications || []), '']})}>
+                          <Plus size={16}/> {currentLang === 'he' ? 'הוסף התווית נגד' : 'Add Contraindication'}
+                        </button>
+                      </div>
+                    ) : (
+                      <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: '0.8rem' }}>
+                        {(editData?.contraindications || mData.contraindications).map((ci, i) => (
+                          <li key={i} style={{ display: 'flex', gap: '0.8rem', alignItems: 'flex-start' }}>
+                            {renderDynamicIcon(theme.contraIconShape, { size: 20, color: theme.contraIconColor, style: { flexShrink: 0, marginTop: '2px' } })}
+                            <span style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.9)' }}>{ci}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
 
                 </div>
