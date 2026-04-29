@@ -678,7 +678,13 @@ function App() {
                         <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: '0.8rem' }}>
                           {(() => {
                             const rawData = editData?.doctor_consultation || mData.doctor_consultation;
-                            const items = Array.isArray(rawData) ? rawData : (typeof rawData === 'string' ? rawData.split('\n').filter(l => l.trim()) : []);
+                            let items = [];
+                            if (Array.isArray(rawData)) {
+                                items = rawData;
+                            } else if (typeof rawData === 'string') {
+                                // Split by newlines or dots followed by space
+                                items = rawData.split(/\n|\.\s/).filter(l => l.trim().length > 1);
+                            }
                             return items.map((item, i) => (
                               <li key={i} style={{ display: 'flex', gap: '0.8rem', alignItems: 'flex-start' }}>
                                 <AlertTriangle size={20} color="#ffdd00" style={{ flexShrink: 0, marginTop: '2px' }} />
