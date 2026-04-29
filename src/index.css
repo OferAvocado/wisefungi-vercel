@@ -32,10 +32,14 @@
   padding: 0;
 }
 
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 body {
   min-height: 100vh;
-  width: 100vw;
-  overflow-x: hidden;
+  width: 100%;
   background-color: var(--bg-primary);
   /* Immersive 2026 Mushroom Background - Multi-layered Stack */
   background-image: 
@@ -57,6 +61,7 @@ body {
   flex-direction: column;
   min-height: 100vh;
   width: 100%;
+  overflow-x: hidden;
 }
 
 .glass-panel {
