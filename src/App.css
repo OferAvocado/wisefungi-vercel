@@ -140,6 +140,7 @@
   width: 100%;
   margin: 0 auto 3rem;
   padding: 0 1.5rem;
+  box-sizing: border-box;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--border-glass);
   border-radius: 99px;
@@ -147,8 +148,10 @@
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .hero-search-star {
+  width: 100%;
   max-width: 850px;
   padding: 0.5rem 2.5rem;
+  box-sizing: border-box;
   background: rgba(22, 163, 74, 0.05);
   border-color: var(--accent-primary);
   box-shadow: 0 0 60px -10px var(--accent-glow), 0 20px 80px -20px rgba(0,0,0,0.6);

@@ -370,7 +370,22 @@ function App() {
       <style dangerouslySetInnerHTML={{__html: `
         ${generateCustomCSS()}
         ${generateThemeCSS()}
-        .app-container { margin: 0 !important; border: none !important; }
+        .app-container { margin: 0 !important; border: none !important; overflow-x: hidden !important; width: 100% !important; }
+        .admin-status-bar { 
+          display: flex; 
+          flex-wrap: wrap; 
+          gap: 0.5rem; 
+          padding: 0.5rem 1rem; 
+          background: #16a34a; 
+          color: white; 
+          width: 100%;
+          box-sizing: border-box;
+          z-index: 9999;
+        }
+        @media (max-width: 768px) {
+          .admin-status-bar { font-size: 0.75rem; justify-content: center; }
+          .admin-logout-btn { padding: 0.2rem 0.5rem; font-size: 0.7rem; }
+        }
       `}} />
 
       {isAdmin && !isVisualEditorOpen && (
