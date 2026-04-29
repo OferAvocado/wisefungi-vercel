@@ -554,23 +554,22 @@
 .back-home-btn {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
-  background: #ffffff;
-  border: 1px solid #ffffff;
-  color: #000000;
-  padding: 0.7rem 1.5rem;
-  border-radius: 14px;
+  gap: 0.5rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  color: #ffffff;
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
   cursor: pointer;
-  font-weight: 800;
-  font-size: 1rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  font-weight: 400;
+  font-size: 1.1rem;
+  transition: all 0.2s ease;
 }
 
 .back-home-btn:hover {
-  background: #f0f0f0;
-  transform: scale(1.05) translateX(5px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
 .close-btn-new {
