@@ -676,12 +676,16 @@ function App() {
                         </div>
                       ) : (
                         <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: '0.8rem' }}>
-                          {(Array.isArray(editData?.doctor_consultation || mData.doctor_consultation) ? (editData?.doctor_consultation || mData.doctor_consultation) : []).map((item, i) => (
-                            <li key={i} style={{ display: 'flex', gap: '0.8rem', alignItems: 'flex-start' }}>
-                              <AlertTriangle size={20} color="#ffdd00" style={{ flexShrink: 0, marginTop: '2px' }} />
-                              <span style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.9)' }}>{item}</span>
-                            </li>
-                          ))}
+                          {(() => {
+                            const rawData = editData?.doctor_consultation || mData.doctor_consultation;
+                            const items = Array.isArray(rawData) ? rawData : (typeof rawData === 'string' ? rawData.split('\n').filter(l => l.trim()) : []);
+                            return items.map((item, i) => (
+                              <li key={i} style={{ display: 'flex', gap: '0.8rem', alignItems: 'flex-start' }}>
+                                <AlertTriangle size={20} color="#ffdd00" style={{ flexShrink: 0, marginTop: '2px' }} />
+                                <span style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.9)' }}>{item}</span>
+                              </li>
+                            ));
+                          })()}
                         </ul>
                       )}
                     </div>
