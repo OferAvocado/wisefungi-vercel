@@ -220,7 +220,7 @@ export default async function handler(req, res) {
       mushroomsObj[row.slug] = {
         id: row.slug,
         name: row.name,
-        subtitle: row.scientific_name,
+        subtitle: row.tagline || row.scientific_name,
         scientific_name: row.scientific_name,
         image: illustrationMap[row.slug] || row.featured_image,
         keywords: row.search_keywords || [],
