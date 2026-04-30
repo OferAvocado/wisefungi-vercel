@@ -467,18 +467,6 @@ function App() {
         ) : (
           <div className="modal-overlay" data-editable="modal-overlay">
             <div className={`modal-content glass-panel animate-in ${selectedMushroom.id}`} data-editable="modal-content">
-              <div 
-                style={{ 
-                  position: 'absolute', 
-                  top: 0, left: 0, right: 0, bottom: 0, 
-                  backgroundImage: `url(/assets/${selectedMushroom.id.replace(/-/g, '_')}_pattern.png)`, 
-                  backgroundSize: '400px', 
-                  backgroundRepeat: 'repeat', 
-                  opacity: 0.08, 
-                  pointerEvents: 'none', 
-                  zIndex: -1 
-                }} 
-              />
               <div className="modal-nav-header" data-editable="modal-nav-header">
                 <button className="back-home-btn" onClick={() => setSelectedMushroom(null)} data-editable="back-home-btn">
                   <span>{currentLang === 'he' ? 'חזרה' : 'Back'}</span>
@@ -511,7 +499,7 @@ function App() {
                       </>
                     ) : (
                       <>
-                        <h2 className="modal-title" data-editable="modal-title" style={{ marginBottom: '0.5rem' }}>{selectedMushroom.name}</h2>
+                        <h2 className="title-glow modal-title" data-editable="modal-title" style={{ marginBottom: '0.5rem' }}>{selectedMushroom.name}</h2>
                         <div className="fade-line" style={{ height: '2px', background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.8) 50%, transparent 100%)', margin: '1rem 0', width: '100%' }} data-editable="modal-divider"></div>
                         <p className="modal-scientific" data-editable="modal-subtitle" style={{ marginTop: '0.5rem' }}>{selectedMushroom.scientific_name}</p>
                       </>
