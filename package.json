@@ -13,6 +13,7 @@
     "@vercel/postgres": "^0.10.0",
     "dotenv": "^16.4.5",
     "i18next": "^25.8.18",
+    "jimp": "^1.6.1",
     "lucide-react": "^0.577.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
