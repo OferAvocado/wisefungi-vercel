@@ -467,19 +467,6 @@ function App() {
         ) : (
           <div className="modal-overlay" data-editable="modal-overlay">
             <div className={`modal-content glass-panel animate-in ${selectedMushroom.id}`} data-editable="modal-content">
-              <div 
-                style={{ 
-                  position: 'absolute', 
-                  top: 0, left: 0, right: 0, bottom: 0, 
-                  backgroundImage: `url(/assets/${selectedMushroom.id.replace(/-/g, '_')}_icon.png)`, 
-                  backgroundSize: '150px', 
-                  backgroundPosition: 'center',
-                  backgroundRepeat: 'repeat', 
-                  opacity: 0.08, 
-                  pointerEvents: 'none', 
-                  zIndex: -1 
-                }} 
-              />
               <div className="modal-nav-header" data-editable="modal-nav-header">
                 <button className="back-home-btn" onClick={() => setSelectedMushroom(null)} data-editable="back-home-btn">
                   <span>{currentLang === 'he' ? 'חזרה' : 'Back'}</span>
@@ -545,7 +532,20 @@ function App() {
               </div>
             </div>
 
-            <div className="modal-body" data-editable="modal-body">
+            <div className="modal-body" style={{ position: 'relative' }} data-editable="modal-body">
+              <div 
+                style={{ 
+                  position: 'absolute', 
+                  top: 0, left: 0, right: 0, bottom: 0, 
+                  backgroundImage: `url(/assets/${selectedMushroom.id.replace(/-/g, '_')}_icon.png)`, 
+                  backgroundSize: '150px', 
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'repeat', 
+                  opacity: 0.08, 
+                  pointerEvents: 'none', 
+                  zIndex: -1 
+                }} 
+              />
               {activeTab === 'info' ? (
                 <div className="tab-content" style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
                   
