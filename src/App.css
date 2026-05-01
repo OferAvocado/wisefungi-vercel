@@ -639,7 +639,7 @@
 }
 
 .detail-section {
-  background: #1a1a1a !important; /* Non-transparent dark background */
+  background: rgba(0, 0, 0, 0.4) !important; /* Translucent to show background pattern */
   border: 3px solid #ffffff !important; /* Thick white border */
   padding: 2rem;
   border-radius: 20px;

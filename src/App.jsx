@@ -471,10 +471,11 @@ function App() {
                 style={{ 
                   position: 'absolute', 
                   top: 0, left: 0, right: 0, bottom: 0, 
-                  backgroundImage: `url(/assets/${selectedMushroom.id.replace(/-/g, '_')}_pattern.png)`, 
-                  backgroundSize: '300px', 
+                  backgroundImage: `url(/assets/${selectedMushroom.id.replace(/-/g, '_')}_icon.png)`, 
+                  backgroundSize: '150px', 
+                  backgroundPosition: 'center',
                   backgroundRepeat: 'repeat', 
-                  opacity: 1, 
+                  opacity: 0.08, 
                   pointerEvents: 'none', 
                   zIndex: -1 
                 }} 
