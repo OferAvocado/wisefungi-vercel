@@ -226,14 +226,11 @@ function App() {
     if (!query) return true;
     
     // Check if any row in the imported index matches this mushroom's english name AND the search query
-    const dbMatch = Object.values(rawSearchIndex).some(row => 
-      enMushroomMap[row.mushroom_name_en] === m.id &&
-      (
-        ((row.keyword || '').toLowerCase().includes(query)) ||
-        ((row.mushroom_name_he || '').toLowerCase().includes(query)) ||
-        ((row.mushroom_name_en || '').toLowerCase().includes(query))
-      )
-    );
+    const dbMatch = Object.values(rawSearchIndex).some(row => {
+      if (enMushroomMap[row.mushroom_name_en] !== m.id || row.language !== 'en') return false;
+      const term = i18n.exists(`terms.${row.keyword}`) ? t(`terms.${row.keyword}`) : row.keyword;
+      return term.toLowerCase().includes(query);
+    });
 
     return (
       dbMatch ||
@@ -249,28 +246,24 @@ function App() {
   const suggestions = searchQuery.length > 0 
     ? [...new Map(
         Object.values(rawSearchIndex)
-          .filter(row => (row.keyword || '').toLowerCase().includes(query) || (row.mushroom_name_he || '').toLowerCase().includes(query) || (row.mushroom_name_en || '').toLowerCase().includes(query))
+          .filter(row => row.language === 'en')
           .map(row => {
             const localId = enMushroomMap[row.mushroom_name_en];
             const currentItem = mushroomsObj[localId];
             if (!currentItem) return null;
 
-            // Ensure the suggestion text is appropriate for the current language
             let suggestionTerm = '';
             if (row.category === 'name' || row.category === 'scientific_name') {
               suggestionTerm = currentItem.name;
             } else {
-              // It's a condition/benefit. The JSON has keyword. 
-              // We'll just suggest the keyword that matched if it's the current language, or try to localize
-              if (row.language === currentLang) {
-                 suggestionTerm = row.keyword;
-              } else {
-                 return null; // Skip non-localized conditions to avoid showing hebrew conditions in english UI
-              }
+              suggestionTerm = i18n.exists(`terms.${row.keyword}`) ? t(`terms.${row.keyword}`) : row.keyword;
             }
             return [suggestionTerm, suggestionTerm];
           })
           .filter(Boolean)
+          .map(arr => arr[0])
+          .filter(term => term.toLowerCase().includes(query))
+          .map(term => [term, term])
       ).values()].slice(0, 3)
     : [];
 
