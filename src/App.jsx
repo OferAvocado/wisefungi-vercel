@@ -953,8 +953,6 @@ function App() {
 
       {/* Footer */}
       <footer className="footer shadow-xl" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', alignItems: 'center' }}>
-        <p>&copy; 2026 Wise Fungi. Premium UI for Science-Based Fungi Wisdom.</p>
-        <p className="footer-sub">Curated data from the latest mycological research.</p>
         <p className="footer-sub" style={{ marginTop: '0.5rem', fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', maxWidth: '600px', textAlign: 'center', lineHeight: '1.5' }}>
           {currentLang === 'he' ? 'מידע חינוכי בלבד על פטריות מרפא, ואינו מחליף או מתיימר להחליף ייעוץ רפואי.' : 'Educational information only about medicinal mushrooms, and does not replace or claim to replace medical advice.'}
         </p>
