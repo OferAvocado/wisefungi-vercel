@@ -921,7 +921,7 @@ function App() {
               
               {/* Modal Disclaimer Footer */}
               <div style={{ marginTop: '4rem', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.1)', textAlign: 'center' }}>
-                <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)', maxWidth: '600px', margin: '0 auto', lineHeight: '1.5' }}>
+                <p style={{ fontSize: '0.85rem', color: '#ffffff', maxWidth: '600px', margin: '0 auto', lineHeight: '1.5' }}>
                   {currentLang === 'he' ? 'מידע חינוכי בלבד על פטריות מרפא, ואינו מחליף או מתיימר להחליף ייעוץ רפואי.' : 'Educational information only about medicinal mushrooms, and does not replace or claim to replace medical advice.'}
                 </p>
               </div>
@@ -953,7 +953,7 @@ function App() {
 
       {/* Footer */}
       <footer className="footer shadow-xl" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', alignItems: 'center' }}>
-        <p className="footer-sub" style={{ marginTop: '0.5rem', fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', maxWidth: '600px', textAlign: 'center', lineHeight: '1.5' }}>
+        <p className="footer-sub" style={{ marginTop: '0.5rem', fontSize: '0.85rem', color: '#ffffff', maxWidth: '600px', textAlign: 'center', lineHeight: '1.5' }}>
           {currentLang === 'he' ? 'מידע חינוכי בלבד על פטריות מרפא, ואינו מחליף או מתיימר להחליף ייעוץ רפואי.' : 'Educational information only about medicinal mushrooms, and does not replace or claim to replace medical advice.'}
         </p>
       </footer>
