@@ -593,7 +593,9 @@ function App() {
                         {(editData?.benefits || mData.benefits).map((b, i) => (
                           <li key={i} style={{ display: 'flex', gap: '0.8rem', alignItems: 'center' }}>
                             <CheckCircle size={20} color="#22c55e" style={{ flexShrink: 0 }} />
-                            <span style={{ fontSize: '1.1rem', color: 'var(--mush-subtext)' }}>{b}</span>
+                            <span style={{ fontSize: '1.1rem', color: 'var(--mush-subtext)' }}>
+                              {i18n.exists(`terms.${b}`) ? t(`terms.${b}`) : b}
+                            </span>
                           </li>
                         ))}
                       </ul>
@@ -629,7 +631,9 @@ function App() {
                     ) : (
                       <div className="tag-container">
                         {(editData?.conditions || mData.conditions).map((c, i) => (
-                          <span key={i} className="condition-tag">{c}</span>
+                          <span key={i} className="condition-tag">
+                            {i18n.exists(`terms.${c}`) ? t(`terms.${c}`) : c}
+                          </span>
                         ))}
                       </div>
                     )}
