@@ -16,7 +16,16 @@
     "caution": "Caution / Supervision Needed",
     "search_placeholder": "Search mushroom, condition, symptom...",
     "search_label": "Discover Fungi",
-    "popular_conditions": "Trending Conditions"
+    "popular_conditions": "Trending Conditions",
+    "back_button": "Back",
+    "tab_medical_info": "Medical Info",
+    "tab_interactions": "Interactions",
+    "interactions_disclaimer": "* The interaction engine uses an English dictionary. Please search for medications in English only.",
+    "interaction_search_placeholder": "Type medication name in English...",
+    "no_interactions_found": "No severe interactions found for this medication.",
+    "add_new_mushroom": "Add New Mushroom",
+    "repair_db": "Repair Database Constraints",
+    "footer_disclaimer": "Educational information only about medicinal mushrooms, and does not replace or claim to replace medical advice."
   },
   "mushrooms": {
     "reishi": {

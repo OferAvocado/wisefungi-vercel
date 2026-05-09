@@ -51,7 +51,7 @@ function App() {
         setIsLoading(true);
         
         // Fetch from API with cache busting
-        const response = await fetch(`/api/fungi?t=${Date.now()}`, { cache: 'no-store' });
+        const response = await fetch(`/api/fungi?lang=${currentLang}&t=${Date.now()}`, { cache: 'no-store' });
         const dbData = await response.json();
         
         // Fetch UI content
@@ -98,6 +98,12 @@ function App() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [i18n.language]);
+
+  useEffect(() => {
+    if (selectedMushroom && mushroomsData && mushroomsData[selectedMushroom.id]) {
+      setSelectedMushroom({ id: selectedMushroom.id, ...mushroomsData[selectedMushroom.id] });
+    }
+  }, [mushroomsData]);
 
   const handleSelect = (m) => {
     setSelectedMushroom(m);
@@ -462,7 +468,7 @@ function App() {
             <div className={`modal-content glass-panel animate-in ${selectedMushroom.id}`} data-editable="modal-content">
               <div className="modal-nav-header" data-editable="modal-nav-header">
                 <button className="back-home-btn" onClick={() => setSelectedMushroom(null)} data-editable="back-home-btn">
-                  <span>{currentLang === 'he' ? 'חזרה' : 'Back'}</span>
+                  <span>{t('labels.back_button') || (currentLang === 'he' ? 'חזור' : 'Back')}</span>
                   {currentLang === 'he' ? <ChevronRight size={20} /> : <ArrowLeft size={20} />}
                 </button>
               </div>
@@ -919,7 +925,7 @@ function App() {
               {/* Modal Disclaimer Footer */}
               <div style={{ marginTop: '4rem', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.1)', textAlign: 'center' }}>
                 <p style={{ fontSize: '0.85rem', color: '#ffffff', maxWidth: '600px', margin: '0 auto', lineHeight: '1.5' }}>
-                  {currentLang === 'he' ? 'מידע חינוכי בלבד על פטריות מרפא, ואינו מחליף או מתיימר להחליף ייעוץ רפואי.' : 'Educational information only about medicinal mushrooms, and does not replace or claim to replace medical advice.'}
+                  {t('labels.footer_disclaimer') || 'Educational information only about medicinal mushrooms, and does not replace or claim to replace medical advice.'}
                 </p>
               </div>
             </div>
@@ -951,7 +957,7 @@ function App() {
       {/* Footer */}
       <footer className="footer shadow-xl" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', alignItems: 'center' }}>
         <p style={{ marginTop: '0.5rem', fontSize: '0.85rem', color: '#ffffff', opacity: 1, maxWidth: '600px', textAlign: 'center', lineHeight: '1.5' }}>
-          {currentLang === 'he' ? 'מידע חינוכי בלבד על פטריות מרפא, ואינו מחליף או מתיימר להחליף ייעוץ רפואי.' : 'Educational information only about medicinal mushrooms, and does not replace or claim to replace medical advice.'}
+          {t('labels.footer_disclaimer') || 'Educational information only about medicinal mushrooms, and does not replace or claim to replace medical advice.'}
         </p>
       </footer>
     </div>

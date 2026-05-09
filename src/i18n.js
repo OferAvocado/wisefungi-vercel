@@ -5,12 +5,13 @@ import translationEN from './locales/en.json';
 import translationHE from './locales/he.json';
 import translationRU from './locales/ru.json';
 import translationES from './locales/es.json';
+import termsData from './locales/terms.json';
 
 const resources = {
-  en: { translation: translationEN },
-  he: { translation: translationHE },
-  ru: { translation: translationRU },
-  es: { translation: translationES }
+  en: { translation: { ...translationEN, terms: termsData.en || {} } },
+  he: { translation: { ...translationHE, terms: termsData.he || {} } },
+  ru: { translation: { ...translationRU, terms: termsData.ru || {} } },
+  es: { translation: { ...translationES, terms: termsData.es || {} } }
 };
 
 i18n
