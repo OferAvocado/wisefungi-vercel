@@ -1,22 +1,20 @@
 ﻿import { sql } from '@vercel/postgres';
-import fs from 'fs';
-import path from 'path';
+import heData from '../src/locales/he.json';
+import enData from '../src/locales/en.json';
+import esData from '../src/locales/es.json';
+import ruData from '../src/locales/ru.json';
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  if (req.method === 'OPTIONS') return res.status(200).end();
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
 
   try {
-    const langs = ['he', 'en', 'es', 'ru'];
-    const dataMap = {};
-    for (const lang of langs) {
-      const filePath = path.join(process.cwd(), 'src', 'locales', \\.json\);
-      dataMap[lang] = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-    }
-
+    const dataMap = { 'he': heData, 'en': enData, 'es': esData, 'ru': ruData };
     const slugs = ['reishi', 'lions_mane', 'cordyceps', 'chaga', 'turkey_tail', 'tremella'];
 
     for (const slug of slugs) {
