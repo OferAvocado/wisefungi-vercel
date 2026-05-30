@@ -2,8 +2,8 @@
   /* Wise Fungi Original Palette - Refined for 2026 */
   --bg-primary: #040a06;
   --bg-secondary: #0a140c;
-  --bg-glass: rgba(10, 20, 15, 0.7);
-  --border-glass: rgba(34, 197, 94, 0.4);
+  --bg-glass: rgba(10, 20, 15, 0.95);
+  --border-glass: rgba(255, 255, 255, 0.15);
 
   --text-primary: #ffffff;
   --text-secondary: #d1d5db;
@@ -32,9 +32,22 @@
   padding: 0;
 }
 
+input, button, textarea, select {
+  font-family: inherit;
+}
+
 html, body {
   overflow-x: hidden;
   max-width: 100%;
+}
+
+/* Custom Mushroom Cursor */
+@media (pointer: fine) {
+  html:not(.acc-standard-cursor) *,
+  html:not(.acc-standard-cursor) *::before,
+  html:not(.acc-standard-cursor) *::after {
+    cursor: none !important;
+  }
 }
 
 body {
@@ -48,7 +61,7 @@ body {
     linear-gradient(rgba(6, 15, 10, 0.9), rgba(6, 15, 10, 0.9)), /* Clean Minimalism Toggle */
     url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 25c-15 0-25 15-25 25 0 5 10 8 25 8s25-3 25-8c0-10-10-25-25-25zM36 58h8v12c0 3-8 3-8 0V58z' fill='%23ffffff' fill-opacity='0.12'/%3E%3C/svg%3E");
   background-size: auto, auto, auto, 120px;
-  background-attachment: fixed;
+  background-attachment: scroll;
   background-repeat: repeat;
   font-smooth: always;
   -webkit-font-smoothing: antialiased;
@@ -69,8 +82,8 @@ body {
 
 .glass-panel {
   background: var(--bg-glass);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   border: 1px solid var(--border-glass);
   border-radius: 32px;
   box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.5);
@@ -95,3 +108,51 @@ body {
   text-align: right;
 }
 
+/* Beautiful White Scrollbar throughout the site */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05); 
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.5); 
+  border-radius: 8px;
+  border: 3px solid var(--bg-primary); /* Use background color as border for padding effect */
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.8); 
+  border: 3px solid var(--bg-primary);
+  background-clip: padding-box;
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.6) rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 768px) { .glass-panel, .bento-item, .lang-btn, .search-container, .suggestions-container, .qr-popup { background: rgba(20, 20, 20, 0.95) !important; box-shadow: none !important; backdrop-filter: none; -webkit-backdrop-filter: none; } }
+
+/* 4. Readable Font Option - Global Ultra-aggressive override */
+:root.acc-readable-font,
+:root.acc-readable-font *,
+:root.acc-readable-font *::before,
+:root.acc-readable-font *::after,
+html.acc-readable-font,
+html.acc-readable-font *,
+html.acc-readable-font *::before,
+html.acc-readable-font *::after,
+body.acc-readable-font,
+body.acc-readable-font *,
+body.acc-readable-font *::before,
+body.acc-readable-font *::after,
+.acc-readable-font #root * {
+  font-family: Arial, "Arial Hebrew", Helvetica, sans-serif !important;
+}
