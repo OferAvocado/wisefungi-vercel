@@ -1,7 +1,8 @@
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Brain, HeartPulse, Zap, Shield, Sparkles, Droplets, Trash2, Plus, Image as ImageIcon, Bold, Underline } from 'lucide-react';
 
-export default function BentoGrid({ mushrooms, onSelect, isGlobalEditing, setMushroomsData }) {
+const BentoGrid = React.memo(function BentoGrid({ mushrooms, onSelect, isGlobalEditing, setMushroomsData }) {
   const handleUpdate = (id, field, value) => {
     setMushroomsData(prev => ({
       ...prev,
@@ -82,7 +83,8 @@ export default function BentoGrid({ mushrooms, onSelect, isGlobalEditing, setMus
             style={{ 
               cursor: isGlobalEditing ? 'default' : 'pointer',
               position: 'relative',
-              overflow: 'visible'
+              overflow: 'visible',
+              direction: i18n.language === 'he' ? 'rtl' : 'ltr'
             }}
           >
             {isGlobalEditing && (
@@ -130,7 +132,15 @@ export default function BentoGrid({ mushrooms, onSelect, isGlobalEditing, setMus
                     dangerouslySetInnerHTML={{ __html: m.subtitle || '' }}
                     style={{ background: 'rgba(0,0,0,0.3)', minHeight: '2rem', fontSize: '0.85rem', outline: '1px solid #16a34a', borderRadius: '4px', padding: '4px' }}
                   />
-                  <div style={{ display: 'flex', gap: '5px', marginTop: '5px' }}>
+                  <textarea 
+                    className="admin-edit-input"
+                    placeholder="Search keywords (comma separated)"
+                    value={Array.isArray(m.keywords) ? m.keywords.join(', ') : ''}
+                    onChange={(e) => handleUpdate(m.id, 'keywords', e.target.value.split(',').map(s => s.trim()).filter(Boolean))}
+                    style={{ background: 'rgba(0,0,0,0.3)', minHeight: '3rem', fontSize: '0.75rem', outline: '1px solid #16a34a', borderRadius: '4px', padding: '4px', color: '#00f2fe', width: '100%', border: 'none', resize: 'vertical', marginTop: '2px' }}
+                    title={i18n.language === 'he' ? 'מילות חיפוש (מופרדות בפסיקים)' : 'Search keywords (comma separated)'}
+                  />
+                  <div style={{ display: 'flex', gap: '5px', marginTop: '2px' }}>
                     <button 
                       type="button" 
                       onMouseDown={(e) => { e.preventDefault(); exec('bold'); }} 
@@ -204,7 +214,7 @@ export default function BentoGrid({ mushrooms, onSelect, isGlobalEditing, setMus
       </div>
     </section>
   );
-}
+});
 
 const miniEditBtn = {
   background: 'rgba(0,0,0,0.5)',
@@ -217,3 +227,4 @@ const miniEditBtn = {
   alignItems: 'center',
   justifyContent: 'center'
 };
+export default BentoGrid;

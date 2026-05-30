@@ -1,11 +1,18 @@
 import { useTranslation } from 'react-i18next';
 import { Globe, Search, ChevronDown, Share2, Link as LinkIcon, QrCode, X } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
-export default function Header({ isSticky, searchQuery, setSearchQuery, onLogoClick }) {
+export default function Header({ isSticky, searchQuery, setSearchQuery, onLogoClick, selectedMushroom }) {
   const { t, i18n } = useTranslation();
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
+  const langSelectorRef = useRef(null);
+
+  useEffect(() => {
+    // Preload QR Code
+    const img = new Image();
+    img.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(window.location.href)}&bgcolor=ffffff&color=000000`;
+  }, []);
 
   const languages = [
     { code: 'en', label: 'English' },
@@ -24,47 +31,71 @@ export default function Header({ isSticky, searchQuery, setSearchQuery, onLogoCl
     alert(t('labels.link_copied') || 'Link copied!');
   };
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    if (!isLangOpen) return;
+    const handler = (e) => {
+      if (langSelectorRef.current && !langSelectorRef.current.contains(e.target)) {
+        setIsLangOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    document.addEventListener('touchstart', handler);
+    return () => {
+      document.removeEventListener('mousedown', handler);
+      document.removeEventListener('touchstart', handler);
+    };
+  }, [isLangOpen]);
+
   return (
     <>
-    <header className={`header glass-panel ${isSticky ? 'sticky-header' : ''}`}>
-      <div className="header-content">
+    <header 
+      className={`header glass-panel ${isSticky ? 'sticky-header' : ''}`}
+      style={selectedMushroom ? { position: 'fixed', top: 0, left: 0, right: 0, zIndex: 2000, background: 'rgba(0,0,0,0.4)', backdropFilter: 'blur(12px)', borderBottom: '1px solid rgba(255,255,255,0.1)' } : {}}
+    >
+      <div className="header-content" style={selectedMushroom ? { flexDirection: i18n.language === 'he' ? 'row' : 'row-reverse' } : {}}>
         <div className="header-left">
           <h1 className="logo title-glow" onClick={() => { onLogoClick?.(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
             {t('title')}
           </h1>
         </div>
 
-        <div className={`header-center sticky-search-wrap ${isSticky ? 'visible' : 'hidden'}`}>
-          <div className="header-search">
-            <Search size={18} className="search-icon" />
-            <input 
-              type="text" 
-              className="header-search-input"
-              placeholder={t('labels.search_placeholder') || "Search..."}
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
+        {!selectedMushroom && (
+          <div className={`header-center sticky-search-wrap ${isSticky ? 'visible' : 'hidden'}`}>
+            <div className="header-search">
+              <Search size={18} className="search-icon" />
+              <input 
+                type="text" 
+                className="header-search-input"
+                placeholder={i18n.language === 'he' ? 'חיפוש מידע' : i18n.language === 'es' ? 'Buscar' : i18n.language === 'ru' ? 'Поиск' : 'Search'}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="header-right nav-actions" style={{ display: 'flex', gap: '0.8rem', alignItems: 'center' }}>
           
-          <div className="share-selector" style={{ position: 'relative' }}>
-            <button 
-              onClick={() => { setShowShareModal(true); setIsLangOpen(false); }} 
-              className="lang-btn" 
-              aria-label="Share"
-              style={{ width: '42px', height: '42px', padding: '0', justifyContent: 'center' }}
-            >
-              <Share2 size={18} />
-            </button>
-          </div>
+          {!selectedMushroom && (
+            <div className="share-selector" style={{ position: 'relative' }}>
+              <button 
+                onClick={() => { setShowShareModal(true); setIsLangOpen(false); }} 
+                className="lang-btn" 
+                aria-label="Share"
+                style={{ width: '42px', height: '42px', padding: '0', justifyContent: 'center' }}
+              >
+                <Share2 size={18} />
+              </button>
+            </div>
+          )}
 
-          <div className="lang-selector">
+          <div className="lang-selector" ref={langSelectorRef}>
             <button 
-              onClick={() => { setIsLangOpen(!isLangOpen); setIsShareOpen(false); }} 
+              onClick={() => setIsLangOpen(prev => !prev)}
               className="lang-btn" 
               aria-label="Change Language"
+              aria-expanded={isLangOpen}
               style={{ height: '42px' }}
             >
               <Globe size={18} />
