@@ -2,7 +2,7 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import BentoGrid from './components/BentoGrid';
 import { useTranslation } from 'react-i18next';
-import { CheckCircle, XCircle, AlertTriangle, HelpCircle, Search, ChevronDown, ChevronRight, Lock, Save, Edit3, Plus, Trash2, Palette, Layout, Zap, Shield, Droplets, ArrowLeft, Home } from 'lucide-react';
+import { CheckCircle, XCircle, AlertTriangle, HelpCircle, Search, ChevronDown, ChevronRight, Lock, Save, Edit3, Plus, Trash2, Palette, Layout, Zap, Shield, Droplets, ArrowLeft, Home, Key } from 'lucide-react';
 import { useEffect, useState, useRef, useMemo, useCallback } from 'react';
 import translationHE from './locales/he.json';
 import translationEN from './locales/en.json';
@@ -14,6 +14,8 @@ import termsData from './locales/terms.json';
 import RichTextEditor from './components/RichTextEditor';
 import ThemeEditor from './components/ThemeEditor';
 import VisualEditor from './components/VisualEditor';
+import SearchKeywordsDrawer from './components/SearchKeywordsDrawer';
+
 
 import './App.css';
 const watermarkConfigs = {
@@ -312,6 +314,7 @@ function App() {
   const [isVisualEditorOpen, setIsVisualEditorOpen] = useState(false);
   const [visualSelectedId, setVisualSelectedId] = useState(null);
   const [editData, setEditData] = useState(null);
+  const [isKeywordsDrawerOpen, setIsKeywordsDrawerOpen] = useState(false);
   const [uiContent, setUiContent] = useState({});
   const [loginPassword, setLoginPassword] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -550,6 +553,14 @@ function App() {
       insufficient: false
     });
   }, [selectedMushroom, activeTab]);
+
+  useEffect(() => {
+    if (isGlobalEditing || isEditing) {
+      setIsKeywordsDrawerOpen(true);
+    } else {
+      setIsKeywordsDrawerOpen(false);
+    }
+  }, [isGlobalEditing, isEditing]);
 
   const [modalBodyHeight, setModalBodyHeight] = useState(0);
   const modalBodyRef = useRef(null);
@@ -1246,6 +1257,16 @@ function App() {
             }
           </button>
 
+          {isGlobalEditing && (
+            <button 
+              onClick={() => setIsKeywordsDrawerOpen(true)}
+              className="admin-logout-btn" 
+              style={{ background: 'linear-gradient(135deg, rgba(22, 163, 74, 0.9), rgba(0, 242, 254, 0.9))', color: 'white', fontWeight: 'bold' }}
+            >
+              <Key size={14} style={{ transform: 'rotate(90deg)' }} /> {currentLang === 'he' ? 'ערוך מילות מפתח' : 'Edit Keywords'}
+            </button>
+          )}
+
           <button 
             onClick={() => { setIsThemeOpen(true); setIsVisualEditorOpen(false); }} 
             className="admin-logout-btn" 
@@ -1635,9 +1656,32 @@ function App() {
                   </div>
                 </div>
                 {isAdmin && (
-                  <div className="admin-edit-badge" onClick={() => isEditing ? handleSave() : setIsEditing(true)}>
-                    {isEditing ? <Save size={16} /> : <Edit3 size={16} />}
-                    <span>{isEditing ? (currentLang === 'he' ? 'שמור' : 'Save') : (currentLang === 'he' ? 'ערוך' : 'Edit')}</span>
+                  <div style={{ display: 'flex', gap: '0.6rem', alignItems: 'center' }}>
+                    {isEditing && (
+                      <button
+                        onClick={() => setIsKeywordsDrawerOpen(true)}
+                        className="admin-edit-badge"
+                        style={{
+                          background: 'linear-gradient(135deg, rgba(22, 163, 74, 0.9), rgba(0, 242, 254, 0.9))',
+                          border: 'none',
+                          color: 'white',
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '0.4rem',
+                          fontFamily: 'inherit',
+                          fontWeight: 'bold',
+                        }}
+                        title={currentLang === 'he' ? 'ערוך מילות מפתח' : 'Edit Keywords'}
+                      >
+                        <Key size={14} style={{ transform: 'rotate(90deg)' }} />
+                        <span>{currentLang === 'he' ? 'מילות מפתח' : 'Keywords'}</span>
+                      </button>
+                    )}
+                    <div className="admin-edit-badge" onClick={() => isEditing ? handleSave() : setIsEditing(true)}>
+                      {isEditing ? <Save size={16} /> : <Edit3 size={16} />}
+                      <span>{isEditing ? (currentLang === 'he' ? 'שמור' : 'Save') : (currentLang === 'he' ? 'ערוך' : 'Edit')}</span>
+                    </div>
                   </div>
                 )}
               </div>
@@ -1988,157 +2032,6 @@ function App() {
                       return obj[currentLang] || obj['en'] || obj['he'] || '';
                     };
 
-                    const categoriesList = [
-                      { key: 'do_not_combine', label: { he: "אין לשלב — סיכון גבוה", en: "Do NOT combine — High Risk", ru: "НЕ комбинировать — Высокий риск", es: "NO combinar — Riesgo Alto" } },
-                      { key: 'use_caution', label: { he: "יש לנקוט זהירות — אינטראקציה בינונית", en: "Use Caution — Moderate Interaction", ru: "Соблюдать осторожность", es: "Usar con Precaución" } },
-                      { key: 'potential_synergy', label: { he: "סינרגיה פוטנציאלית — שילוב מועיל", en: "Potential Synergy — Helpful Combination", ru: "Потенциальная синергия", es: "Sinergia Potencial" } },
-                      { key: 'insufficient', label: { he: "מחקר לא מספיק", en: "Unknown / Insufficient Research", ru: "Недостаточно исследований", es: "Desconocido / Investigación Insuficiente" } }
-                    ];
-
-                    if (isEditing) {
-                        return (
-                          <div className="interactions-editor" style={{ display: 'flex', flexDirection: 'column', gap: '2rem', width: '100%', maxWidth: '850px', margin: '0 auto', direction: currentLang === 'he' ? 'rtl' : 'ltr' }}>
-                            <h3 style={{ fontSize: '1.4rem', fontWeight: 'bold', color: 'var(--accent-primary)', borderBottom: '2px solid rgba(255,255,255,0.1)', paddingBottom: '0.5rem', textAlign: currentLang === 'he' ? 'right' : 'left' }}>
-                              {currentLang === 'he' ? 'עריכת אינטראקציות תרופתיות' : 'Edit Drug Interactions'}
-                            </h3>
-                            {categoriesList.map(cat => {
-                              const items = mushInts[cat.key] || [];
-                              const catLabel = cat.label[currentLang] || cat.label['en'];
-                              return (
-                                <div key={cat.key} style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '16px', padding: '1.5rem', textAlign: currentLang === 'he' ? 'right' : 'left' }}>
-                                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', flexDirection: currentLang === 'he' ? 'row-reverse' : 'row' }}>
-                                    <h4 style={{ fontSize: '1.15rem', fontWeight: 'bold', color: '#ffffff', margin: 0 }}>{catLabel}</h4>
-                                    <span style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)' }}>({items.length} {currentLang === 'he' ? 'פריטים' : 'items'})</span>
-                                  </div>
-                                  
-                                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                                    {items.map((item, idx) => {
-                                      const nameObj = item.name || {};
-                                      const whyObj = item.why || {};
-                                      const mechObj = item.mechanism || {};
-                                      
-                                      const currentName = nameObj[currentLang] || '';
-                                      const currentWhy = whyObj[currentLang] || '';
-                                      const currentMech = mechObj[currentLang] || '';
-                                      const evidence = item.evidence || 'clinical';
-
-                                      const updateItem = (field, value) => {
-                                        const updatedInts = { ...mushInts };
-                                        const categoryItems = [...(updatedInts[cat.key] || [])];
-                                        const updatedItem = { ...categoryItems[idx] };
-                                        
-                                        if (field === 'evidence') {
-                                          updatedItem.evidence = value;
-                                        } else {
-                                          const transObj = { ...(updatedItem[field] || {}) };
-                                          transObj[currentLang] = value;
-                                          updatedItem[field] = transObj;
-                                        }
-                                        
-                                        categoryItems[idx] = updatedItem;
-                                        updatedInts[cat.key] = categoryItems;
-                                        setEditData({ ...editData, interactions: updatedInts });
-                                      };
-
-                                      const deleteItem = () => {
-                                        const updatedInts = { ...mushInts };
-                                        const categoryItems = (updatedInts[cat.key] || []).filter((_, i) => i !== idx);
-                                        updatedInts[cat.key] = categoryItems;
-                                        setEditData({ ...editData, interactions: updatedInts });
-                                      };
-
-                                      return (
-                                        <div key={idx} style={{ background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', flexDirection: currentLang === 'he' ? 'row-reverse' : 'row' }}>
-                                            <span style={{ color: 'var(--accent-primary)', fontWeight: 'bold', fontSize: '0.9rem' }}>
-                                              #{idx + 1} {currentName ? ` - ${currentName}` : ''}
-                                            </span>
-                                            <button 
-                                              onClick={deleteItem}
-                                              className="admin-list-btn remove"
-                                              style={{ padding: '0.4rem', borderRadius: '6px', background: 'rgba(239, 68, 68, 0.2)', border: 'none', color: '#ef4444', cursor: 'pointer' }}
-                                              title={currentLang === 'he' ? 'מחק פריט' : 'Delete Item'}
-                                            >
-                                              <Trash2 size={16} />
-                                            </button>
-                                          </div>
-
-                                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
-                                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', alignItems: 'stretch' }}>
-                                              <label style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)', textAlign: currentLang === 'he' ? 'right' : 'left' }}>
-                                                {currentLang === 'he' ? 'שם החומר / תרופה' : 'Substance / Drug Name'}
-                                              </label>
-                                              <input 
-                                                type="text" 
-                                                className="admin-edit-input"
-                                                style={{ width: '100%', background: 'rgba(255,255,255,0.05)', color: '#fff', border: '1px solid rgba(255,255,255,0.1)', padding: '0.6rem', borderRadius: '8px' }}
-                                                value={currentName}
-                                                onChange={e => updateItem('name', e.target.value)}
-                                                placeholder={currentLang === 'he' ? 'למשל: אספירין' : 'e.g. Aspirin'}
-                                              />
-                                            </div>
-                                            
-                                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', alignItems: 'stretch' }}>
-                                              <label style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)', textAlign: currentLang === 'he' ? 'right' : 'left' }}>
-                                                {currentLang === 'he' ? 'רמת ראיות קליניות' : 'Clinical Evidence Level'}
-                                              </label>
-                                              <select 
-                                                className="admin-edit-input"
-                                                style={{ width: '100%', background: '#1c1c1e', color: '#fff', border: '1px solid rgba(255,255,255,0.1)', padding: '0.6rem', borderRadius: '8px', cursor: 'pointer' }}
-                                                value={evidence}
-                                                onChange={e => updateItem('evidence', e.target.value)}
-                                              >
-                                                <option value="clinical">{currentLang === 'he' ? 'ראיות קליניות (Clinical)' : 'Clinical evidence'}</option>
-                                                <option value="limited">{currentLang === 'he' ? 'מחקר מוגבל (Limited)' : 'Limited research'}</option>
-                                                <option value="theoretical">{currentLang === 'he' ? 'תיאורטי (Theoretical)' : 'Theoretical'}</option>
-                                              </select>
-                                            </div>
-                                          </div>
-
-                                          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', alignItems: 'stretch' }}>
-                                            <label style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)', textAlign: currentLang === 'he' ? 'right' : 'left' }}>
-                                              {currentLang === 'he' ? 'הסבר / למה לא לשלב' : 'Explanation / Why'}
-                                            </label>
-                                            <textarea 
-                                              className="admin-edit-input"
-                                              style={{ width: '100%', minHeight: '60px', background: 'rgba(255,255,255,0.05)', color: '#fff', border: '1px solid rgba(255,255,255,0.1)', padding: '0.6rem', borderRadius: '8px', resize: 'vertical' }}
-                                              value={currentWhy}
-                                              onChange={e => updateItem('why', e.target.value)}
-                                              placeholder={currentLang === 'he' ? 'הסבר קצר על האינטראקציה...' : 'Brief explanation of the interaction...'}
-                                            />
-                                          </div>
-
-
-                                        </div>
-                                      );
-                                    })}
-
-                                    <button 
-                                      onClick={() => {
-                                        const updatedInts = { ...mushInts };
-                                        const categoryItems = [...(updatedInts[cat.key] || [])];
-                                        categoryItems.push({
-                                          name: { he: "", en: "", ru: "", es: "" },
-                                          why: { he: "", en: "", ru: "", es: "" },
-                                          evidence: "clinical"
-                                        });
-                                        updatedInts[cat.key] = categoryItems;
-                                        setEditData({ ...editData, interactions: updatedInts });
-                                      }}
-                                      className="admin-list-btn add"
-                                      style={{ alignSelf: 'flex-start', display: 'flex', alignItems: 'center', gap: '0.4rem', background: 'rgba(22, 163, 74, 0.2)', color: 'var(--accent-primary)', border: 'none', padding: '0.6rem 1rem', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold' }}
-                                    >
-                                      <Plus size={16} /> 
-                                      {currentLang === 'he' ? 'הוסף אינטראקציה' : 'Add Interaction'}
-                                    </button>
-                                  </div>
-                                </div>
-                              );
-                            })}
-                          </div>
-                        );
-                    }
-
                     const filterItems = (items) => {
                       if (!interactionQuery.trim()) return items || [];
                       const qWords = interactionQuery.toLowerCase().split(/\s+/).filter(Boolean);
@@ -2152,7 +2045,7 @@ function App() {
                               String(val).toLowerCase().includes(qWord)
                             );
                           };
-                          return matchesObj(item.name) || matchesObj(item.why) || matchesObj(item.mechanism);
+                          return matchesObj(item.name) || matchesObj(item.why);
                         });
                       });
                     };
@@ -2186,7 +2079,7 @@ function App() {
                             if (typeof obj === 'string') return obj.toLowerCase().includes(qWord);
                             return Object.values(obj).some(val => String(val).toLowerCase().includes(qWord));
                           };
-                          return matchesObj(item.name) || matchesObj(item.why) || matchesObj(item.mechanism);
+                          return matchesObj(item.name) || matchesObj(item.why);
                         });
                         if (matchesQuery && localizedName) {
                           uniqueNames.add(localizedName);
@@ -2346,6 +2239,60 @@ function App() {
           {t('labels.footer_disclaimer') || 'Educational information only about medicinal mushrooms, and does not replace or claim to replace medical advice.'}
         </p>
       </footer>
+
+      {/* Search Keywords Drawer (Admin Only) */}
+      {isAdmin && (isGlobalEditing || isEditing) && (
+        <button
+          onClick={() => setIsKeywordsDrawerOpen(true)}
+          style={{
+            position: 'fixed',
+            right: currentLang === 'he' ? 'auto' : '0',
+            left: currentLang === 'he' ? '0' : 'auto',
+            top: '55%',
+            transform: 'translateY(-50%)',
+            background: 'linear-gradient(135deg, rgba(22, 163, 74, 0.9), rgba(0, 242, 254, 0.9))',
+            border: '1px solid rgba(255,255,255,0.2)',
+            borderTopLeftRadius: currentLang === 'he' ? '0' : '12px',
+            borderBottomLeftRadius: currentLang === 'he' ? '0' : '12px',
+            borderTopRightRadius: currentLang === 'he' ? '12px' : '0',
+            borderBottomRightRadius: currentLang === 'he' ? '12px' : '0',
+            padding: '1.2rem 0.6rem',
+            color: 'white',
+            cursor: 'pointer',
+            zIndex: 99999,
+            boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '0.4rem',
+            writingMode: 'vertical-rl',
+            textOrientation: 'mixed',
+            fontWeight: 'bold',
+            fontSize: '0.85rem',
+            letterSpacing: '1px',
+            transition: 'all 0.3s ease',
+          }}
+          onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-50%) scale(1.05)'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(-50%)'; }}
+          title={currentLang === 'he' ? 'ערוך מילות מפתח' : 'Edit Keywords'}
+        >
+          <Key size={16} style={{ transform: 'rotate(90deg)', marginBottom: '0.2rem' }} />
+          <span>{currentLang === 'he' ? 'מילות מפתח' : 'Keywords'}</span>
+        </button>
+      )}
+
+      <SearchKeywordsDrawer
+        isOpen={isKeywordsDrawerOpen}
+        onClose={() => setIsKeywordsDrawerOpen(false)}
+        mushrooms={allMushrooms}
+        selectedMushroom={selectedMushroom}
+        mushroomsData={mushroomsData}
+        setMushroomsData={setMushroomsData}
+        currentLang={currentLang}
+        isAdmin={isAdmin}
+        editData={editData}
+        setEditData={setEditData}
+      />
 
       {/* Floating Accessibility Widget */}
       <AccessibilityWidget />
