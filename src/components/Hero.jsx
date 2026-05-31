@@ -45,7 +45,30 @@ export default function Hero({ searchQuery, setSearchQuery, isSticky, suggestion
 
       <div className="search-section animate-fade-in">
         <div className="search-container glass-panel hero-search-star">
-          <Search size={22} className="search-icon" />
+          <button
+            type="button"
+            onClick={() => {
+              const grid = document.getElementById('bento-grid');
+              if (grid) {
+                grid.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            className="search-submit-btn"
+            aria-label={i18n.language === 'he' ? 'חיפוש' : 'Search'}
+            style={{
+              background: 'none',
+              border: 'none',
+              padding: 0,
+              margin: 0,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              outline: 'none',
+            }}
+          >
+            <Search size={22} className="search-icon" />
+          </button>
           <div className="input-wrapper">
             {isGlobalEditing ? (
               <input 
