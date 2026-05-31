@@ -1,36 +1,13 @@
-const fs = require('fs');
-const path = require('path');
+const { execSync } = require('child_process');
 
-console.log('Starting custom build.cjs...');
+console.log('Starting custom build.cjs with Vite compilation...');
 
-if (fs.existsSync('dist')) {
-  console.log('Cleaning old dist...');
-  fs.rmSync('dist', { recursive: true, force: true });
+try {
+  console.log('Executing npx vite build...');
+  // We run npx vite build to compile src/main.jsx into dist/
+  execSync('npx vite build', { stdio: 'inherit' });
+  console.log('Vite build completed successfully!');
+} catch (error) {
+  console.error('Vite build failed:', error.message);
+  process.exit(1);
 }
-fs.mkdirSync('dist');
-
-// Copy index.html
-console.log('Copying index.html to dist...');
-fs.copyFileSync('index.html', 'dist/index.html');
-
-// Copy public directory to dist
-function copyDir(src, dest) {
-  fs.mkdirSync(dest, { recursive: true });
-  const entries = fs.readdirSync(src, { withFileTypes: true });
-  for (const entry of entries) {
-    const srcPath = path.join(src, entry.name);
-    const destPath = path.join(dest, entry.name);
-    if (entry.isDirectory()) {
-      copyDir(srcPath, destPath);
-    } else {
-      fs.copyFileSync(srcPath, destPath);
-    }
-  }
-}
-
-if (fs.existsSync('public')) {
-  console.log('Copying public folder to dist...');
-  copyDir('public', 'dist');
-}
-
-console.log('Build completed successfully!');
