@@ -1,6 +1,6 @@
 {
-  "buildCommand": "node build.cjs",
-  "outputDirectory": "dist",
+  "buildCommand": "",
+  "outputDirectory": "public",
   "framework": null,
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" }
