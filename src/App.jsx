@@ -39,6 +39,26 @@ const defaultLocalReviews = [
 const AccessibilityWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showStatement, setShowStatement] = useState(false);
+  const panelRef = useRef(null);
+
+  // Close accessibility panel when clicking outside of it
+  useEffect(() => {
+    if (!isOpen) return;
+    const handler = (e) => {
+      if (panelRef.current && !panelRef.current.contains(e.target) && !e.target.closest('.accessibility-widget')) {
+        setIsOpen(false);
+      }
+    };
+    const timer = setTimeout(() => {
+      document.addEventListener('click', handler, { passive: true });
+      document.addEventListener('touchstart', handler, { passive: true });
+    }, 10);
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener('click', handler);
+      document.removeEventListener('touchstart', handler);
+    };
+  }, [isOpen]);
   
   // Clear old accessibility settings if this is a new app version
   // This prevents stale settings from causing issues
@@ -140,7 +160,7 @@ const AccessibilityWidget = () => {
 
       {/* Accessibility Panel Menu */}
       {isOpen && (
-        <div className="accessibility-panel">
+        <div className="accessibility-panel" ref={panelRef}>
           <div className="accessibility-header">
             <h3>תפריט נגישות</h3>
             <button className="accessibility-close-btn" onClick={() => setIsOpen(false)}>&times;</button>
@@ -323,7 +343,7 @@ function App() {
   const [reviews, setReviews] = useState([]);
   const [isReviewFormOpen, setIsReviewFormOpen] = useState(false);
   const [newReviewName, setNewReviewName] = useState('');
-  const [newReviewRating, setNewReviewRating] = useState(5);
+  const [newReviewRating, setNewReviewRating] = useState(3);
   const [newReviewComment, setNewReviewComment] = useState('');
   const [isSubmittingReview, setIsSubmittingReview] = useState(false);
   const [isReviewEditing, setIsReviewEditing] = useState(false);
@@ -365,7 +385,7 @@ function App() {
       });
       if (res.ok) {
         setNewReviewName('');
-        setNewReviewRating(5);
+        setNewReviewRating(3);
         setNewReviewComment('');
         setIsReviewFormOpen(false);
         await fetchReviews();
@@ -518,10 +538,10 @@ function App() {
     // The user requested that the scrollbar be on the RIGHT for Hebrew and LEFT for other languages.
     // The global scrollbar position is determined by the `dir` of `html`.
     // By setting `html` to 'ltr' in Hebrew, the scrollbar goes to the right.
-    // But we must set `body` to 'rtl' so the actual content is still right-to-left.
+    // The user also requested that ALL languages start text on the right side (RTL).
     const isHe = i18n.language === 'he';
-    document.documentElement.dir = isHe ? 'rtl' : 'ltr';
-    document.body.dir = isHe ? 'rtl' : 'ltr';
+    document.documentElement.dir = isHe ? 'ltr' : 'rtl';
+    document.body.dir = 'rtl';
     document.documentElement.lang = i18n.language;
 
     const handleScroll = () => {
@@ -1292,7 +1312,7 @@ function App() {
         isSticky={isSticky} 
         searchQuery={searchQuery} 
         setSearchQuery={setSearchQuery} 
-        onLogoClick={handleLogoClick}
+        onLogoClick={() => { if (selectedMushroom) { setSelectedMushroom(null); } else { handleLogoClick(); } }}
         selectedMushroom={selectedMushroom}
       />
       
@@ -1502,19 +1522,25 @@ function App() {
                             </div>
                           ) : (
                             <>
-                              <div className="review-card-header" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                              <div className="review-card-header" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', alignItems: 'center' }}>
                                 <h4 className="review-author" style={{ margin: 0 }}>{r.name}</h4>
-                                <div className="review-stars" style={{ paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255, 255, 255, 0.2)', marginBottom: '0.5rem' }}>
+                                <div className="review-stars" style={{ display: 'flex', gap: '0.6rem', paddingBottom: '0.4rem', justifyContent: 'center' }}>
                                   {Array.from({ length: 5 }).map((_, idx) => (
                                     <span 
                                       key={idx} 
                                       className={`star-icon-display ${idx < r.rating ? 'active' : 'inactive'}`}
                                       style={{ display: 'inline-flex', alignItems: 'center' }}
                                     >
-                                      <MushroomIcon size={33} active={idx < r.rating} />
+                                      <MushroomIcon size={50} active={idx < r.rating} />
                                     </span>
                                   ))}
                                 </div>
+                                <div style={{ 
+                                  height: '1px', 
+                                  background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35) 50%, transparent)', 
+                                  width: '100%', 
+                                  margin: '0.4rem 0 0.8rem 0' 
+                                }} />
                               </div>
                               <p className="review-text">{r.comment}</p>
                             </>

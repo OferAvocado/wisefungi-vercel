@@ -23,9 +23,9 @@
 .header-right { justify-self: end; }
 
 .logo {
-  font-size: 1.4rem;
-  font-weight: 800;
-  letter-spacing: -0.06em;
+  font-size: 2.2rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
   color: #fff;
   cursor: pointer;
 }
@@ -96,7 +96,7 @@
 @media (max-width: 768px) {
   .header { padding: 0.6rem 1rem; }
   .header-content { grid-template-columns: auto minmax(0, 1fr) auto; gap: 0.5rem; }
-  .logo { font-size: 1.1rem; }
+  .logo { font-size: 1.8rem; }
   .lang-text { display: none; }
   .lang-btn { padding: 0.5rem; }
   .header-center { max-width: 100%; min-width: 0; }
@@ -554,7 +554,6 @@
   }
 }
 
-/* Modal */
 .modal-overlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -566,6 +565,7 @@
   overflow-y: auto;
   animation: modalFadeIn 0.4s ease;
   width: 100%;
+  padding-top: 85px; /* Space for the header */
 }
 
 @keyframes modalFadeIn {
@@ -575,7 +575,7 @@
 
 .floating-back-btn {
   position: fixed;
-  top: 1.5rem;
+  top: 95px; /* Float below the header */
   right: 1.5rem;
   z-index: 5100;
   background: rgba(0, 0, 0, 0.4);
@@ -726,7 +726,7 @@
   white-space: pre-wrap !important;
 }
 
-/* Force all text in detail sections to be white */
+/* Force all text in detail sections and interactions to be white */
 .detail-section, 
 .detail-section *, 
 .modal-description, 
@@ -734,6 +734,16 @@
 .benefit-list span,
 .tag-container span,
 .condition-tag {
+  color: #ffffff !important;
+}
+
+.interaction-category,
+.interactions-editor,
+.tab-btn {
+  color: #ffffff !important;
+}
+
+.interaction-card div {
   color: #ffffff !important;
 }
 
@@ -1229,9 +1239,15 @@
   }
 
   .floating-back-btn {
-    top: 1rem;
-    right: 1rem;
+    top: 80px !important;
+    right: 1rem !important;
     padding: 0.4rem 0.9rem !important;
+  }
+  .modal-overlay {
+    padding-top: 70px !important;
+  }
+  .logo {
+    font-size: 1.8rem !important;
   }
   .modal-header {
     padding: 1.5rem 1.5rem 1rem;
@@ -1409,13 +1425,23 @@ html, body {
   gap: 0.2rem;
 }
 .star-icon-display {
-  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.35); /* Increased border/frame size */
+  border-radius: 50%;
+  padding: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  transition: all 0.2s ease;
 }
 .star-icon-display.active {
   color: #f59e0b;
+  border-color: #f59e0b;
+  background: rgba(245, 158, 11, 0.05);
 }
 .star-icon-display.inactive {
   color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 .review-text {
   font-size: 0.98rem;
@@ -2039,3 +2065,4 @@ body.acc-stop-animations *::after {
   transition: none !important;
   scroll-behavior: auto !important;
 }
+
