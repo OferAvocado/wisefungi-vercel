@@ -154,5 +154,5 @@ body.acc-readable-font *,
 body.acc-readable-font *::before,
 body.acc-readable-font *::after,
 .acc-readable-font #root * {
-  font-family: Arial, "Arial Hebrew", Helvetica, sans-serif !important;
+  
 }
