@@ -203,6 +203,16 @@
   color: var(--accent-primary);
   flex-shrink: 0;
 }
+.search-submit-btn {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.search-submit-btn:hover {
+  transform: scale(1.2);
+  opacity: 0.85;
+}
+.search-submit-btn:active {
+  transform: scale(0.9);
+}
 .search-input {
   flex: 1;
   background: none;
@@ -496,7 +506,7 @@
   justify-content: center;
 }
 .card-title {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 800;
   margin: 0;
   color: var(--mush-text, #fff);
@@ -1191,7 +1201,7 @@
     padding: 1.25rem 1.5rem;
   }
   .card-title {
-    font-size: 1.6rem;
+    font-size: 2rem;
   }
   .card-subtitle {
     font-size: 0.95rem;
