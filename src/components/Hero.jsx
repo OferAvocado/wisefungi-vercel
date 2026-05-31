@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Search } from 'lucide-react';
 
 export default function Hero({ searchQuery, setSearchQuery, isSticky, suggestions, uiContent, setUiContent, isGlobalEditing }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   // Find the first suggestion that starts with the current query for inline autocomplete
   const firstMatch = suggestions.find(s => s.toLowerCase().startsWith(searchQuery.toLowerCase()));

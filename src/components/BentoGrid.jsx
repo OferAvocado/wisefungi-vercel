@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Brain, HeartPulse, Zap, Shield, Sparkles, Droplets, Trash2, Plus, Image as ImageIcon, Bold, Underline } from 'lucide-react';
 
 const BentoGrid = React.memo(function BentoGrid({ mushrooms, onSelect, isGlobalEditing, setMushroomsData }) {
+  const { i18n } = useTranslation();
   const handleUpdate = (id, field, value) => {
     setMushroomsData(prev => ({
       ...prev,
