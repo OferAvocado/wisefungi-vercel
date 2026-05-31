@@ -1,7 +1,7 @@
 {
-  "buildCommand": "",
-  "outputDirectory": "public",
-  "framework": null,
+  "buildCommand": "node build.cjs",
+  "outputDirectory": "dist",
+  "framework": "vite",
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" }
   ]
