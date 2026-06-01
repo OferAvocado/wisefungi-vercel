@@ -1702,22 +1702,21 @@ html, body {
 .accessibility-close-btn {
   background: none;
   border: none;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 1.6rem;
+  color: #f87171;
+  font-size: 2.4rem;
   line-height: 1;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
+  width: 36px;
+  height: 36px;
   transition: all 0.15s ease;
 }
 
 .accessibility-close-btn:hover {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.1);
+  color: #ef4444;
+  transform: scale(1.1);
 }
 
 .accessibility-menu-list {
