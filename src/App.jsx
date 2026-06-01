@@ -16,8 +16,8 @@ import ThemeEditor from './components/ThemeEditor';
 import VisualEditor from './components/VisualEditor';
 import SearchKeywordsDrawer from './components/SearchKeywordsDrawer';
 import AdminAuthModal from './components/AdminAuthModal';
-
-
+import InteractionPage from './pages/InteractionPage';
+import SEO from './components/SEO';
 import './App.css';
 const watermarkConfigs = {
   reishi: { tileHeight: 147, minHeight: 1572 },
@@ -311,9 +311,64 @@ const normalizeText = (text) => {
 
 const apiCache = { fungi: {}, ui: {} };
 
+
+const intTrans = {
+  he: {
+    quickSearch: 'חיפוש אינטראקציות מהיר',
+    directoryTitle: 'מדריך אינטראקציות מלא לפי קטגוריות',
+    searchResults: 'תוצאות חיפוש',
+    noResults: 'לא נמצאו אינטראקציות מתאימות לחיפוש "{{query}}"',
+    category: 'קטגוריה',
+    do_not_combine: 'אין לשלב — סיכון גבוה',
+    use_caution: 'יש לנקוט זהירות',
+    potential_synergy: 'סינרגיה פוטנציאלית',
+    insufficient: 'אין מספיק מחקר / ראיות',
+  },
+  en: {
+    quickSearch: 'Quick Interaction Search',
+    directoryTitle: 'Full Interaction Directory by Category',
+    searchResults: 'Search Results',
+    noResults: 'No interactions matching "{{query}}"',
+    category: 'Category',
+    do_not_combine: 'Do NOT Combine — High Risk',
+    use_caution: 'Use Caution',
+    potential_synergy: 'Potential Synergy',
+    insufficient: 'Insufficient Research',
+  },
+  es: {
+    quickSearch: 'Búsqueda rápida de interacciones',
+    directoryTitle: 'Directorio completo de interacciones por categoría',
+    searchResults: 'Resultados de búsqueda',
+    noResults: 'No se encontraron interacciones para "{{query}}"',
+    category: 'Categoría',
+    do_not_combine: 'NO Combinar — Riesgo Alto',
+    use_caution: 'Usar con Precaución',
+    potential_synergy: 'Sinergia Potencial',
+    insufficient: 'Investigación Insuficiente',
+  },
+  ru: {
+    quickSearch: 'Быстрый поиск взаимодействий',
+    directoryTitle: 'Полный справочник взаимодействий по категориям',
+    searchResults: 'Результаты поиска',
+    noResults: 'Нет взаимодействий по запросу "{{query}}"',
+    category: 'Категория',
+    do_not_combine: 'НЕ комбинировать — Высокий риск',
+    use_caution: 'Соблюдать осторожность',
+    potential_synergy: 'Потенциальная синергия',
+    insufficient: 'Недостаточно исследований',
+  }
+};
+
 function App() {
   const { i18n, t } = useTranslation();
-  const currentLang = i18n.language || 'he';
+  const rawLang = i18n.language || 'he';
+  const detectedLang = rawLang.split('-')[0].toLowerCase();
+  const currentLang = ['he', 'en', 'es', 'ru'].includes(detectedLang) ? detectedLang : 'en';
+  const tInt = (key, query = '') => {
+    const lang = currentLang || 'en';
+    const str = (intTrans[lang] || intTrans['en'])[key] || '';
+    return str.replace('{{query}}', query);
+  };
   const [mushroomsData, setMushroomsData] = useState(null);
   const [interactionsData, setInteractionsData] = useState(null);
   const [selectedMushroom, setSelectedMushroom] = useState(null);
@@ -348,6 +403,22 @@ function App() {
   const [isReviewEditing, setIsReviewEditing] = useState(false);
   const [editedReviews, setEditedReviews] = useState({});
   const [reviewSubmitError, setReviewSubmitError] = useState('');
+  const reviewFormRef = useRef(null);
+
+  useEffect(() => {
+    if (!isReviewFormOpen) return;
+    const handleClickOutside = (event) => {
+      if (reviewFormRef.current && !reviewFormRef.current.contains(event.target)) {
+        setIsReviewFormOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [isReviewFormOpen]);
 
   const fetchReviews = async () => {
     try {
@@ -367,7 +438,7 @@ function App() {
   const handleSubmitReview = async (e) => {
     e.preventDefault();
     if (!newReviewComment.trim()) {
-      setReviewSubmitError(currentLang === 'he' ? 'אנא כתוב ביקורת' : 'Please write a review');
+      setReviewSubmitError(t('labels.review_error_empty'));
       return;
     }
     setIsSubmittingReview(true);
@@ -449,6 +520,32 @@ function App() {
       console.error(err);
     }
   };
+
+  useEffect(() => {
+    // Scroll restoration manual to prevent browser from scrolling to previous scroll position on reload
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    
+    // Explicitly reset selected mushroom on fresh entry/reload to put user on the home page
+    setSelectedMushroom(null);
+    
+    const performScroll = () => {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    };
+    
+    performScroll();
+    // Run with small delays to ensure layout completes and overrides any browser restoration behavior
+    const t1 = setTimeout(performScroll, 50);
+    const t2 = setTimeout(performScroll, 150);
+    
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, []); // Run EXACTLY ONCE on mount (page load/refresh)
 
   useEffect(() => {
     // Check if already an admin in this session
@@ -538,10 +635,10 @@ function App() {
     // The global scrollbar position is determined by the `dir` of `html`.
     // By setting `html` to 'ltr' in Hebrew, the scrollbar goes to the right.
     // But we must set `body` to 'rtl' so the actual content is still right-to-left.
-    const isHe = i18n.language === 'he';
+    const isHe = currentLang === 'he';
     document.documentElement.dir = isHe ? 'rtl' : 'ltr';
     document.body.dir = isHe ? 'rtl' : 'ltr';
-    document.documentElement.lang = i18n.language;
+    document.documentElement.lang = currentLang;
 
     const handleScroll = () => {
       // Trigger sticky state after scrolling past 100px
@@ -552,7 +649,7 @@ function App() {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [i18n.language]);
+  }, [currentLang]);
 
   useEffect(() => {
     if (selectedMushroom && mushroomsData && mushroomsData[selectedMushroom.id]) {
@@ -853,10 +950,9 @@ function App() {
         });
         if (dbMatch) return true;
 
-        // 3. Check database conditions & benefits cross-lingually
+        // 3. Check database conditions cross-lingually (excluding benefits to reduce false positives like "pain")
         if (m.detailed_data) {
           if (checkFieldMatch(m.detailed_data.conditions)) return true;
-          if (checkFieldMatch(m.detailed_data.benefits)) return true;
         }
 
         // 4. Check database-only keywords cross-lingually
@@ -1215,8 +1311,20 @@ function App() {
     };
   }, [isVisualEditorOpen]);
 
+  const pathParts = window.location.pathname.split('/').filter(Boolean);
+  // e.g. /he/interactions/lions-mane/cbd
+  const isInteractionRoute = pathParts.length >= 3 && pathParts[1] === 'interactions';
+  if (isInteractionRoute) {
+    return <InteractionPage lang={pathParts[0]} mushroomId={pathParts[2]} vectorId={pathParts[3]} />;
+  }
+
   return (
     <div className={`app-container ${isAdmin ? 'is-admin' : ''} ${isAdmin && !isVisualEditorOpen ? 'is-admin-bar-visible' : ''}`}>
+      <SEO 
+        title={uiContent.site_title || "Wise Fungi - המדריך המפורט לפטריות מרפא"} 
+        description={uiContent.site_desc || "המדריך המפורט ביותר לפטריות מרפא ברשת. ריישי, רעמת האריה, קורדיספס, צ'אגה ועוד."} 
+        canonicalPath="" 
+      />
       
       <style dangerouslySetInnerHTML={{__html: `
         ${generateCustomCSS()}
@@ -1367,7 +1475,7 @@ function App() {
                       onClick={() => setIsReviewFormOpen(true)}
                       style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}
                     >
-                      <span>הוסף ביקורת / שתף מידע</span>
+                      <span>{t('labels.add_review_btn')}</span>
                       <MushroomIcon size={33} active={true} />
                     </button>
                   </div>
@@ -1375,25 +1483,29 @@ function App() {
 
                 {/* Write Review Form */}
                 {isReviewFormOpen && (
-                  <div className="review-form-panel glass-panel">
-                    <button className="review-form-close" onClick={() => setIsReviewFormOpen(false)}>&times;</button>
-                    <h3 className="review-form-title">הוסף ביקורת / שתף מידע</h3>
+                  <div className="review-form-panel glass-panel" ref={reviewFormRef}>
+                    <button
+                      className="review-form-close"
+                      onClick={() => setIsReviewFormOpen(false)}
+                      style={currentLang === 'he' ? { left: '1.2rem', right: 'auto' } : { right: '1.2rem', left: 'auto' }}
+                    >&times;</button>
+                    <h3 className="review-form-title">{t('labels.review_form_title')}</h3>
                     
                     <form onSubmit={handleSubmitReview} className="review-form">
                       <div className="review-form-field">
-                        <label className="review-form-label">שם (אנונימי אפשרי)</label>
+                        <label className="review-form-label">{t('labels.review_name_label')}</label>
                         <input 
                           type="text" 
                           className="review-form-input" 
-                          placeholder="שם או כינוי..." 
+                          placeholder={t('labels.review_name_placeholder')} 
                           value={newReviewName} 
                           onChange={e => setNewReviewName(e.target.value)} 
                         />
                       </div>
                       
                       <div className="review-form-field">
-                        <label className="review-form-label">דירוג</label>
-                        <div className="stars-rating">
+                        <label className="review-form-label">{t('labels.review_rating_label')}</label>
+                        <div className="stars-rating" style={{ display: 'flex', justifyContent: 'flex-start', gap: '0.2rem' }}>
                           {[1, 2, 3, 4, 5].map((s) => (
                             <span 
                               key={s} 
@@ -1408,10 +1520,10 @@ function App() {
                       </div>
                       
                       <div className="review-form-field">
-                        <label className="review-form-label">ביקורת או מידע שרוצים לשתף</label>
+                        <label className="review-form-label">{t('labels.review_comment_label')}</label>
                         <textarea 
                           className="review-form-textarea" 
-                          placeholder="שתפו חוויה, מידע, שאלה או המלצה..." 
+                          placeholder={t('labels.review_comment_placeholder')} 
                           value={newReviewComment}
                           onChange={e => setNewReviewComment(e.target.value)}
                           rows={4}
@@ -1427,10 +1539,10 @@ function App() {
                       <div className="review-form-actions">
                         <button type="submit" className="review-submit-btn" disabled={isSubmittingReview}>
                           <span className="send-icon" style={{ marginLeft: '0.4rem', transform: 'rotate(90deg)', display: 'inline-block' }}>➤</span>
-                          {isSubmittingReview ? 'שולח...' : 'שלח'}
+                          {isSubmittingReview ? t('labels.review_submitting') : t('labels.review_submit')}
                         </button>
                         <button type="button" className="review-cancel-btn" onClick={() => setIsReviewFormOpen(false)}>
-                          ביטול
+                          {t('labels.review_cancel')}
                         </button>
                       </div>
                     </form>
@@ -1439,7 +1551,7 @@ function App() {
 
                 {/* Section Header */}
                 <div className="reviews-header-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '3rem', position: 'relative' }}>
-                  <h2 className="reviews-header-title" style={{ marginBottom: isAdmin ? '1rem' : '0' }}>מה אומרים המשתמשים</h2>
+                  <h2 className="reviews-header-title" style={{ marginBottom: isAdmin ? '1rem' : '0' }}>{t('labels.reviews_title')}</h2>
                   {isAdmin && (
                     <button 
                       onClick={() => {
@@ -1450,11 +1562,11 @@ function App() {
                     >
                       {isReviewEditing ? (
                         <>
-                          <CheckCircle size={16} /> <span>סיום ניהול ביקורות</span>
+                          <CheckCircle size={16} /> <span>{t('labels.admin_reviews_done')}</span>
                         </>
                       ) : (
                         <>
-                          <Edit3 size={16} /> <span>ניהול ועריכת ביקורות</span>
+                          <Edit3 size={16} /> <span>{t('labels.admin_reviews_manage')}</span>
                         </>
                       )}
                     </button>
@@ -1503,7 +1615,7 @@ function App() {
                               
                               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '0.2rem' }}>
                                 <label className="review-form-label" style={{ fontSize: '0.85rem' }}>דירוג:</label>
-                                <div className="stars-rating" style={{ gap: '0.2rem' }}>
+                                <div className="stars-rating" style={{ display: 'flex', justifyContent: 'flex-start', gap: '0.2rem' }}>
                                   {[1, 2, 3, 4, 5].map((s) => (
                                     <span 
                                       key={s} 
@@ -1538,7 +1650,7 @@ function App() {
                             <>
                               <div className="review-card-header" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                                 <h4 className="review-author" style={{ margin: 0 }}>{r.name}</h4>
-                                <div className="review-stars" style={{ paddingBottom: '0.5rem', marginBottom: '0.5rem', position: 'relative' }}>
+                                <div className="review-stars" style={{ display: 'flex', justifyContent: 'flex-start', paddingBottom: '0.5rem', marginBottom: '0.5rem', position: 'relative' }}>
                                   {Array.from({ length: 5 }).map((_, idx) => (
                                     <span 
                                       key={idx} 
@@ -1873,9 +1985,9 @@ function App() {
                       ) : (
                         <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: '0.8rem' }}>
                           {safeArray(editData?.doctor_consultation || mData.doctor_consultation).map((item, i) => (
-                              <li key={i} style={{ display: 'flex', gap: '0.8rem', alignItems: 'flex-start' }}>
-                                <AlertTriangle size={20} color="#ffdd00" style={{ flexShrink: 0, marginTop: '2px' }} />
+                              <li key={i} style={{ display: 'flex', gap: '0.8rem', alignItems: 'flex-start', justifyContent: 'space-between' }}>
                                 <span style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.9)' }}>{item}</span>
+                                <AlertTriangle size={20} color="#ffdd00" style={{ flexShrink: 0, marginTop: '2px' }} />
                               </li>
                           ))}
                         </ul>
@@ -1911,9 +2023,9 @@ function App() {
                     ) : (
                       <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: '0.8rem' }}>
                         {safeArray(editData?.contraindications || mData.contraindications).map((ci, i) => (
-                          <li key={i} style={{ display: 'flex', gap: '0.8rem', alignItems: 'flex-start' }}>
-                            <XCircle size={20} color="#FF7676" style={{ flexShrink: 0, marginTop: '2px' }} />
+                          <li key={i} style={{ display: 'flex', gap: '0.8rem', alignItems: 'flex-start', justifyContent: 'space-between' }}>
                             <span style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.9)' }}>{ci}</span>
+                            <XCircle size={20} color="#FF7676" style={{ flexShrink: 0, marginTop: '2px' }} />
                           </li>
                         ))}
                       </ul>
@@ -1962,59 +2074,63 @@ function App() {
                 <div className="tab-content" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', paddingTop: '1rem' }}>
                   
                   {/* Interaction Search Bar */}
-                  <div className="interaction-search-bar" style={{ 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    width: '100%', 
-                    marginBottom: '1rem',
-                    background: 'rgba(22, 22, 22, 0.9)',
-                    backdropFilter: 'blur(32px)',
-                    WebkitBackdropFilter: 'blur(32px)',
-                    borderRadius: '16px',
-                    border: '2px solid rgba(255,255,255,0.1)',
-                    padding: '4px',
-                    boxSizing: 'border-box'
-                  }}>
-                    <input 
-                      type="text" 
-                      placeholder={t('labels.interaction_search_placeholder')}
-                      value={interactionQuery}
-                      onChange={(e) => setInteractionQuery(e.target.value)}
-                      className="interaction-search-input"
-                      style={{ 
-                        flex: 1,
-                        padding: '1rem 1.2rem',
-                        background: 'transparent',
-                        border: 'none',
-                        color: 'white',
-                        fontSize: '1.1rem',
-                        outline: 'none'
-                      }} 
-                    />
-                    <button
-                      type="button"
-                      onClick={() => {
-                        const inputEl = document.querySelector('.interaction-search-input');
-                        if (inputEl) inputEl.focus();
-                      }}
-                      className="interaction-search-btn"
-                      style={{
-                        background: 'rgba(255,255,255,0.15)',
-                        border: 'none',
-                        borderRadius: '12px',
-                        padding: '0.8rem 1rem',
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        color: 'white',
-                        marginLeft: '4px',
-                        marginRight: '4px',
-                        transition: 'background 0.2s'
-                      }}
-                    >
-                      <Search color="white" size={20} />
-                    </button>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', width: '100%', marginBottom: '0.5rem', textAlign: currentLang === 'he' ? 'right' : 'left' }} dir={currentLang === 'he' ? 'rtl' : 'ltr'}>
+                    <h3 style={{ fontSize: '1.2rem', fontWeight: '800', color: 'white', margin: 0 }}>
+                      {tInt('quickSearch')}
+                    </h3>
+                    <div className="interaction-search-bar" style={{ 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      width: '100%', 
+                      background: 'rgba(22, 22, 22, 0.9)',
+                      backdropFilter: 'blur(32px)',
+                      WebkitBackdropFilter: 'blur(32px)',
+                      borderRadius: '16px',
+                      border: '2px solid rgba(255,255,255,0.1)',
+                      padding: '4px',
+                      boxSizing: 'border-box'
+                    }}>
+                      <input 
+                        type="text" 
+                        placeholder={t('labels.interaction_search_placeholder')}
+                        value={interactionQuery}
+                        onChange={(e) => setInteractionQuery(e.target.value)}
+                        className="interaction-search-input"
+                        style={{ 
+                          flex: 1,
+                          padding: '1rem 1.2rem',
+                          background: 'transparent',
+                          border: 'none',
+                          color: 'white',
+                          fontSize: '1.1rem',
+                          outline: 'none'
+                        }} 
+                      />
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const inputEl = document.querySelector('.interaction-search-input');
+                          if (inputEl) inputEl.focus();
+                        }}
+                        className="interaction-search-btn"
+                        style={{
+                          background: 'rgba(255,255,255,0.15)',
+                          border: 'none',
+                          borderRadius: '12px',
+                          padding: '0.8rem 1rem',
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          color: 'white',
+                          marginLeft: '4px',
+                          marginRight: '4px',
+                          transition: 'background 0.2s'
+                        }}
+                      >
+                        <Search color="white" size={20} />
+                      </button>
+                    </div>
                   </div>
 
                   {(() => {
@@ -2062,13 +2178,6 @@ function App() {
                       });
                     };
 
-                    const categories = {
-                      do_not_combine: filterItems(mushInts.do_not_combine),
-                      use_caution: filterItems(mushInts.use_caution),
-                      potential_synergy: filterItems(mushInts.potential_synergy),
-                      insufficient: filterItems(mushInts.insufficient)
-                    };
-
                     const interactionSuggestions = (() => {
                       if (!interactionQuery.trim()) return [];
                       const qWords = interactionQuery.toLowerCase().split(/\s+/).filter(Boolean);
@@ -2094,7 +2203,10 @@ function App() {
                           return matchesObj(item.name) || matchesObj(item.why);
                         });
                         if (matchesQuery && localizedName) {
-                          uniqueNames.add(localizedName);
+                          const clean = stripExplanations(localizedName);
+                          if (clean) {
+                            uniqueNames.add(clean);
+                          }
                         }
                       });
 
@@ -2112,34 +2224,66 @@ function App() {
                     };
 
                     const evidenceLabels = {
-                      clinical: { he: 'ראיות קליניות', en: 'Clinical evidence' },
-                      limited: { he: 'מחקר מוגבל', en: 'Limited research' },
-                      theoretical: { he: 'תיאורטי', en: 'Theoretical' }
+                      clinical: {
+                        he: 'מחקר קליני',
+                        en: 'Clinical research',
+                        es: 'Investigación clínica',
+                        ru: 'Клиническое исследование'
+                      },
+                      limited: {
+                        he: 'מחקר חלקי',
+                        en: 'Limited research',
+                        es: 'Investigación limitada',
+                        ru: 'Ограниченное исследование'
+                      },
+                      theoretical: {
+                        he: 'תיאורטי',
+                        en: 'Theoretical',
+                        es: 'Teórico',
+                        ru: 'Теоретическое'
+                      },
+                      insufficient: {
+                        he: 'אין מספיק ראיות או מחקר בנושא',
+                        en: 'Insufficient evidence / research',
+                        es: 'Evidencia / investigación insuficiente',
+                        ru: 'Недостаточно доказательств / исследований'
+                      }
                     };
 
                     const EvidenceBadge = ({ type }) => {
-                      if (!type) return null;
-                      const lbl = evidenceLabels[type]?.[currentLang] || type;
-                      let bg = 'rgba(255,255,255,0.1)', border = 'rgba(255,255,255,0.3)', text = 'rgba(255,255,255,0.6)';
-                      if (type === 'clinical') { bg = 'rgba(255,255,255,0.2)'; text = 'white'; }
-                      else if (type === 'limited') { text = 'rgba(255,255,255,0.8)'; }
+                      const badgeType = type || 'insufficient';
+                      const lbl = evidenceLabels[badgeType]?.[currentLang] || evidenceLabels[badgeType]?.['en'] || badgeType;
+                      
+                      let bg = 'rgba(255,255,255,0.08)';
+                      let border = 'rgba(255,255,255,0.2)';
+                      let text = 'rgba(255,255,255,0.7)';
+                      
                       return (
-                        <span style={{ background: bg, border: `1px solid ${border}`, color: text, padding: '0.2rem 0.6rem', borderRadius: '99px', fontSize: '0.75rem', fontWeight: 'bold' }}>
+                        <span style={{ 
+                          background: bg, 
+                          border: `1px solid ${border}`, 
+                          color: text, 
+                          padding: '0.2rem 0.6rem', 
+                          borderRadius: '99px', 
+                          fontSize: '0.75rem', 
+                          fontWeight: 'bold',
+                          display: 'inline-flex',
+                          alignItems: 'center'
+                        }}>
                           {lbl}
                         </span>
                       );
                     };
 
                     const renderCategory = (key, items, icon, colors) => {
-                      if (items.length === 0 && interactionQuery.trim() === '') return null;
                       if (items.length === 0) return null;
 
-                      const isExpanded = expandedCats[key] || interactionQuery.trim().length > 0;
+                      const isExpanded = expandedCats[key] || false;
 
                       return (
                         <div className="interaction-category" style={{ background: colors.bg, border: `2px solid ${colors.border}`, borderRadius: '16px', marginBottom: '1rem', overflow: 'hidden', textAlign: currentLang === 'he' ? 'right' : 'left' }} dir={currentLang==='he'?'rtl':'ltr'}>
                           <button 
-                            onClick={() => setExpandedCats(prev => ({ [key]: !prev[key] }))}
+                            onClick={() => setExpandedCats(prev => ({ ...prev, [key]: !prev[key] }))}
                             style={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'space-between', padding: '1.2rem', background: 'transparent', border: 'none', cursor: 'pointer', color: 'inherit' }}
                           >
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', fontSize: '1.1rem', fontWeight: '800', color: 'white' }}>
@@ -2195,6 +2339,13 @@ function App() {
                       );
                     };
 
+                    const categories = {
+                      do_not_combine: filterItems(mushInts.do_not_combine),
+                      use_caution: filterItems(mushInts.use_caution),
+                      potential_synergy: filterItems(mushInts.potential_synergy),
+                      insufficient: filterItems(mushInts.insufficient)
+                    };
+
                     const totalItems = Object.values(categories).flat().length;
 
                     return (
@@ -2217,13 +2368,13 @@ function App() {
                           </div>
                         )}
                         {renderCategory('do_not_combine', categories.do_not_combine, <XCircle size={22} />, { bg: 'rgb(80,15,15)', border: '#ef4444', iconCol: '#fca5a5', cardBg: 'rgb(45,5,5)', cardBorder: 'rgba(252,165,165,0.3)' })}
-                        {renderCategory('use_caution', categories.use_caution, <AlertTriangle size={22} />, { bg: 'rgb(69,53,0)', border: '#eab308', iconCol: '#fde047', cardBg: 'rgb(38,18,3)', cardBorder: 'rgba(253,224,71,0.3)' })}
-                        {renderCategory('potential_synergy', categories.potential_synergy, <CheckCircle size={22} />, { bg: 'rgb(4,46,22)', border: '#22c55e', iconCol: '#86efac', cardBg: 'rgb(2,26,12)', cardBorder: 'rgba(134,239,172,0.3)' })}
-                        {renderCategory('insufficient', categories.insufficient, <HelpCircle size={22} />, { bg: 'rgb(30,30,30)', border: '#6b7280', iconCol: '#d1d5db', cardBg: 'rgb(18,18,18)', cardBorder: 'rgba(255,255,255,0.1)' })}
+                        {renderCategory('use_caution', categories.use_caution, <AlertTriangle size={22} />, { bg: 'rgba(161,98,7,0.2)', border: '#eab308', iconCol: '#fde047', cardBg: 'rgba(66,32,6,0.3)', cardBorder: 'rgba(253,224,71,0.3)' })}
+                        {renderCategory('potential_synergy', categories.potential_synergy, <CheckCircle size={22} />, { bg: 'rgba(21,128,61,0.2)', border: '#22c55e', iconCol: '#86efac', cardBg: 'rgba(5,46,22,0.3)', cardBorder: 'rgba(134,239,172,0.3)' })}
+                        {renderCategory('insufficient', categories.insufficient, <HelpCircle size={22} />, { bg: 'rgba(55,65,81,0.2)', border: '#9ca3af', iconCol: '#d1d5db', cardBg: 'rgba(17,24,39,0.3)', cardBorder: 'rgba(209,213,219,0.3)' })}
                         
                         {totalItems === 0 && (
-                          <div style={{ padding: '3rem', textAlign: 'center', color: 'var(--mush-subtext)', fontSize: '1.1rem' }}>
-                            {t('no_interactions_matching', { query: interactionQuery })}
+                          <div style={{ textAlign: 'center', padding: '3rem 1rem', background: 'rgba(255,255,255,0.03)', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.1)' }}>
+                            <p style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.6)' }}>{t('labels.no_interactions_found') || 'לא נמצאו אינטראקציות מתאימות לחיפוש זה'}</p>
                           </div>
                         )}
                       </div>
@@ -2237,7 +2388,7 @@ function App() {
               {/* Modal Disclaimer Footer */}
               <div style={{ padding: '0 3rem 1.5rem 3rem' }}>
                 <div ref={footerLineRef} style={{ paddingTop: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.2)', textAlign: 'center' }}>
-                  <p style={{ fontSize: '1.3rem', color: '#ffffff', maxWidth: '800px', margin: '0 auto', lineHeight: '1.5', fontWeight: 'bold' }}>
+                  <p style={{ fontSize: '0.6rem', color: '#ffffff', opacity: 0.6, maxWidth: '800px', margin: '0 auto', lineHeight: '1.5', fontWeight: 'bold' }}>
                     {t('labels.footer_disclaimer') || 'Educational information only about medicinal mushrooms, and does not replace or claim to replace medical advice.'}
                   </p>
                 </div>
@@ -2261,7 +2412,7 @@ function App() {
 
       {/* Footer */}
       <footer className="footer shadow-xl" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', alignItems: 'center' }}>
-        <p style={{ marginTop: '0.5rem', fontSize: '1.3rem', color: '#ffffff', opacity: 1, maxWidth: '800px', textAlign: 'center', lineHeight: '1.5', fontWeight: 'bold' }}>
+        <p style={{ marginTop: '0.5rem', fontSize: '0.85rem', color: '#ffffff', opacity: 0.6, maxWidth: '800px', textAlign: 'center', lineHeight: '1.5', fontWeight: 'bold' }}>
           {t('labels.footer_disclaimer') || 'Educational information only about medicinal mushrooms, and does not replace or claim to replace medical advice.'}
         </p>
       </footer>

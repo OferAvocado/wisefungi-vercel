@@ -26,7 +26,21 @@
     "no_interactions_found": "לא נמצאו אינטראקציות חמורות לתרופה זו.",
     "add_new_mushroom": "הוסף פטרייה חדשה",
     "repair_db": "תקן אילוצי מסד נתונים",
-    "footer_disclaimer": "מידע חינוכי בלבד על פטריות מרפא, ואינו מחליף או מתיימר להחליף ייעוץ רפואי."
+    "footer_disclaimer": "מידע חינוכי בלבד על פטריות מרפא, ואינו מחליף או מתיימר להחליף ייעוץ רפואי.",
+    "add_review_btn": "הוסף ביקורת / שתף מידע",
+    "reviews_title": "מה אומרים המשתמשים",
+    "review_form_title": "הוסף ביקורת / שתף מידע",
+    "review_name_label": "שם (אנונימי אפשרי)",
+    "review_name_placeholder": "שם או כינוי...",
+    "review_rating_label": "דירוג",
+    "review_comment_label": "ביקורת או מידע שרוצים לשתף",
+    "review_comment_placeholder": "שתפו חוויה, מידע, שאלה או המלצה...",
+    "review_submit": "שלח",
+    "review_submitting": "שולח...",
+    "review_cancel": "ביטול",
+    "review_error_empty": "אנא כתוב ביקורת",
+    "admin_reviews_manage": "ניהול ועריכת ביקורות",
+    "admin_reviews_done": "סיום ניהול ביקורות"
   },
   "mushrooms": {
     "reishi": {

@@ -22,6 +22,8 @@ i18n
     resources,
     fallbackLng: 'en',
     supportedLngs: ['en', 'he', 'ru', 'es'],
+    nonExplicitSupportedLngs: true,
+    load: 'languageOnly',
     detection: {
       order: ['navigator', 'htmlTag', 'path', 'subdomain'],
       caches: ['localStorage', 'cookie']

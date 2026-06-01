@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import React from 'react'
 import './index.css'
 import App from './App.jsx'
+import { HelmetProvider } from 'react-helmet-async';
 import './i18n';
 
 // Global error handler to catch errors outside React scope (helps debug black screen)
@@ -55,7 +56,9 @@ class ErrorBoundary extends React.Component {
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ErrorBoundary>
-      <App />
+      <HelmetProvider>
+        <App />
+      </HelmetProvider>
     </ErrorBoundary>
   </StrictMode>,
 )

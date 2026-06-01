@@ -25,7 +25,21 @@
     "no_interactions_found": "No severe interactions found for this medication.",
     "add_new_mushroom": "Add New Mushroom",
     "repair_db": "Repair Database Constraints",
-    "footer_disclaimer": "Educational information only about medicinal mushrooms, and does not replace or claim to replace medical advice."
+    "footer_disclaimer": "Educational information only about medicinal mushrooms, and does not replace or claim to replace medical advice.",
+    "add_review_btn": "Add Review / Share Info",
+    "reviews_title": "What Our Users Say",
+    "review_form_title": "Add Review / Share Info",
+    "review_name_label": "Name (anonymous allowed)",
+    "review_name_placeholder": "Name or nickname...",
+    "review_rating_label": "Rating",
+    "review_comment_label": "Review or info to share",
+    "review_comment_placeholder": "Share an experience, info, question or recommendation...",
+    "review_submit": "Submit",
+    "review_submitting": "Submitting...",
+    "review_cancel": "Cancel",
+    "review_error_empty": "Please write a review",
+    "admin_reviews_manage": "Manage & Edit Reviews",
+    "admin_reviews_done": "Done Managing Reviews"
   },
   "mushrooms": {
     "reishi": {

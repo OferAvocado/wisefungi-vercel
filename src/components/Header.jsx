@@ -4,6 +4,9 @@ import { useState, useEffect, useRef } from 'react';
 
 export default function Header({ isSticky, searchQuery, setSearchQuery, onLogoClick, selectedMushroom }) {
   const { t, i18n } = useTranslation();
+  const rawLang = i18n.language || 'he';
+  const detectedLang = rawLang.split('-')[0].toLowerCase();
+  const currentLang = ['he', 'en', 'es', 'ru'].includes(detectedLang) ? detectedLang : 'en';
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
   const langSelectorRef = useRef(null);
@@ -53,7 +56,7 @@ export default function Header({ isSticky, searchQuery, setSearchQuery, onLogoCl
       className={`header glass-panel ${isSticky ? 'sticky-header' : ''}`}
       style={selectedMushroom ? { position: 'fixed', top: 0, left: 0, right: 0, zIndex: 2000, background: 'rgba(0,0,0,0.4)', backdropFilter: 'blur(12px)', borderBottom: '1px solid rgba(255,255,255,0.1)' } : {}}
     >
-      <div className="header-content" style={selectedMushroom ? { flexDirection: i18n.language === 'he' ? 'row' : 'row-reverse' } : {}}>
+      <div className="header-content" style={selectedMushroom ? { flexDirection: currentLang === 'he' ? 'row' : 'row-reverse' } : {}}>
         <div className="header-left">
           <h1 className="logo title-glow" onClick={() => { onLogoClick?.(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
             {t('title')}
@@ -67,7 +70,7 @@ export default function Header({ isSticky, searchQuery, setSearchQuery, onLogoCl
               <input 
                 type="text" 
                 className="header-search-input"
-                placeholder={i18n.language === 'he' ? 'חיפוש מידע' : i18n.language === 'es' ? 'Buscar' : i18n.language === 'ru' ? 'Поиск' : 'Search'}
+                placeholder={currentLang === 'he' ? 'חיפוש מידע' : currentLang === 'es' ? 'Buscar' : currentLang === 'ru' ? 'Поиск' : 'Search'}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -99,7 +102,7 @@ export default function Header({ isSticky, searchQuery, setSearchQuery, onLogoCl
               style={{ height: '42px' }}
             >
               <Globe size={18} />
-              <span className="lang-text">{i18n.language.toUpperCase()}</span>
+              <span className="lang-text">{currentLang.toUpperCase()}</span>
               <ChevronDown size={14} className={`chevron ${isLangOpen ? 'rotate' : ''}`} />
             </button>
 
@@ -108,7 +111,7 @@ export default function Header({ isSticky, searchQuery, setSearchQuery, onLogoCl
                 {languages.map((lang) => (
                   <button 
                     key={lang.code}
-                    className={`lang-option ${i18n.language === lang.code ? 'active' : ''}`}
+                    className={`lang-option ${currentLang === lang.code ? 'active' : ''}`}
                     onClick={() => changeLanguage(lang.code)}
                   >
                     {lang.label}

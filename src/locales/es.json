@@ -24,7 +24,21 @@
     "no_interactions_found": "No se encontraron interacciones graves para este medicamento.",
     "add_new_mushroom": "Añadir Nuevo Hongo",
     "repair_db": "Reparar restricciones de base de datos",
-    "footer_disclaimer": "Información educativa únicamente sobre hongos medicinales, y no reemplaza ni pretende reemplazar el consejo médico."
+    "footer_disclaimer": "Información educativa únicamente sobre hongos medicinales, y no reemplaza ni pretende reemplazar el consejo médico.",
+    "add_review_btn": "Añadir reseña / Compartir info",
+    "reviews_title": "Lo que dicen nuestros usuarios",
+    "review_form_title": "Añadir reseña / Compartir info",
+    "review_name_label": "Nombre (anónimo permitido)",
+    "review_name_placeholder": "Nombre o apodo...",
+    "review_rating_label": "Puntuación",
+    "review_comment_label": "Reseña o información a compartir",
+    "review_comment_placeholder": "Comparte una experiencia, información, pregunta o recomendación...",
+    "review_submit": "Enviar",
+    "review_submitting": "Enviando...",
+    "review_cancel": "Cancelar",
+    "review_error_empty": "Por favor escribe una reseña",
+    "admin_reviews_manage": "Gestionar y editar reseñas",
+    "admin_reviews_done": "Finalizar gestión"
   },
   "mushrooms": {
     "reishi": {
