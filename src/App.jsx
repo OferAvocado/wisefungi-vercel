@@ -41,6 +41,20 @@ const defaultLocalReviews = [
 const AccessibilityWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showStatement, setShowStatement] = useState(false);
+  const widgetRef = useRef(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleClickOutside = (event) => {
+      if (widgetRef.current && !widgetRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen]);
   
   // Clear old accessibility settings if this is a new app version
   // This prevents stale settings from causing issues
@@ -128,7 +142,7 @@ const AccessibilityWidget = () => {
   };
 
   return (
-    <div className="accessibility-widget">
+    <div className="accessibility-widget" ref={widgetRef}>
       {/* Floating Button */}
       <button 
         className="accessibility-btn" 

@@ -1709,7 +1709,8 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.2rem;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   transition: all 0.15s ease;
 }
