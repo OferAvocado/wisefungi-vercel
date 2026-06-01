@@ -2203,9 +2203,8 @@ function App() {
                           return matchesObj(item.name) || matchesObj(item.why);
                         });
                         if (matchesQuery && localizedName) {
-                          const clean = stripExplanations(localizedName);
-                          if (clean) {
-                            uniqueNames.add(clean);
+                          if (localizedName) {
+                            uniqueNames.add(localizedName);
                           }
                         }
                       });
