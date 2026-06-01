@@ -200,19 +200,23 @@ export default async function handler(req, res) {
       }
       
       const illustrationMap = {
-        'reishi': '/assets/reishi.png',
-        'lions-mane': '/assets/lions_mane.png',
-        'cordyceps': '/assets/cordyceps.png',
-        'chaga': '/assets/chaga.png',
-        'turkey-tail': '/assets/turkey_tail.png',
-        'tremella': '/assets/tremella.png'
+        'reishi': '/assets/reishi-v4.png',
+        'lions_mane': '/assets/lions_mane-v4.png',
+        'lions-mane': '/assets/lions_mane-v4.png',
+        'cordyceps': '/assets/cordyceps-v4.png',
+        'chaga': '/assets/chaga-v3.png',
+        'turkey_tail': '/assets/turkey_tail-v2.png',
+        'turkey-tail': '/assets/turkey_tail-v2.png',
+        'tremella': '/assets/tremella-v3.png'
       };
 
       const detailImageMap = {
         'reishi': '/assets/reishi_detail.png',
+        'lions_mane': '/assets/lions_mane_detail.png',
         'lions-mane': '/assets/lions_mane_detail.png',
-        'cordyceps': '/assets/cordyceps_detail.png',
+        'cordyceps': '/assets/cordyceps_detail_v2.png',
         'chaga': '/assets/chaga_detail.png',
+        'turkey_tail': '/assets/turkey_tail_detail.png',
         'turkey-tail': '/assets/turkey_tail_detail.png',
         'tremella': '/assets/tremella_detail.png'
       };
