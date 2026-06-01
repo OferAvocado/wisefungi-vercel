@@ -1700,23 +1700,26 @@ html, body {
 }
 
 .accessibility-close-btn {
-  background: none;
-  border: none;
-  color: #f87171;
-  font-size: 2.4rem;
-  line-height: 1;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  transition: all 0.15s ease;
+  background: none !important;
+  border: none !important;
+  color: #ff3333 !important;
+  font-size: 2.8rem !important;
+  line-height: 1 !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 40px !important;
+  height: 40px !important;
+  transition: all 0.15s ease !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
 }
 
 .accessibility-close-btn:hover {
-  color: #ef4444;
-  transform: scale(1.1);
+  color: #ff0000 !important;
+  background: none !important;
+  transform: scale(1.15) !important;
 }
 
 .accessibility-menu-list {
