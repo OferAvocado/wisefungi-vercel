@@ -13,9 +13,9 @@ import originalInteractions from './assets/original_interactions.json';
 import termsData from './locales/terms.json';
 import RichTextEditor from './components/RichTextEditor';
 import ThemeEditor from './components/ThemeEditor';
-import VisualEditor from './components/VisualEditor';
-import SearchKeywordsDrawer from './components/SearchKeywordsDrawer';
 import AdminAuthModal from './components/AdminAuthModal';
+import AnalyticsDashboard from './components/AnalyticsDashboard';
+import { useAnalytics } from './hooks/useAnalytics';
 import InteractionPage from './pages/InteractionPage';
 import SEO from './components/SEO';
 import './App.css';
@@ -390,6 +390,9 @@ function App() {
   const [uiContent, setUiContent] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
+  // Analytics Hook
+  const { trackPage } = useAnalytics();
+
   // Logo click counter for secret admin access
   const [logoClicks, setLogoClicks] = useState(0);
 
@@ -530,6 +533,9 @@ function App() {
     // Explicitly reset selected mushroom on fresh entry/reload to put user on the home page
     setSelectedMushroom(null);
     
+    // Track initial page load
+    trackPage();
+
     const performScroll = () => {
       window.scrollTo(0, 0);
       document.documentElement.scrollTop = 0;
@@ -654,6 +660,8 @@ function App() {
   useEffect(() => {
     if (selectedMushroom && mushroomsData && mushroomsData[selectedMushroom.id]) {
       setSelectedMushroom({ id: selectedMushroom.id, ...mushroomsData[selectedMushroom.id] });
+      // Track specific mushroom view
+      trackPage(`/${currentLang}/mushroom/${selectedMushroom.id}`);
     }
   }, [mushroomsData]);
 
@@ -1312,6 +1320,28 @@ function App() {
   }, [isVisualEditorOpen]);
 
   const pathParts = window.location.pathname.split('/').filter(Boolean);
+  
+  // Analytics Admin Route Interception
+  if (window.location.pathname === '/admin/analytics') {
+    if (!isAdmin) {
+      // Force admin login if trying to view analytics without token
+      return (
+        <div style={{ background: '#111', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+          <AdminAuthModal 
+            isOpen={true} 
+            onClose={() => window.location.href = '/'} 
+            onLoginSuccess={() => {
+              localStorage.setItem('adminToken', 'wise-fungi-secret');
+              window.location.reload();
+            }}
+            currentLang={currentLang} 
+          />
+        </div>
+      );
+    }
+    return <AnalyticsDashboard onBack={() => window.location.href = '/'} />;
+  }
+
   // e.g. /he/interactions/lions-mane/cbd
   const isInteractionRoute = pathParts.length >= 3 && pathParts[1] === 'interactions';
   if (isInteractionRoute) {
