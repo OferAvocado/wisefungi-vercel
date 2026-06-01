@@ -15,6 +15,7 @@ import RichTextEditor from './components/RichTextEditor';
 import ThemeEditor from './components/ThemeEditor';
 import VisualEditor from './components/VisualEditor';
 import SearchKeywordsDrawer from './components/SearchKeywordsDrawer';
+import AdminAuthModal from './components/AdminAuthModal';
 
 
 import './App.css';
@@ -266,8 +267,8 @@ const safeArray = (val) => {
   return [];
 };
 
-const MushroomIcon = ({ size = 20, active = true, style = {}, ...props }) => {
-  const color = active ? '#f59e0b' : 'rgba(255, 255, 255, 0.2)';
+const MushroomIcon = ({ size = 20, active = true, color, style = {}, ...props }) => {
+  const fillColor = color || (active ? '#f59e0b' : 'rgba(255, 255, 255, 0.2)');
   return (
     <svg 
       width={size} 
@@ -280,7 +281,7 @@ const MushroomIcon = ({ size = 20, active = true, style = {}, ...props }) => {
     >
       <path 
         d="M40 25c-15 0-25 15-25 25 0 5 10 8 25 8s25-3 25-8c0-10-10-25-25-25zM32 58h16v12c0 3-16 3-16 0V58z" 
-        fill={color} 
+        fill={fillColor} 
       />
     </svg>
   );
@@ -332,7 +333,6 @@ function App() {
   const [editData, setEditData] = useState(null);
   const [isKeywordsDrawerOpen, setIsKeywordsDrawerOpen] = useState(false);
   const [uiContent, setUiContent] = useState({});
-  const [loginPassword, setLoginPassword] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
   // Logo click counter for secret admin access
@@ -342,7 +342,7 @@ function App() {
   const [reviews, setReviews] = useState([]);
   const [isReviewFormOpen, setIsReviewFormOpen] = useState(false);
   const [newReviewName, setNewReviewName] = useState('');
-  const [newReviewRating, setNewReviewRating] = useState(5);
+  const [newReviewRating, setNewReviewRating] = useState(3);
   const [newReviewComment, setNewReviewComment] = useState('');
   const [isSubmittingReview, setIsSubmittingReview] = useState(false);
   const [isReviewEditing, setIsReviewEditing] = useState(false);
@@ -384,7 +384,7 @@ function App() {
       });
       if (res.ok) {
         setNewReviewName('');
-        setNewReviewRating(5);
+        setNewReviewRating(3);
         setNewReviewComment('');
         setIsReviewFormOpen(false);
         await fetchReviews();
@@ -570,13 +570,7 @@ function App() {
     });
   }, [selectedMushroom, activeTab]);
 
-  useEffect(() => {
-    if (isGlobalEditing || isEditing) {
-      setIsKeywordsDrawerOpen(true);
-    } else {
-      setIsKeywordsDrawerOpen(false);
-    }
-  }, [isGlobalEditing, isEditing]);
+
 
   const [modalBodyHeight, setModalBodyHeight] = useState(0);
   const modalBodyRef = useRef(null);
@@ -761,19 +755,6 @@ function App() {
     });
     // Reset clicks after 3 seconds of inactivity
     setTimeout(() => setLogoClicks(0), 3000);
-  };
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-    // Simple verification (in production this would call /api/admin/login)
-    if (loginPassword === '-Ofer1q2w3e4r') { 
-      setIsAdmin(true);
-      setIsLoginModalOpen(false);
-      localStorage.setItem('adminToken', 'wise-fungi-secret');
-      alert(currentLang === 'he' ? 'ברוך הבא מנהל!' : 'Welcome Admin!');
-    } else {
-      alert(currentLang === 'he' ? 'סיסמה שגויה' : 'Wrong password');
-    }
   };
 
   const FIXED_ORDER = ['reishi', 'lions_mane', 'cordyceps', 'chaga', 'turkey_tail', 'tremella'];
@@ -1235,14 +1216,25 @@ function App() {
   }, [isVisualEditorOpen]);
 
   return (
-    <div className={`app-container ${isAdmin ? 'is-admin' : ''}`}>
+    <div className={`app-container ${isAdmin ? 'is-admin' : ''} ${isAdmin && !isVisualEditorOpen ? 'is-admin-bar-visible' : ''}`}>
       
       <style dangerouslySetInnerHTML={{__html: `
         ${generateCustomCSS()}
         ${generateThemeCSS()}
       `}} />
 
-      {isLoading && (<div className="loading-overlay"><div className="loading-spinner"></div></div>)}
+      {isLoading && (
+        <div className="loading-overlay">
+          <MushroomIcon 
+            size={70} 
+            color="#ffffff" 
+            style={{ 
+              animation: 'spin 1.5s linear infinite', 
+              filter: 'drop-shadow(0 0 15px rgba(255, 255, 255, 0.5))' 
+            }} 
+          />
+        </div>
+      )}
 
       {/* Background Orbs */}
       <div className="bg-orb orb-1"></div>
@@ -1250,8 +1242,15 @@ function App() {
       <div className="bg-orb orb-3"></div>
 
       {isTranslating && (
-        <div className="loading-overlay" style={{ flexDirection: 'column', gap: '1rem' }}>
-          <div className="loading-spinner"></div>
+        <div className="loading-overlay" style={{ flexDirection: 'column', gap: '1.5rem' }}>
+          <MushroomIcon 
+            size={70} 
+            color="#ffffff" 
+            style={{ 
+              animation: 'spin 1.5s linear infinite', 
+              filter: 'drop-shadow(0 0 15px rgba(255, 255, 255, 0.5))' 
+            }} 
+          />
           <div style={{ color: '#fff', fontSize: '1.2rem', fontWeight: 'bold' }}>
             {currentLang === 'he' ? 'מתרגם ומסנכרן שפות (זה יכול לקחת כמה שניות)...' : 'Translating...'}
           </div>
@@ -1273,15 +1272,13 @@ function App() {
             }
           </button>
 
-          {isGlobalEditing && (
-            <button 
-              onClick={() => setIsKeywordsDrawerOpen(true)}
-              className="admin-logout-btn" 
-              style={{ background: 'linear-gradient(135deg, rgba(22, 163, 74, 0.9), rgba(0, 242, 254, 0.9))', color: 'white', fontWeight: 'bold' }}
-            >
-              <Key size={14} style={{ transform: 'rotate(90deg)' }} /> {currentLang === 'he' ? 'ערוך מילות מפתח' : 'Edit Keywords'}
-            </button>
-          )}
+          <button 
+            onClick={() => setIsKeywordsDrawerOpen(true)}
+            className="admin-logout-btn" 
+            style={{ background: 'linear-gradient(135deg, rgba(22, 163, 74, 0.9), rgba(0, 242, 254, 0.9))', color: 'white', fontWeight: 'bold' }}
+          >
+            <Key size={14} style={{ transform: 'rotate(90deg)' }} /> {currentLang === 'he' ? 'ערוך מילות מפתח' : 'Edit Keywords'}
+          </button>
 
           <button 
             onClick={() => { setIsThemeOpen(true); setIsVisualEditorOpen(false); }} 
@@ -1622,20 +1619,18 @@ function App() {
                       }} 
                     />
                     {/* Delicate dimming overlay layer */}
-                    {normId !== 'lions_mane' && (
-                      <div 
-                        style={{ 
-                          position: 'absolute', 
-                          top: 0, 
-                          bottom: 0, 
-                          left: 0, 
-                          right: 0, 
-                          backgroundColor: `color-mix(in srgb, var(--mush-bottom, #0a140c) ${dimOpacity}, transparent)`, 
-                          pointerEvents: 'none', 
-                          zIndex: -1 
-                        }} 
-                      />
-                    )}
+                    <div 
+                      style={{ 
+                        position: 'absolute', 
+                        top: 0, 
+                        bottom: 0, 
+                        left: 0, 
+                        right: 0, 
+                        backgroundColor: `color-mix(in srgb, var(--mush-bottom, #0a140c) ${dimOpacity}, transparent)`, 
+                        pointerEvents: 'none', 
+                        zIndex: -1 
+                      }} 
+                    />
                   </>
                 );
               })()}
@@ -2250,26 +2245,18 @@ function App() {
           </div>
         </div>
       )}
-      {/* Login Modal */}
-      {isLoginModalOpen && (
-        <div className="modal-overlay login-overlay" onClick={() => setIsLoginModalOpen(false)}>
-          <div className="modal-content glass-panel login-card" onClick={e => e.stopPropagation()}>
-            <h2>{currentLang === 'he' ? 'כניסת אדמין' : 'Admin Login'}</h2>
-            <form onSubmit={handleLogin}>
-              <input 
-                type="password" 
-                placeholder={currentLang === 'he' ? 'סיסמת ניהול' : 'Admin Password'} 
-                value={loginPassword}
-                onChange={e => setLoginPassword(e.target.value)}
-                autoFocus
-              />
-              <button type="submit" className="login-submit">
-                {currentLang === 'he' ? 'התחברות' : 'Login'}
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
+      {/* Admin Auth Modal */}
+      <AdminAuthModal 
+        isOpen={isLoginModalOpen} 
+        onClose={() => setIsLoginModalOpen(false)} 
+        onLoginSuccess={() => {
+          setIsAdmin(true);
+          setIsLoginModalOpen(false);
+          localStorage.setItem('adminToken', 'wise-fungi-secret');
+          alert(currentLang === 'he' ? 'ברוך הבא מנהל!' : 'Welcome Admin!');
+        }} 
+        currentLang={currentLang} 
+      />
       </main>
 
       {/* Footer */}
@@ -2279,8 +2266,7 @@ function App() {
         </p>
       </footer>
 
-      {/* Search Keywords Drawer (Admin Only) */}
-      {isAdmin && (isGlobalEditing || isEditing) && (
+      {isAdmin && (
         <button
           onClick={() => setIsKeywordsDrawerOpen(true)}
           style={{

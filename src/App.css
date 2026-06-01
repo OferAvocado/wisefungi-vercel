@@ -23,7 +23,7 @@
 .header-right { justify-self: end; }
 
 .logo {
-  font-size: 1.4rem;
+  font-size: 1.65rem;
   font-weight: 800;
   letter-spacing: -0.06em;
   color: #fff;
@@ -96,7 +96,7 @@
 @media (max-width: 768px) {
   .header { padding: 0.6rem 1rem; }
   .header-content { grid-template-columns: auto minmax(0, 1fr) auto; gap: 0.5rem; }
-  .logo { font-size: 1.1rem; }
+  .logo { font-size: 1.3rem; }
   .lang-text { display: none; }
   .lang-btn { padding: 0.5rem; }
   .header-center { max-width: 100%; min-width: 0; }
@@ -135,12 +135,12 @@
   white-space: pre-line;
 }
 .hero-subtitle {
-  font-size: clamp(1.1rem, 2vw, 1.25rem);
+  font-size: clamp(1.4rem, 2.5vw, 1.75rem);
   color: var(--text-secondary);
-  max-width: 650px;
+  max-width: 750px;
   margin: 0 auto 3.5rem;
   line-height: 1.7;
-  font-weight: 400;
+  font-weight: 700;
 }
 
 .search-container {
@@ -437,7 +437,10 @@
   --mush-top: #c75616; --mush-bottom: #662704; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85); --tag-bg: rgba(255,255,255,0.1); --mush-border: rgba(210, 100, 40, 0.4);
 }
 .lions_mane { 
-  --mush-top: #aca393; --mush-bottom: #f3e6d0; --mush-text: #1a1a1a; --mush-subtext: rgba(0,0,0,0.7); --tag-bg: rgba(0,0,0,0.1); --mush-border: rgba(180, 150, 110, 0.4);
+  --mush-top: #aca393; --mush-bottom: #1a1816; --mush-text: #ffffff; --mush-subtext: rgba(255,255,255,0.85); --tag-bg: rgba(255,255,255,0.1); --mush-border: rgba(180, 150, 110, 0.4);
+}
+.bento-card.lions_mane { 
+  --mush-top: #aca393; --mush-bottom: #f3e6d0; --mush-text: #1a1a1a; --mush-subtext: rgba(0,0,0,0.7); --tag-bg: rgba(0,0,0,0.1);
 }
 .tremella { 
   --mush-top: #c46480; --mush-bottom: #612338; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85); --tag-bg: rgba(255,255,255,0.1); --mush-border: rgba(210, 110, 140, 0.4);
@@ -1219,7 +1222,8 @@
     margin-bottom: 1rem;
   }
   .hero-subtitle {
-    font-size: 1rem;
+    font-size: 1.25rem;
+    font-weight: 700;
     margin-bottom: 2rem;
   }
   .search-section {
@@ -1457,16 +1461,27 @@ html, body {
   position: absolute;
   top: 1.2rem;
   left: 1.2rem;
-  background: none;
-  border: none;
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 1.8rem;
-  cursor: pointer;
-  transition: color 0.2s ease;
-  line-height: 1;
+  background: none !important;
+  border: none !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+  font-size: 2.4rem !important;
+  font-weight: 300 !important;
+  line-height: 1 !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 40px !important;
+  height: 40px !important;
+  transition: all 0.2s ease-in-out !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
 }
 .review-form-close:hover {
-  color: #ef4444;
+  color: #ff3333 !important;
+  font-weight: 900 !important;
+  text-shadow: 0 0 1px #ff3333, 0 0 1px #ff3333 !important;
+  background: none !important;
 }
 .review-form-title {
   font-size: 1.4rem;
@@ -2064,3 +2079,46 @@ body.acc-stop-animations *::after {
   height: 1.5px;
   background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75) 50%, rgba(255, 255, 255, 0));
 }
+
+/* Admin Status Bar Fixed Layout & Overlap Prevention */
+.app-container.is-admin-bar-visible {
+  padding-top: 48px !important;
+}
+
+.is-admin-bar-visible .admin-status-bar {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 10001 !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.is-admin-bar-visible .header {
+  top: 48px !important;
+}
+
+.is-admin-bar-visible .modal-overlay {
+  top: 48px !important;
+}
+
+.is-admin-bar-visible .floating-back-btn {
+  top: calc(1.5rem + 48px) !important;
+}
+
+@media (max-width: 768px) {
+  .app-container.is-admin-bar-visible {
+    padding-top: 96px !important;
+  }
+  .is-admin-bar-visible .header {
+    top: 96px !important;
+  }
+  .is-admin-bar-visible .modal-overlay {
+    top: 96px !important;
+  }
+  .is-admin-bar-visible .floating-back-btn {
+    top: calc(1.5rem + 96px) !important;
+  }
+}
+
