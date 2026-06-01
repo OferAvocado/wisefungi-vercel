@@ -1761,18 +1761,20 @@ function App() {
                       }} 
                     />
                     {/* Delicate dimming overlay layer */}
-                    <div 
-                      style={{ 
-                        position: 'absolute', 
-                        top: 0, 
-                        bottom: 0, 
-                        left: 0, 
-                        right: 0, 
-                        backgroundColor: `color-mix(in srgb, var(--mush-bottom, #0a140c) ${dimOpacity}, transparent)`, 
-                        pointerEvents: 'none', 
-                        zIndex: -1 
-                      }} 
-                    />
+                    {normId !== 'lions_mane' && (
+                      <div 
+                        style={{ 
+                          position: 'absolute', 
+                          top: 0, 
+                          bottom: 0, 
+                          left: 0, 
+                          right: 0, 
+                          backgroundColor: `color-mix(in srgb, var(--mush-bottom, #0a140c) ${dimOpacity}, transparent)`, 
+                          pointerEvents: 'none', 
+                          zIndex: -1 
+                        }} 
+                      />
+                    )}
                   </>
                 );
               })()}

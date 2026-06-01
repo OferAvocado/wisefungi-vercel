@@ -437,10 +437,7 @@
   --mush-top: #c75616; --mush-bottom: #662704; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85); --tag-bg: rgba(255,255,255,0.1); --mush-border: rgba(210, 100, 40, 0.4);
 }
 .lions_mane { 
-  --mush-top: #aca393; --mush-bottom: #1a1816; --mush-text: #ffffff; --mush-subtext: rgba(255,255,255,0.85); --tag-bg: rgba(255,255,255,0.1); --mush-border: rgba(180, 150, 110, 0.4);
-}
-.bento-card.lions_mane { 
-  --mush-top: #aca393; --mush-bottom: #f3e6d0; --mush-text: #1a1a1a; --mush-subtext: rgba(0,0,0,0.7); --tag-bg: rgba(0,0,0,0.1);
+  --mush-top: #f3e6d0; --mush-bottom: #d6c3a1; --mush-text: #1a1a1a; --mush-subtext: rgba(0,0,0,0.7); --tag-bg: rgba(0,0,0,0.1); --mush-border: rgba(180, 150, 110, 0.4);
 }
 .tremella { 
   --mush-top: #c46480; --mush-bottom: #612338; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85); --tag-bg: rgba(255,255,255,0.1); --mush-border: rgba(210, 110, 140, 0.4);
