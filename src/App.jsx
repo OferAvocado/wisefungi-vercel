@@ -3,7 +3,7 @@ import Hero from './components/Hero';
 import BentoGrid from './components/BentoGrid';
 import { useTranslation } from 'react-i18next';
 import { CheckCircle, XCircle, AlertTriangle, HelpCircle, Search, ChevronDown, ChevronRight, Lock, Save, Edit3, Plus, Trash2, Palette, Layout, Zap, Shield, Droplets, ArrowLeft, Home, Key } from 'lucide-react';
-import { useEffect, useState, useRef, useMemo, useCallback } from 'react';
+import { useEffect, useState, useRef, useMemo, useCallback, Fragment } from 'react';
 import translationHE from './locales/he.json';
 import translationEN from './locales/en.json';
 import translationES from './locales/es.json';
@@ -2153,22 +2153,44 @@ function App() {
                           </button>
 
                           {isExpanded && (
-                            <div style={{ padding: '0 1.2rem 1.2rem 1.2rem', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+                            <div style={{ padding: '0 1.2rem 1.2rem 1.2rem', display: 'flex', flexDirection: 'column', gap: '1.6rem' }}>
                               {items.map((item, idx) => (
-                                <div key={idx} className="interaction-card" style={{ background: colors.cardBg, border: `1px solid ${colors.cardBorder}`, borderRadius: '12px', overflow: 'hidden' }}>
-                                  <div style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '0.5rem' }}>
-                                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                        <span style={{ color: colors.iconCol, flexShrink: 0 }}>{icon}</span>
-                                        <span style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'white' }}>{tf(item.name)}</span>
+                                <Fragment key={idx}>
+                                  {idx > 0 && (
+                                    <div 
+                                      className="interaction-divider"
+                                      style={{ 
+                                        height: '2px', 
+                                        background: `linear-gradient(90deg, transparent, ${colors.cardBorder} 50%, transparent)`, 
+                                        margin: '0.2rem 0',
+                                        opacity: 0.8
+                                      }} 
+                                    />
+                                  )}
+                                  <div 
+                                    className="interaction-card" 
+                                    style={{ 
+                                      background: colors.cardBg, 
+                                      border: `2px solid ${colors.cardBorder}`, 
+                                      borderRadius: '12px', 
+                                      overflow: 'hidden',
+                                      boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)'
+                                    }}
+                                  >
+                                    <div style={{ padding: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '0.5rem' }}>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                          <span style={{ color: colors.iconCol, flexShrink: 0 }}>{icon}</span>
+                                          <span style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'white' }}>{tf(item.name)}</span>
+                                        </div>
+                                        <EvidenceBadge type={item.evidence} />
                                       </div>
-                                      <EvidenceBadge type={item.evidence} />
-                                    </div>
-                                    <div style={{ color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.95rem', lineHeight: '1.5' }}>
-                                      {tf(item.why)}
+                                      <div style={{ color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.95rem', lineHeight: '1.6' }}>
+                                        {tf(item.why)}
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
+                                </Fragment>
                               ))}
                             </div>
                           )}
