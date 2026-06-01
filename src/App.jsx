@@ -2104,63 +2104,59 @@ function App() {
                 <div className="tab-content" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', paddingTop: '1rem' }}>
                   
                   {/* Interaction Search Bar */}
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', width: '100%', marginBottom: '0.5rem', textAlign: currentLang === 'he' ? 'right' : 'left' }} dir={currentLang === 'he' ? 'rtl' : 'ltr'}>
-                    <h3 style={{ fontSize: '1.2rem', fontWeight: '800', color: 'white', margin: 0 }}>
-                      {tInt('quickSearch')}
-                    </h3>
-                    <div className="interaction-search-bar" style={{ 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      width: '100%', 
-                      background: 'rgba(22, 22, 22, 0.9)',
-                      backdropFilter: 'blur(32px)',
-                      WebkitBackdropFilter: 'blur(32px)',
-                      borderRadius: '16px',
-                      border: '2px solid rgba(255,255,255,0.1)',
-                      padding: '4px',
-                      boxSizing: 'border-box'
-                    }}>
-                      <input 
-                        type="text" 
-                        placeholder={t('labels.interaction_search_placeholder')}
-                        value={interactionQuery}
-                        onChange={(e) => setInteractionQuery(e.target.value)}
-                        className="interaction-search-input"
-                        style={{ 
-                          flex: 1,
-                          padding: '1rem 1.2rem',
-                          background: 'transparent',
-                          border: 'none',
-                          color: 'white',
-                          fontSize: '1.1rem',
-                          outline: 'none'
-                        }} 
-                      />
-                      <button
-                        type="button"
-                        onClick={() => {
-                          const inputEl = document.querySelector('.interaction-search-input');
-                          if (inputEl) inputEl.focus();
-                        }}
-                        className="interaction-search-btn"
-                        style={{
-                          background: 'rgba(255,255,255,0.15)',
-                          border: 'none',
-                          borderRadius: '12px',
-                          padding: '0.8rem 1rem',
-                          cursor: 'pointer',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          color: 'white',
-                          marginLeft: '4px',
-                          marginRight: '4px',
-                          transition: 'background 0.2s'
-                        }}
-                      >
-                        <Search color="white" size={20} />
-                      </button>
-                    </div>
+                  <div className="interaction-search-bar" style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    width: '100%', 
+                    marginBottom: '1rem',
+                    background: 'rgba(22, 22, 22, 0.9)',
+                    backdropFilter: 'blur(32px)',
+                    WebkitBackdropFilter: 'blur(32px)',
+                    borderRadius: '16px',
+                    border: '2px solid rgba(255,255,255,0.1)',
+                    padding: '4px',
+                    boxSizing: 'border-box'
+                  }}>
+                    <input 
+                      type="text" 
+                      placeholder={t('labels.interaction_search_placeholder')}
+                      value={interactionQuery}
+                      onChange={(e) => setInteractionQuery(e.target.value)}
+                      className="interaction-search-input"
+                      style={{ 
+                        flex: 1,
+                        padding: '1rem 1.2rem',
+                        background: 'transparent',
+                        border: 'none',
+                        color: 'white',
+                        fontSize: '1.1rem',
+                        outline: 'none'
+                      }} 
+                    />
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const inputEl = document.querySelector('.interaction-search-input');
+                        if (inputEl) inputEl.focus();
+                      }}
+                      className="interaction-search-btn"
+                      style={{
+                        background: 'rgba(255,255,255,0.15)',
+                        border: 'none',
+                        borderRadius: '12px',
+                        padding: '0.8rem 1rem',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: 'white',
+                        marginLeft: '4px',
+                        marginRight: '4px',
+                        transition: 'background 0.2s'
+                      }}
+                    >
+                      <Search color="white" size={20} />
+                    </button>
                   </div>
 
                   {(() => {
@@ -2190,6 +2186,157 @@ function App() {
                       return obj[currentLang] || obj['en'] || obj['he'] || '';
                     };
 
+                    const categoriesList = [
+                      { key: 'do_not_combine', label: { he: "אין לשלב — סיכון גבוה", en: "Do NOT combine — High Risk", ru: "НЕ комбинировать — Высокий риск", es: "NO combinar — Riesgo Alto" } },
+                      { key: 'use_caution', label: { he: "יש לנקוט זהירות — אינטראקציה בינונית", en: "Use Caution — Moderate Interaction", ru: "Соблюдать осторожность", es: "Usar con Precaución" } },
+                      { key: 'potential_synergy', label: { he: "סינרגיה פוטנציאלית — שילוב מועיל", en: "Potential Synergy — Helpful Combination", ru: "Потенциальная синергия", es: "Sinergia Potencial" } },
+                      { key: 'insufficient', label: { he: "מחקר לא מספיק", en: "Unknown / Insufficient Research", ru: "Недостаточно исследований", es: "Desconocido / Investigación Insuficiente" } }
+                    ];
+
+                    if (isEditing) {
+                        return (
+                          <div className="interactions-editor" style={{ display: 'flex', flexDirection: 'column', gap: '2rem', width: '100%', maxWidth: '850px', margin: '0 auto', direction: currentLang === 'he' ? 'rtl' : 'ltr' }}>
+                            <h3 style={{ fontSize: '1.4rem', fontWeight: 'bold', color: 'var(--accent-primary)', borderBottom: '2px solid rgba(255,255,255,0.1)', paddingBottom: '0.5rem', textAlign: currentLang === 'he' ? 'right' : 'left' }}>
+                              {currentLang === 'he' ? 'עריכת אינטראקציות תרופתיות' : 'Edit Drug Interactions'}
+                            </h3>
+                            {categoriesList.map(cat => {
+                              const items = mushInts[cat.key] || [];
+                              const catLabel = cat.label[currentLang] || cat.label['en'];
+                              return (
+                                <div key={cat.key} style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '16px', padding: '1.5rem', textAlign: currentLang === 'he' ? 'right' : 'left' }}>
+                                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', flexDirection: currentLang === 'he' ? 'row-reverse' : 'row' }}>
+                                    <h4 style={{ fontSize: '1.15rem', fontWeight: 'bold', color: '#ffffff', margin: 0 }}>{catLabel}</h4>
+                                    <span style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)' }}>({items.length} {currentLang === 'he' ? 'פריטים' : 'items'})</span>
+                                  </div>
+                                  
+                                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                                    {items.map((item, idx) => {
+                                      const nameObj = item.name || {};
+                                      const whyObj = item.why || {};
+                                      const mechObj = item.mechanism || {};
+                                      
+                                      const currentName = nameObj[currentLang] || '';
+                                      const currentWhy = whyObj[currentLang] || '';
+                                      const currentMech = mechObj[currentLang] || '';
+                                      const evidence = item.evidence || 'clinical';
+
+                                      const updateItem = (field, value) => {
+                                        const updatedInts = { ...mushInts };
+                                        const categoryItems = [...(updatedInts[cat.key] || [])];
+                                        const updatedItem = { ...categoryItems[idx] };
+                                        
+                                        if (field === 'evidence') {
+                                          updatedItem.evidence = value;
+                                        } else {
+                                          const transObj = { ...(updatedItem[field] || {}) };
+                                          transObj[currentLang] = value;
+                                          updatedItem[field] = transObj;
+                                        }
+                                        
+                                        categoryItems[idx] = updatedItem;
+                                        updatedInts[cat.key] = categoryItems;
+                                        setEditData({ ...editData, interactions: updatedInts });
+                                      };
+
+                                      const deleteItem = () => {
+                                        const updatedInts = { ...mushInts };
+                                        const categoryItems = (updatedInts[cat.key] || []).filter((_, i) => i !== idx);
+                                        updatedInts[cat.key] = categoryItems;
+                                        setEditData({ ...editData, interactions: updatedInts });
+                                      };
+
+                                      return (
+                                        <div key={idx} style={{ background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', flexDirection: currentLang === 'he' ? 'row-reverse' : 'row' }}>
+                                            <span style={{ color: 'var(--accent-primary)', fontWeight: 'bold', fontSize: '0.9rem' }}>
+                                              #{idx + 1} {currentName ? ` - ${currentName}` : ''}
+                                            </span>
+                                            <button 
+                                              onClick={deleteItem}
+                                              className="admin-list-btn remove"
+                                              style={{ padding: '0.4rem', borderRadius: '6px', background: 'rgba(239, 68, 68, 0.2)', border: 'none', color: '#ef4444', cursor: 'pointer' }}
+                                              title={currentLang === 'he' ? 'מחק פריט' : 'Delete Item'}
+                                            >
+                                              <Trash2 size={16} />
+                                            </button>
+                                          </div>
+
+                                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+                                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', alignItems: 'stretch' }}>
+                                              <label style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)', textAlign: currentLang === 'he' ? 'right' : 'left' }}>
+                                                {currentLang === 'he' ? 'שם החומר / תרופה' : 'Substance / Drug Name'}
+                                              </label>
+                                              <input 
+                                                type="text" 
+                                                className="admin-edit-input"
+                                                style={{ width: '100%', background: 'rgba(255,255,255,0.05)', color: '#fff', border: '1px solid rgba(255,255,255,0.1)', padding: '0.6rem', borderRadius: '8px' }}
+                                                value={currentName}
+                                                onChange={e => updateItem('name', e.target.value)}
+                                                placeholder={currentLang === 'he' ? 'למשל: אספירין' : 'e.g. Aspirin'}
+                                              />
+                                            </div>
+                                            
+                                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', alignItems: 'stretch' }}>
+                                              <label style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)', textAlign: currentLang === 'he' ? 'right' : 'left' }}>
+                                                {currentLang === 'he' ? 'רמת ראיות קליניות' : 'Clinical Evidence Level'}
+                                              </label>
+                                              <select 
+                                                className="admin-edit-input"
+                                                style={{ width: '100%', background: '#1c1c1e', color: '#fff', border: '1px solid rgba(255,255,255,0.1)', padding: '0.6rem', borderRadius: '8px', cursor: 'pointer' }}
+                                                value={evidence}
+                                                onChange={e => updateItem('evidence', e.target.value)}
+                                              >
+                                                <option value="clinical">{currentLang === 'he' ? 'ראיות קליניות (Clinical)' : 'Clinical evidence'}</option>
+                                                <option value="limited">{currentLang === 'he' ? 'מחקר מוגבל (Limited)' : 'Limited research'}</option>
+                                                <option value="theoretical">{currentLang === 'he' ? 'תיאורטי (Theoretical)' : 'Theoretical'}</option>
+                                              </select>
+                                            </div>
+                                          </div>
+
+                                          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', alignItems: 'stretch' }}>
+                                            <label style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)', textAlign: currentLang === 'he' ? 'right' : 'left' }}>
+                                              {currentLang === 'he' ? 'הסבר / למה לא לשלב' : 'Explanation / Why'}
+                                            </label>
+                                            <textarea 
+                                              className="admin-edit-input"
+                                              style={{ width: '100%', minHeight: '60px', background: 'rgba(255,255,255,0.05)', color: '#fff', border: '1px solid rgba(255,255,255,0.1)', padding: '0.6rem', borderRadius: '8px', resize: 'vertical' }}
+                                              value={currentWhy}
+                                              onChange={e => updateItem('why', e.target.value)}
+                                              placeholder={currentLang === 'he' ? 'הסבר קצר על האינטראקציה...' : 'Brief explanation of the interaction...'}
+                                            />
+                                          </div>
+
+
+                                        </div>
+                                      );
+                                    })}
+
+                                    <button 
+                                      onClick={() => {
+                                        const updatedInts = { ...mushInts };
+                                        const categoryItems = [...(updatedInts[cat.key] || [])];
+                                        categoryItems.push({
+                                          name: { he: "", en: "", ru: "", es: "" },
+                                          why: { he: "", en: "", ru: "", es: "" },
+                                          evidence: "clinical"
+                                        });
+                                        updatedInts[cat.key] = categoryItems;
+                                        setEditData({ ...editData, interactions: updatedInts });
+                                      }}
+                                      className="admin-list-btn add"
+                                      style={{ alignSelf: 'flex-start', display: 'flex', alignItems: 'center', gap: '0.4rem', background: 'rgba(22, 163, 74, 0.2)', color: 'var(--accent-primary)', border: 'none', padding: '0.6rem 1rem', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold' }}
+                                    >
+                                      <Plus size={16} /> 
+                                      {currentLang === 'he' ? 'הוסף אינטראקציה' : 'Add Interaction'}
+                                    </button>
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        );
+                    }
+
                     const filterItems = (items) => {
                       if (!interactionQuery.trim()) return items || [];
                       const qWords = interactionQuery.toLowerCase().split(/\s+/).filter(Boolean);
@@ -2203,9 +2350,16 @@ function App() {
                               String(val).toLowerCase().includes(qWord)
                             );
                           };
-                          return matchesObj(item.name) || matchesObj(item.why);
+                          return matchesObj(item.name) || matchesObj(item.why) || matchesObj(item.mechanism);
                         });
                       });
+                    };
+
+                    const categories = {
+                      do_not_combine: filterItems(mushInts.do_not_combine),
+                      use_caution: filterItems(mushInts.use_caution),
+                      potential_synergy: filterItems(mushInts.potential_synergy),
+                      insufficient: filterItems(mushInts.insufficient)
                     };
 
                     const interactionSuggestions = (() => {
@@ -2230,12 +2384,10 @@ function App() {
                             if (typeof obj === 'string') return obj.toLowerCase().includes(qWord);
                             return Object.values(obj).some(val => String(val).toLowerCase().includes(qWord));
                           };
-                          return matchesObj(item.name) || matchesObj(item.why);
+                          return matchesObj(item.name) || matchesObj(item.why) || matchesObj(item.mechanism);
                         });
                         if (matchesQuery && localizedName) {
-                          if (localizedName) {
-                            uniqueNames.add(localizedName);
-                          }
+                          uniqueNames.add(localizedName);
                         }
                       });
 
@@ -2253,66 +2405,34 @@ function App() {
                     };
 
                     const evidenceLabels = {
-                      clinical: {
-                        he: 'מחקר קליני',
-                        en: 'Clinical research',
-                        es: 'Investigación clínica',
-                        ru: 'Клиническое исследование'
-                      },
-                      limited: {
-                        he: 'מחקר חלקי',
-                        en: 'Limited research',
-                        es: 'Investigación limitada',
-                        ru: 'Ограниченное исследование'
-                      },
-                      theoretical: {
-                        he: 'תיאורטי',
-                        en: 'Theoretical',
-                        es: 'Teórico',
-                        ru: 'Теоретическое'
-                      },
-                      insufficient: {
-                        he: 'אין מספיק ראיות או מחקר בנושא',
-                        en: 'Insufficient evidence / research',
-                        es: 'Evidencia / investigación insuficiente',
-                        ru: 'Недостаточно доказательств / исследований'
-                      }
+                      clinical: { he: 'ראיות קליניות', en: 'Clinical evidence' },
+                      limited: { he: 'מחקר מוגבל', en: 'Limited research' },
+                      theoretical: { he: 'תיאורטי', en: 'Theoretical' }
                     };
 
                     const EvidenceBadge = ({ type }) => {
-                      const badgeType = type || 'insufficient';
-                      const lbl = evidenceLabels[badgeType]?.[currentLang] || evidenceLabels[badgeType]?.['en'] || badgeType;
-                      
-                      let bg = 'rgba(255,255,255,0.08)';
-                      let border = 'rgba(255,255,255,0.2)';
-                      let text = 'rgba(255,255,255,0.7)';
-                      
+                      if (!type) return null;
+                      const lbl = evidenceLabels[type]?.[currentLang] || type;
+                      let bg = 'rgba(255,255,255,0.1)', border = 'rgba(255,255,255,0.3)', text = 'rgba(255,255,255,0.6)';
+                      if (type === 'clinical') { bg = 'rgba(255,255,255,0.2)'; text = 'white'; }
+                      else if (type === 'limited') { text = 'rgba(255,255,255,0.8)'; }
                       return (
-                        <span style={{ 
-                          background: bg, 
-                          border: `1px solid ${border}`, 
-                          color: text, 
-                          padding: '0.2rem 0.6rem', 
-                          borderRadius: '99px', 
-                          fontSize: '0.75rem', 
-                          fontWeight: 'bold',
-                          display: 'inline-flex',
-                          alignItems: 'center'
-                        }}>
+                        <span style={{ background: bg, border: `1px solid ${border}`, color: text, padding: '0.2rem 0.6rem', borderRadius: '99px', fontSize: '0.75rem', fontWeight: 'bold' }}>
                           {lbl}
                         </span>
                       );
                     };
 
                     const renderCategory = (key, items, icon, colors) => {
+                      if (items.length === 0 && interactionQuery.trim() === '') return null;
                       if (items.length === 0) return null;
 
-                      const isExpanded = expandedCats[key] || false;
+                      const isExpanded = expandedCats[key] || interactionQuery.trim().length > 0;
 
                       return (
                         <div className="interaction-category" style={{ background: colors.bg, border: `2px solid ${colors.border}`, borderRadius: '16px', marginBottom: '1rem', overflow: 'hidden', textAlign: currentLang === 'he' ? 'right' : 'left' }} dir={currentLang==='he'?'rtl':'ltr'}>
                           <button 
-                            onClick={() => setExpandedCats(prev => ({ ...prev, [key]: !prev[key] }))}
+                            onClick={() => setExpandedCats(prev => ({ [key]: !prev[key] }))}
                             style={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'space-between', padding: '1.2rem', background: 'transparent', border: 'none', cursor: 'pointer', color: 'inherit' }}
                           >
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', fontSize: '1.1rem', fontWeight: '800', color: 'white' }}>
@@ -2323,56 +2443,27 @@ function App() {
                           </button>
 
                           {isExpanded && (
-                            <div style={{ padding: '0 1.2rem 1.2rem 1.2rem', display: 'flex', flexDirection: 'column', gap: '1.6rem' }}>
+                            <div style={{ padding: '0 1.2rem 1.2rem 1.2rem', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
                               {items.map((item, idx) => (
-                                <Fragment key={idx}>
-                                  {idx > 0 && (
-                                    <div 
-                                      className="interaction-divider"
-                                      style={{ 
-                                        height: '2px', 
-                                        background: `linear-gradient(90deg, transparent, ${colors.cardBorder} 50%, transparent)`, 
-                                        margin: '0.2rem 0',
-                                        opacity: 0.8
-                                      }} 
-                                    />
-                                  )}
-                                  <div 
-                                    className="interaction-card" 
-                                    style={{ 
-                                      background: colors.cardBg, 
-                                      border: `2px solid ${colors.cardBorder}`, 
-                                      borderRadius: '12px', 
-                                      overflow: 'hidden',
-                                      boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)'
-                                    }}
-                                  >
-                                    <div style={{ padding: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-                                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '0.5rem' }}>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                          <span style={{ color: colors.iconCol, flexShrink: 0 }}>{icon}</span>
-                                          <span style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'white' }}>{tf(item.name)}</span>
-                                        </div>
-                                        <EvidenceBadge type={item.evidence} />
+                                <div key={idx} className="interaction-card" style={{ background: colors.cardBg, border: `1px solid ${colors.cardBorder}`, borderRadius: '12px', overflow: 'hidden' }}>
+                                  <div style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '0.5rem' }}>
+                                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                        <span style={{ color: colors.iconCol, flexShrink: 0 }}>{icon}</span>
+                                        <span style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'white' }}>{tf(item.name)}</span>
                                       </div>
-                                      <div style={{ color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.95rem', lineHeight: '1.6' }}>
-                                        {tf(item.why)}
-                                      </div>
+                                      <EvidenceBadge type={item.evidence} />
+                                    </div>
+                                    <div style={{ color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.95rem', lineHeight: '1.5' }}>
+                                      {tf(item.why)}
                                     </div>
                                   </div>
-                                </Fragment>
+                                </div>
                               ))}
                             </div>
                           )}
                         </div>
                       );
-                    };
-
-                    const categories = {
-                      do_not_combine: filterItems(mushInts.do_not_combine),
-                      use_caution: filterItems(mushInts.use_caution),
-                      potential_synergy: filterItems(mushInts.potential_synergy),
-                      insufficient: filterItems(mushInts.insufficient)
                     };
 
                     const totalItems = Object.values(categories).flat().length;
@@ -2397,13 +2488,13 @@ function App() {
                           </div>
                         )}
                         {renderCategory('do_not_combine', categories.do_not_combine, <XCircle size={22} />, { bg: 'rgb(80,15,15)', border: '#ef4444', iconCol: '#fca5a5', cardBg: 'rgb(45,5,5)', cardBorder: 'rgba(252,165,165,0.3)' })}
-                        {renderCategory('use_caution', categories.use_caution, <AlertTriangle size={22} />, { bg: 'rgba(161,98,7,0.2)', border: '#eab308', iconCol: '#fde047', cardBg: 'rgba(66,32,6,0.3)', cardBorder: 'rgba(253,224,71,0.3)' })}
-                        {renderCategory('potential_synergy', categories.potential_synergy, <CheckCircle size={22} />, { bg: 'rgba(21,128,61,0.2)', border: '#22c55e', iconCol: '#86efac', cardBg: 'rgba(5,46,22,0.3)', cardBorder: 'rgba(134,239,172,0.3)' })}
-                        {renderCategory('insufficient', categories.insufficient, <HelpCircle size={22} />, { bg: 'rgba(55,65,81,0.2)', border: '#9ca3af', iconCol: '#d1d5db', cardBg: 'rgba(17,24,39,0.3)', cardBorder: 'rgba(209,213,219,0.3)' })}
+                        {renderCategory('use_caution', categories.use_caution, <AlertTriangle size={22} />, { bg: 'rgb(69,53,0)', border: '#eab308', iconCol: '#fde047', cardBg: 'rgb(38,18,3)', cardBorder: 'rgba(253,224,71,0.3)' })}
+                        {renderCategory('potential_synergy', categories.potential_synergy, <CheckCircle size={22} />, { bg: 'rgb(4,46,22)', border: '#22c55e', iconCol: '#86efac', cardBg: 'rgb(2,26,12)', cardBorder: 'rgba(134,239,172,0.3)' })}
+                        {renderCategory('insufficient', categories.insufficient, <HelpCircle size={22} />, { bg: 'rgb(30,30,30)', border: '#6b7280', iconCol: '#d1d5db', cardBg: 'rgb(18,18,18)', cardBorder: 'rgba(255,255,255,0.1)' })}
                         
                         {totalItems === 0 && (
-                          <div style={{ textAlign: 'center', padding: '3rem 1rem', background: 'rgba(255,255,255,0.03)', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.1)' }}>
-                            <p style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.6)' }}>{t('labels.no_interactions_found') || 'לא נמצאו אינטראקציות מתאימות לחיפוש זה'}</p>
+                          <div style={{ padding: '3rem', textAlign: 'center', color: 'var(--mush-subtext)', fontSize: '1.1rem' }}>
+                            {t('no_interactions_matching', { query: interactionQuery })}
                           </div>
                         )}
                       </div>
