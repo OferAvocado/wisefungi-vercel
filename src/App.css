@@ -1702,8 +1702,9 @@ html, body {
 .accessibility-close-btn {
   background: none !important;
   border: none !important;
-  color: #ff3333 !important;
-  font-size: 2.8rem !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+  font-size: 2.4rem !important;
+  font-weight: 300 !important;
   line-height: 1 !important;
   cursor: pointer !important;
   display: flex !important;
@@ -1711,15 +1712,16 @@ html, body {
   justify-content: center !important;
   width: 40px !important;
   height: 40px !important;
-  transition: all 0.15s ease !important;
+  transition: all 0.2s ease-in-out !important;
   box-shadow: none !important;
   border-radius: 0 !important;
 }
 
 .accessibility-close-btn:hover {
-  color: #ff0000 !important;
+  color: #ff3333 !important;
+  font-weight: 900 !important;
+  text-shadow: 0 0 1px #ff3333, 0 0 1px #ff3333 !important;
   background: none !important;
-  transform: scale(1.15) !important;
 }
 
 .accessibility-menu-list {
