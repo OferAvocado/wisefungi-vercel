@@ -1,0 +1,2074 @@
+{
+  "en": {
+    "lions-mane": {
+      "cbd": {
+        "title": "Lion's Mane with CBD: Synergistic Effects for Health",
+        "description": "Discover the powerful synergy of Lion's Mane and CBD. Learn how this combination boosts health, supports deep sleep, and provides natural energy.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Lion's Mane with CBD Synergy Effects",
+          "description": "Scientific analysis of the interaction between Lion's Mane and CBD for cognitive and physical health.",
+          "inLanguage": "en",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Lion's Mane"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "CBD"
+            }
+          ]
+        }
+      },
+      "thc": {
+        "title": "Lion's Mane with THC: Synergistic Effects for Health",
+        "description": "Discover the powerful synergy of Lion's Mane and THC. Learn how this combination boosts health, supports deep sleep, and provides natural energy.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Lion's Mane with THC Synergy Effects",
+          "description": "Scientific analysis of the interaction between Lion's Mane and THC for cognitive and physical health.",
+          "inLanguage": "en",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Lion's Mane"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "THC"
+            }
+          ]
+        }
+      },
+      "ashwagandha": {
+        "title": "Lion's Mane with Ashwagandha: Synergistic Effects for Health",
+        "description": "Discover the powerful synergy of Lion's Mane and Ashwagandha. Learn how this combination boosts health, supports deep sleep, and provides natural energy.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Lion's Mane with Ashwagandha Synergy Effects",
+          "description": "Scientific analysis of the interaction between Lion's Mane and Ashwagandha for cognitive and physical health.",
+          "inLanguage": "en",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Lion's Mane"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Ashwagandha"
+            }
+          ]
+        }
+      },
+      "matcha": {
+        "title": "Lion's Mane with Matcha: Synergistic Effects for Health",
+        "description": "Discover the powerful synergy of Lion's Mane and Matcha. Learn how this combination boosts health, supports deep sleep, and provides natural energy.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Lion's Mane with Matcha Synergy Effects",
+          "description": "Scientific analysis of the interaction between Lion's Mane and Matcha for cognitive and physical health.",
+          "inLanguage": "en",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Lion's Mane"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Matcha"
+            }
+          ]
+        }
+      }
+    },
+    "reishi": {
+      "cbd": {
+        "title": "Reishi with CBD: Synergistic Effects for Health",
+        "description": "Discover the powerful synergy of Reishi and CBD. Learn how this combination boosts health, supports deep sleep, and provides natural energy.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Reishi with CBD Synergy Effects",
+          "description": "Scientific analysis of the interaction between Reishi and CBD for cognitive and physical health.",
+          "inLanguage": "en",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Reishi"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "CBD"
+            }
+          ]
+        }
+      },
+      "thc": {
+        "title": "Reishi with THC: Synergistic Effects for Health",
+        "description": "Discover the powerful synergy of Reishi and THC. Learn how this combination boosts health, supports deep sleep, and provides natural energy.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Reishi with THC Synergy Effects",
+          "description": "Scientific analysis of the interaction between Reishi and THC for cognitive and physical health.",
+          "inLanguage": "en",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Reishi"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "THC"
+            }
+          ]
+        }
+      },
+      "ashwagandha": {
+        "title": "Reishi with Ashwagandha: Synergistic Effects for Health",
+        "description": "Discover the powerful synergy of Reishi and Ashwagandha. Learn how this combination boosts health, supports deep sleep, and provides natural energy.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Reishi with Ashwagandha Synergy Effects",
+          "description": "Scientific analysis of the interaction between Reishi and Ashwagandha for cognitive and physical health.",
+          "inLanguage": "en",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Reishi"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Ashwagandha"
+            }
+          ]
+        }
+      },
+      "matcha": {
+        "title": "Reishi with Matcha: Synergistic Effects for Health",
+        "description": "Discover the powerful synergy of Reishi and Matcha. Learn how this combination boosts health, supports deep sleep, and provides natural energy.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Reishi with Matcha Synergy Effects",
+          "description": "Scientific analysis of the interaction between Reishi and Matcha for cognitive and physical health.",
+          "inLanguage": "en",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Reishi"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Matcha"
+            }
+          ]
+        }
+      }
+    },
+    "cordyceps": {
+      "cbd": {
+        "title": "Cordyceps with CBD: Synergistic Effects for Health",
+        "description": "Discover the powerful synergy of Cordyceps and CBD. Learn how this combination boosts health, supports deep sleep, and provides natural energy.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Cordyceps with CBD Synergy Effects",
+          "description": "Scientific analysis of the interaction between Cordyceps and CBD for cognitive and physical health.",
+          "inLanguage": "en",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Cordyceps"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "CBD"
+            }
+          ]
+        }
+      },
+      "thc": {
+        "title": "Cordyceps with THC: Synergistic Effects for Health",
+        "description": "Discover the powerful synergy of Cordyceps and THC. Learn how this combination boosts health, supports deep sleep, and provides natural energy.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Cordyceps with THC Synergy Effects",
+          "description": "Scientific analysis of the interaction between Cordyceps and THC for cognitive and physical health.",
+          "inLanguage": "en",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Cordyceps"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "THC"
+            }
+          ]
+        }
+      },
+      "ashwagandha": {
+        "title": "Cordyceps with Ashwagandha: Synergistic Effects for Health",
+        "description": "Discover the powerful synergy of Cordyceps and Ashwagandha. Learn how this combination boosts health, supports deep sleep, and provides natural energy.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Cordyceps with Ashwagandha Synergy Effects",
+          "description": "Scientific analysis of the interaction between Cordyceps and Ashwagandha for cognitive and physical health.",
+          "inLanguage": "en",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Cordyceps"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Ashwagandha"
+            }
+          ]
+        }
+      },
+      "matcha": {
+        "title": "Cordyceps with Matcha: Synergistic Effects for Health",
+        "description": "Discover the powerful synergy of Cordyceps and Matcha. Learn how this combination boosts health, supports deep sleep, and provides natural energy.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Cordyceps with Matcha Synergy Effects",
+          "description": "Scientific analysis of the interaction between Cordyceps and Matcha for cognitive and physical health.",
+          "inLanguage": "en",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Cordyceps"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Matcha"
+            }
+          ]
+        }
+      }
+    },
+    "chaga": {
+      "cbd": {
+        "title": "Chaga with CBD: Synergistic Effects for Health",
+        "description": "Discover the powerful synergy of Chaga and CBD. Learn how this combination boosts health, supports deep sleep, and provides natural energy.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Chaga with CBD Synergy Effects",
+          "description": "Scientific analysis of the interaction between Chaga and CBD for cognitive and physical health.",
+          "inLanguage": "en",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Chaga"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "CBD"
+            }
+          ]
+        }
+      },
+      "thc": {
+        "title": "Chaga with THC: Synergistic Effects for Health",
+        "description": "Discover the powerful synergy of Chaga and THC. Learn how this combination boosts health, supports deep sleep, and provides natural energy.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Chaga with THC Synergy Effects",
+          "description": "Scientific analysis of the interaction between Chaga and THC for cognitive and physical health.",
+          "inLanguage": "en",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Chaga"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "THC"
+            }
+          ]
+        }
+      },
+      "ashwagandha": {
+        "title": "Chaga with Ashwagandha: Synergistic Effects for Health",
+        "description": "Discover the powerful synergy of Chaga and Ashwagandha. Learn how this combination boosts health, supports deep sleep, and provides natural energy.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Chaga with Ashwagandha Synergy Effects",
+          "description": "Scientific analysis of the interaction between Chaga and Ashwagandha for cognitive and physical health.",
+          "inLanguage": "en",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Chaga"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Ashwagandha"
+            }
+          ]
+        }
+      },
+      "matcha": {
+        "title": "Chaga with Matcha: Synergistic Effects for Health",
+        "description": "Discover the powerful synergy of Chaga and Matcha. Learn how this combination boosts health, supports deep sleep, and provides natural energy.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Chaga with Matcha Synergy Effects",
+          "description": "Scientific analysis of the interaction between Chaga and Matcha for cognitive and physical health.",
+          "inLanguage": "en",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Chaga"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Matcha"
+            }
+          ]
+        }
+      }
+    },
+    "turkey-tail": {
+      "cbd": {
+        "title": "Turkey Tail with CBD: Synergistic Effects for Health",
+        "description": "Discover the powerful synergy of Turkey Tail and CBD. Learn how this combination boosts health, supports deep sleep, and provides natural energy.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Turkey Tail with CBD Synergy Effects",
+          "description": "Scientific analysis of the interaction between Turkey Tail and CBD for cognitive and physical health.",
+          "inLanguage": "en",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Turkey Tail"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "CBD"
+            }
+          ]
+        }
+      },
+      "thc": {
+        "title": "Turkey Tail with THC: Synergistic Effects for Health",
+        "description": "Discover the powerful synergy of Turkey Tail and THC. Learn how this combination boosts health, supports deep sleep, and provides natural energy.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Turkey Tail with THC Synergy Effects",
+          "description": "Scientific analysis of the interaction between Turkey Tail and THC for cognitive and physical health.",
+          "inLanguage": "en",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Turkey Tail"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "THC"
+            }
+          ]
+        }
+      },
+      "ashwagandha": {
+        "title": "Turkey Tail with Ashwagandha: Synergistic Effects for Health",
+        "description": "Discover the powerful synergy of Turkey Tail and Ashwagandha. Learn how this combination boosts health, supports deep sleep, and provides natural energy.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Turkey Tail with Ashwagandha Synergy Effects",
+          "description": "Scientific analysis of the interaction between Turkey Tail and Ashwagandha for cognitive and physical health.",
+          "inLanguage": "en",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Turkey Tail"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Ashwagandha"
+            }
+          ]
+        }
+      },
+      "matcha": {
+        "title": "Turkey Tail with Matcha: Synergistic Effects for Health",
+        "description": "Discover the powerful synergy of Turkey Tail and Matcha. Learn how this combination boosts health, supports deep sleep, and provides natural energy.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Turkey Tail with Matcha Synergy Effects",
+          "description": "Scientific analysis of the interaction between Turkey Tail and Matcha for cognitive and physical health.",
+          "inLanguage": "en",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Turkey Tail"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Matcha"
+            }
+          ]
+        }
+      }
+    },
+    "tremella": {
+      "cbd": {
+        "title": "Tremella with CBD: Synergistic Effects for Health",
+        "description": "Discover the powerful synergy of Tremella and CBD. Learn how this combination boosts health, supports deep sleep, and provides natural energy.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Tremella with CBD Synergy Effects",
+          "description": "Scientific analysis of the interaction between Tremella and CBD for cognitive and physical health.",
+          "inLanguage": "en",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Tremella"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "CBD"
+            }
+          ]
+        }
+      },
+      "thc": {
+        "title": "Tremella with THC: Synergistic Effects for Health",
+        "description": "Discover the powerful synergy of Tremella and THC. Learn how this combination boosts health, supports deep sleep, and provides natural energy.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Tremella with THC Synergy Effects",
+          "description": "Scientific analysis of the interaction between Tremella and THC for cognitive and physical health.",
+          "inLanguage": "en",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Tremella"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "THC"
+            }
+          ]
+        }
+      },
+      "ashwagandha": {
+        "title": "Tremella with Ashwagandha: Synergistic Effects for Health",
+        "description": "Discover the powerful synergy of Tremella and Ashwagandha. Learn how this combination boosts health, supports deep sleep, and provides natural energy.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Tremella with Ashwagandha Synergy Effects",
+          "description": "Scientific analysis of the interaction between Tremella and Ashwagandha for cognitive and physical health.",
+          "inLanguage": "en",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Tremella"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Ashwagandha"
+            }
+          ]
+        }
+      },
+      "matcha": {
+        "title": "Tremella with Matcha: Synergistic Effects for Health",
+        "description": "Discover the powerful synergy of Tremella and Matcha. Learn how this combination boosts health, supports deep sleep, and provides natural energy.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Tremella with Matcha Synergy Effects",
+          "description": "Scientific analysis of the interaction between Tremella and Matcha for cognitive and physical health.",
+          "inLanguage": "en",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Tremella"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Matcha"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "he": {
+    "lions-mane": {
+      "cbd": {
+        "title": "השפעות ושילוב רעמת האריה / הריסיום עם CBD לבריאות מיטבית",
+        "description": "גלו את הסינרגיה המדעית של פטריית רעמת האריה / הריסיום ו-CBD. למדו כיצד השילוב מחזק בריאות, תומך בשינה עמוקה ומסייע בהקלה בדלקות.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "השפעות ושילוב רעמת האריה / הריסיום עם CBD",
+          "description": "ניתוח מדעי של האינטראקציה בין פטריית המרפא רעמת האריה / הריסיום לבין CBD לחיזוק בריאותי והגנה.",
+          "inLanguage": "he",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "רעמת האריה / הריסיום"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "CBD"
+            }
+          ]
+        }
+      },
+      "thc": {
+        "title": "השפעות ושילוב רעמת האריה / הריסיום עם THC לבריאות מיטבית",
+        "description": "גלו את הסינרגיה המדעית של פטריית רעמת האריה / הריסיום ו-THC. למדו כיצד השילוב מחזק בריאות, תומך בשינה עמוקה ומסייע בהקלה בדלקות.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "השפעות ושילוב רעמת האריה / הריסיום עם THC",
+          "description": "ניתוח מדעי של האינטראקציה בין פטריית המרפא רעמת האריה / הריסיום לבין THC לחיזוק בריאותי והגנה.",
+          "inLanguage": "he",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "רעמת האריה / הריסיום"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "THC"
+            }
+          ]
+        }
+      },
+      "ashwagandha": {
+        "title": "השפעות ושילוב רעמת האריה / הריסיום עם אשווגנדה לבריאות מיטבית",
+        "description": "גלו את הסינרגיה המדעית של פטריית רעמת האריה / הריסיום ו-אשווגנדה. למדו כיצד השילוב מחזק בריאות, תומך בשינה עמוקה ומסייע בהקלה בדלקות.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "השפעות ושילוב רעמת האריה / הריסיום עם אשווגנדה",
+          "description": "ניתוח מדעי של האינטראקציה בין פטריית המרפא רעמת האריה / הריסיום לבין אשווגנדה לחיזוק בריאותי והגנה.",
+          "inLanguage": "he",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "רעמת האריה / הריסיום"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "אשווגנדה"
+            }
+          ]
+        }
+      },
+      "matcha": {
+        "title": "השפעות ושילוב רעמת האריה / הריסיום עם מאצ'ה לבריאות מיטבית",
+        "description": "גלו את הסינרגיה המדעית של פטריית רעמת האריה / הריסיום ו-מאצ'ה. למדו כיצד השילוב מחזק בריאות, תומך בשינה עמוקה ומסייע בהקלה בדלקות.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "השפעות ושילוב רעמת האריה / הריסיום עם מאצ'ה",
+          "description": "ניתוח מדעי של האינטראקציה בין פטריית המרפא רעמת האריה / הריסיום לבין מאצ'ה לחיזוק בריאותי והגנה.",
+          "inLanguage": "he",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "רעמת האריה / הריסיום"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "מאצ'ה"
+            }
+          ]
+        }
+      }
+    },
+    "reishi": {
+      "cbd": {
+        "title": "השפעות ושילוב ריישי / גנודרמה עם CBD לבריאות מיטבית",
+        "description": "גלו את הסינרגיה המדעית של פטריית ריישי / גנודרמה ו-CBD. למדו כיצד השילוב מחזק בריאות, תומך בשינה עמוקה ומסייע בהקלה בדלקות.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "השפעות ושילוב ריישי / גנודרמה עם CBD",
+          "description": "ניתוח מדעי של האינטראקציה בין פטריית המרפא ריישי / גנודרמה לבין CBD לחיזוק בריאותי והגנה.",
+          "inLanguage": "he",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "ריישי / גנודרמה"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "CBD"
+            }
+          ]
+        }
+      },
+      "thc": {
+        "title": "השפעות ושילוב ריישי / גנודרמה עם THC לבריאות מיטבית",
+        "description": "גלו את הסינרגיה המדעית של פטריית ריישי / גנודרמה ו-THC. למדו כיצד השילוב מחזק בריאות, תומך בשינה עמוקה ומסייע בהקלה בדלקות.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "השפעות ושילוב ריישי / גנודרמה עם THC",
+          "description": "ניתוח מדעי של האינטראקציה בין פטריית המרפא ריישי / גנודרמה לבין THC לחיזוק בריאותי והגנה.",
+          "inLanguage": "he",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "ריישי / גנודרמה"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "THC"
+            }
+          ]
+        }
+      },
+      "ashwagandha": {
+        "title": "השפעות ושילוב ריישי / גנודרמה עם אשווגנדה לבריאות מיטבית",
+        "description": "גלו את הסינרגיה המדעית של פטריית ריישי / גנודרמה ו-אשווגנדה. למדו כיצד השילוב מחזק בריאות, תומך בשינה עמוקה ומסייע בהקלה בדלקות.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "השפעות ושילוב ריישי / גנודרמה עם אשווגנדה",
+          "description": "ניתוח מדעי של האינטראקציה בין פטריית המרפא ריישי / גנודרמה לבין אשווגנדה לחיזוק בריאותי והגנה.",
+          "inLanguage": "he",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "ריישי / גנודרמה"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "אשווגנדה"
+            }
+          ]
+        }
+      },
+      "matcha": {
+        "title": "השפעות ושילוב ריישי / גנודרמה עם מאצ'ה לבריאות מיטבית",
+        "description": "גלו את הסינרגיה המדעית של פטריית ריישי / גנודרמה ו-מאצ'ה. למדו כיצד השילוב מחזק בריאות, תומך בשינה עמוקה ומסייע בהקלה בדלקות.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "השפעות ושילוב ריישי / גנודרמה עם מאצ'ה",
+          "description": "ניתוח מדעי של האינטראקציה בין פטריית המרפא ריישי / גנודרמה לבין מאצ'ה לחיזוק בריאותי והגנה.",
+          "inLanguage": "he",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "ריישי / גנודרמה"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "מאצ'ה"
+            }
+          ]
+        }
+      }
+    },
+    "cordyceps": {
+      "cbd": {
+        "title": "השפעות ושילוב קורדיספס עם CBD לבריאות מיטבית",
+        "description": "גלו את הסינרגיה המדעית של פטריית קורדיספס ו-CBD. למדו כיצד השילוב מחזק בריאות, תומך בשינה עמוקה ומסייע בהקלה בדלקות.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "השפעות ושילוב קורדיספס עם CBD",
+          "description": "ניתוח מדעי של האינטראקציה בין פטריית המרפא קורדיספס לבין CBD לחיזוק בריאותי והגנה.",
+          "inLanguage": "he",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "קורדיספס"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "CBD"
+            }
+          ]
+        }
+      },
+      "thc": {
+        "title": "השפעות ושילוב קורדיספס עם THC לבריאות מיטבית",
+        "description": "גלו את הסינרגיה המדעית של פטריית קורדיספס ו-THC. למדו כיצד השילוב מחזק בריאות, תומך בשינה עמוקה ומסייע בהקלה בדלקות.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "השפעות ושילוב קורדיספס עם THC",
+          "description": "ניתוח מדעי של האינטראקציה בין פטריית המרפא קורדיספס לבין THC לחיזוק בריאותי והגנה.",
+          "inLanguage": "he",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "קורדיספס"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "THC"
+            }
+          ]
+        }
+      },
+      "ashwagandha": {
+        "title": "השפעות ושילוב קורדיספס עם אשווגנדה לבריאות מיטבית",
+        "description": "גלו את הסינרגיה המדעית של פטריית קורדיספס ו-אשווגנדה. למדו כיצד השילוב מחזק בריאות, תומך בשינה עמוקה ומסייע בהקלה בדלקות.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "השפעות ושילוב קורדיספס עם אשווגנדה",
+          "description": "ניתוח מדעי של האינטראקציה בין פטריית המרפא קורדיספס לבין אשווגנדה לחיזוק בריאותי והגנה.",
+          "inLanguage": "he",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "קורדיספס"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "אשווגנדה"
+            }
+          ]
+        }
+      },
+      "matcha": {
+        "title": "השפעות ושילוב קורדיספס עם מאצ'ה לבריאות מיטבית",
+        "description": "גלו את הסינרגיה המדעית של פטריית קורדיספס ו-מאצ'ה. למדו כיצד השילוב מחזק בריאות, תומך בשינה עמוקה ומסייע בהקלה בדלקות.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "השפעות ושילוב קורדיספס עם מאצ'ה",
+          "description": "ניתוח מדעי של האינטראקציה בין פטריית המרפא קורדיספס לבין מאצ'ה לחיזוק בריאותי והגנה.",
+          "inLanguage": "he",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "קורדיספס"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "מאצ'ה"
+            }
+          ]
+        }
+      }
+    },
+    "chaga": {
+      "cbd": {
+        "title": "השפעות ושילוב צ'אגה עם CBD לבריאות מיטבית",
+        "description": "גלו את הסינרגיה המדעית של פטריית צ'אגה ו-CBD. למדו כיצד השילוב מחזק בריאות, תומך בשינה עמוקה ומסייע בהקלה בדלקות.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "השפעות ושילוב צ'אגה עם CBD",
+          "description": "ניתוח מדעי של האינטראקציה בין פטריית המרפא צ'אגה לבין CBD לחיזוק בריאותי והגנה.",
+          "inLanguage": "he",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "צ'אגה"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "CBD"
+            }
+          ]
+        }
+      },
+      "thc": {
+        "title": "השפעות ושילוב צ'אגה עם THC לבריאות מיטבית",
+        "description": "גלו את הסינרגיה המדעית של פטריית צ'אגה ו-THC. למדו כיצד השילוב מחזק בריאות, תומך בשינה עמוקה ומסייע בהקלה בדלקות.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "השפעות ושילוב צ'אגה עם THC",
+          "description": "ניתוח מדעי של האינטראקציה בין פטריית המרפא צ'אגה לבין THC לחיזוק בריאותי והגנה.",
+          "inLanguage": "he",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "צ'אגה"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "THC"
+            }
+          ]
+        }
+      },
+      "ashwagandha": {
+        "title": "השפעות ושילוב צ'אגה עם אשווגנדה לבריאות מיטבית",
+        "description": "גלו את הסינרגיה המדעית של פטריית צ'אגה ו-אשווגנדה. למדו כיצד השילוב מחזק בריאות, תומך בשינה עמוקה ומסייע בהקלה בדלקות.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "השפעות ושילוב צ'אגה עם אשווגנדה",
+          "description": "ניתוח מדעי של האינטראקציה בין פטריית המרפא צ'אגה לבין אשווגנדה לחיזוק בריאותי והגנה.",
+          "inLanguage": "he",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "צ'אגה"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "אשווגנדה"
+            }
+          ]
+        }
+      },
+      "matcha": {
+        "title": "השפעות ושילוב צ'אגה עם מאצ'ה לבריאות מיטבית",
+        "description": "גלו את הסינרגיה המדעית של פטריית צ'אגה ו-מאצ'ה. למדו כיצד השילוב מחזק בריאות, תומך בשינה עמוקה ומסייע בהקלה בדלקות.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "השפעות ושילוב צ'אגה עם מאצ'ה",
+          "description": "ניתוח מדעי של האינטראקציה בין פטריית המרפא צ'אגה לבין מאצ'ה לחיזוק בריאותי והגנה.",
+          "inLanguage": "he",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "צ'אגה"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "מאצ'ה"
+            }
+          ]
+        }
+      }
+    },
+    "turkey-tail": {
+      "cbd": {
+        "title": "השפעות ושילוב זנב תרנגול / טרמטס עם CBD לבריאות מיטבית",
+        "description": "גלו את הסינרגיה המדעית של פטריית זנב תרנגול / טרמטס ו-CBD. למדו כיצד השילוב מחזק בריאות, תומך בשינה עמוקה ומסייע בהקלה בדלקות.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "השפעות ושילוב זנב תרנגול / טרמטס עם CBD",
+          "description": "ניתוח מדעי של האינטראקציה בין פטריית המרפא זנב תרנגול / טרמטס לבין CBD לחיזוק בריאותי והגנה.",
+          "inLanguage": "he",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "זנב תרנגול / טרמטס"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "CBD"
+            }
+          ]
+        }
+      },
+      "thc": {
+        "title": "השפעות ושילוב זנב תרנגול / טרמטס עם THC לבריאות מיטבית",
+        "description": "גלו את הסינרגיה המדעית של פטריית זנב תרנגול / טרמטס ו-THC. למדו כיצד השילוב מחזק בריאות, תומך בשינה עמוקה ומסייע בהקלה בדלקות.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "השפעות ושילוב זנב תרנגול / טרמטס עם THC",
+          "description": "ניתוח מדעי של האינטראקציה בין פטריית המרפא זנב תרנגול / טרמטס לבין THC לחיזוק בריאותי והגנה.",
+          "inLanguage": "he",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "זנב תרנגול / טרמטס"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "THC"
+            }
+          ]
+        }
+      },
+      "ashwagandha": {
+        "title": "השפעות ושילוב זנב תרנגול / טרמטס עם אשווגנדה לבריאות מיטבית",
+        "description": "גלו את הסינרגיה המדעית של פטריית זנב תרנגול / טרמטס ו-אשווגנדה. למדו כיצד השילוב מחזק בריאות, תומך בשינה עמוקה ומסייע בהקלה בדלקות.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "השפעות ושילוב זנב תרנגול / טרמטס עם אשווגנדה",
+          "description": "ניתוח מדעי של האינטראקציה בין פטריית המרפא זנב תרנגול / טרמטס לבין אשווגנדה לחיזוק בריאותי והגנה.",
+          "inLanguage": "he",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "זנב תרנגול / טרמטס"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "אשווגנדה"
+            }
+          ]
+        }
+      },
+      "matcha": {
+        "title": "השפעות ושילוב זנב תרנגול / טרמטס עם מאצ'ה לבריאות מיטבית",
+        "description": "גלו את הסינרגיה המדעית של פטריית זנב תרנגול / טרמטס ו-מאצ'ה. למדו כיצד השילוב מחזק בריאות, תומך בשינה עמוקה ומסייע בהקלה בדלקות.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "השפעות ושילוב זנב תרנגול / טרמטס עם מאצ'ה",
+          "description": "ניתוח מדעי של האינטראקציה בין פטריית המרפא זנב תרנגול / טרמטס לבין מאצ'ה לחיזוק בריאותי והגנה.",
+          "inLanguage": "he",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "זנב תרנגול / טרמטס"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "מאצ'ה"
+            }
+          ]
+        }
+      }
+    },
+    "tremella": {
+      "cbd": {
+        "title": "השפעות ושילוב טרמלה / פטריית השלג עם CBD לבריאות מיטבית",
+        "description": "גלו את הסינרגיה המדעית של פטריית טרמלה / פטריית השלג ו-CBD. למדו כיצד השילוב מחזק בריאות, תומך בשינה עמוקה ומסייע בהקלה בדלקות.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "השפעות ושילוב טרמלה / פטריית השלג עם CBD",
+          "description": "ניתוח מדעי של האינטראקציה בין פטריית המרפא טרמלה / פטריית השלג לבין CBD לחיזוק בריאותי והגנה.",
+          "inLanguage": "he",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "טרמלה / פטריית השלג"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "CBD"
+            }
+          ]
+        }
+      },
+      "thc": {
+        "title": "השפעות ושילוב טרמלה / פטריית השלג עם THC לבריאות מיטבית",
+        "description": "גלו את הסינרגיה המדעית של פטריית טרמלה / פטריית השלג ו-THC. למדו כיצד השילוב מחזק בריאות, תומך בשינה עמוקה ומסייע בהקלה בדלקות.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "השפעות ושילוב טרמלה / פטריית השלג עם THC",
+          "description": "ניתוח מדעי של האינטראקציה בין פטריית המרפא טרמלה / פטריית השלג לבין THC לחיזוק בריאותי והגנה.",
+          "inLanguage": "he",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "טרמלה / פטריית השלג"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "THC"
+            }
+          ]
+        }
+      },
+      "ashwagandha": {
+        "title": "השפעות ושילוב טרמלה / פטריית השלג עם אשווגנדה לבריאות מיטבית",
+        "description": "גלו את הסינרגיה המדעית של פטריית טרמלה / פטריית השלג ו-אשווגנדה. למדו כיצד השילוב מחזק בריאות, תומך בשינה עמוקה ומסייע בהקלה בדלקות.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "השפעות ושילוב טרמלה / פטריית השלג עם אשווגנדה",
+          "description": "ניתוח מדעי של האינטראקציה בין פטריית המרפא טרמלה / פטריית השלג לבין אשווגנדה לחיזוק בריאותי והגנה.",
+          "inLanguage": "he",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "טרמלה / פטריית השלג"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "אשווגנדה"
+            }
+          ]
+        }
+      },
+      "matcha": {
+        "title": "השפעות ושילוב טרמלה / פטריית השלג עם מאצ'ה לבריאות מיטבית",
+        "description": "גלו את הסינרגיה המדעית של פטריית טרמלה / פטריית השלג ו-מאצ'ה. למדו כיצד השילוב מחזק בריאות, תומך בשינה עמוקה ומסייע בהקלה בדלקות.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "השפעות ושילוב טרמלה / פטריית השלג עם מאצ'ה",
+          "description": "ניתוח מדעי של האינטראקציה בין פטריית המרפא טרמלה / פטריית השלג לבין מאצ'ה לחיזוק בריאותי והגנה.",
+          "inLanguage": "he",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "טרמלה / פטריית השלג"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "מאצ'ה"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "es": {
+    "lions-mane": {
+      "cbd": {
+        "title": "Melena de León con CBD: Efectos Sinérgicos para la Salud",
+        "description": "Descubre la poderosa sinergia de Melena de León y CBD. Aprende cómo esta combinación aumenta la salud y proporciona energía natural.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Efectos de Sinergia de Melena de León con CBD",
+          "description": "Análisis científico de la interacción entre Melena de León y CBD para la salud cognitiva y física.",
+          "inLanguage": "es",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Melena de León"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "CBD"
+            }
+          ]
+        }
+      },
+      "thc": {
+        "title": "Melena de León con THC: Efectos Sinérgicos para la Salud",
+        "description": "Descubre la poderosa sinergia de Melena de León y THC. Aprende cómo esta combinación aumenta la salud y proporciona energía natural.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Efectos de Sinergia de Melena de León con THC",
+          "description": "Análisis científico de la interacción entre Melena de León y THC para la salud cognitiva y física.",
+          "inLanguage": "es",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Melena de León"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "THC"
+            }
+          ]
+        }
+      },
+      "ashwagandha": {
+        "title": "Melena de León con Ashwagandha: Efectos Sinérgicos para la Salud",
+        "description": "Descubre la poderosa sinergia de Melena de León y Ashwagandha. Aprende cómo esta combinación aumenta la salud y proporciona energía natural.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Efectos de Sinergia de Melena de León con Ashwagandha",
+          "description": "Análisis científico de la interacción entre Melena de León y Ashwagandha para la salud cognitiva y física.",
+          "inLanguage": "es",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Melena de León"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Ashwagandha"
+            }
+          ]
+        }
+      },
+      "matcha": {
+        "title": "Melena de León con Matcha: Efectos Sinérgicos para la Salud",
+        "description": "Descubre la poderosa sinergia de Melena de León y Matcha. Aprende cómo esta combinación aumenta la salud y proporciona energía natural.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Efectos de Sinergia de Melena de León con Matcha",
+          "description": "Análisis científico de la interacción entre Melena de León y Matcha para la salud cognitiva y física.",
+          "inLanguage": "es",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Melena de León"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Matcha"
+            }
+          ]
+        }
+      }
+    },
+    "reishi": {
+      "cbd": {
+        "title": "Reishi con CBD: Efectos Sinérgicos para la Salud",
+        "description": "Descubre la poderosa sinergia de Reishi y CBD. Aprende cómo esta combinación aumenta la salud y proporciona energía natural.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Efectos de Sinergia de Reishi con CBD",
+          "description": "Análisis científico de la interacción entre Reishi y CBD para la salud cognitiva y física.",
+          "inLanguage": "es",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Reishi"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "CBD"
+            }
+          ]
+        }
+      },
+      "thc": {
+        "title": "Reishi con THC: Efectos Sinérgicos para la Salud",
+        "description": "Descubre la poderosa sinergia de Reishi y THC. Aprende cómo esta combinación aumenta la salud y proporciona energía natural.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Efectos de Sinergia de Reishi con THC",
+          "description": "Análisis científico de la interacción entre Reishi y THC para la salud cognitiva y física.",
+          "inLanguage": "es",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Reishi"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "THC"
+            }
+          ]
+        }
+      },
+      "ashwagandha": {
+        "title": "Reishi con Ashwagandha: Efectos Sinérgicos para la Salud",
+        "description": "Descubre la poderosa sinergia de Reishi y Ashwagandha. Aprende cómo esta combinación aumenta la salud y proporciona energía natural.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Efectos de Sinergia de Reishi con Ashwagandha",
+          "description": "Análisis científico de la interacción entre Reishi y Ashwagandha para la salud cognitiva y física.",
+          "inLanguage": "es",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Reishi"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Ashwagandha"
+            }
+          ]
+        }
+      },
+      "matcha": {
+        "title": "Reishi con Matcha: Efectos Sinérgicos para la Salud",
+        "description": "Descubre la poderosa sinergia de Reishi y Matcha. Aprende cómo esta combinación aumenta la salud y proporciona energía natural.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Efectos de Sinergia de Reishi con Matcha",
+          "description": "Análisis científico de la interacción entre Reishi y Matcha para la salud cognitiva y física.",
+          "inLanguage": "es",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Reishi"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Matcha"
+            }
+          ]
+        }
+      }
+    },
+    "cordyceps": {
+      "cbd": {
+        "title": "Cordyceps con CBD: Efectos Sinérgicos para la Salud",
+        "description": "Descubre la poderosa sinergia de Cordyceps y CBD. Aprende cómo esta combinación aumenta la salud y proporciona energía natural.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Efectos de Sinergia de Cordyceps con CBD",
+          "description": "Análisis científico de la interacción entre Cordyceps y CBD para la salud cognitiva y física.",
+          "inLanguage": "es",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Cordyceps"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "CBD"
+            }
+          ]
+        }
+      },
+      "thc": {
+        "title": "Cordyceps con THC: Efectos Sinérgicos para la Salud",
+        "description": "Descubre la poderosa sinergia de Cordyceps y THC. Aprende cómo esta combinación aumenta la salud y proporciona energía natural.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Efectos de Sinergia de Cordyceps con THC",
+          "description": "Análisis científico de la interacción entre Cordyceps y THC para la salud cognitiva y física.",
+          "inLanguage": "es",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Cordyceps"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "THC"
+            }
+          ]
+        }
+      },
+      "ashwagandha": {
+        "title": "Cordyceps con Ashwagandha: Efectos Sinérgicos para la Salud",
+        "description": "Descubre la poderosa sinergia de Cordyceps y Ashwagandha. Aprende cómo esta combinación aumenta la salud y proporciona energía natural.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Efectos de Sinergia de Cordyceps con Ashwagandha",
+          "description": "Análisis científico de la interacción entre Cordyceps y Ashwagandha para la salud cognitiva y física.",
+          "inLanguage": "es",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Cordyceps"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Ashwagandha"
+            }
+          ]
+        }
+      },
+      "matcha": {
+        "title": "Cordyceps con Matcha: Efectos Sinérgicos para la Salud",
+        "description": "Descubre la poderosa sinergia de Cordyceps y Matcha. Aprende cómo esta combinación aumenta la salud y proporciona energía natural.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Efectos de Sinergia de Cordyceps con Matcha",
+          "description": "Análisis científico de la interacción entre Cordyceps y Matcha para la salud cognitiva y física.",
+          "inLanguage": "es",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Cordyceps"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Matcha"
+            }
+          ]
+        }
+      }
+    },
+    "chaga": {
+      "cbd": {
+        "title": "Chaga con CBD: Efectos Sinérgicos para la Salud",
+        "description": "Descubre la poderosa sinergia de Chaga y CBD. Aprende cómo esta combinación aumenta la salud y proporciona energía natural.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Efectos de Sinergia de Chaga con CBD",
+          "description": "Análisis científico de la interacción entre Chaga y CBD para la salud cognitiva y física.",
+          "inLanguage": "es",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Chaga"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "CBD"
+            }
+          ]
+        }
+      },
+      "thc": {
+        "title": "Chaga con THC: Efectos Sinérgicos para la Salud",
+        "description": "Descubre la poderosa sinergia de Chaga y THC. Aprende cómo esta combinación aumenta la salud y proporciona energía natural.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Efectos de Sinergia de Chaga con THC",
+          "description": "Análisis científico de la interacción entre Chaga y THC para la salud cognitiva y física.",
+          "inLanguage": "es",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Chaga"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "THC"
+            }
+          ]
+        }
+      },
+      "ashwagandha": {
+        "title": "Chaga con Ashwagandha: Efectos Sinérgicos para la Salud",
+        "description": "Descubre la poderosa sinergia de Chaga y Ashwagandha. Aprende cómo esta combinación aumenta la salud y proporciona energía natural.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Efectos de Sinergia de Chaga con Ashwagandha",
+          "description": "Análisis científico de la interacción entre Chaga y Ashwagandha para la salud cognitiva y física.",
+          "inLanguage": "es",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Chaga"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Ashwagandha"
+            }
+          ]
+        }
+      },
+      "matcha": {
+        "title": "Chaga con Matcha: Efectos Sinérgicos para la Salud",
+        "description": "Descubre la poderosa sinergia de Chaga y Matcha. Aprende cómo esta combinación aumenta la salud y proporciona energía natural.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Efectos de Sinergia de Chaga con Matcha",
+          "description": "Análisis científico de la interacción entre Chaga y Matcha para la salud cognitiva y física.",
+          "inLanguage": "es",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Chaga"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Matcha"
+            }
+          ]
+        }
+      }
+    },
+    "turkey-tail": {
+      "cbd": {
+        "title": "Cola de Pavo con CBD: Efectos Sinérgicos para la Salud",
+        "description": "Descubre la poderosa sinergia de Cola de Pavo y CBD. Aprende cómo esta combinación aumenta la salud y proporciona energía natural.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Efectos de Sinergia de Cola de Pavo con CBD",
+          "description": "Análisis científico de la interacción entre Cola de Pavo y CBD para la salud cognitiva y física.",
+          "inLanguage": "es",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Cola de Pavo"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "CBD"
+            }
+          ]
+        }
+      },
+      "thc": {
+        "title": "Cola de Pavo con THC: Efectos Sinérgicos para la Salud",
+        "description": "Descubre la poderosa sinergia de Cola de Pavo y THC. Aprende cómo esta combinación aumenta la salud y proporciona energía natural.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Efectos de Sinergia de Cola de Pavo con THC",
+          "description": "Análisis científico de la interacción entre Cola de Pavo y THC para la salud cognitiva y física.",
+          "inLanguage": "es",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Cola de Pavo"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "THC"
+            }
+          ]
+        }
+      },
+      "ashwagandha": {
+        "title": "Cola de Pavo con Ashwagandha: Efectos Sinérgicos para la Salud",
+        "description": "Descubre la poderosa sinergia de Cola de Pavo y Ashwagandha. Aprende cómo esta combinación aumenta la salud y proporciona energía natural.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Efectos de Sinergia de Cola de Pavo con Ashwagandha",
+          "description": "Análisis científico de la interacción entre Cola de Pavo y Ashwagandha para la salud cognitiva y física.",
+          "inLanguage": "es",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Cola de Pavo"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Ashwagandha"
+            }
+          ]
+        }
+      },
+      "matcha": {
+        "title": "Cola de Pavo con Matcha: Efectos Sinérgicos para la Salud",
+        "description": "Descubre la poderosa sinergia de Cola de Pavo y Matcha. Aprende cómo esta combinación aumenta la salud y proporciona energía natural.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Efectos de Sinergia de Cola de Pavo con Matcha",
+          "description": "Análisis científico de la interacción entre Cola de Pavo y Matcha para la salud cognitiva y física.",
+          "inLanguage": "es",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Cola de Pavo"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Matcha"
+            }
+          ]
+        }
+      }
+    },
+    "tremella": {
+      "cbd": {
+        "title": "Tremella con CBD: Efectos Sinérgicos para la Salud",
+        "description": "Descubre la poderosa sinergia de Tremella y CBD. Aprende cómo esta combinación aumenta la salud y proporciona energía natural.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Efectos de Sinergia de Tremella con CBD",
+          "description": "Análisis científico de la interacción entre Tremella y CBD para la salud cognitiva y física.",
+          "inLanguage": "es",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Tremella"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "CBD"
+            }
+          ]
+        }
+      },
+      "thc": {
+        "title": "Tremella con THC: Efectos Sinérgicos para la Salud",
+        "description": "Descubre la poderosa sinergia de Tremella y THC. Aprende cómo esta combinación aumenta la salud y proporciona energía natural.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Efectos de Sinergia de Tremella con THC",
+          "description": "Análisis científico de la interacción entre Tremella y THC para la salud cognitiva y física.",
+          "inLanguage": "es",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Tremella"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "THC"
+            }
+          ]
+        }
+      },
+      "ashwagandha": {
+        "title": "Tremella con Ashwagandha: Efectos Sinérgicos para la Salud",
+        "description": "Descubre la poderosa sinergia de Tremella y Ashwagandha. Aprende cómo esta combinación aumenta la salud y proporciona energía natural.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Efectos de Sinergia de Tremella con Ashwagandha",
+          "description": "Análisis científico de la interacción entre Tremella y Ashwagandha para la salud cognitiva y física.",
+          "inLanguage": "es",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Tremella"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Ashwagandha"
+            }
+          ]
+        }
+      },
+      "matcha": {
+        "title": "Tremella con Matcha: Efectos Sinérgicos para la Salud",
+        "description": "Descubre la poderosa sinergia de Tremella y Matcha. Aprende cómo esta combinación aumenta la salud y proporciona energía natural.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Efectos de Sinergia de Tremella con Matcha",
+          "description": "Análisis científico de la interacción entre Tremella y Matcha para la salud cognitiva y física.",
+          "inLanguage": "es",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Tremella"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Matcha"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "fr": {
+    "lions-mane": {
+      "cbd": {
+        "title": "Hydne Hérisson avec CBD: Effets Synergiques pour la Santé",
+        "description": "Découvrez la puissante synergie de Hydne Hérisson et CBD. Apprenez comment cette combinaison stimule la santé et fournit une énergie naturelle.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Effets de Synergie de Hydne Hérisson avec CBD",
+          "description": "Analyse scientifique de l'interaction entre Hydne Hérisson et CBD pour la santé cognitive et physique.",
+          "inLanguage": "fr",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Hydne Hérisson"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "CBD"
+            }
+          ]
+        }
+      },
+      "thc": {
+        "title": "Hydne Hérisson avec THC: Effets Synergiques pour la Santé",
+        "description": "Découvrez la puissante synergie de Hydne Hérisson et THC. Apprenez comment cette combinaison stimule la santé et fournit une énergie naturelle.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Effets de Synergie de Hydne Hérisson avec THC",
+          "description": "Analyse scientifique de l'interaction entre Hydne Hérisson et THC pour la santé cognitive et physique.",
+          "inLanguage": "fr",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Hydne Hérisson"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "THC"
+            }
+          ]
+        }
+      },
+      "ashwagandha": {
+        "title": "Hydne Hérisson avec Ashwagandha: Effets Synergiques pour la Santé",
+        "description": "Découvrez la puissante synergie de Hydne Hérisson et Ashwagandha. Apprenez comment cette combinaison stimule la santé et fournit une énergie naturelle.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Effets de Synergie de Hydne Hérisson avec Ashwagandha",
+          "description": "Analyse scientifique de l'interaction entre Hydne Hérisson et Ashwagandha pour la santé cognitive et physique.",
+          "inLanguage": "fr",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Hydne Hérisson"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Ashwagandha"
+            }
+          ]
+        }
+      },
+      "matcha": {
+        "title": "Hydne Hérisson avec Matcha: Effets Synergiques pour la Santé",
+        "description": "Découvrez la puissante synergie de Hydne Hérisson et Matcha. Apprenez comment cette combinaison stimule la santé et fournit une énergie naturelle.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Effets de Synergie de Hydne Hérisson avec Matcha",
+          "description": "Analyse scientifique de l'interaction entre Hydne Hérisson et Matcha pour la santé cognitive et physique.",
+          "inLanguage": "fr",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Hydne Hérisson"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Matcha"
+            }
+          ]
+        }
+      }
+    },
+    "reishi": {
+      "cbd": {
+        "title": "Reishi avec CBD: Effets Synergiques pour la Santé",
+        "description": "Découvrez la puissante synergie de Reishi et CBD. Apprenez comment cette combinaison stimule la santé et fournit une énergie naturelle.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Effets de Synergie de Reishi avec CBD",
+          "description": "Analyse scientifique de l'interaction entre Reishi et CBD pour la santé cognitive et physique.",
+          "inLanguage": "fr",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Reishi"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "CBD"
+            }
+          ]
+        }
+      },
+      "thc": {
+        "title": "Reishi avec THC: Effets Synergiques pour la Santé",
+        "description": "Découvrez la puissante synergie de Reishi et THC. Apprenez comment cette combinaison stimule la santé et fournit une énergie naturelle.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Effets de Synergie de Reishi avec THC",
+          "description": "Analyse scientifique de l'interaction entre Reishi et THC pour la santé cognitive et physique.",
+          "inLanguage": "fr",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Reishi"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "THC"
+            }
+          ]
+        }
+      },
+      "ashwagandha": {
+        "title": "Reishi avec Ashwagandha: Effets Synergiques pour la Santé",
+        "description": "Découvrez la puissante synergie de Reishi et Ashwagandha. Apprenez comment cette combinaison stimule la santé et fournit une énergie naturelle.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Effets de Synergie de Reishi avec Ashwagandha",
+          "description": "Analyse scientifique de l'interaction entre Reishi et Ashwagandha pour la santé cognitive et physique.",
+          "inLanguage": "fr",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Reishi"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Ashwagandha"
+            }
+          ]
+        }
+      },
+      "matcha": {
+        "title": "Reishi avec Matcha: Effets Synergiques pour la Santé",
+        "description": "Découvrez la puissante synergie de Reishi et Matcha. Apprenez comment cette combinaison stimule la santé et fournit une énergie naturelle.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Effets de Synergie de Reishi avec Matcha",
+          "description": "Analyse scientifique de l'interaction entre Reishi et Matcha pour la santé cognitive et physique.",
+          "inLanguage": "fr",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Reishi"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Matcha"
+            }
+          ]
+        }
+      }
+    },
+    "cordyceps": {
+      "cbd": {
+        "title": "Cordyceps avec CBD: Effets Synergiques pour la Santé",
+        "description": "Découvrez la puissante synergie de Cordyceps et CBD. Apprenez comment cette combinaison stimule la santé et fournit une énergie naturelle.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Effets de Synergie de Cordyceps avec CBD",
+          "description": "Analyse scientifique de l'interaction entre Cordyceps et CBD pour la santé cognitive et physique.",
+          "inLanguage": "fr",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Cordyceps"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "CBD"
+            }
+          ]
+        }
+      },
+      "thc": {
+        "title": "Cordyceps avec THC: Effets Synergiques pour la Santé",
+        "description": "Découvrez la puissante synergie de Cordyceps et THC. Apprenez comment cette combinaison stimule la santé et fournit une énergie naturelle.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Effets de Synergie de Cordyceps avec THC",
+          "description": "Analyse scientifique de l'interaction entre Cordyceps et THC pour la santé cognitive et physique.",
+          "inLanguage": "fr",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Cordyceps"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "THC"
+            }
+          ]
+        }
+      },
+      "ashwagandha": {
+        "title": "Cordyceps avec Ashwagandha: Effets Synergiques pour la Santé",
+        "description": "Découvrez la puissante synergie de Cordyceps et Ashwagandha. Apprenez comment cette combinaison stimule la santé et fournit une énergie naturelle.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Effets de Synergie de Cordyceps avec Ashwagandha",
+          "description": "Analyse scientifique de l'interaction entre Cordyceps et Ashwagandha pour la santé cognitive et physique.",
+          "inLanguage": "fr",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Cordyceps"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Ashwagandha"
+            }
+          ]
+        }
+      },
+      "matcha": {
+        "title": "Cordyceps avec Matcha: Effets Synergiques pour la Santé",
+        "description": "Découvrez la puissante synergie de Cordyceps et Matcha. Apprenez comment cette combinaison stimule la santé et fournit une énergie naturelle.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Effets de Synergie de Cordyceps avec Matcha",
+          "description": "Analyse scientifique de l'interaction entre Cordyceps et Matcha pour la santé cognitive et physique.",
+          "inLanguage": "fr",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Cordyceps"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Matcha"
+            }
+          ]
+        }
+      }
+    },
+    "chaga": {
+      "cbd": {
+        "title": "Chaga avec CBD: Effets Synergiques pour la Santé",
+        "description": "Découvrez la puissante synergie de Chaga et CBD. Apprenez comment cette combinaison stimule la santé et fournit une énergie naturelle.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Effets de Synergie de Chaga avec CBD",
+          "description": "Analyse scientifique de l'interaction entre Chaga et CBD pour la santé cognitive et physique.",
+          "inLanguage": "fr",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Chaga"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "CBD"
+            }
+          ]
+        }
+      },
+      "thc": {
+        "title": "Chaga avec THC: Effets Synergiques pour la Santé",
+        "description": "Découvrez la puissante synergie de Chaga et THC. Apprenez comment cette combinaison stimule la santé et fournit une énergie naturelle.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Effets de Synergie de Chaga avec THC",
+          "description": "Analyse scientifique de l'interaction entre Chaga et THC pour la santé cognitive et physique.",
+          "inLanguage": "fr",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Chaga"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "THC"
+            }
+          ]
+        }
+      },
+      "ashwagandha": {
+        "title": "Chaga avec Ashwagandha: Effets Synergiques pour la Santé",
+        "description": "Découvrez la puissante synergie de Chaga et Ashwagandha. Apprenez comment cette combinaison stimule la santé et fournit une énergie naturelle.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Effets de Synergie de Chaga avec Ashwagandha",
+          "description": "Analyse scientifique de l'interaction entre Chaga et Ashwagandha pour la santé cognitive et physique.",
+          "inLanguage": "fr",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Chaga"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Ashwagandha"
+            }
+          ]
+        }
+      },
+      "matcha": {
+        "title": "Chaga avec Matcha: Effets Synergiques pour la Santé",
+        "description": "Découvrez la puissante synergie de Chaga et Matcha. Apprenez comment cette combinaison stimule la santé et fournit une énergie naturelle.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Effets de Synergie de Chaga avec Matcha",
+          "description": "Analyse scientifique de l'interaction entre Chaga et Matcha pour la santé cognitive et physique.",
+          "inLanguage": "fr",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Chaga"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Matcha"
+            }
+          ]
+        }
+      }
+    },
+    "turkey-tail": {
+      "cbd": {
+        "title": "Queue de Dinde avec CBD: Effets Synergiques pour la Santé",
+        "description": "Découvrez la puissante synergie de Queue de Dinde et CBD. Apprenez comment cette combinaison stimule la santé et fournit une énergie naturelle.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Effets de Synergie de Queue de Dinde avec CBD",
+          "description": "Analyse scientifique de l'interaction entre Queue de Dinde et CBD pour la santé cognitive et physique.",
+          "inLanguage": "fr",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Queue de Dinde"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "CBD"
+            }
+          ]
+        }
+      },
+      "thc": {
+        "title": "Queue de Dinde avec THC: Effets Synergiques pour la Santé",
+        "description": "Découvrez la puissante synergie de Queue de Dinde et THC. Apprenez comment cette combinaison stimule la santé et fournit une énergie naturelle.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Effets de Synergie de Queue de Dinde avec THC",
+          "description": "Analyse scientifique de l'interaction entre Queue de Dinde et THC pour la santé cognitive et physique.",
+          "inLanguage": "fr",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Queue de Dinde"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "THC"
+            }
+          ]
+        }
+      },
+      "ashwagandha": {
+        "title": "Queue de Dinde avec Ashwagandha: Effets Synergiques pour la Santé",
+        "description": "Découvrez la puissante synergie de Queue de Dinde et Ashwagandha. Apprenez comment cette combinaison stimule la santé et fournit une énergie naturelle.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Effets de Synergie de Queue de Dinde avec Ashwagandha",
+          "description": "Analyse scientifique de l'interaction entre Queue de Dinde et Ashwagandha pour la santé cognitive et physique.",
+          "inLanguage": "fr",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Queue de Dinde"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Ashwagandha"
+            }
+          ]
+        }
+      },
+      "matcha": {
+        "title": "Queue de Dinde avec Matcha: Effets Synergiques pour la Santé",
+        "description": "Découvrez la puissante synergie de Queue de Dinde et Matcha. Apprenez comment cette combinaison stimule la santé et fournit une énergie naturelle.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Effets de Synergie de Queue de Dinde avec Matcha",
+          "description": "Analyse scientifique de l'interaction entre Queue de Dinde et Matcha pour la santé cognitive et physique.",
+          "inLanguage": "fr",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Queue de Dinde"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Matcha"
+            }
+          ]
+        }
+      }
+    },
+    "tremella": {
+      "cbd": {
+        "title": "Trémelle avec CBD: Effets Synergiques pour la Santé",
+        "description": "Découvrez la puissante synergie de Trémelle et CBD. Apprenez comment cette combinaison stimule la santé et fournit une énergie naturelle.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Effets de Synergie de Trémelle avec CBD",
+          "description": "Analyse scientifique de l'interaction entre Trémelle et CBD pour la santé cognitive et physique.",
+          "inLanguage": "fr",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Trémelle"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "CBD"
+            }
+          ]
+        }
+      },
+      "thc": {
+        "title": "Trémelle avec THC: Effets Synergiques pour la Santé",
+        "description": "Découvrez la puissante synergie de Trémelle et THC. Apprenez comment cette combinaison stimule la santé et fournit une énergie naturelle.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Effets de Synergie de Trémelle avec THC",
+          "description": "Analyse scientifique de l'interaction entre Trémelle et THC pour la santé cognitive et physique.",
+          "inLanguage": "fr",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Trémelle"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "THC"
+            }
+          ]
+        }
+      },
+      "ashwagandha": {
+        "title": "Trémelle avec Ashwagandha: Effets Synergiques pour la Santé",
+        "description": "Découvrez la puissante synergie de Trémelle et Ashwagandha. Apprenez comment cette combinaison stimule la santé et fournit une énergie naturelle.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Effets de Synergie de Trémelle avec Ashwagandha",
+          "description": "Analyse scientifique de l'interaction entre Trémelle et Ashwagandha pour la santé cognitive et physique.",
+          "inLanguage": "fr",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Trémelle"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Ashwagandha"
+            }
+          ]
+        }
+      },
+      "matcha": {
+        "title": "Trémelle avec Matcha: Effets Synergiques pour la Santé",
+        "description": "Découvrez la puissante synergie de Trémelle et Matcha. Apprenez comment cette combinaison stimule la santé et fournit une énergie naturelle.",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Effets de Synergie de Trémelle avec Matcha",
+          "description": "Analyse scientifique de l'interaction entre Trémelle et Matcha pour la santé cognitive et physique.",
+          "inLanguage": "fr",
+          "about": [
+            {
+              "@type": "MedicalEntity",
+              "name": "Trémelle"
+            },
+            {
+              "@type": "MedicalEntity",
+              "name": "Matcha"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
