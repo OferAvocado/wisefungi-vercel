@@ -1539,7 +1539,7 @@ function App() {
                             <>
                               <div className="review-card-header" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                                 <h4 className="review-author" style={{ margin: 0 }}>{r.name}</h4>
-                                <div className="review-stars" style={{ paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255, 255, 255, 0.2)', marginBottom: '0.5rem' }}>
+                                <div className="review-stars" style={{ paddingBottom: '0.5rem', marginBottom: '0.5rem', position: 'relative' }}>
                                   {Array.from({ length: 5 }).map((_, idx) => (
                                     <span 
                                       key={idx} 
@@ -1549,6 +1549,7 @@ function App() {
                                       <MushroomIcon size={33} active={idx < r.rating} />
                                     </span>
                                   ))}
+                                  <div className="review-divider" />
                                 </div>
                               </div>
                               <p className="review-text">{r.comment}</p>
