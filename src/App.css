@@ -446,7 +446,7 @@
   --mush-top: #3d2b24; --mush-bottom: #140d0a; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85); --tag-bg: rgba(255,255,255,0.1); --mush-border: rgba(80, 60, 50, 0.4);
 }
 .turkey_tail { 
-  --mush-top: #577840; --mush-bottom: #477053; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85); --tag-bg: rgba(255,255,255,0.1); --mush-border: rgba(100, 140, 80, 0.4);
+  --mush-top: #577840; --mush-bottom: #263b18; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85); --tag-bg: rgba(255,255,255,0.1); --mush-border: rgba(100, 140, 80, 0.4);
 }
 
 .bento-card {
@@ -454,8 +454,8 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  text-align: start;
+  align-items: center;
+  text-align: center;
   position: relative;
   overflow: hidden;
   cursor: pointer;
