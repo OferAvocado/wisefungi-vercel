@@ -38,8 +38,9 @@ export default function InteractionPage({ lang, mushroomId, vectorId }) {
         <br />
         <p>
           {lang === 'he' ? 'מידע מורחב על השילוב הסינרגיסטי ויתרונותיו הבריאותיים המלאים יוצג כאן בקרוב.' : 
-           lang === 'en' ? 'Extended information regarding this synergistic combination and its full health benefits will be displayed here shortly.' :
-           'Extended information will be displayed here.'}
+           lang === 'ru' ? 'Расширенная информация об этом синергетическом сочетании и его полных преимуществах для здоровья скоро появится здесь.' :
+           lang === 'es' ? 'La información ampliada sobre esta combinación sinérgica y sus beneficios completos para la salud se mostrará aquí en breve.' :
+           'Extended information regarding this synergistic combination and its full health benefits will be displayed here shortly.'}
         </p>
       </div>
     </div>

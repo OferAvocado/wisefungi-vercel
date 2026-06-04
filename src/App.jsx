@@ -332,9 +332,9 @@ const intTrans = {
     noResults: 'No interactions matching "{{query}}"',
     category: 'Category',
     do_not_combine: 'Do NOT Combine — High Risk',
-    use_caution: 'Use Caution',
-    potential_synergy: 'Potential Synergy',
-    insufficient: 'Insufficient Research',
+    use_caution: 'Use Caution — Moderate Interaction',
+    potential_synergy: 'Potential Synergy — Helpful Combination',
+    insufficient: 'Unknown / Insufficient Research',
   },
   es: {
     quickSearch: 'Búsqueda rápida de interacciones',
@@ -343,9 +343,9 @@ const intTrans = {
     noResults: 'No se encontraron interacciones para "{{query}}"',
     category: 'Categoría',
     do_not_combine: 'NO Combinar — Riesgo Alto',
-    use_caution: 'Usar con Precaución',
-    potential_synergy: 'Sinergia Potencial',
-    insufficient: 'Investigación Insuficiente',
+    use_caution: 'Usar con Precaución — Interacción Moderada',
+    potential_synergy: 'Sinergia Potencial — Combinación Útil',
+    insufficient: 'Desconocido / Investigación Insuficiente',
   },
   ru: {
     quickSearch: 'Быстрый поиск взаимодействий',
@@ -354,8 +354,8 @@ const intTrans = {
     noResults: 'Нет взаимодействий по запросу "{{query}}"',
     category: 'Категория',
     do_not_combine: 'НЕ комбинировать — Высокий риск',
-    use_caution: 'Соблюдать осторожность',
-    potential_synergy: 'Потенциальная синергия',
+    use_caution: 'Соблюдать осторожность — Умеренное взаимодействие',
+    potential_synergy: 'Потенциальная синергия — Полезное сочетание',
     insufficient: 'Недостаточно исследований',
   }
 };
@@ -2191,8 +2191,8 @@ function App() {
 
                     const categoriesList = [
                       { key: 'do_not_combine', label: { he: "אין לשלב — סיכון גבוה", en: "Do NOT combine — High Risk", ru: "НЕ комбинировать — Высокий риск", es: "NO combinar — Riesgo Alto" } },
-                      { key: 'use_caution', label: { he: "יש לנקוט זהירות — אינטראקציה בינונית", en: "Use Caution — Moderate Interaction", ru: "Соблюдать осторожность", es: "Usar con Precaución" } },
-                      { key: 'potential_synergy', label: { he: "סינרגיה פוטנציאלית — שילוב מועיל", en: "Potential Synergy — Helpful Combination", ru: "Потенциальная синергия", es: "Sinergia Potencial" } },
+                      { key: 'use_caution', label: { he: "יש לנקוט זהירות — אינטראקציה בינונית", en: "Use Caution — Moderate Interaction", ru: "Соблюдать осторожность — Умеренное взаимодействие", es: "Usar con Precaución — Interacción Moderada" } },
+                      { key: 'potential_synergy', label: { he: "סינרגיה פוטנציאלית — שילוב מועיל", en: "Potential Synergy — Helpful Combination", ru: "Потенциальная синергия — Полезное сочетание", es: "Sinergia Potencial — Combinación Útil" } },
                       { key: 'insufficient', label: { he: "מחקר לא מספיק", en: "Unknown / Insufficient Research", ru: "Недостаточно исследований", es: "Desconocido / Investigación Insuficiente" } }
                     ];
 
@@ -2400,17 +2400,17 @@ function App() {
                     const getLabels = (key) => {
                       const labels = {
                         do_not_combine: { he: "אין לשלב — סיכון גבוה", en: "Do NOT combine — High Risk", ru: "НЕ комбинировать — Высокий риск", es: "NO combinar — Riesgo Alto" },
-                        use_caution: { he: "יש לנקוט זהירות — אינטראקציה בינונית", en: "Use Caution — Moderate Interaction", ru: "Соблюдать осторожность", es: "Usar con Precaución" },
-                        potential_synergy: { he: "סינרגיה פוטנציאלית — שילוב מועיל", en: "Potential Synergy — Helpful Combination", ru: "Потенциальная синергия", es: "Sinergia Potencial" },
+                        use_caution: { he: "יש לנקוט זהירות — אינטראקציה בינונית", en: "Use Caution — Moderate Interaction", ru: "Соблюдать осторожность — Умеренное взаимодействие", es: "Usar con Precaución — Interacción Moderada" },
+                        potential_synergy: { he: "סינרגיה פוטנציאלית — שילוב מועיל", en: "Potential Synergy — Helpful Combination", ru: "Потенциальная синергия — Полезное сочетание", es: "Sinergia Potencial — Combinación Útil" },
                         insufficient: { he: "מחקר לא מספיק", en: "Unknown / Insufficient Research", ru: "Недостаточно исследований", es: "Desconocido / Investigación Insuficiente" }
                       };
                       return labels[key][currentLang] || labels[key]['en'];
                     };
 
                     const evidenceLabels = {
-                      clinical: { he: 'ראיות קליניות', en: 'Clinical evidence' },
-                      limited: { he: 'מחקר מוגבל', en: 'Limited research' },
-                      theoretical: { he: 'תיאורטי', en: 'Theoretical' }
+                      clinical: { he: 'ראיות קליניות', en: 'Clinical evidence', ru: 'Клинические данные', es: 'Evidencia clínica' },
+                      limited: { he: 'מחקר מוגבל', en: 'Limited research', ru: 'Ограниченные исследования', es: 'Investigación limitada' },
+                      theoretical: { he: 'תיאורטי', en: 'Theoretical', ru: 'Теоретически', es: 'Teórico' }
                     };
 
                     const EvidenceBadge = ({ type }) => {
