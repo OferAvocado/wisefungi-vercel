@@ -19,6 +19,7 @@ import { useAnalytics } from './hooks/useAnalytics';
 import InteractionPage from './pages/InteractionPage';
 import SEO from './components/SEO';
 import './App.css';
+import SearchKeywordsDrawer from './components/SearchKeywordsDrawer';
 const watermarkConfigs = {
   reishi: { tileHeight: 147, minHeight: 1572 },
   lions_mane: { tileHeight: 157, minHeight: 1572 },
