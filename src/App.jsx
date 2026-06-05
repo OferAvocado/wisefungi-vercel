@@ -1745,6 +1745,20 @@ function App() {
                         zIndex: -2 
                       }} 
                     />
+                    {normId === 'lions_mane' && (
+                      <div 
+                        style={{ 
+                          position: 'absolute', 
+                          top: topOffset, 
+                          bottom: 0, 
+                          left: 0, 
+                          right: 0, 
+                          backgroundColor: '#948d85', 
+                          pointerEvents: 'none', 
+                          zIndex: -1.5 
+                        }} 
+                      />
+                    )}
                     <div 
                       style={{ 
                         position: 'absolute', 
