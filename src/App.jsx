@@ -1749,8 +1749,8 @@ function App() {
                       <div 
                         style={{ 
                           position: 'absolute', 
-                          top: topOffset, 
-                          bottom: 0, 
+                          top: 0, 
+                          height: topOffset, 
                           left: 0, 
                           right: 0, 
                           backgroundColor: '#948d85', 
