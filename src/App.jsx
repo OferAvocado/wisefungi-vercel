@@ -574,7 +574,7 @@ function App() {
   useEffect(() => {
     // Check if already an admin in this session
     const adminToken = localStorage.getItem('adminToken');
-    if (adminToken === 'wise-fungi-secret') setIsAdmin(true);
+    if (adminToken) setIsAdmin(true);
 
     const fetchData = async () => {
       try {
@@ -1348,8 +1348,8 @@ function App() {
           <AdminAuthModal 
             isOpen={true} 
             onClose={() => window.location.href = '/'} 
-            onLoginSuccess={() => {
-              localStorage.setItem('adminToken', 'wise-fungi-secret');
+            onLoginSuccess={(token) => {
+              localStorage.setItem('adminToken', token);
               window.location.reload();
             }}
             currentLang={currentLang} 
@@ -2573,10 +2573,10 @@ function App() {
       <AdminAuthModal 
         isOpen={isLoginModalOpen} 
         onClose={() => setIsLoginModalOpen(false)} 
-        onLoginSuccess={() => {
+        onLoginSuccess={(token) => {
           setIsAdmin(true);
           setIsLoginModalOpen(false);
-          localStorage.setItem('adminToken', 'wise-fungi-secret');
+          localStorage.setItem('adminToken', token);
           alert(currentLang === 'he' ? 'ברוך הבא מנהל!' : 'Welcome Admin!');
         }} 
         currentLang={currentLang} 

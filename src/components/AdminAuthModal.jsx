@@ -1,33 +1,21 @@
 import React, { useState } from 'react';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
-import { jwtDecode } from 'jwt-decode';
-import { TOTP } from 'totp-generator';
 
 export default function AdminAuthModal({ isOpen, onClose, onLoginSuccess, currentLang }) {
   const [step, setStep] = useState(1);
+  const [googleToken, setGoogleToken] = useState('');
   const [totpCode, setTotpCode] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  // We need the client ID.
-  // In production, this should be in .env (e.g. import.meta.env.VITE_GOOGLE_CLIENT_ID)
   const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || '804914853701-0tvqff3iuu5g4jtqictun1b6m9ijd7is.apps.googleusercontent.com';
-  const TOTP_SECRET = import.meta.env.VITE_TOTP_SECRET || 'WRGA25FIVKCVGYN3U4LR';
-  const ADMIN_EMAIL = 'eldar.ofer@gmail.com';
 
   if (!isOpen) return null;
 
   const handleGoogleSuccess = (credentialResponse) => {
-    try {
-      const decoded = jwtDecode(credentialResponse.credential);
-      if (decoded.email === ADMIN_EMAIL) {
-        setStep(2);
-        setError('');
-      } else {
-        setError(currentLang === 'he' ? 'אימייל לא מורשה.' : 'Unauthorized email.');
-      }
-    } catch (err) {
-      setError(currentLang === 'he' ? 'שגיאה באימות' : 'Auth error');
-    }
+    setGoogleToken(credentialResponse.credential);
+    setStep(2);
+    setError('');
   };
 
   const handleGoogleError = () => {
@@ -36,28 +24,43 @@ export default function AdminAuthModal({ isOpen, onClose, onLoginSuccess, curren
 
   const handleVerifyTotp = async (e) => {
     e.preventDefault();
+    if (loading) return;
+    setLoading(true);
+    setError('');
+
     try {
-      // Check current window and previous window to allow for slight delays
-      const { otp: currentOtp } = await TOTP.generate(TOTP_SECRET);
-      const { otp: prevOtp } = await TOTP.generate(TOTP_SECRET, { timestamp: Date.now() - 30000 });
-      
-      if (totpCode === currentOtp || totpCode === prevOtp) {
-        onLoginSuccess();
+      const response = await fetch('/api/admin_login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          googleToken,
+          totpCode
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.token) {
+        onLoginSuccess(data.token);
       } else {
-        setError(currentLang === 'he' ? 'קוד שגוי' : 'Invalid code');
+        setError(data.error || (currentLang === 'he' ? 'קוד אימות שגוי או פג תוקף' : 'Invalid or expired code'));
       }
-    } catch(err) {
+    } catch (err) {
       console.error(err);
-      setError(currentLang === 'he' ? 'שגיאה באימות הקוד' : 'Error verifying code');
+      setError(currentLang === 'he' ? 'שגיאת תקשורת עם השרת' : 'Server communication error');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="modal-overlay login-overlay" onClick={onClose}>
       <div className="modal-content glass-panel login-card" onClick={e => e.stopPropagation()}>
-        <h2>{currentLang === 'he' ? 'כניסת אדמין' : 'Admin Login'}</h2>
+        <h2>{currentLang === 'he' ? 'כניסת אדמין מאובטחת' : 'Secure Admin Login'}</h2>
         
-        {error && <div style={{ color: '#ff4d4f', marginBottom: '10px', textAlign: 'center', fontWeight: 'bold' }}>{error}</div>}
+        {error && <div style={{ color: '#ff4d4f', marginBottom: '15px', textAlign: 'center', fontWeight: 'bold' }}>{error}</div>}
 
         {step === 1 && (
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
@@ -81,10 +84,11 @@ export default function AdminAuthModal({ isOpen, onClose, onLoginSuccess, curren
               onChange={e => setTotpCode(e.target.value)}
               autoFocus
               maxLength={6}
+              disabled={loading}
               style={{ textAlign: 'center', letterSpacing: '2px', fontSize: '1.2rem', marginBottom: '15px' }}
             />
-            <button type="submit" className="login-submit">
-              {currentLang === 'he' ? 'אימות' : 'Verify'}
+            <button type="submit" className="login-submit" disabled={loading}>
+              {loading ? (currentLang === 'he' ? 'בודק...' : 'Verifying...') : (currentLang === 'he' ? 'אימות' : 'Verify')}
             </button>
           </form>
         )}
