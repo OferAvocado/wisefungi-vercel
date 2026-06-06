@@ -2,7 +2,7 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import BentoGrid from './components/BentoGrid';
 import { useTranslation } from 'react-i18next';
-import { CheckCircle, XCircle, AlertTriangle, HelpCircle, Search, ChevronDown, ChevronRight, Lock, Save, Edit3, Plus, Trash2, Palette, Layout, Zap, Shield, Droplets, ArrowLeft, Home, Key } from 'lucide-react';
+import { CheckCircle, XCircle, AlertTriangle, HelpCircle, Search, ChevronDown, ChevronRight, Lock, Save, Edit3, Plus, Trash2, Palette, Layout, Zap, Shield, Droplets, ArrowLeft, Home, Key, Globe } from 'lucide-react';
 import { useEffect, useState, useRef, useMemo, useCallback, Fragment } from 'react';
 import translationHE from './locales/he.json';
 import translationEN from './locales/en.json';
@@ -390,6 +390,8 @@ function App() {
   const [isKeywordsDrawerOpen, setIsKeywordsDrawerOpen] = useState(false);
   const [uiContent, setUiContent] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [isModalLangOpen, setIsModalLangOpen] = useState(false);
+  const modalLangSelectorRef = useRef(null);
 
   // Analytics Hook
   const { trackPage } = useAnalytics();
@@ -399,6 +401,21 @@ function App() {
 
   // Reviews States
   const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    if (!isModalLangOpen) return;
+    const handleClickOutside = (event) => {
+      if (modalLangSelectorRef.current && !modalLangSelectorRef.current.contains(event.target)) {
+        setIsModalLangOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [isModalLangOpen]);
   const [isReviewFormOpen, setIsReviewFormOpen] = useState(false);
   const [newReviewName, setNewReviewName] = useState('');
   const [newReviewRating, setNewReviewRating] = useState(3);
@@ -1713,6 +1730,38 @@ function App() {
               <span>{t('labels.back_button') || (currentLang === 'he' ? 'חזור' : 'Back')}</span>
               {currentLang === 'he' ? <ChevronRight size={20} /> : <ArrowLeft size={20} />}
             </button>
+
+            <div className="modal-lang-selector" ref={modalLangSelectorRef}>
+              <button 
+                className="modal-lang-btn floating-lang-btn" 
+                onClick={() => setIsModalLangOpen(prev => !prev)}
+                aria-label="Change Language"
+              >
+                <Globe size={20} />
+              </button>
+              {isModalLangOpen && (
+                <div className="modal-lang-dropdown glass-panel">
+                  {[
+                    { code: 'en', label: 'English' },
+                    { code: 'he', label: 'עברית' },
+                    { code: 'es', label: 'Español' },
+                    { code: 'ru', label: 'Русский' }
+                  ].map((lang) => (
+                    <button 
+                      key={lang.code}
+                      className={`lang-option ${currentLang === lang.code ? 'active' : ''}`}
+                      onClick={() => {
+                        i18n.changeLanguage(lang.code);
+                        setIsModalLangOpen(false);
+                      }}
+                    >
+                      {lang.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
             <div ref={modalContentRef} className={`modal-content glass-panel animate-in ${selectedMushroom.id}`} data-editable="modal-content" style={{ position: 'relative', zIndex: 1 }}>
               {(() => {
                 const normId = selectedMushroom.id.replace(/-/g, '_');
@@ -1745,20 +1794,7 @@ function App() {
                         zIndex: -2 
                       }} 
                     />
-                    {normId === 'lions_mane' && (
-                      <div 
-                        style={{ 
-                          position: 'absolute', 
-                          top: 0, 
-                          height: topOffset, 
-                          left: 0, 
-                          right: 0, 
-                          backgroundColor: '#948d85', 
-                          pointerEvents: 'none', 
-                          zIndex: -1.5 
-                        }} 
-                      />
-                    )}
+
                     <div 
                       style={{ 
                         position: 'absolute', 

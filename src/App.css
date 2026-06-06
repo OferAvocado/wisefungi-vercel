@@ -602,13 +602,6 @@
 [dir="ltr"] .floating-back-btn {
   left: auto !important;
   right: 1.5rem !important;
-}
-
-.back-home-btn {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.8);
   color: #ffffff;
   padding: 0.4rem 1rem;
@@ -617,6 +610,53 @@
   font-weight: 400;
   font-size: 1.1rem;
   transition: all 0.2s ease;
+}
+
+.floating-lang-btn {
+  position: fixed;
+  top: 1.5rem;
+  z-index: 5100;
+  background: rgba(10, 20, 15, 0.6) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 2.5px solid rgba(255, 255, 255, 0.8) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  border-radius: 50% !important;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 !important;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+[dir="rtl"] .floating-lang-btn {
+  left: auto !important;
+  right: 1.5rem !important;
+}
+
+[dir="ltr"] .floating-lang-btn {
+  right: auto !important;
+  left: 1.5rem !important;
+}
+
+.modal-lang-dropdown {
+  position: fixed;
+  top: calc(1.5rem + 52px);
+  z-index: 5099;
+}
+
+[dir="rtl"] .modal-lang-dropdown {
+  left: auto !important;
+  right: 1.5rem !important;
+}
+
+[dir="ltr"] .modal-lang-dropdown {
+  right: auto !important;
+  left: 1.5rem !important;
 }
 
 .back-home-btn:hover {
@@ -633,7 +673,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
+  padding: 0.5rem;
+  transition: all 0.2s;
+  border-radius: 50%;
 }
 
 .close-btn-new:hover {
@@ -2132,6 +2174,12 @@ body.acc-stop-animations *::after {
 .is-admin-bar-visible .floating-back-btn {
   top: calc(1.5rem + 48px) !important;
 }
+.is-admin-bar-visible .floating-lang-btn {
+  top: calc(1.5rem + 48px) !important;
+}
+.is-admin-bar-visible .modal-lang-dropdown {
+  top: calc(1.5rem + 48px + 52px) !important;
+}
 
 @media (max-width: 768px) {
   .app-container.is-admin-bar-visible {
@@ -2145,6 +2193,12 @@ body.acc-stop-animations *::after {
   }
   .is-admin-bar-visible .floating-back-btn {
     top: calc(1.5rem + 96px) !important;
+  }
+  .is-admin-bar-visible .floating-lang-btn {
+    top: calc(1.5rem + 96px) !important;
+  }
+  .is-admin-bar-visible .modal-lang-dropdown {
+    top: calc(1.5rem + 96px + 52px) !important;
   }
 }
 
