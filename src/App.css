@@ -437,7 +437,7 @@
   --mush-top: #c75616; --mush-bottom: #662704; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85); --tag-bg: rgba(255,255,255,0.1); --mush-border: rgba(210, 100, 40, 0.4);
 }
 .lions_mane { 
-  --mush-top: #f3e6d0; --mush-bottom: #d6c3a1; --mush-text: #1a1a1a; --mush-subtext: rgba(0,0,0,0.7); --tag-bg: rgba(0,0,0,0.1); --mush-border: rgba(180, 150, 110, 0.4);
+  --mush-top: #d6c3a1; --mush-bottom: #f3e6d0; --mush-text: #1a1a1a; --mush-subtext: rgba(0,0,0,0.7); --tag-bg: rgba(0,0,0,0.1); --mush-border: rgba(180, 150, 110, 0.4);
 }
 .tremella { 
   --mush-top: #c46480; --mush-bottom: #612338; --mush-text: #FFFFFF; --mush-subtext: rgba(255,255,255,0.85); --tag-bg: rgba(255,255,255,0.1); --mush-border: rgba(210, 110, 140, 0.4);
@@ -594,6 +594,14 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
   border-radius: 12px !important;
   padding: 0.5rem 1.2rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  color: #fff !important;
+  text-decoration: none !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 [dir="rtl"] .floating-back-btn {
   right: auto !important;
@@ -602,14 +610,6 @@
 [dir="ltr"] .floating-back-btn {
   left: auto !important;
   right: 1.5rem !important;
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  color: #ffffff;
-  padding: 0.4rem 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 400;
-  font-size: 1.1rem;
-  transition: all 0.2s ease;
 }
 
 .floating-lang-btn {
@@ -699,7 +699,7 @@
 .modal-header {
   background: transparent;
   padding: 3rem 3rem 1.5rem;
-  color: #ffffff;
+  color: var(--mush-text, #ffffff);
 }
 .modal-header-top {
   display: flex;

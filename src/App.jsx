@@ -1740,7 +1740,7 @@ function App() {
                 <Globe size={20} />
               </button>
               {isModalLangOpen && (
-                <div className="modal-lang-dropdown glass-panel">
+                <div className="lang-dropdown animate-fade-in glass-panel">
                   {[
                     { code: 'en', label: 'English' },
                     { code: 'he', label: 'עברית' },
