@@ -1,7 +1,7 @@
-const { sql } = require('@vercel/postgres');
-const crypto = require('crypto');
+import { sql } from '@vercel/postgres';
+import crypto from 'crypto';
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).end(); // Method Not Allowed
   }
@@ -43,4 +43,4 @@ module.exports = async (req, res) => {
     console.error('Analytics tracking error:', error);
     return res.status(204).end();
   }
-};
+}

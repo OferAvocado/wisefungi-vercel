@@ -1,6 +1,6 @@
-const { sql } = require('@vercel/postgres');
+import { sql } from '@vercel/postgres';
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   // Security check: Only allow admin to run setup
   const token = req.headers.authorization || '';
   if (token !== 'wise-fungi-secret') {
@@ -33,4 +33,4 @@ module.exports = async (req, res) => {
     console.error('Analytics setup error:', error);
     res.status(500).json({ error: error.message });
   }
-};
+}

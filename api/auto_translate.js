@@ -1,7 +1,7 @@
 import { sql } from '@vercel/postgres';
 
-// Use standard fetch if available globally (Node 18+), else require it
-const fetchApi = typeof fetch !== 'undefined' ? fetch : require('node-fetch');
+// Use standard global fetch (available in Node 18+)
+const fetchApi = fetch;
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
