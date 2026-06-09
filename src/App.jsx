@@ -1736,11 +1736,14 @@ function App() {
                 className="modal-lang-btn floating-lang-btn" 
                 onClick={() => setIsModalLangOpen(prev => !prev)}
                 aria-label="Change Language"
+                aria-expanded={isModalLangOpen}
               >
-                <Globe size={20} />
+                <Globe size={18} />
+                <span className="lang-text">{currentLang.toUpperCase()}</span>
+                <ChevronDown size={14} className={`chevron ${isModalLangOpen ? 'rotate' : ''}`} />
               </button>
               {isModalLangOpen && (
-                <div className="lang-dropdown animate-fade-in glass-panel">
+                <div className="lang-dropdown modal-lang-dropdown animate-fade-in glass-panel">
                   {[
                     { code: 'en', label: 'English' },
                     { code: 'he', label: 'עברית' },
