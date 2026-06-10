@@ -3,7 +3,7 @@ import Hero from './components/Hero';
 import BentoGrid from './components/BentoGrid';
 import { useTranslation } from 'react-i18next';
 import { CheckCircle, XCircle, AlertTriangle, HelpCircle, Search, ChevronDown, ChevronRight, Lock, Save, Edit3, Plus, Trash2, Palette, Layout, Zap, Shield, Droplets, ArrowLeft, Home, Key, Globe } from 'lucide-react';
-import { useEffect, useState, useRef, useMemo, useCallback, Fragment } from 'react';
+import { useEffect, useLayoutEffect, useState, useRef, useMemo, useCallback, Fragment } from 'react';
 import translationHE from './locales/he.json';
 import translationEN from './locales/en.json';
 import translationES from './locales/es.json';
@@ -695,7 +695,6 @@ function App() {
 
 
 
-  const [modalBodyHeight, setModalBodyHeight] = useState(0);
   const modalBodyRef = useRef(null);
   const tabsRef = useRef(null);
   const footerLineRef = useRef(null);
@@ -704,7 +703,7 @@ function App() {
   const [bgBottom, setBgBottom] = useState(0);
   const [modalHeight, setModalHeight] = useState(0);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const updateBgStart = () => {
       if (tabsRef.current && modalContentRef.current) {
         const sepRect = tabsRef.current.getBoundingClientRect();
@@ -719,31 +718,10 @@ function App() {
         setModalHeight(modalRect.height);
       }
     };
-    setTimeout(updateBgStart, 50);
+    updateBgStart();
     window.addEventListener('resize', updateBgStart);
     return () => window.removeEventListener('resize', updateBgStart);
-  }, [selectedMushroom, activeTab, isEditing, modalBodyHeight]);
-
-  useEffect(() => {
-    const node = modalBodyRef.current;
-    if (!node) {
-      setModalBodyHeight(0);
-      return;
-    }
-    
-    setModalBodyHeight(node.clientHeight);
-    
-    const observer = new ResizeObserver(() => {
-      if (modalBodyRef.current) {
-        setModalBodyHeight(modalBodyRef.current.clientHeight);
-      }
-    });
-    observer.observe(node);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [selectedMushroom, activeTab, isEditing]);
+  }, [selectedMushroom, activeTab, isEditing, expandedCats, interactionQuery, editData]);
 
   const handleSelect = useCallback((m) => {
     setSelectedMushroom(m);

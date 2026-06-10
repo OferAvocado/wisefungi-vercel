@@ -835,8 +835,8 @@
 }
 .tab-btn {
   background: none;
-  
-  color: inherit;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
   opacity: 0.65;
   padding: 0.6rem 1.2rem;
   font-size: 1.1rem;
@@ -844,14 +844,47 @@
   cursor: pointer;
   border-radius: 12px;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-shadow: none !important;
+  box-shadow: none !important;
 }
 .tab-btn:hover {
   opacity: 0.9;
+  border-color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.05);
+}
+.tab-btn.active {
+  opacity: 1;
+  border: 2.5px solid #ffffff;
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: none !important;
+  text-shadow: none !important;
+  transform: translateY(-1px);
+}
+.close-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
   background: rgba(0, 0, 0, 0.1);
   border: none;
   color: inherit;
   width: 42px;
   height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s;
+}
+.close-btn:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+.modal-title {
+  font-size: 3.5rem;
+  font-weight: 900;
   margin-bottom: 0.5rem;
   color: inherit;
 }
@@ -862,7 +895,6 @@
   font-style: italic;
   font-weight: 500;
 }
-
 .detail-section {
   margin-bottom: 2.5rem;
 }
@@ -877,6 +909,7 @@
   letter-spacing: 0.05em;
   margin-bottom: 1rem;
 }
+
 .benefit-list {
   list-style: none;
   display: flex;
