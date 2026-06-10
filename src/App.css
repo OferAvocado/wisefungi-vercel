@@ -602,6 +602,8 @@
   text-decoration: none !important;
   cursor: pointer;
   transition: all 0.3s ease;
+  font-size: 1.2rem !important;
+  font-weight: 700 !important;
 }
 [dir="rtl"] .floating-back-btn {
   right: auto !important;
@@ -1719,8 +1721,8 @@ html, body {
   width: 54px;
   height: 54px;
   border-radius: 50%;
-  background: transparent;
-  border: none;
+  background: rgba(10, 25, 15, 0.95);
+  border: 2px solid var(--accent-primary, #22c55e);
   outline: none;
   cursor: pointer;
   display: flex;

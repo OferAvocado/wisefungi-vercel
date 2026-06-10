@@ -2,7 +2,7 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import BentoGrid from './components/BentoGrid';
 import { useTranslation } from 'react-i18next';
-import { CheckCircle, XCircle, AlertTriangle, HelpCircle, Search, ChevronDown, ChevronRight, Lock, Save, Edit3, Plus, Trash2, Palette, Layout, Zap, Shield, Droplets, ArrowLeft, Home, Key, Globe } from 'lucide-react';
+import { CheckCircle, XCircle, AlertTriangle, HelpCircle, Search, ChevronDown, ChevronRight, Lock, Save, Edit3, Plus, Trash2, Palette, Layout, Zap, Shield, Droplets, ArrowLeft, Home, Key, Globe, Accessibility } from 'lucide-react';
 import { useEffect, useLayoutEffect, useState, useRef, useMemo, useCallback, Fragment } from 'react';
 import translationHE from './locales/he.json';
 import translationEN from './locales/en.json';
@@ -155,7 +155,7 @@ const AccessibilityWidget = () => {
         title="נגישות"
         aria-label="תפריט נגישות"
       >
-        <img src="/accessibility-icon.png" alt="נגישות" style={{ width: '100%', height: '100%', borderRadius: '50%', display: 'block' }} />
+        <Accessibility size={28} style={{ color: 'var(--accent-primary, #22c55e)' }} />
       </button>
 
 

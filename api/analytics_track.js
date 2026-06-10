@@ -7,8 +7,8 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { path } = req.body || {};
-    if (!path) {
+    const { id, path, duration = 0 } = req.body || {};
+    if (!path || !id) {
       return res.status(400).end();
     }
 
@@ -33,8 +33,9 @@ export default async function handler(req, res) {
     // Fire & Forget Insertion (don't await it to save latency, but since Vercel functions
     // suspend after response, we must await it. We keep it as fast as possible.)
     await sql`
-      INSERT INTO analytics_events (event_type, path, country, visitor_hash)
-      VALUES ('page_view', ${path}, ${country}, ${visitorHash})
+      INSERT INTO analytics_events (id, event_type, path, country, visitor_hash, duration)
+      VALUES (${id}, 'page_view', ${path}, ${country}, ${visitorHash}, ${duration})
+      ON CONFLICT (id) DO UPDATE SET duration = EXCLUDED.duration
     `;
 
     return res.status(204).end(); // 204 No Content for max performance

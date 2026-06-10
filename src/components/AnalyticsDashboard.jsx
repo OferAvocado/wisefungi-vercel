@@ -62,8 +62,22 @@ export default function AnalyticsDashboard({ onBack, currentLang = 'he' }) {
   const [error, setError] = useState(null);
   const [mapSvg, setMapSvg] = useState('');
   const [tooltip, setTooltip] = useState({ visible: false, x: 0, y: 0, content: '' });
+  
+  // Interactive Map Zoom/Drag States
+  const [zoom, setZoom] = useState(1);
+  const [pan, setPan] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
 
   const mapContainerRef = useRef(null);
+
+  const formatDuration = (seconds) => {
+    if (seconds === 0) return '0s';
+    if (seconds < 60) return `${seconds}s`;
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return secs > 0 ? `${mins}m ${secs}s` : `${mins}m`;
+  };
 
   // Fetch world.svg once on mount
   useEffect(() => {
@@ -135,35 +149,55 @@ export default function AnalyticsDashboard({ onBack, currentLang = 'he' }) {
     fetchAnalytics();
   };
 
-  // SVG Map interactions
+  // SVG Map Zoom/Drag interactions
+  const handleMapMouseDown = (e) => {
+    // Only drag on left click and not on tooltip/buttons
+    if (e.button !== 0) return;
+    setIsDragging(true);
+    setDragStart({ x: e.clientX - pan.x, y: e.clientY - pan.y });
+  };
+
   const handleMapMouseMove = (e) => {
+    // Tooltip logic
     const target = e.target;
     if (target && target.tagName.toLowerCase() === 'path') {
       const countryId = target.getAttribute('id');
-      if (!countryId) return;
+      if (countryId) {
+        const code = countryId.toLowerCase();
+        const countryObj = COUNTRY_NAMES[code];
+        const countryName = countryObj 
+          ? (currentLang === 'he' ? countryObj.he : countryObj.en) 
+          : countryId.toUpperCase();
 
-      const code = countryId.toLowerCase();
-      const countryObj = COUNTRY_NAMES[code];
-      const countryName = countryObj 
-        ? (currentLang === 'he' ? countryObj.he : countryObj.en) 
-        : countryId.toUpperCase();
+        const geoEntry = data?.geo?.find(g => g.country && g.country.toLowerCase() === code);
+        const visits = geoEntry ? geoEntry.visits : 0;
 
-      const geoEntry = data?.geo?.find(g => g.country && g.country.toLowerCase() === code);
-      const visits = geoEntry ? geoEntry.visits : 0;
-
-      setTooltip({
-        visible: true,
-        x: e.clientX,
-        y: e.clientY,
-        content: currentLang === 'he' 
-          ? `${countryName}: ${visits} כניסות` 
-          : `${countryName}: ${visits} visits`
-      });
+        setTooltip({
+          visible: true,
+          x: e.clientX,
+          y: e.clientY,
+          content: currentLang === 'he' 
+            ? `${countryName}: ${visits} כניסות` 
+            : `${countryName}: ${visits} visits`
+        });
+      }
     }
+
+    // Drag/Pan logic
+    if (!isDragging) return;
+    setPan({
+      x: e.clientX - dragStart.x,
+      y: e.clientY - dragStart.y
+    });
+  };
+
+  const handleMapMouseUp = () => {
+    setIsDragging(false);
   };
 
   const handleMapMouseLeave = () => {
     setTooltip(prev => ({ ...prev, visible: false }));
+    setIsDragging(false);
   };
 
   // Render Chart helper
@@ -514,6 +548,13 @@ export default function AnalyticsDashboard({ onBack, currentLang = 'he' }) {
               </div>
               <div style={{ fontSize: '2.8rem', fontWeight: '800', lineHeight: '1' }}>{data.overview?.unique_visitors || 0}</div>
             </div>
+
+            <div className="glass-panel" style={{ background: 'rgba(255,255,255,0.03)', padding: '1.8rem', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.06)', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#aaa', fontSize: '0.9rem' }}>
+                <Clock size={18} color="#f59e0b" /> {currentLang === 'he' ? 'זמן שהייה ממוצע' : 'Avg Time on Site'}
+              </div>
+              <div style={{ fontSize: '2.8rem', fontWeight: '800', lineHeight: '1' }}>{formatDuration(data.overview?.avg_duration || 0)}</div>
+            </div>
           </div>
 
           {/* Time Series Chart Section */}
@@ -525,25 +566,39 @@ export default function AnalyticsDashboard({ onBack, currentLang = 'he' }) {
             {/* World Map Component Card */}
             <div className="glass-panel" style={{ background: 'rgba(255,255,255,0.03)', padding: '1.8rem', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.06)' }}>
               <h3 style={{ margin: '0 0 1.5rem 0', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem' }}>
-                <Globe size={18} /> {currentLang === 'he' ? 'מפת פילוג גאוגרפי' : 'Geographic Distribution Map'}
+                <Globe size={18} /> {currentLang === 'he' ? 'מפת פילוג גאוגרפי (ניתן להזיז ולבצע זום)' : 'Geographic Distribution Map (Pan & Zoomable)'}
               </h3>
               
-              <div 
-                ref={mapContainerRef}
-                className="world-map-container"
-                onMouseMove={handleMapMouseMove}
-                onMouseLeave={handleMapMouseLeave}
-                dangerouslySetInnerHTML={{ __html: mapSvg }}
-                style={{ 
-                  background: 'rgba(0,0,0,0.15)', 
-                  borderRadius: '12px', 
-                  padding: '1rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  border: '1px solid rgba(255,255,255,0.03)'
-                }}
-              />
+              <div style={{ position: 'relative', overflow: 'hidden', width: '100%', height: '400px', background: 'rgba(0,0,0,0.15)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.03)' }}>
+                {/* Floating Map Zoom Controls */}
+                <div style={{ position: 'absolute', top: '15px', right: '15px', display: 'flex', flexDirection: 'column', gap: '8px', zIndex: 10 }}>
+                  <button type="button" onClick={() => setZoom(z => Math.min(z + 0.3, 5))} className="timeframe-btn" style={{ padding: '4px 10px', fontSize: '1.2rem', minWidth: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>+</button>
+                  <button type="button" onClick={() => setZoom(z => Math.max(z - 0.3, 0.5))} className="timeframe-btn" style={{ padding: '4px 10px', fontSize: '1.2rem', minWidth: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>-</button>
+                  <button type="button" onClick={() => { setZoom(1); setPan({ x: 0, y: 0 }); }} className="timeframe-btn" style={{ padding: '4px 8px', fontSize: '0.8rem' }}>{currentLang === 'he' ? 'איפוס' : 'Reset'}</button>
+                </div>
+                
+                {/* Map Inner Wrapper with drag/move handlers */}
+                <div 
+                  ref={mapContainerRef}
+                  className="world-map-container"
+                  onMouseDown={handleMapMouseDown}
+                  onMouseMove={handleMapMouseMove}
+                  onMouseUp={handleMapMouseUp}
+                  onMouseLeave={handleMapMouseLeave}
+                  dangerouslySetInnerHTML={{ __html: mapSvg }}
+                  style={{ 
+                    width: '100%',
+                    height: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`,
+                    transformOrigin: 'center center',
+                    cursor: isDragging ? 'grabbing' : 'grab',
+                    transition: isDragging ? 'none' : 'transform 0.15s cubic-bezier(0.16, 1, 0.3, 1)'
+                  }}
+                />
+              </div>
             </div>
           </div>
 

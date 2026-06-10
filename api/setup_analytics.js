@@ -20,6 +20,11 @@ export default async function handler(req, res) {
       );
     `;
 
+    // Ensure duration column exists (migration)
+    await sql`
+      ALTER TABLE analytics_events ADD COLUMN IF NOT EXISTS duration INTEGER DEFAULT 0;
+    `;
+
     // Index for faster queries
     await sql`
       CREATE INDEX IF NOT EXISTS idx_analytics_timestamp ON analytics_events(timestamp DESC);

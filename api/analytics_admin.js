@@ -57,11 +57,12 @@ export default async function handler(req, res) {
     const startISO = start.toISOString();
     const endISO = end.toISOString();
 
-    // 1. Total & Unique Visitors
+    // 1. Total & Unique Visitors & Average Duration
     const visitorsResult = await sql`
       SELECT 
         COUNT(*) as total_visits,
-        COUNT(DISTINCT visitor_hash) as unique_visitors
+        COUNT(DISTINCT visitor_hash) as unique_visitors,
+        COALESCE(AVG(duration), 0) as avg_duration
       FROM analytics_events
       WHERE timestamp >= ${startISO} AND timestamp <= ${endISO}
     `;
@@ -108,7 +109,8 @@ export default async function handler(req, res) {
     res.status(200).json({
       overview: {
         total_visits: parseInt(visitorsResult.rows[0]?.total_visits || 0, 10),
-        unique_visitors: parseInt(visitorsResult.rows[0]?.unique_visitors || 0, 10)
+        unique_visitors: parseInt(visitorsResult.rows[0]?.unique_visitors || 0, 10),
+        avg_duration: Math.round(parseFloat(visitorsResult.rows[0]?.avg_duration || 0))
       },
       topPaths: pathsResult.rows,
       geo: geoResult.rows,
