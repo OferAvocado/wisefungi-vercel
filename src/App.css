@@ -749,14 +749,13 @@
   flex: 1;
   min-width: 250px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
 .modal-title-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  width: 100%;
+  align-items: flex-start;
+  text-align: start;
 }
 .modal-body {
   padding: 2rem 3rem 3rem;
@@ -875,15 +874,15 @@
   background: rgba(0, 0, 0, 0.2);
 }
 .modal-title {
-  font-size: 4.8rem;
+  font-size: 3.5rem;
   font-weight: 900;
   margin-bottom: 0.5rem;
   color: inherit;
 }
 .modal-scientific {
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   color: inherit;
-  opacity: 0.85;
+  opacity: 0.8;
   font-style: italic;
   font-weight: 500;
 }
@@ -1325,11 +1324,11 @@
     padding: 1rem 1.5rem 2rem;
   }
   .modal-title {
-    font-size: 3.2rem !important;
+    font-size: 2.2rem !important;
     text-align: center;
   }
   .modal-scientific {
-    font-size: 1.4rem !important;
+    font-size: 1.1rem !important;
     text-align: center;
   }
   .modal-tabs {
