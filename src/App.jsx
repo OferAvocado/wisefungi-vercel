@@ -695,7 +695,7 @@ function App() {
     };
   }, [selectedMushroom]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setInteractionQuery('');
     setExpandedCats({
       do_not_combine: false,
