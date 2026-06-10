@@ -18,6 +18,7 @@ import AnalyticsDashboard from './components/AnalyticsDashboard';
 import { useAnalytics } from './hooks/useAnalytics';
 import InteractionPage from './pages/InteractionPage';
 import SEO from './components/SEO';
+import CursorParticles from './components/CursorParticles';
 import './App.css';
 import SearchKeywordsDrawer from './components/SearchKeywordsDrawer';
 const watermarkConfigs = {
@@ -684,6 +685,17 @@ function App() {
   }, [mushroomsData]);
 
   useEffect(() => {
+    if (selectedMushroom) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [selectedMushroom]);
+
+  useEffect(() => {
     setInteractionQuery('');
     setExpandedCats({
       do_not_combine: false,
@@ -1323,6 +1335,7 @@ function App() {
       // Force admin login if trying to view analytics without token
       return (
         <div style={{ background: '#111', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+          <CursorParticles />
           <AdminAuthModal 
             isOpen={true} 
             onClose={() => window.location.href = '/'} 
@@ -1335,17 +1348,28 @@ function App() {
         </div>
       );
     }
-    return <AnalyticsDashboard onBack={() => window.location.href = '/'} />;
+    return (
+      <>
+        <CursorParticles />
+        <AnalyticsDashboard onBack={() => window.location.href = '/'} />
+      </>
+    );
   }
 
   // e.g. /he/interactions/lions-mane/cbd
   const isInteractionRoute = pathParts.length >= 3 && pathParts[1] === 'interactions';
   if (isInteractionRoute) {
-    return <InteractionPage lang={pathParts[0]} mushroomId={pathParts[2]} vectorId={pathParts[3]} />;
+    return (
+      <>
+        <CursorParticles />
+        <InteractionPage lang={pathParts[0]} mushroomId={pathParts[2]} vectorId={pathParts[3]} />
+      </>
+    );
   }
 
   return (
     <div className={`app-container ${isAdmin ? 'is-admin' : ''} ${isAdmin && !isVisualEditorOpen ? 'is-admin-bar-visible' : ''}`}>
+      <CursorParticles />
       <SEO 
         title={uiContent.site_title || "Wise Fungi - המדריך המפורט לפטריות מרפא"} 
         description={uiContent.site_desc || "המדריך המפורט ביותר לפטריות מרפא ברשת. ריישי, רעמת האריה, קורדיספס, צ'אגה ועוד."} 
@@ -1822,14 +1846,14 @@ function App() {
                       <>
                         <input 
                           className="admin-edit-input" 
-                          style={{ fontSize: '1.8rem', fontWeight: '900', marginBottom: '0.5rem' }}
+                          style={{ fontSize: '1.8rem', fontWeight: '900', marginBottom: '0.5rem', textAlign: 'center' }}
                           value={selectedMushroom.name || ''} 
                           onChange={e => setSelectedMushroom({...selectedMushroom, name: e.target.value})} 
                         />
                         <div className="fade-line" style={{ height: '2px', background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.8) 50%, transparent 100%)', margin: '1rem 0', width: '100%' }}></div>
                         <input 
                           className="admin-edit-input" 
-                          style={{ fontSize: '1rem', fontStyle: 'italic', marginTop: '0.5rem' }}
+                          style={{ fontSize: '1rem', fontStyle: 'italic', marginTop: '0.5rem', textAlign: 'center' }}
                           value={selectedMushroom.subtitle || ''} 
                           onChange={e => setSelectedMushroom({...selectedMushroom, subtitle: e.target.value})} 
                         />

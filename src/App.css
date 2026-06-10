@@ -573,7 +573,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  overflow-y: auto;
+  overflow-y: scroll;
   animation: modalFadeIn 0.4s ease;
   width: 100%;
 }
@@ -747,30 +747,20 @@
   flex: 1;
   min-width: 250px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
 }
 .modal-title-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  text-align: start;
+  align-items: center;
+  text-align: center;
+  width: 100%;
 }
 .modal-body {
   padding: 2rem 3rem 3rem;
 }
 
-/* Custom white scrollbar for the modal */
-.modal-overlay::-webkit-scrollbar {
-  width: 14px;
-}
-.modal-overlay::-webkit-scrollbar-track {
-  background: rgba(0,0,0,0.3);
-}
-.modal-overlay::-webkit-scrollbar-thumb {
-  background-color: #ffffff;
-  border-radius: 10px;
-  border: 3px solid rgba(0,0,0,0.3);
-}
+
 
 .detail-section {
   background: rgba(0, 0, 0, 0.4) !important; /* Translucent to show background pattern */
