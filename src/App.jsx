@@ -1846,14 +1846,14 @@ function App() {
                       <>
                         <input 
                           className="admin-edit-input" 
-                          style={{ fontSize: '3.5rem', fontWeight: '900', marginBottom: '0.5rem' }}
+                          style={{ fontSize: '3.5rem', fontWeight: '900', marginBottom: '0.5rem', textAlign: 'center' }}
                           value={selectedMushroom.name || ''} 
                           onChange={e => setSelectedMushroom({...selectedMushroom, name: e.target.value})} 
                         />
                         <div className="fade-line" style={{ height: '2px', background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.8) 50%, transparent 100%)', margin: '1rem 0', width: '100%' }}></div>
                         <input 
                           className="admin-edit-input" 
-                          style={{ fontSize: '1.3rem', fontStyle: 'italic', marginTop: '0.5rem' }}
+                          style={{ fontSize: '1.3rem', fontStyle: 'italic', marginTop: '0.5rem', textAlign: 'center' }}
                           value={selectedMushroom.subtitle || ''} 
                           onChange={e => setSelectedMushroom({...selectedMushroom, subtitle: e.target.value})} 
                         />

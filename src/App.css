@@ -721,8 +721,9 @@
 .modal-title-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  text-align: start;
+  align-items: center;
+  text-align: center;
+  width: 100%;
 }
 .modal-body {
   padding: 2rem 3rem 3rem;
@@ -1361,6 +1362,16 @@
     text-align: center;
     width: 100%;
   }
+
+  /* Responsive styling for accessibility widget on mobile */
+  .accessibility-widget {
+    bottom: 16px !important;
+    left: 16px !important;
+  }
+  .accessibility-btn {
+    width: 48px !important;
+    height: 48px !important;
+  }
 }
 
 /* Ensure nothing can possibly overflow the X-axis */
@@ -1684,8 +1695,8 @@ html, body {
 }
 
 .accessibility-btn {
-  width: 54px;
-  height: 54px;
+  width: 54px !important;
+  height: 54px !important;
   border-radius: 50%;
   background: transparent;
   border: none;
