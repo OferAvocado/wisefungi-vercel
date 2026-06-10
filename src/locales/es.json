@@ -38,7 +38,9 @@
     "review_cancel": "Cancelar",
     "review_error_empty": "Por favor escribe una reseña",
     "admin_reviews_manage": "Gestionar y editar reseñas",
-    "admin_reviews_done": "Finalizar gestión"
+    "admin_reviews_done": "Finalizar gestión",
+    "copy_link": "Copiar enlace",
+    "link_copied": "¡Enlace copiado con éxito!"
   },
   "mushrooms": {
     "reishi": {

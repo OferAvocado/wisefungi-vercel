@@ -38,7 +38,9 @@
     "review_cancel": "Отмена",
     "review_error_empty": "Пожалуйста, напишите отзыв",
     "admin_reviews_manage": "Управление отзывами",
-    "admin_reviews_done": "Завершить управление"
+    "admin_reviews_done": "Завершить управление",
+    "copy_link": "Скопировать ссылку",
+    "link_copied": "Ссылка успешно скопирована!"
   },
   "mushrooms": {
     "reishi": {

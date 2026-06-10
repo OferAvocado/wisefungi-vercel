@@ -14,7 +14,7 @@ export default function Header({ isSticky, searchQuery, setSearchQuery, onLogoCl
   useEffect(() => {
     // Preload QR Code
     const img = new Image();
-    img.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(window.location.href)}&bgcolor=ffffff&color=000000`;
+    img.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(window.location.href)}&bgcolor=ffffff&color=000000&ecc=H`;
   }, []);
 
   const languages = [
@@ -126,17 +126,89 @@ export default function Header({ isSticky, searchQuery, setSearchQuery, onLogoCl
     </header>
 
       {showShareModal && (
-        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(15px)', WebkitBackdropFilter: 'blur(15px)', zIndex: 99999, display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={() => setShowShareModal(false)}>
-          <div style={{ background: '#111827', padding: '2.5rem', borderRadius: '24px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem', position: 'relative', minWidth: '320px', maxWidth: '90vw', border: '1px solid rgba(255,255,255,0.15)', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)' }} onClick={e => e.stopPropagation()}>
-            <button onClick={() => setShowShareModal(false)} style={{ position: 'absolute', top: '15px', right: '15px', background: 'rgba(255,255,255,0.1)', border: 'none', color: 'white', borderRadius: '50%', width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(4, 10, 6, 0.7)', backdropFilter: 'blur(15px)', WebkitBackdropFilter: 'blur(15px)', zIndex: 99999, display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={() => setShowShareModal(false)}>
+          <div style={{ background: '#0a140c', padding: '2.5rem', borderRadius: '24px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem', position: 'relative', minWidth: '320px', maxWidth: '90vw', border: '1px solid rgba(34, 197, 94, 0.3)', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 30px rgba(34, 197, 94, 0.15)' }} onClick={e => e.stopPropagation()}>
+            <button 
+              onClick={() => setShowShareModal(false)} 
+              style={{ 
+                position: 'absolute', 
+                top: '15px', 
+                right: '15px', 
+                background: 'rgba(255,255,255,0.05)', 
+                border: '1px solid rgba(255,255,255,0.1)', 
+                color: 'white', 
+                borderRadius: '50%', 
+                width: '32px', 
+                height: '32px', 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center', 
+                cursor: 'pointer',
+                transition: 'all 0.2s'
+              }}
+              onMouseOver={e => {
+                e.currentTarget.style.background = 'rgba(34, 197, 94, 0.2)';
+                e.currentTarget.style.borderColor = 'rgba(34, 197, 94, 0.5)';
+                e.currentTarget.style.color = '#4ade80';
+              }}
+              onMouseOut={e => {
+                e.currentTarget.style.background = 'rgba(255,255,255,0.05)';
+                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)';
+                e.currentTarget.style.color = 'white';
+              }}
+            >
               <X size={18} />
             </button>
             
-            <div style={{ background: 'white', padding: '15px', borderRadius: '16px' }}>
-              <img src={`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(window.location.href)}&bgcolor=ffffff&color=000000`} alt="QR Code" style={{ width: '200px', height: '200px', display: 'block' }} />
+            <div style={{ position: 'relative', background: 'white', padding: '15px', borderRadius: '16px' }}>
+              <img src={`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(window.location.href)}&bgcolor=ffffff&color=000000&ecc=H`} alt="QR Code" style={{ width: '200px', height: '200px', display: 'block' }} />
+              <div style={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: '44px',
+                height: '44px',
+                background: '#15803d',
+                border: '3px solid white',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.3)'
+              }}>
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="white">
+                  <path d="M12,2A8,8 0 0,0 4,10A1,1 0 0,0 5,11H19A1,1 0 0,0 20,10A8,8 0 0,0 12,2M10,12V20A2,2 0 0,0 12,22A2,2 0 0,0 14,20V12H10Z" />
+                </svg>
+              </div>
             </div>
 
-            <button onClick={copyLink} style={{ background: 'rgba(59, 130, 246, 0.2)', color: '#60A5FA', border: '1px solid rgba(59, 130, 246, 0.4)', padding: '0.8rem 1.5rem', borderRadius: '99px', cursor: 'pointer', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '0.5rem', width: '100%', justifyContent: 'center', transition: 'all 0.2s' }} onMouseOver={e => e.target.style.background = 'rgba(59, 130, 246, 0.3)'} onMouseOut={e => e.target.style.background = 'rgba(59, 130, 246, 0.2)'}>
+            <button 
+              onClick={copyLink} 
+              style={{ 
+                background: 'rgba(34, 197, 94, 0.15)', 
+                color: '#4ade80', 
+                border: '1px solid rgba(34, 197, 94, 0.4)', 
+                padding: '0.8rem 1.5rem', 
+                borderRadius: '99px', 
+                cursor: 'pointer', 
+                fontWeight: 'bold', 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '0.5rem', 
+                width: '100%', 
+                justifyContent: 'center', 
+                transition: 'all 0.2s' 
+              }} 
+              onMouseOver={e => {
+                e.currentTarget.style.background = 'rgba(34, 197, 94, 0.25)';
+                e.currentTarget.style.boxShadow = '0 0 15px rgba(34, 197, 94, 0.3)';
+              }} 
+              onMouseOut={e => {
+                e.currentTarget.style.background = 'rgba(34, 197, 94, 0.15)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}
+            >
               <LinkIcon size={18} /> {t('labels.copy_link') || 'Copy Link'}
             </button>
           </div>

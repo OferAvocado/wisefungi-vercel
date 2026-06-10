@@ -40,7 +40,9 @@
     "review_cancel": "ביטול",
     "review_error_empty": "אנא כתוב ביקורת",
     "admin_reviews_manage": "ניהול ועריכת ביקורות",
-    "admin_reviews_done": "סיום ניהול ביקורות"
+    "admin_reviews_done": "סיום ניהול ביקורות",
+    "copy_link": "העתק קישור",
+    "link_copied": "הקישור הועתק בהצלחה!"
   },
   "mushrooms": {
     "reishi": {
